@@ -1,0 +1,60 @@
+package frege.android.widget.StackView where
+
+import frege.android.content.Context
+import frege.android.util.AttributeSet
+import frege.android.view.MotionEvent
+
+data StackView = pure native android.widget.StackView where
+
+
+  native new  :: Context -> ST s StackView
+        | Context -> AttributeSet -> ST s StackView
+        | Context -> AttributeSet -> Int -> ST s StackView
+
+  native advance  :: StackView -> ST s ( )
+
+  pure native onGenericMotionEvent  :: StackView -> MotionEvent -> Bool
+
+{-   native onInitializeAccessibilityEvent  :: -- ["AccessibilityEvent"] -- StackView -> AccessibilityEvent -> ST s ( ) -}
+
+{-   native onInitializeAccessibilityNodeInfo  :: -- ["AccessibilityNodeInfo"] -- StackView -> AccessibilityNodeInfo -> ST s ( ) -}
+
+  pure native onInterceptTouchEvent  :: StackView -> MotionEvent -> Bool
+
+  pure native onTouchEvent  :: StackView -> MotionEvent -> Bool
+
+{-   pure native performAccessibilityAction  :: -- ["Bundle"] -- StackView -> Int -> Bundle -> Bool -}
+
+  native showNext  :: StackView -> ST s ( )
+
+  native showPrevious  :: StackView -> ST s ( )
+
+
+{-
+data StackView = pure native android.widget.StackView where
+
+  native new :: Context -> ST s StackView
+              | Context -> AttributeSet -> ST s StackView
+              | Context -> AttributeSet -> Int -> ST s StackView
+
+  native advance :: StackView -> ST s ()
+
+  pure native onGenericMotionEvent :: StackView -> MotionEvent -> Bool
+
+  native onInitializeAccessibilityEvent :: StackView -> AccessibilityEvent -> ST s ()
+
+  native onInitializeAccessibilityNodeInfo :: StackView -> AccessibilityNodeInfo -> ST s ()
+
+  pure native onInterceptTouchEvent :: StackView -> MotionEvent -> Bool
+
+  pure native onTouchEvent :: StackView -> MotionEvent -> Bool
+
+  pure native performAccessibilityAction :: StackView -> Int -> Bundle -> Bool
+
+  native showNext :: StackView -> ST s ()
+
+  native showPrevious :: StackView -> ST s ()
+
+
+
+-}

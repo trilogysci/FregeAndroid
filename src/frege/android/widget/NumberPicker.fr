@@ -1,0 +1,133 @@
+package frege.android.widget.NumberPicker where
+
+import frege.android.content.Context
+import frege.android.util.AttributeSet
+import frege.android.view.KeyEvent
+import frege.android.view.MotionEvent
+
+data NumberPicker = pure native android.widget.NumberPicker where
+
+
+  native new  :: Context -> AttributeSet -> Int -> ST s NumberPicker
+        | Context -> AttributeSet -> ST s NumberPicker
+        | Context -> ST s NumberPicker
+
+  native computeScroll  :: NumberPicker -> ST s ( )
+
+  pure native dispatchKeyEvent  :: NumberPicker -> KeyEvent -> Bool
+
+  pure native dispatchTouchEvent  :: NumberPicker -> MotionEvent -> Bool
+
+  pure native dispatchTrackballEvent  :: NumberPicker -> MotionEvent -> Bool
+
+{-   pure native getAccessibilityNodeProvider  :: -- ["AccessibilityNodeProvider"] -- NumberPicker -> AccessibilityNodeProvider -}
+
+{-   native getDisplayedValues  :: -- ["JArray"] -- NumberPicker -> STMutable s ( JArray String ) -}
+
+  pure native getMaxValue  :: NumberPicker -> Int
+
+  pure native getMinValue  :: NumberPicker -> Int
+
+  pure native getSolidColor  :: NumberPicker -> Int
+
+  pure native getValue  :: NumberPicker -> Int
+
+  pure native getWrapSelectorWheel  :: NumberPicker -> Bool
+
+{-   native onInitializeAccessibilityEvent  :: -- ["AccessibilityEvent"] -- NumberPicker -> AccessibilityEvent -> ST s ( ) -}
+
+  pure native onInterceptTouchEvent  :: NumberPicker -> MotionEvent -> Bool
+
+  pure native onTouchEvent  :: NumberPicker -> MotionEvent -> Bool
+
+  pure native performClick  :: NumberPicker -> Bool
+
+  pure native performLongClick  :: NumberPicker -> Bool
+
+  native scrollBy  :: NumberPicker -> Int -> Int -> ST s ( )
+
+{-   native setDisplayedValues  :: -- ["JArray"] -- NumberPicker -> Mutable s ( JArray String ) -> ST s ( ) -}
+
+  native setEnabled  :: NumberPicker -> Bool -> ST s ( )
+
+{-   native setFormatter  :: -- ["NumberPicker_Formatter"] -- NumberPicker -> NumberPicker_Formatter -> ST s ( ) -}
+
+  native setMaxValue  :: NumberPicker -> Int -> ST s ( )
+
+  native setMinValue  :: NumberPicker -> Int -> ST s ( )
+
+  native setOnLongPressUpdateInterval  :: NumberPicker -> Long -> ST s ( )
+
+{-   native setOnScrollListener  :: -- ["NumberPicker_OnScrollListener"] -- NumberPicker -> NumberPicker_OnScrollListener -> ST s ( ) -}
+
+{-   native setOnValueChangedListener  :: -- ["NumberPicker_OnValueChangeListener"] -- NumberPicker -> NumberPicker_OnValueChangeListener -> ST s ( ) -}
+
+  native setValue  :: NumberPicker -> Int -> ST s ( )
+
+  native setWrapSelectorWheel  :: NumberPicker -> Bool -> ST s ( )
+
+
+{-
+data NumberPicker = pure native android.widget.NumberPicker where
+
+  native new :: Context -> AttributeSet -> Int -> ST s NumberPicker
+              | Context -> AttributeSet -> ST s NumberPicker
+              | Context -> ST s NumberPicker
+
+  native computeScroll :: NumberPicker -> ST s ()
+
+  pure native dispatchKeyEvent :: NumberPicker -> KeyEvent -> Bool
+
+  pure native dispatchTouchEvent :: NumberPicker -> MotionEvent -> Bool
+
+  pure native dispatchTrackballEvent :: NumberPicker -> MotionEvent -> Bool
+
+  pure native getAccessibilityNodeProvider :: NumberPicker -> AccessibilityNodeProvider
+
+  native getDisplayedValues :: NumberPicker -> STMutable s (JArray String)
+
+  pure native getMaxValue :: NumberPicker -> Int
+
+  pure native getMinValue :: NumberPicker -> Int
+
+  pure native getSolidColor :: NumberPicker -> Int
+
+  pure native getValue :: NumberPicker -> Int
+
+  pure native getWrapSelectorWheel :: NumberPicker -> Bool
+
+  native onInitializeAccessibilityEvent :: NumberPicker -> AccessibilityEvent -> ST s ()
+
+  pure native onInterceptTouchEvent :: NumberPicker -> MotionEvent -> Bool
+
+  pure native onTouchEvent :: NumberPicker -> MotionEvent -> Bool
+
+  pure native performClick :: NumberPicker -> Bool
+
+  pure native performLongClick :: NumberPicker -> Bool
+
+  native scrollBy :: NumberPicker -> Int -> Int -> ST s ()
+
+  native setDisplayedValues :: NumberPicker -> Mutable s (JArray String) -> ST s ()
+
+  native setEnabled :: NumberPicker -> Bool -> ST s ()
+
+  native setFormatter :: NumberPicker -> NumberPicker_Formatter -> ST s ()
+
+  native setMaxValue :: NumberPicker -> Int -> ST s ()
+
+  native setMinValue :: NumberPicker -> Int -> ST s ()
+
+  native setOnLongPressUpdateInterval :: NumberPicker -> Long -> ST s ()
+
+  native setOnScrollListener :: NumberPicker -> NumberPicker_OnScrollListener -> ST s ()
+
+  native setOnValueChangedListener :: NumberPicker -> NumberPicker_OnValueChangeListener -> ST s ()
+
+  native setValue :: NumberPicker -> Int -> ST s ()
+
+  native setWrapSelectorWheel :: NumberPicker -> Bool -> ST s ()
+
+
+
+-}

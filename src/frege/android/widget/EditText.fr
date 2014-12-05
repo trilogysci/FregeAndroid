@@ -1,0 +1,57 @@
+package frege.android.widget.EditText where
+
+import frege.android.content.Context
+import frege.android.util.AttributeSet
+
+data EditText = pure native android.widget.EditText where
+
+
+  native new  :: Context -> ST s EditText
+        | Context -> AttributeSet -> Int -> ST s EditText
+        | Context -> AttributeSet -> ST s EditText
+
+  native extendSelection  :: EditText -> Int -> ST s ( )
+
+{-   pure native getText  :: -- ["Editable"] -- EditText -> Editable -}
+
+{-   native onInitializeAccessibilityEvent  :: -- ["AccessibilityEvent"] -- EditText -> AccessibilityEvent -> ST s ( ) -}
+
+{-   native onInitializeAccessibilityNodeInfo  :: -- ["AccessibilityNodeInfo"] -- EditText -> AccessibilityNodeInfo -> ST s ( ) -}
+
+  native selectAll  :: EditText -> ST s ( )
+
+{-   native setEllipsize  :: -- ["TextUtils_TruncateAt"] -- EditText -> TextUtils_TruncateAt -> ST s ( ) -}
+
+  native setSelection  :: EditText -> Int -> ST s ( )
+        | EditText -> Int -> Int -> ST s ( )
+
+{-   native setText  :: -- ["TextView_BufferType"] -- EditText -> CharSequence -> TextView_BufferType -> ST s ( ) -}
+
+
+{-
+data EditText = pure native android.widget.EditText where
+
+  native new :: Context -> ST s EditText
+              | Context -> AttributeSet -> Int -> ST s EditText
+              | Context -> AttributeSet -> ST s EditText
+
+  native extendSelection :: EditText -> Int -> ST s ()
+
+  pure native getText :: EditText -> Editable
+
+  native onInitializeAccessibilityEvent :: EditText -> AccessibilityEvent -> ST s ()
+
+  native onInitializeAccessibilityNodeInfo :: EditText -> AccessibilityNodeInfo -> ST s ()
+
+  native selectAll :: EditText -> ST s ()
+
+  native setEllipsize :: EditText -> TextUtils_TruncateAt -> ST s ()
+
+  native setSelection :: EditText -> Int -> ST s ()
+                       | EditText -> Int -> Int -> ST s ()
+
+  native setText :: EditText -> CharSequence -> TextView_BufferType -> ST s ()
+
+
+
+-}

@@ -1,0 +1,149 @@
+package frege.android.widget.HorizontalScrollView where
+
+import frege.android.content.Context
+import frege.android.util.AttributeSet
+import frege.android.view.KeyEvent
+import frege.android.view.MotionEvent
+import frege.android.graphics.Rect
+import frege.android.view.View
+
+data HorizontalScrollView = pure native android.widget.HorizontalScrollView where
+
+
+  native new  :: Context -> AttributeSet -> Int -> ST s HorizontalScrollView
+        | Context -> AttributeSet -> ST s HorizontalScrollView
+        | Context -> ST s HorizontalScrollView
+
+  native addView  :: -- ["ViewGroup_LayoutParams"] -- HorizontalScrollView -> MutableIO View -> ViewGroup_LayoutParams -> IO ( )
+        -- ["ViewGroup_LayoutParams"] -- HorizontalScrollView -> MutableIO View -> Int -> ViewGroup_LayoutParams -> IO ( )
+        HorizontalScrollView -> MutableIO View -> IO ( )
+        | HorizontalScrollView -> MutableIO View -> Int -> IO ( )
+
+  pure native arrowScroll  :: HorizontalScrollView -> Int -> Bool
+
+  native computeScroll  :: HorizontalScrollView -> ST s ( )
+
+  pure native dispatchKeyEvent  :: HorizontalScrollView -> KeyEvent -> Bool
+
+{-   native draw  :: -- ["Canvas"] -- HorizontalScrollView -> Canvas -> ST s ( ) -}
+
+  pure native executeKeyEvent  :: HorizontalScrollView -> KeyEvent -> Bool
+
+  native fling  :: HorizontalScrollView -> Int -> ST s ( )
+
+  pure native fullScroll  :: HorizontalScrollView -> Int -> Bool
+
+  pure native getMaxScrollAmount  :: HorizontalScrollView -> Int
+
+  pure native isFillViewport  :: HorizontalScrollView -> Bool
+
+  pure native isSmoothScrollingEnabled  :: HorizontalScrollView -> Bool
+
+  pure native onGenericMotionEvent  :: HorizontalScrollView -> MotionEvent -> Bool
+
+{-   native onInitializeAccessibilityEvent  :: -- ["AccessibilityEvent"] -- HorizontalScrollView -> AccessibilityEvent -> ST s ( ) -}
+
+{-   native onInitializeAccessibilityNodeInfo  :: -- ["AccessibilityNodeInfo"] -- HorizontalScrollView -> AccessibilityNodeInfo -> ST s ( ) -}
+
+  pure native onInterceptTouchEvent  :: HorizontalScrollView -> MotionEvent -> Bool
+
+  pure native onTouchEvent  :: HorizontalScrollView -> MotionEvent -> Bool
+
+  pure native pageScroll  :: HorizontalScrollView -> Int -> Bool
+
+{-   pure native performAccessibilityAction  :: -- ["Bundle"] -- HorizontalScrollView -> Int -> Bundle -> Bool -}
+
+  native requestChildFocus  :: HorizontalScrollView -> MutableIO View -> MutableIO View -> IO ( )
+
+  native requestChildRectangleOnScreen  :: HorizontalScrollView -> MutableIO View -> MutableIO Rect -> Bool -> IO Bool
+
+  native requestDisallowInterceptTouchEvent  :: HorizontalScrollView -> Bool -> ST s ( )
+
+  native requestLayout  :: HorizontalScrollView -> ST s ( )
+
+  native scrollTo  :: HorizontalScrollView -> Int -> Int -> ST s ( )
+
+  native setFillViewport  :: HorizontalScrollView -> Bool -> ST s ( )
+
+  native setOverScrollMode  :: HorizontalScrollView -> Int -> ST s ( )
+
+  native setSmoothScrollingEnabled  :: HorizontalScrollView -> Bool -> ST s ( )
+
+  pure native shouldDelayChildPressedState  :: HorizontalScrollView -> Bool
+
+  native smoothScrollBy  :: HorizontalScrollView -> Int -> Int -> ST s ( )
+
+  native smoothScrollTo  :: HorizontalScrollView -> Int -> Int -> ST s ( )
+
+
+{-
+data HorizontalScrollView = pure native android.widget.HorizontalScrollView where
+
+  native new :: Context -> AttributeSet -> Int -> ST s HorizontalScrollView
+              | Context -> AttributeSet -> ST s HorizontalScrollView
+              | Context -> ST s HorizontalScrollView
+
+  native addView :: HorizontalScrollView -> MutableIO View -> ViewGroup_LayoutParams -> IO ()
+                  | HorizontalScrollView -> MutableIO View -> Int -> ViewGroup_LayoutParams -> IO ()
+                  | HorizontalScrollView -> MutableIO View -> IO ()
+                  | HorizontalScrollView -> MutableIO View -> Int -> IO ()
+
+  pure native arrowScroll :: HorizontalScrollView -> Int -> Bool
+
+  native computeScroll :: HorizontalScrollView -> ST s ()
+
+  pure native dispatchKeyEvent :: HorizontalScrollView -> KeyEvent -> Bool
+
+  native draw :: HorizontalScrollView -> Canvas -> ST s ()
+
+  pure native executeKeyEvent :: HorizontalScrollView -> KeyEvent -> Bool
+
+  native fling :: HorizontalScrollView -> Int -> ST s ()
+
+  pure native fullScroll :: HorizontalScrollView -> Int -> Bool
+
+  pure native getMaxScrollAmount :: HorizontalScrollView -> Int
+
+  pure native isFillViewport :: HorizontalScrollView -> Bool
+
+  pure native isSmoothScrollingEnabled :: HorizontalScrollView -> Bool
+
+  pure native onGenericMotionEvent :: HorizontalScrollView -> MotionEvent -> Bool
+
+  native onInitializeAccessibilityEvent :: HorizontalScrollView -> AccessibilityEvent -> ST s ()
+
+  native onInitializeAccessibilityNodeInfo :: HorizontalScrollView -> AccessibilityNodeInfo -> ST s ()
+
+  pure native onInterceptTouchEvent :: HorizontalScrollView -> MotionEvent -> Bool
+
+  pure native onTouchEvent :: HorizontalScrollView -> MotionEvent -> Bool
+
+  pure native pageScroll :: HorizontalScrollView -> Int -> Bool
+
+  pure native performAccessibilityAction :: HorizontalScrollView -> Int -> Bundle -> Bool
+
+  native requestChildFocus :: HorizontalScrollView -> MutableIO View -> MutableIO View -> IO ()
+
+  native requestChildRectangleOnScreen :: HorizontalScrollView -> MutableIO View -> MutableIO Rect -> Bool -> IO Bool
+
+  native requestDisallowInterceptTouchEvent :: HorizontalScrollView -> Bool -> ST s ()
+
+  native requestLayout :: HorizontalScrollView -> ST s ()
+
+  native scrollTo :: HorizontalScrollView -> Int -> Int -> ST s ()
+
+  native setFillViewport :: HorizontalScrollView -> Bool -> ST s ()
+
+  native setOverScrollMode :: HorizontalScrollView -> Int -> ST s ()
+
+  native setSmoothScrollingEnabled :: HorizontalScrollView -> Bool -> ST s ()
+
+  pure native shouldDelayChildPressedState :: HorizontalScrollView -> Bool
+
+  native smoothScrollBy :: HorizontalScrollView -> Int -> Int -> ST s ()
+
+  native smoothScrollTo :: HorizontalScrollView -> Int -> Int -> ST s ()
+
+
+
+-}

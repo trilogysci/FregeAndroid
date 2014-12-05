@@ -1,0 +1,185 @@
+package frege.android.widget.ImageView where
+
+import frege.android.content.Context
+import frege.android.util.AttributeSet
+import frege.android.graphics.drawable.Drawable
+import frege.android.graphics.Matrix
+
+data ImageView = pure native android.widget.ImageView where
+
+
+  native new  :: Context -> AttributeSet -> Int -> ST s ImageView
+        | Context -> AttributeSet -> ST s ImageView
+        | Context -> ST s ImageView
+
+  native clearColorFilter  :: ImageView -> ST s ( )
+
+  pure native getAdjustViewBounds  :: ImageView -> Bool
+
+  pure native getBaseline  :: ImageView -> Int
+
+  pure native getBaselineAlignBottom  :: ImageView -> Bool
+
+{-   pure native getColorFilter  :: -- ["ColorFilter"] -- ImageView -> ColorFilter -}
+
+  pure native getCropToPadding  :: ImageView -> Bool
+
+  pure native getDrawable  :: ImageView -> Drawable
+
+  pure native getImageAlpha  :: ImageView -> Int
+
+  native getImageMatrix  :: ImageView -> STMutable s Matrix
+
+  pure native getMaxHeight  :: ImageView -> Int
+
+  pure native getMaxWidth  :: ImageView -> Int
+
+{-   pure native getScaleType  :: -- ["ImageView_ScaleType"] -- ImageView -> ImageView_ScaleType -}
+
+  pure native hasOverlappingRendering  :: ImageView -> Bool
+
+  native invalidateDrawable  :: ImageView -> Drawable -> ST s ( )
+
+  native jumpDrawablesToCurrentState  :: ImageView -> ST s ( )
+
+{-   native onCreateDrawableState  :: -- ["JArray"] -- ImageView -> Int -> STMutable s ( JArray Int ) -}
+
+{-   native onInitializeAccessibilityEvent  :: -- ["AccessibilityEvent"] -- ImageView -> AccessibilityEvent -> ST s ( ) -}
+
+{-   native onInitializeAccessibilityNodeInfo  :: -- ["AccessibilityNodeInfo"] -- ImageView -> AccessibilityNodeInfo -> ST s ( ) -}
+
+{-   native onPopulateAccessibilityEvent  :: -- ["AccessibilityEvent"] -- ImageView -> AccessibilityEvent -> ST s ( ) -}
+
+  native onRtlPropertiesChanged  :: ImageView -> Int -> ST s ( )
+
+  native setAdjustViewBounds  :: ImageView -> Bool -> ST s ( )
+
+  native setAlpha  :: ImageView -> Int -> ST s ( )
+
+  native setBaseline  :: ImageView -> Int -> ST s ( )
+
+  native setBaselineAlignBottom  :: ImageView -> Bool -> ST s ( )
+
+  native setColorFilter  :: -- ["ColorFilter"] -- ImageView -> ColorFilter -> ST s ( )
+        ImageView -> Int -> ST s ( )
+        -- ["PorterDuff_Mode"] -- | ImageView -> Int -> PorterDuff_Mode -> ST s ( )
+
+  native setCropToPadding  :: ImageView -> Bool -> ST s ( )
+
+  native setImageAlpha  :: ImageView -> Int -> ST s ( )
+
+{-   native setImageBitmap  :: -- ["Bitmap"] -- ImageView -> Bitmap -> ST s ( ) -}
+
+  native setImageDrawable  :: ImageView -> Drawable -> ST s ( )
+
+  native setImageLevel  :: ImageView -> Int -> ST s ( )
+
+  native setImageMatrix  :: ImageView -> Mutable s Matrix -> ST s ( )
+
+  native setImageResource  :: ImageView -> Int -> ST s ( )
+
+{-   native setImageState  :: -- ["JArray"] -- ImageView -> Mutable s ( JArray Int ) -> Bool -> ST s ( ) -}
+
+{-   native setImageURI  :: -- ["Uri"] -- ImageView -> Uri -> ST s ( ) -}
+
+  native setMaxHeight  :: ImageView -> Int -> ST s ( )
+
+  native setMaxWidth  :: ImageView -> Int -> ST s ( )
+
+{-   native setScaleType  :: -- ["ImageView_ScaleType"] -- ImageView -> ImageView_ScaleType -> ST s ( ) -}
+
+  native setSelected  :: ImageView -> Bool -> ST s ( )
+
+  native setVisibility  :: ImageView -> Int -> ST s ( )
+
+
+{-
+data ImageView = pure native android.widget.ImageView where
+
+  native new :: Context -> AttributeSet -> Int -> ST s ImageView
+              | Context -> AttributeSet -> ST s ImageView
+              | Context -> ST s ImageView
+
+  native clearColorFilter :: ImageView -> ST s ()
+
+  pure native getAdjustViewBounds :: ImageView -> Bool
+
+  pure native getBaseline :: ImageView -> Int
+
+  pure native getBaselineAlignBottom :: ImageView -> Bool
+
+  pure native getColorFilter :: ImageView -> ColorFilter
+
+  pure native getCropToPadding :: ImageView -> Bool
+
+  pure native getDrawable :: ImageView -> Drawable
+
+  pure native getImageAlpha :: ImageView -> Int
+
+  native getImageMatrix :: ImageView -> STMutable s Matrix
+
+  pure native getMaxHeight :: ImageView -> Int
+
+  pure native getMaxWidth :: ImageView -> Int
+
+  pure native getScaleType :: ImageView -> ImageView_ScaleType
+
+  pure native hasOverlappingRendering :: ImageView -> Bool
+
+  native invalidateDrawable :: ImageView -> Drawable -> ST s ()
+
+  native jumpDrawablesToCurrentState :: ImageView -> ST s ()
+
+  native onCreateDrawableState :: ImageView -> Int -> STMutable s (JArray Int)
+
+  native onInitializeAccessibilityEvent :: ImageView -> AccessibilityEvent -> ST s ()
+
+  native onInitializeAccessibilityNodeInfo :: ImageView -> AccessibilityNodeInfo -> ST s ()
+
+  native onPopulateAccessibilityEvent :: ImageView -> AccessibilityEvent -> ST s ()
+
+  native onRtlPropertiesChanged :: ImageView -> Int -> ST s ()
+
+  native setAdjustViewBounds :: ImageView -> Bool -> ST s ()
+
+  native setAlpha :: ImageView -> Int -> ST s ()
+
+  native setBaseline :: ImageView -> Int -> ST s ()
+
+  native setBaselineAlignBottom :: ImageView -> Bool -> ST s ()
+
+  native setColorFilter :: ImageView -> ColorFilter -> ST s ()
+                         | ImageView -> Int -> ST s ()
+                         | ImageView -> Int -> PorterDuff_Mode -> ST s ()
+
+  native setCropToPadding :: ImageView -> Bool -> ST s ()
+
+  native setImageAlpha :: ImageView -> Int -> ST s ()
+
+  native setImageBitmap :: ImageView -> Bitmap -> ST s ()
+
+  native setImageDrawable :: ImageView -> Drawable -> ST s ()
+
+  native setImageLevel :: ImageView -> Int -> ST s ()
+
+  native setImageMatrix :: ImageView -> Mutable s Matrix -> ST s ()
+
+  native setImageResource :: ImageView -> Int -> ST s ()
+
+  native setImageState :: ImageView -> Mutable s (JArray Int) -> Bool -> ST s ()
+
+  native setImageURI :: ImageView -> Uri -> ST s ()
+
+  native setMaxHeight :: ImageView -> Int -> ST s ()
+
+  native setMaxWidth :: ImageView -> Int -> ST s ()
+
+  native setScaleType :: ImageView -> ImageView_ScaleType -> ST s ()
+
+  native setSelected :: ImageView -> Bool -> ST s ()
+
+  native setVisibility :: ImageView -> Int -> ST s ()
+
+
+
+-}

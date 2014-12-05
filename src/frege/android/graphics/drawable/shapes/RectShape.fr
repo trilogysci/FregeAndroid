@@ -1,0 +1,26 @@
+package frege.android.graphics.drawable.shapes.RectShape where
+
+
+data RectShape = pure native android.graphics.drawable.shapes.RectShape where
+
+
+  native new  :: ( ) -> ST s RectShape
+
+{-   native clone  :: -- ["CloneNotSupportedException"] -- RectShape -> ST s RectShape throws CloneNotSupportedException -}
+
+{-   native draw  :: -- ["Canvas","Paint"] -- RectShape -> Canvas -> Paint -> ST s ( ) -}
+
+
+{-
+data RectShape = pure native android.graphics.drawable.shapes.RectShape where
+
+  native new :: () -> ST s RectShape
+
+  native clone :: RectShape -> ST s RectShape throws CloneNotSupportedException
+
+  native draw :: RectShape -> Canvas -> Paint -> ST s ()
+
+derive Cloneable RectShape
+
+
+-}

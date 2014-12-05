@@ -1,0 +1,216 @@
+package frege.java.util.Locale where
+
+data Locale = pure native java.util.Locale where
+
+
+  pure native english  java.util.Locale.ENGLISH :: Locale
+
+  pure native french  java.util.Locale.FRENCH :: Locale
+
+  pure native german  java.util.Locale.GERMAN :: Locale
+
+  pure native italian  java.util.Locale.ITALIAN :: Locale
+
+  pure native japanese  java.util.Locale.JAPANESE :: Locale
+
+  pure native korean  java.util.Locale.KOREAN :: Locale
+
+  pure native chinese  java.util.Locale.CHINESE :: Locale
+
+  pure native simplified_chinese  java.util.Locale.SIMPLIFIED_CHINESE :: Locale
+
+  pure native traditional_chinese  java.util.Locale.TRADITIONAL_CHINESE :: Locale
+
+  pure native france  java.util.Locale.FRANCE :: Locale
+
+  pure native germany  java.util.Locale.GERMANY :: Locale
+
+  pure native italy  java.util.Locale.ITALY :: Locale
+
+  pure native japan  java.util.Locale.JAPAN :: Locale
+
+  pure native korea  java.util.Locale.KOREA :: Locale
+
+  pure native china  java.util.Locale.CHINA :: Locale
+
+  pure native prc  java.util.Locale.PRC :: Locale
+
+  pure native taiwan  java.util.Locale.TAIWAN :: Locale
+
+  pure native uk  java.util.Locale.UK :: Locale
+
+  pure native us  java.util.Locale.US :: Locale
+
+  pure native canada  java.util.Locale.CANADA :: Locale
+
+  pure native canada_french  java.util.Locale.CANADA_FRENCH :: Locale
+
+  pure native root  java.util.Locale.ROOT :: Locale
+
+{-   pure native private_use_extension  java.util.Locale.PRIVATE_USE_EXTENSION :: -- ["Char"] -- Char -}
+
+{-   pure native unicode_locale_extension  java.util.Locale.UNICODE_LOCALE_EXTENSION :: -- ["Char"] -- Char -}
+
+  native new  :: String -> ST s Locale
+        | String -> String -> ST s Locale
+        | String -> String -> String -> ST s Locale
+
+  pure native clone  :: Locale -> Object
+
+  pure native equals  :: Locale -> Object -> Bool
+
+  pure native forLanguageTag  java.util.Locale.forLanguageTag :: String -> Locale
+
+{-   native getAvailableLocales  java.util.Locale.getAvailableLocales :: -- ["JArray"] -- ( ) -> STMutable s ( JArray Locale ) -}
+
+  pure native getCountry  :: Locale -> String
+
+  native getDefault  java.util.Locale.getDefault :: -- ["LocaleCategory"] -- LocaleCategory -> ST s Locale
+        ( ) -> ST s Locale
+
+  pure native getDisplayCountry  :: Locale -> Locale -> String
+        | Locale -> String
+
+  pure native getDisplayLanguage  :: Locale -> Locale -> String
+        | Locale -> String
+
+  pure native getDisplayName  :: Locale -> String
+        | Locale -> Locale -> String
+
+  pure native getDisplayScript  :: Locale -> String
+        | Locale -> Locale -> String
+
+  pure native getDisplayVariant  :: Locale -> Locale -> String
+        | Locale -> String
+
+{-   pure native getExtension  :: -- ["Char"] -- Locale -> Char -> String -}
+
+{-   native getExtensionKeys  :: -- ["Character","Set"] -- Locale -> STMutable s ( Set Character ) -}
+
+  pure native getISO3Country  :: Locale -> String
+
+  pure native getISO3Language  :: Locale -> String
+
+{-   native getISOCountries  java.util.Locale.getISOCountries :: -- ["JArray"] -- ( ) -> STMutable s ( JArray String ) -}
+
+{-   native getISOLanguages  java.util.Locale.getISOLanguages :: -- ["JArray"] -- ( ) -> STMutable s ( JArray String ) -}
+
+  pure native getLanguage  :: Locale -> String
+
+  pure native getScript  :: Locale -> String
+
+{-   native getUnicodeLocaleAttributes  :: -- ["Set"] -- Locale -> STMutable s ( Set String ) -}
+
+{-   native getUnicodeLocaleKeys  :: -- ["Set"] -- Locale -> STMutable s ( Set String ) -}
+
+  pure native getUnicodeLocaleType  :: Locale -> String -> String
+
+  pure native getVariant  :: Locale -> String
+
+  pure native hashCode  :: Locale -> Int
+
+  native setDefault  java.util.Locale.setDefault :: -- ["LocaleCategory"] -- LocaleCategory -> Locale -> ST s ( )
+        Locale -> ST s ( )
+
+  pure native toLanguageTag  :: Locale -> String
+
+  pure native toString  :: Locale -> String
+
+
+{-
+data Locale = pure native java.util.Locale where
+
+  pure native english java.util.Locale.ENGLISH :: Locale
+  pure native french java.util.Locale.FRENCH :: Locale
+  pure native german java.util.Locale.GERMAN :: Locale
+  pure native italian java.util.Locale.ITALIAN :: Locale
+  pure native japanese java.util.Locale.JAPANESE :: Locale
+  pure native korean java.util.Locale.KOREAN :: Locale
+  pure native chinese java.util.Locale.CHINESE :: Locale
+  pure native simplified_chinese java.util.Locale.SIMPLIFIED_CHINESE :: Locale
+  pure native traditional_chinese java.util.Locale.TRADITIONAL_CHINESE :: Locale
+  pure native france java.util.Locale.FRANCE :: Locale
+  pure native germany java.util.Locale.GERMANY :: Locale
+  pure native italy java.util.Locale.ITALY :: Locale
+  pure native japan java.util.Locale.JAPAN :: Locale
+  pure native korea java.util.Locale.KOREA :: Locale
+  pure native china java.util.Locale.CHINA :: Locale
+  pure native prc java.util.Locale.PRC :: Locale
+  pure native taiwan java.util.Locale.TAIWAN :: Locale
+  pure native uk java.util.Locale.UK :: Locale
+  pure native us java.util.Locale.US :: Locale
+  pure native canada java.util.Locale.CANADA :: Locale
+  pure native canada_french java.util.Locale.CANADA_FRENCH :: Locale
+  pure native root java.util.Locale.ROOT :: Locale
+  pure native private_use_extension java.util.Locale.PRIVATE_USE_EXTENSION :: Char
+  pure native unicode_locale_extension java.util.Locale.UNICODE_LOCALE_EXTENSION :: Char
+
+  native new :: String -> ST s Locale
+              | String -> String -> ST s Locale
+              | String -> String -> String -> ST s Locale
+
+  pure native clone :: Locale -> Object
+
+  pure native equals :: Locale -> Object -> Bool
+
+  pure native forLanguageTag java.util.Locale.forLanguageTag :: String -> Locale
+
+  native getAvailableLocales java.util.Locale.getAvailableLocales :: () -> STMutable s (JArray Locale)
+
+  pure native getCountry :: Locale -> String
+
+  native getDefault java.util.Locale.getDefault :: LocaleCategory -> ST s Locale
+                                                 | () -> ST s Locale
+
+  pure native getDisplayCountry :: Locale -> Locale -> String
+                                 | Locale -> String
+
+  pure native getDisplayLanguage :: Locale -> Locale -> String
+                                  | Locale -> String
+
+  pure native getDisplayName :: Locale -> String
+                              | Locale -> Locale -> String
+
+  pure native getDisplayScript :: Locale -> String
+                                | Locale -> Locale -> String
+
+  pure native getDisplayVariant :: Locale -> Locale -> String
+                                 | Locale -> String
+
+  pure native getExtension :: Locale -> Char -> String
+
+  native getExtensionKeys :: Locale -> STMutable s (Set Character)
+
+  pure native getISO3Country :: Locale -> String
+
+  pure native getISO3Language :: Locale -> String
+
+  native getISOCountries java.util.Locale.getISOCountries :: () -> STMutable s (JArray String)
+
+  native getISOLanguages java.util.Locale.getISOLanguages :: () -> STMutable s (JArray String)
+
+  pure native getLanguage :: Locale -> String
+
+  pure native getScript :: Locale -> String
+
+  native getUnicodeLocaleAttributes :: Locale -> STMutable s (Set String)
+
+  native getUnicodeLocaleKeys :: Locale -> STMutable s (Set String)
+
+  pure native getUnicodeLocaleType :: Locale -> String -> String
+
+  pure native getVariant :: Locale -> String
+
+  pure native hashCode :: Locale -> Int
+
+  native setDefault java.util.Locale.setDefault :: LocaleCategory -> Locale -> ST s ()
+                                                 | Locale -> ST s ()
+
+  pure native toLanguageTag :: Locale -> String
+
+  pure native toString :: Locale -> String
+
+derive Serializable Locale
+
+
+-}

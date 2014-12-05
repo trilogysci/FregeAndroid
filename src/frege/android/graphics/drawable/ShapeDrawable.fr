@@ -1,0 +1,88 @@
+package frege.android.graphics.drawable.ShapeDrawable where
+
+import frege.android.graphics.Rect
+import frege.android.graphics.drawable.shapes.Shape
+
+data ShapeDrawable = pure native android.graphics.drawable.ShapeDrawable where
+
+
+  native new  :: Shape -> ST s ShapeDrawable
+        | ( ) -> ST s ShapeDrawable
+
+{-   native draw  :: -- ["Canvas"] -- ShapeDrawable -> Canvas -> ST s ( ) -}
+
+  pure native getAlpha  :: ShapeDrawable -> Int
+
+  pure native getChangingConfigurations  :: ShapeDrawable -> Int
+
+{-   pure native getConstantState  :: -- ["Drawable_ConstantState"] -- ShapeDrawable -> Drawable_ConstantState -}
+
+  pure native getIntrinsicHeight  :: ShapeDrawable -> Int
+
+  pure native getIntrinsicWidth  :: ShapeDrawable -> Int
+
+  pure native getOpacity  :: ShapeDrawable -> Int
+
+  native getPadding  :: ShapeDrawable -> Mutable s Rect -> ST s Bool
+
+{-   pure native getPaint  :: -- ["Paint"] -- ShapeDrawable -> Paint -}
+
+{-   pure native getShaderFactory  :: -- ["ShapeDrawable_ShaderFactory"] -- ShapeDrawable -> ShapeDrawable_ShaderFactory -}
+
+  pure native getShape  :: ShapeDrawable -> Shape
+
+{-   native inflate  :: -- ["Resources","XmlPullParser","XmlPullParserException"] -- ShapeDrawable -> Resources -> XmlPullParser -> AttributeSet -> ST s ( ) throws XmlPullParserException -}
+
+
+{-
+data ShapeDrawable = pure native android.graphics.drawable.ShapeDrawable where
+
+  native new :: Shape -> ST s ShapeDrawable
+              | () -> ST s ShapeDrawable
+
+  native draw :: ShapeDrawable -> Canvas -> ST s ()
+
+  pure native getAlpha :: ShapeDrawable -> Int
+
+  pure native getChangingConfigurations :: ShapeDrawable -> Int
+
+  pure native getConstantState :: ShapeDrawable -> Drawable_ConstantState
+
+  pure native getIntrinsicHeight :: ShapeDrawable -> Int
+
+  pure native getIntrinsicWidth :: ShapeDrawable -> Int
+
+  pure native getOpacity :: ShapeDrawable -> Int
+
+  native getPadding :: ShapeDrawable -> Mutable s Rect -> ST s Bool
+
+  pure native getPaint :: ShapeDrawable -> Paint
+
+  pure native getShaderFactory :: ShapeDrawable -> ShapeDrawable_ShaderFactory
+
+  pure native getShape :: ShapeDrawable -> Shape
+
+  native inflate :: ShapeDrawable -> Resources -> XmlPullParser -> AttributeSet -> ST s () throws XmlPullParserException, IOException
+
+  pure native mutate :: ShapeDrawable -> Drawable
+
+  native setAlpha :: ShapeDrawable -> Int -> ST s ()
+
+  native setColorFilter :: ShapeDrawable -> ColorFilter -> ST s ()
+
+  native setDither :: ShapeDrawable -> Bool -> ST s ()
+
+  native setIntrinsicHeight :: ShapeDrawable -> Int -> ST s ()
+
+  native setIntrinsicWidth :: ShapeDrawable -> Int -> ST s ()
+
+  native setPadding :: ShapeDrawable -> Mutable s Rect -> ST s ()
+                     | ShapeDrawable -> Int -> Int -> Int -> Int -> ST s ()
+
+  native setShaderFactory :: ShapeDrawable -> ShapeDrawable_ShaderFactory -> ST s ()
+
+  native setShape :: ShapeDrawable -> Shape -> ST s ()
+
+
+
+-}

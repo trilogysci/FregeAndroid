@@ -1,0 +1,122 @@
+package frege.android.widget.ProgressBar where
+
+import frege.android.content.Context
+import frege.android.util.AttributeSet
+import frege.android.graphics.drawable.Drawable
+
+data ProgressBar = pure native android.widget.ProgressBar where
+
+
+  native new  :: Context -> AttributeSet -> Int -> ST s ProgressBar
+        | Context -> AttributeSet -> ST s ProgressBar
+        | Context -> ST s ProgressBar
+
+  pure native getIndeterminateDrawable  :: ProgressBar -> Drawable
+
+{-   pure native getInterpolator  :: -- ["Interpolator"] -- ProgressBar -> Interpolator -}
+
+  pure native getMax  :: ProgressBar -> Int
+
+  pure native getProgress  :: ProgressBar -> Int
+
+  pure native getProgressDrawable  :: ProgressBar -> Drawable
+
+  pure native getSecondaryProgress  :: ProgressBar -> Int
+
+  native incrementProgressBy  :: ProgressBar -> Int -> ST s ( )
+
+  native incrementSecondaryProgressBy  :: ProgressBar -> Int -> ST s ( )
+
+  native invalidateDrawable  :: ProgressBar -> Drawable -> ST s ( )
+
+  pure native isIndeterminate  :: ProgressBar -> Bool
+
+  native jumpDrawablesToCurrentState  :: ProgressBar -> ST s ( )
+
+{-   native onInitializeAccessibilityEvent  :: -- ["AccessibilityEvent"] -- ProgressBar -> AccessibilityEvent -> ST s ( ) -}
+
+{-   native onInitializeAccessibilityNodeInfo  :: -- ["AccessibilityNodeInfo"] -- ProgressBar -> AccessibilityNodeInfo -> ST s ( ) -}
+
+{-   native onRestoreInstanceState  :: -- ["Parcelable"] -- ProgressBar -> Parcelable -> ST s ( ) -}
+
+{-   pure native onSaveInstanceState  :: -- ["Parcelable"] -- ProgressBar -> Parcelable -}
+
+  native postInvalidate  :: ProgressBar -> ST s ( )
+
+  native setIndeterminate  :: ProgressBar -> Bool -> ST s ( )
+
+  native setIndeterminateDrawable  :: ProgressBar -> Drawable -> ST s ( )
+
+  native setInterpolator  :: ProgressBar -> Context -> Int -> ST s ( )
+        -- ["Interpolator"] -- | ProgressBar -> Interpolator -> ST s ( )
+
+  native setMax  :: ProgressBar -> Int -> ST s ( )
+
+  native setProgress  :: ProgressBar -> Int -> ST s ( )
+
+  native setProgressDrawable  :: ProgressBar -> Drawable -> ST s ( )
+
+  native setSecondaryProgress  :: ProgressBar -> Int -> ST s ( )
+
+  native setVisibility  :: ProgressBar -> Int -> ST s ( )
+
+
+{-
+data ProgressBar = pure native android.widget.ProgressBar where
+
+  native new :: Context -> AttributeSet -> Int -> ST s ProgressBar
+              | Context -> AttributeSet -> ST s ProgressBar
+              | Context -> ST s ProgressBar
+
+  pure native getIndeterminateDrawable :: ProgressBar -> Drawable
+
+  pure native getInterpolator :: ProgressBar -> Interpolator
+
+  pure native getMax :: ProgressBar -> Int
+
+  pure native getProgress :: ProgressBar -> Int
+
+  pure native getProgressDrawable :: ProgressBar -> Drawable
+
+  pure native getSecondaryProgress :: ProgressBar -> Int
+
+  native incrementProgressBy :: ProgressBar -> Int -> ST s ()
+
+  native incrementSecondaryProgressBy :: ProgressBar -> Int -> ST s ()
+
+  native invalidateDrawable :: ProgressBar -> Drawable -> ST s ()
+
+  pure native isIndeterminate :: ProgressBar -> Bool
+
+  native jumpDrawablesToCurrentState :: ProgressBar -> ST s ()
+
+  native onInitializeAccessibilityEvent :: ProgressBar -> AccessibilityEvent -> ST s ()
+
+  native onInitializeAccessibilityNodeInfo :: ProgressBar -> AccessibilityNodeInfo -> ST s ()
+
+  native onRestoreInstanceState :: ProgressBar -> Parcelable -> ST s ()
+
+  pure native onSaveInstanceState :: ProgressBar -> Parcelable
+
+  native postInvalidate :: ProgressBar -> ST s ()
+
+  native setIndeterminate :: ProgressBar -> Bool -> ST s ()
+
+  native setIndeterminateDrawable :: ProgressBar -> Drawable -> ST s ()
+
+  native setInterpolator :: ProgressBar -> Context -> Int -> ST s ()
+                          | ProgressBar -> Interpolator -> ST s ()
+
+  native setMax :: ProgressBar -> Int -> ST s ()
+
+  native setProgress :: ProgressBar -> Int -> ST s ()
+
+  native setProgressDrawable :: ProgressBar -> Drawable -> ST s ()
+
+  native setSecondaryProgress :: ProgressBar -> Int -> ST s ()
+
+  native setVisibility :: ProgressBar -> Int -> ST s ()
+
+
+
+-}

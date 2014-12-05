@@ -1,0 +1,80 @@
+package frege.android.widget.MediaController where
+
+import frege.android.content.Context
+import frege.android.util.AttributeSet
+import frege.android.view.KeyEvent
+import frege.android.view.MotionEvent
+import frege.android.view.View
+
+data MediaController = pure native android.widget.MediaController where
+
+
+  native new  :: Context -> AttributeSet -> ST s MediaController
+        | Context -> Bool -> ST s MediaController
+        | Context -> ST s MediaController
+
+  pure native dispatchKeyEvent  :: MediaController -> KeyEvent -> Bool
+
+  native hide  :: MediaController -> ST s ( )
+
+  pure native isShowing  :: MediaController -> Bool
+
+  native onFinishInflate  :: MediaController -> ST s ( )
+
+{-   native onInitializeAccessibilityEvent  :: -- ["AccessibilityEvent"] -- MediaController -> AccessibilityEvent -> ST s ( ) -}
+
+{-   native onInitializeAccessibilityNodeInfo  :: -- ["AccessibilityNodeInfo"] -- MediaController -> AccessibilityNodeInfo -> ST s ( ) -}
+
+  pure native onTouchEvent  :: MediaController -> MotionEvent -> Bool
+
+  pure native onTrackballEvent  :: MediaController -> MotionEvent -> Bool
+
+  native setAnchorView  :: MediaController -> MutableIO View -> IO ( )
+
+  native setEnabled  :: MediaController -> Bool -> ST s ( )
+
+{-   native setMediaPlayer  :: -- ["MediaController_MediaPlayerControl"] -- MediaController -> MediaController_MediaPlayerControl -> ST s ( ) -}
+
+{-   native setPrevNextListeners  :: -- ["View_OnClickListener"] -- MediaController -> View_OnClickListener -> View_OnClickListener -> ST s ( ) -}
+
+  native show  :: MediaController -> Int -> ST s ( )
+        | MediaController -> ST s ( )
+
+
+{-
+data MediaController = pure native android.widget.MediaController where
+
+  native new :: Context -> AttributeSet -> ST s MediaController
+              | Context -> Bool -> ST s MediaController
+              | Context -> ST s MediaController
+
+  pure native dispatchKeyEvent :: MediaController -> KeyEvent -> Bool
+
+  native hide :: MediaController -> ST s ()
+
+  pure native isShowing :: MediaController -> Bool
+
+  native onFinishInflate :: MediaController -> ST s ()
+
+  native onInitializeAccessibilityEvent :: MediaController -> AccessibilityEvent -> ST s ()
+
+  native onInitializeAccessibilityNodeInfo :: MediaController -> AccessibilityNodeInfo -> ST s ()
+
+  pure native onTouchEvent :: MediaController -> MotionEvent -> Bool
+
+  pure native onTrackballEvent :: MediaController -> MotionEvent -> Bool
+
+  native setAnchorView :: MediaController -> MutableIO View -> IO ()
+
+  native setEnabled :: MediaController -> Bool -> ST s ()
+
+  native setMediaPlayer :: MediaController -> MediaController_MediaPlayerControl -> ST s ()
+
+  native setPrevNextListeners :: MediaController -> View_OnClickListener -> View_OnClickListener -> ST s ()
+
+  native show :: MediaController -> Int -> ST s ()
+               | MediaController -> ST s ()
+
+
+
+-}

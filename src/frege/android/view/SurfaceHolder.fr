@@ -1,0 +1,77 @@
+package frege.android.view.SurfaceHolder where
+
+import frege.android.graphics.Rect
+
+data SurfaceHolder = pure native android.view.SurfaceHolder where
+
+
+  pure native surface_type_normal  android.view.SurfaceHolder.SURFACE_TYPE_NORMAL :: Int
+
+  pure native surface_type_hardware  android.view.SurfaceHolder.SURFACE_TYPE_HARDWARE :: Int
+
+  pure native surface_type_gpu  android.view.SurfaceHolder.SURFACE_TYPE_GPU :: Int
+
+  pure native surface_type_push_buffers  android.view.SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS :: Int
+
+{-   native addCallback  :: -- ["SurfaceHolder_Callback"] -- SurfaceHolder -> SurfaceHolder_Callback -> ST s ( ) -}
+
+{-   pure native getSurface  :: -- ["Surface"] -- SurfaceHolder -> Surface -}
+
+  native getSurfaceFrame  :: SurfaceHolder -> STMutable s Rect
+
+  pure native isCreating  :: SurfaceHolder -> Bool
+
+{-   native lockCanvas  :: -- ["Canvas"] -- SurfaceHolder -> ST s Canvas
+        -- ["Canvas"] -- SurfaceHolder -> Mutable s Rect -> ST s Canvas -}
+
+{-   native removeCallback  :: -- ["SurfaceHolder_Callback"] -- SurfaceHolder -> SurfaceHolder_Callback -> ST s ( ) -}
+
+  native setFixedSize  :: SurfaceHolder -> Int -> Int -> ST s ( )
+
+  native setFormat  :: SurfaceHolder -> Int -> ST s ( )
+
+  native setKeepScreenOn  :: SurfaceHolder -> Bool -> ST s ( )
+
+  native setSizeFromLayout  :: SurfaceHolder -> ST s ( )
+
+  native setType  :: SurfaceHolder -> Int -> ST s ( )
+
+{-   native unlockCanvasAndPost  :: -- ["Canvas"] -- SurfaceHolder -> Canvas -> ST s ( ) -}
+
+
+{-
+data SurfaceHolder = pure native android.view.SurfaceHolder where
+
+  pure native surface_type_normal android.view.SurfaceHolder.SURFACE_TYPE_NORMAL :: Int
+  pure native surface_type_hardware android.view.SurfaceHolder.SURFACE_TYPE_HARDWARE :: Int
+  pure native surface_type_gpu android.view.SurfaceHolder.SURFACE_TYPE_GPU :: Int
+  pure native surface_type_push_buffers android.view.SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS :: Int
+
+  native addCallback :: SurfaceHolder -> SurfaceHolder_Callback -> ST s ()
+
+  pure native getSurface :: SurfaceHolder -> Surface
+
+  native getSurfaceFrame :: SurfaceHolder -> STMutable s Rect
+
+  pure native isCreating :: SurfaceHolder -> Bool
+
+  native lockCanvas :: SurfaceHolder -> ST s Canvas
+                     | SurfaceHolder -> Mutable s Rect -> ST s Canvas
+
+  native removeCallback :: SurfaceHolder -> SurfaceHolder_Callback -> ST s ()
+
+  native setFixedSize :: SurfaceHolder -> Int -> Int -> ST s ()
+
+  native setFormat :: SurfaceHolder -> Int -> ST s ()
+
+  native setKeepScreenOn :: SurfaceHolder -> Bool -> ST s ()
+
+  native setSizeFromLayout :: SurfaceHolder -> ST s ()
+
+  native setType :: SurfaceHolder -> Int -> ST s ()
+
+  native unlockCanvasAndPost :: SurfaceHolder -> Canvas -> ST s ()
+
+
+
+-}

@@ -1,0 +1,90 @@
+package frege.android.widget.Toast where
+
+import frege.android.content.Context
+import frege.android.view.View
+
+data Toast = pure native android.widget.Toast where
+
+
+  pure native length_short  android.widget.Toast.LENGTH_SHORT :: Int
+
+  pure native length_long  android.widget.Toast.LENGTH_LONG :: Int
+
+  native new  :: Context -> ST s Toast
+
+  native cancel  :: Toast -> ST s ( )
+
+  pure native getDuration  :: Toast -> Int
+
+  pure native getGravity  :: Toast -> Int
+
+  pure native getHorizontalMargin  :: Toast -> Float
+
+  pure native getVerticalMargin  :: Toast -> Float
+
+  native getView  :: Toast -> IOMutable View
+
+  pure native getXOffset  :: Toast -> Int
+
+  pure native getYOffset  :: Toast -> Int
+
+  pure native makeText  android.widget.Toast.makeText :: Context -> Int -> Int -> Toast
+        | Context -> CharSequence -> Int -> Toast
+
+  native setDuration  :: Toast -> Int -> ST s ( )
+
+  native setGravity  :: Toast -> Int -> Int -> Int -> ST s ( )
+
+  native setMargin  :: Toast -> Float -> Float -> ST s ( )
+
+  native setText  :: Toast -> Int -> ST s ( )
+        | Toast -> CharSequence -> ST s ( )
+
+  native setView  :: Toast -> MutableIO View -> IO ( )
+
+  native show  :: Toast -> ST s ( )
+
+
+{-
+data Toast = pure native android.widget.Toast where
+
+  pure native length_short android.widget.Toast.LENGTH_SHORT :: Int
+  pure native length_long android.widget.Toast.LENGTH_LONG :: Int
+
+  native new :: Context -> ST s Toast
+
+  native cancel :: Toast -> ST s ()
+
+  pure native getDuration :: Toast -> Int
+
+  pure native getGravity :: Toast -> Int
+
+  pure native getHorizontalMargin :: Toast -> Float
+
+  pure native getVerticalMargin :: Toast -> Float
+
+  native getView :: Toast -> IOMutable View
+
+  pure native getXOffset :: Toast -> Int
+
+  pure native getYOffset :: Toast -> Int
+
+  pure native makeText android.widget.Toast.makeText :: Context -> Int -> Int -> Toast
+                                                      | Context -> CharSequence -> Int -> Toast
+
+  native setDuration :: Toast -> Int -> ST s ()
+
+  native setGravity :: Toast -> Int -> Int -> Int -> ST s ()
+
+  native setMargin :: Toast -> Float -> Float -> ST s ()
+
+  native setText :: Toast -> Int -> ST s ()
+                  | Toast -> CharSequence -> ST s ()
+
+  native setView :: Toast -> MutableIO View -> IO ()
+
+  native show :: Toast -> ST s ()
+
+
+
+-}

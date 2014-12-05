@@ -1,0 +1,95 @@
+package frege.android.view.TextureView where
+
+import frege.android.content.Context
+import frege.android.util.AttributeSet
+import frege.android.graphics.Matrix
+import frege.android.graphics.Rect
+
+data TextureView = pure native android.view.TextureView where
+
+
+  native new  :: Context -> ST s TextureView
+        | Context -> AttributeSet -> ST s TextureView
+        | Context -> AttributeSet -> Int -> ST s TextureView
+
+  native buildLayer  :: TextureView -> ST s ( )
+
+{-   native draw  :: -- ["Canvas"] -- TextureView -> Canvas -> ST s ( ) -}
+
+{-   pure native getBitmap  :: -- ["Bitmap"] -- TextureView -> Bitmap
+        -- ["Bitmap"] -- TextureView -> Int -> Int -> Bitmap
+        -- ["Bitmap"] -- TextureView -> Bitmap -> Bitmap -}
+
+  pure native getLayerType  :: TextureView -> Int
+
+{-   pure native getSurfaceTexture  :: -- ["SurfaceTexture"] -- TextureView -> SurfaceTexture -}
+
+{-   pure native getSurfaceTextureListener  :: -- ["TextureView_SurfaceTextureListener"] -- TextureView -> TextureView_SurfaceTextureListener -}
+
+  native getTransform  :: TextureView -> Mutable s Matrix -> STMutable s Matrix
+
+  pure native isAvailable  :: TextureView -> Bool
+
+  pure native isOpaque  :: TextureView -> Bool
+
+{-   native lockCanvas  :: -- ["Canvas"] -- TextureView -> Mutable s Rect -> ST s Canvas
+        -- ["Canvas"] -- TextureView -> ST s Canvas -}
+
+{-   native setLayerType  :: -- ["Paint"] -- TextureView -> Int -> Paint -> ST s ( ) -}
+
+  native setOpaque  :: TextureView -> Bool -> ST s ( )
+
+{-   native setSurfaceTexture  :: -- ["SurfaceTexture"] -- TextureView -> SurfaceTexture -> ST s ( ) -}
+
+{-   native setSurfaceTextureListener  :: -- ["TextureView_SurfaceTextureListener"] -- TextureView -> TextureView_SurfaceTextureListener -> ST s ( ) -}
+
+  native setTransform  :: TextureView -> Mutable s Matrix -> ST s ( )
+
+{-   native unlockCanvasAndPost  :: -- ["Canvas"] -- TextureView -> Canvas -> ST s ( ) -}
+
+
+{-
+data TextureView = pure native android.view.TextureView where
+
+  native new :: Context -> ST s TextureView
+              | Context -> AttributeSet -> ST s TextureView
+              | Context -> AttributeSet -> Int -> ST s TextureView
+
+  native buildLayer :: TextureView -> ST s ()
+
+  native draw :: TextureView -> Canvas -> ST s ()
+
+  pure native getBitmap :: TextureView -> Bitmap
+                         | TextureView -> Int -> Int -> Bitmap
+                         | TextureView -> Bitmap -> Bitmap
+
+  pure native getLayerType :: TextureView -> Int
+
+  pure native getSurfaceTexture :: TextureView -> SurfaceTexture
+
+  pure native getSurfaceTextureListener :: TextureView -> TextureView_SurfaceTextureListener
+
+  native getTransform :: TextureView -> Mutable s Matrix -> STMutable s Matrix
+
+  pure native isAvailable :: TextureView -> Bool
+
+  pure native isOpaque :: TextureView -> Bool
+
+  native lockCanvas :: TextureView -> Mutable s Rect -> ST s Canvas
+                     | TextureView -> ST s Canvas
+
+  native setLayerType :: TextureView -> Int -> Paint -> ST s ()
+
+  native setOpaque :: TextureView -> Bool -> ST s ()
+
+  native setSurfaceTexture :: TextureView -> SurfaceTexture -> ST s ()
+
+  native setSurfaceTextureListener :: TextureView -> TextureView_SurfaceTextureListener -> ST s ()
+
+  native setTransform :: TextureView -> Mutable s Matrix -> ST s ()
+
+  native unlockCanvasAndPost :: TextureView -> Canvas -> ST s ()
+
+
+
+-}

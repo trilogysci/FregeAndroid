@@ -1,0 +1,43 @@
+package frege.android.view.GestureDetector where
+
+import frege.android.os.Handler
+import frege.android.view.MotionEvent
+
+data GestureDetector = pure native android.view.GestureDetector where
+
+
+{-   native new  :: -- ["GestureDetector_OnGestureListener"] -- GestureDetector_OnGestureListener -> Handler -> ST s GestureDetector
+        -- ["GestureDetector_OnGestureListener"] -- GestureDetector_OnGestureListener -> ST s GestureDetector
+        -- ["GestureDetector_OnGestureListener"] -- Context -> GestureDetector_OnGestureListener -> ST s GestureDetector
+        -- ["GestureDetector_OnGestureListener"] -- Context -> GestureDetector_OnGestureListener -> Handler -> ST s GestureDetector
+        -- ["GestureDetector_OnGestureListener"] -- Context -> GestureDetector_OnGestureListener -> Handler -> Bool -> ST s GestureDetector -}
+
+  pure native isLongpressEnabled  :: GestureDetector -> Bool
+
+  pure native onTouchEvent  :: GestureDetector -> MotionEvent -> Bool
+
+  native setIsLongpressEnabled  :: GestureDetector -> Bool -> ST s ( )
+
+{-   native setOnDoubleTapListener  :: -- ["GestureDetector_OnDoubleTapListener"] -- GestureDetector -> GestureDetector_OnDoubleTapListener -> ST s ( ) -}
+
+
+{-
+data GestureDetector = pure native android.view.GestureDetector where
+
+  native new :: GestureDetector_OnGestureListener -> Handler -> ST s GestureDetector
+              | GestureDetector_OnGestureListener -> ST s GestureDetector
+              | Context -> GestureDetector_OnGestureListener -> ST s GestureDetector
+              | Context -> GestureDetector_OnGestureListener -> Handler -> ST s GestureDetector
+              | Context -> GestureDetector_OnGestureListener -> Handler -> Bool -> ST s GestureDetector
+
+  pure native isLongpressEnabled :: GestureDetector -> Bool
+
+  pure native onTouchEvent :: GestureDetector -> MotionEvent -> Bool
+
+  native setIsLongpressEnabled :: GestureDetector -> Bool -> ST s ()
+
+  native setOnDoubleTapListener :: GestureDetector -> GestureDetector_OnDoubleTapListener -> ST s ()
+
+
+
+-}

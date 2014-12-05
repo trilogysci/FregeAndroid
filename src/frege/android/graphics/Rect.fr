@@ -1,0 +1,160 @@
+package frege.android.graphics.Rect where
+
+data Rect = native android.graphics.Rect where
+
+
+  native left ".left" :: Mutable s Rect -> ST s Int
+
+  native top ".top" :: Mutable s Rect -> ST s Int
+
+  native right ".right" :: Mutable s Rect -> ST s Int
+
+  native bottom ".bottom" :: Mutable s Rect -> ST s Int
+
+{-   pure native creator  android.graphics.Rect.CREATOR :: -- ["Parcelable_Creator"] -- Parcelable_Creator Rect -}
+
+  native new  :: Int -> Int -> Int -> Int -> STMutable s Rect
+        | ( ) -> STMutable s Rect
+        | Mutable s Rect -> STMutable s Rect
+
+  native centerX  :: Mutable s Rect -> ST s Int
+
+  native centerY  :: Mutable s Rect -> ST s Int
+
+  native contains  :: Mutable s Rect -> Mutable s Rect -> ST s Bool
+        | Mutable s Rect -> Int -> Int -> Int -> Int -> ST s Bool
+        | Mutable s Rect -> Int -> Int -> ST s Bool
+
+  native describeContents  :: Mutable s Rect -> ST s Int
+
+  native equals  :: Mutable s Rect -> Object -> ST s Bool
+
+  native exactCenterX  :: Mutable s Rect -> ST s Float
+
+  native exactCenterY  :: Mutable s Rect -> ST s Float
+
+  native flattenToString  :: Mutable s Rect -> ST s String
+
+  native hashCode  :: Mutable s Rect -> ST s Int
+
+  native height  :: Mutable s Rect -> ST s Int
+
+  native inset  :: Mutable s Rect -> Int -> Int -> ST s ( )
+
+  native intersect  :: Mutable s Rect -> Mutable s Rect -> ST s Bool
+        | Mutable s Rect -> Int -> Int -> Int -> Int -> ST s Bool
+
+{-name collision  native intersects  android.graphics.Rect.intersects :: Mutable s Rect -> Mutable s Rect -> ST s Bool-}
+
+  native intersects  :: Mutable s Rect -> Int -> Int -> Int -> Int -> ST s Bool
+
+  native isEmpty  :: Mutable s Rect -> ST s Bool
+
+  native offset  :: Mutable s Rect -> Int -> Int -> ST s ( )
+
+  native offsetTo  :: Mutable s Rect -> Int -> Int -> ST s ( )
+
+{-   native readFromParcel  :: -- ["Parcel"] -- Mutable s Rect -> Parcel -> ST s ( ) -}
+
+  native set  :: Mutable s Rect -> Int -> Int -> Int -> Int -> ST s ( )
+        | Mutable s Rect -> Mutable s Rect -> ST s ( )
+
+  native setEmpty  :: Mutable s Rect -> ST s ( )
+
+  native setIntersect  :: Mutable s Rect -> Mutable s Rect -> Mutable s Rect -> ST s Bool
+
+  native sort  :: Mutable s Rect -> ST s ( )
+
+  native toShortString  :: Mutable s Rect -> ST s String
+
+  native toString  :: Mutable s Rect -> ST s String
+
+  native unflattenFromString  android.graphics.Rect.unflattenFromString :: String -> STMutable s Rect
+
+  native union  :: Mutable s Rect -> Int -> Int -> ST s ( )
+        | Mutable s Rect -> Mutable s Rect -> ST s ( )
+        | Mutable s Rect -> Int -> Int -> Int -> Int -> ST s ( )
+
+  native width  :: Mutable s Rect -> ST s Int
+
+{-   native writeToParcel  :: -- ["Parcel"] -- Mutable s Rect -> Parcel -> Int -> ST s ( ) -}
+
+
+{-
+data Rect = native android.graphics.Rect where
+
+  native left ".left" :: Mutable s Rect -> ST s Int
+  native top ".top" :: Mutable s Rect -> ST s Int
+  native right ".right" :: Mutable s Rect -> ST s Int
+  native bottom ".bottom" :: Mutable s Rect -> ST s Int
+  pure native creator android.graphics.Rect.CREATOR :: Parcelable_Creator Rect
+
+  native new :: Int -> Int -> Int -> Int -> STMutable s Rect
+              | () -> STMutable s Rect
+              | Mutable s Rect -> STMutable s Rect
+
+  native centerX :: Mutable s Rect -> ST s Int
+
+  native centerY :: Mutable s Rect -> ST s Int
+
+  native contains :: Mutable s Rect -> Mutable s Rect -> ST s Bool
+                   | Mutable s Rect -> Int -> Int -> Int -> Int -> ST s Bool
+                   | Mutable s Rect -> Int -> Int -> ST s Bool
+
+  native describeContents :: Mutable s Rect -> ST s Int
+
+  native equals :: Mutable s Rect -> Object -> ST s Bool
+
+  native exactCenterX :: Mutable s Rect -> ST s Float
+
+  native exactCenterY :: Mutable s Rect -> ST s Float
+
+  native flattenToString :: Mutable s Rect -> ST s String
+
+  native hashCode :: Mutable s Rect -> ST s Int
+
+  native height :: Mutable s Rect -> ST s Int
+
+  native inset :: Mutable s Rect -> Int -> Int -> ST s ()
+
+  native intersect :: Mutable s Rect -> Mutable s Rect -> ST s Bool
+                    | Mutable s Rect -> Int -> Int -> Int -> Int -> ST s Bool
+
+  native intersects android.graphics.Rect.intersects :: Mutable s Rect -> Mutable s Rect -> ST s Bool
+
+  native intersects :: Mutable s Rect -> Int -> Int -> Int -> Int -> ST s Bool
+
+  native isEmpty :: Mutable s Rect -> ST s Bool
+
+  native offset :: Mutable s Rect -> Int -> Int -> ST s ()
+
+  native offsetTo :: Mutable s Rect -> Int -> Int -> ST s ()
+
+  native readFromParcel :: Mutable s Rect -> Parcel -> ST s ()
+
+  native set :: Mutable s Rect -> Int -> Int -> Int -> Int -> ST s ()
+              | Mutable s Rect -> Mutable s Rect -> ST s ()
+
+  native setEmpty :: Mutable s Rect -> ST s ()
+
+  native setIntersect :: Mutable s Rect -> Mutable s Rect -> Mutable s Rect -> ST s Bool
+
+  native sort :: Mutable s Rect -> ST s ()
+
+  native toShortString :: Mutable s Rect -> ST s String
+
+  native toString :: Mutable s Rect -> ST s String
+
+  native unflattenFromString android.graphics.Rect.unflattenFromString :: String -> STMutable s Rect
+
+  native union :: Mutable s Rect -> Int -> Int -> ST s ()
+                | Mutable s Rect -> Mutable s Rect -> ST s ()
+                | Mutable s Rect -> Int -> Int -> Int -> Int -> ST s ()
+
+  native width :: Mutable s Rect -> ST s Int
+
+  native writeToParcel :: Mutable s Rect -> Parcel -> Int -> ST s ()
+
+
+
+-}

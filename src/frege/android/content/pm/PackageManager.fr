@@ -1,0 +1,574 @@
+package frege.android.content.pm.PackageManager where
+
+import frege.android.graphics.drawable.Drawable
+import frege.android.content.Intent
+
+data PackageManager = pure native android.content.pm.PackageManager where
+
+
+  pure native get_activities  android.content.pm.PackageManager.GET_ACTIVITIES :: Int
+
+  pure native get_receivers  android.content.pm.PackageManager.GET_RECEIVERS :: Int
+
+  pure native get_services  android.content.pm.PackageManager.GET_SERVICES :: Int
+
+  pure native get_providers  android.content.pm.PackageManager.GET_PROVIDERS :: Int
+
+  pure native get_instrumentation  android.content.pm.PackageManager.GET_INSTRUMENTATION :: Int
+
+  pure native get_intent_filters  android.content.pm.PackageManager.GET_INTENT_FILTERS :: Int
+
+  pure native get_signatures  android.content.pm.PackageManager.GET_SIGNATURES :: Int
+
+  pure native get_resolved_filter  android.content.pm.PackageManager.GET_RESOLVED_FILTER :: Int
+
+  pure native get_meta_data  android.content.pm.PackageManager.GET_META_DATA :: Int
+
+  pure native get_gids  android.content.pm.PackageManager.GET_GIDS :: Int
+
+  pure native get_disabled_components  android.content.pm.PackageManager.GET_DISABLED_COMPONENTS :: Int
+
+  pure native get_shared_library_files  android.content.pm.PackageManager.GET_SHARED_LIBRARY_FILES :: Int
+
+  pure native get_uri_permission_patterns  android.content.pm.PackageManager.GET_URI_PERMISSION_PATTERNS :: Int
+
+  pure native get_permissions  android.content.pm.PackageManager.GET_PERMISSIONS :: Int
+
+  pure native get_uninstalled_packages  android.content.pm.PackageManager.GET_UNINSTALLED_PACKAGES :: Int
+
+  pure native get_configurations  android.content.pm.PackageManager.GET_CONFIGURATIONS :: Int
+
+  pure native get_disabled_until_used_components  android.content.pm.PackageManager.GET_DISABLED_UNTIL_USED_COMPONENTS :: Int
+
+  pure native match_default_only  android.content.pm.PackageManager.MATCH_DEFAULT_ONLY :: Int
+
+  pure native permission_granted  android.content.pm.PackageManager.PERMISSION_GRANTED :: Int
+
+  pure native permission_denied  android.content.pm.PackageManager.PERMISSION_DENIED :: Int
+
+  pure native signature_match  android.content.pm.PackageManager.SIGNATURE_MATCH :: Int
+
+  pure native signature_neither_signed  android.content.pm.PackageManager.SIGNATURE_NEITHER_SIGNED :: Int
+
+  pure native signature_first_not_signed  android.content.pm.PackageManager.SIGNATURE_FIRST_NOT_SIGNED :: Int
+
+  pure native signature_second_not_signed  android.content.pm.PackageManager.SIGNATURE_SECOND_NOT_SIGNED :: Int
+
+  pure native signature_no_match  android.content.pm.PackageManager.SIGNATURE_NO_MATCH :: Int
+
+  pure native signature_unknown_package  android.content.pm.PackageManager.SIGNATURE_UNKNOWN_PACKAGE :: Int
+
+  pure native component_enabled_state_default  android.content.pm.PackageManager.COMPONENT_ENABLED_STATE_DEFAULT :: Int
+
+  pure native component_enabled_state_enabled  android.content.pm.PackageManager.COMPONENT_ENABLED_STATE_ENABLED :: Int
+
+  pure native component_enabled_state_disabled  android.content.pm.PackageManager.COMPONENT_ENABLED_STATE_DISABLED :: Int
+
+  pure native component_enabled_state_disabled_user  android.content.pm.PackageManager.COMPONENT_ENABLED_STATE_DISABLED_USER :: Int
+
+  pure native component_enabled_state_disabled_until_used  android.content.pm.PackageManager.COMPONENT_ENABLED_STATE_DISABLED_UNTIL_USED :: Int
+
+  pure native dont_kill_app  android.content.pm.PackageManager.DONT_KILL_APP :: Int
+
+  pure native verification_allow  android.content.pm.PackageManager.VERIFICATION_ALLOW :: Int
+
+  pure native verification_reject  android.content.pm.PackageManager.VERIFICATION_REJECT :: Int
+
+  pure native maximum_verification_timeout  android.content.pm.PackageManager.MAXIMUM_VERIFICATION_TIMEOUT :: Long
+
+  pure native feature_audio_low_latency  android.content.pm.PackageManager.FEATURE_AUDIO_LOW_LATENCY :: String
+
+  pure native feature_bluetooth  android.content.pm.PackageManager.FEATURE_BLUETOOTH :: String
+
+  pure native feature_bluetooth_le  android.content.pm.PackageManager.FEATURE_BLUETOOTH_LE :: String
+
+  pure native feature_camera  android.content.pm.PackageManager.FEATURE_CAMERA :: String
+
+  pure native feature_camera_autofocus  android.content.pm.PackageManager.FEATURE_CAMERA_AUTOFOCUS :: String
+
+  pure native feature_camera_any  android.content.pm.PackageManager.FEATURE_CAMERA_ANY :: String
+
+  pure native feature_camera_external  android.content.pm.PackageManager.FEATURE_CAMERA_EXTERNAL :: String
+
+  pure native feature_camera_flash  android.content.pm.PackageManager.FEATURE_CAMERA_FLASH :: String
+
+  pure native feature_camera_front  android.content.pm.PackageManager.FEATURE_CAMERA_FRONT :: String
+
+  pure native feature_consumer_ir  android.content.pm.PackageManager.FEATURE_CONSUMER_IR :: String
+
+  pure native feature_location  android.content.pm.PackageManager.FEATURE_LOCATION :: String
+
+  pure native feature_location_gps  android.content.pm.PackageManager.FEATURE_LOCATION_GPS :: String
+
+  pure native feature_location_network  android.content.pm.PackageManager.FEATURE_LOCATION_NETWORK :: String
+
+  pure native feature_microphone  android.content.pm.PackageManager.FEATURE_MICROPHONE :: String
+
+  pure native feature_nfc  android.content.pm.PackageManager.FEATURE_NFC :: String
+
+  pure native feature_nfc_host_card_emulation  android.content.pm.PackageManager.FEATURE_NFC_HOST_CARD_EMULATION :: String
+
+  pure native feature_sensor_accelerometer  android.content.pm.PackageManager.FEATURE_SENSOR_ACCELEROMETER :: String
+
+  pure native feature_sensor_barometer  android.content.pm.PackageManager.FEATURE_SENSOR_BAROMETER :: String
+
+  pure native feature_sensor_compass  android.content.pm.PackageManager.FEATURE_SENSOR_COMPASS :: String
+
+  pure native feature_sensor_gyroscope  android.content.pm.PackageManager.FEATURE_SENSOR_GYROSCOPE :: String
+
+  pure native feature_sensor_light  android.content.pm.PackageManager.FEATURE_SENSOR_LIGHT :: String
+
+  pure native feature_sensor_proximity  android.content.pm.PackageManager.FEATURE_SENSOR_PROXIMITY :: String
+
+  pure native feature_sensor_step_counter  android.content.pm.PackageManager.FEATURE_SENSOR_STEP_COUNTER :: String
+
+  pure native feature_sensor_step_detector  android.content.pm.PackageManager.FEATURE_SENSOR_STEP_DETECTOR :: String
+
+  pure native feature_sensor_heart_rate  android.content.pm.PackageManager.FEATURE_SENSOR_HEART_RATE :: String
+
+  pure native feature_telephony  android.content.pm.PackageManager.FEATURE_TELEPHONY :: String
+
+  pure native feature_telephony_cdma  android.content.pm.PackageManager.FEATURE_TELEPHONY_CDMA :: String
+
+  pure native feature_telephony_gsm  android.content.pm.PackageManager.FEATURE_TELEPHONY_GSM :: String
+
+  pure native feature_usb_host  android.content.pm.PackageManager.FEATURE_USB_HOST :: String
+
+  pure native feature_usb_accessory  android.content.pm.PackageManager.FEATURE_USB_ACCESSORY :: String
+
+  pure native feature_sip  android.content.pm.PackageManager.FEATURE_SIP :: String
+
+  pure native feature_sip_voip  android.content.pm.PackageManager.FEATURE_SIP_VOIP :: String
+
+  pure native feature_touchscreen  android.content.pm.PackageManager.FEATURE_TOUCHSCREEN :: String
+
+  pure native feature_touchscreen_multitouch  android.content.pm.PackageManager.FEATURE_TOUCHSCREEN_MULTITOUCH :: String
+
+  pure native feature_touchscreen_multitouch_distinct  android.content.pm.PackageManager.FEATURE_TOUCHSCREEN_MULTITOUCH_DISTINCT :: String
+
+  pure native feature_touchscreen_multitouch_jazzhand  android.content.pm.PackageManager.FEATURE_TOUCHSCREEN_MULTITOUCH_JAZZHAND :: String
+
+  pure native feature_faketouch  android.content.pm.PackageManager.FEATURE_FAKETOUCH :: String
+
+  pure native feature_faketouch_multitouch_distinct  android.content.pm.PackageManager.FEATURE_FAKETOUCH_MULTITOUCH_DISTINCT :: String
+
+  pure native feature_faketouch_multitouch_jazzhand  android.content.pm.PackageManager.FEATURE_FAKETOUCH_MULTITOUCH_JAZZHAND :: String
+
+  pure native feature_screen_portrait  android.content.pm.PackageManager.FEATURE_SCREEN_PORTRAIT :: String
+
+  pure native feature_screen_landscape  android.content.pm.PackageManager.FEATURE_SCREEN_LANDSCAPE :: String
+
+  pure native feature_live_wallpaper  android.content.pm.PackageManager.FEATURE_LIVE_WALLPAPER :: String
+
+  pure native feature_app_widgets  android.content.pm.PackageManager.FEATURE_APP_WIDGETS :: String
+
+  pure native feature_home_screen  android.content.pm.PackageManager.FEATURE_HOME_SCREEN :: String
+
+  pure native feature_input_methods  android.content.pm.PackageManager.FEATURE_INPUT_METHODS :: String
+
+  pure native feature_device_admin  android.content.pm.PackageManager.FEATURE_DEVICE_ADMIN :: String
+
+  pure native feature_wifi  android.content.pm.PackageManager.FEATURE_WIFI :: String
+
+  pure native feature_wifi_direct  android.content.pm.PackageManager.FEATURE_WIFI_DIRECT :: String
+
+  pure native feature_television  android.content.pm.PackageManager.FEATURE_TELEVISION :: String
+
+  pure native feature_watch  android.content.pm.PackageManager.FEATURE_WATCH :: String
+
+  pure native feature_printing  android.content.pm.PackageManager.FEATURE_PRINTING :: String
+
+  pure native feature_backup  android.content.pm.PackageManager.FEATURE_BACKUP :: String
+
+  pure native feature_webview  android.content.pm.PackageManager.FEATURE_WEBVIEW :: String
+
+  pure native extra_verification_id  android.content.pm.PackageManager.EXTRA_VERIFICATION_ID :: String
+
+  pure native extra_verification_result  android.content.pm.PackageManager.EXTRA_VERIFICATION_RESULT :: String
+
+{-this is abstract  native new  :: ( ) -> ST s PackageManager-}
+
+  native addPackageToPreferred  :: PackageManager -> String -> ST s ( )
+
+{-   pure native addPermission  :: -- ["PermissionInfo"] -- PackageManager -> PermissionInfo -> Bool -}
+
+{-   pure native addPermissionAsync  :: -- ["PermissionInfo"] -- PackageManager -> PermissionInfo -> Bool -}
+
+{-   native addPreferredActivity  :: -- ["ComponentName","IntentFilter","JArray"] -- PackageManager -> IntentFilter -> Int -> Mutable s ( JArray ComponentName ) -> ComponentName -> ST s ( ) -}
+
+{-   native canonicalToCurrentPackageNames  :: -- ["JArray"] -- PackageManager -> Mutable s ( JArray String ) -> STMutable s ( JArray String ) -}
+
+  pure native checkPermission  :: PackageManager -> String -> String -> Int
+
+  pure native checkSignatures  :: PackageManager -> Int -> Int -> Int
+        | PackageManager -> String -> String -> Int
+
+  native clearPackagePreferredActivities  :: PackageManager -> String -> ST s ( )
+
+{-   native currentToCanonicalPackageNames  :: -- ["JArray"] -- PackageManager -> Mutable s ( JArray String ) -> STMutable s ( JArray String ) -}
+
+  native extendVerificationTimeout  :: PackageManager -> Int -> Int -> Long -> ST s ( )
+
+{-   native getActivityBanner  :: -- ["PackageManager_NameNotFoundException"] -- PackageManager -> Intent -> ST s Drawable throws PackageManager_NameNotFoundException
+        -- ["ComponentName","PackageManager_NameNotFoundException"] -- PackageManager -> ComponentName -> ST s Drawable throws PackageManager_NameNotFoundException -}
+
+{-   native getActivityIcon  :: -- ["ComponentName","PackageManager_NameNotFoundException"] -- PackageManager -> ComponentName -> ST s Drawable throws PackageManager_NameNotFoundException
+        -- ["PackageManager_NameNotFoundException"] -- PackageManager -> Intent -> ST s Drawable throws PackageManager_NameNotFoundException -}
+
+{-   native getActivityInfo  :: -- ["ActivityInfo","ComponentName","PackageManager_NameNotFoundException"] -- PackageManager -> ComponentName -> Int -> ST s ActivityInfo throws PackageManager_NameNotFoundException -}
+
+{-   native getActivityLogo  :: -- ["ComponentName","PackageManager_NameNotFoundException"] -- PackageManager -> ComponentName -> ST s Drawable throws PackageManager_NameNotFoundException
+        -- ["PackageManager_NameNotFoundException"] -- PackageManager -> Intent -> ST s Drawable throws PackageManager_NameNotFoundException -}
+
+{-   native getAllPermissionGroups  :: -- ["PermissionGroupInfo"] -- PackageManager -> Int -> STMutable s ( List PermissionGroupInfo ) -}
+
+{-   native getApplicationBanner  :: -- ["PackageManager_NameNotFoundException"] -- PackageManager -> String -> ST s Drawable throws PackageManager_NameNotFoundException
+        -- ["ApplicationInfo"] -- PackageManager -> ApplicationInfo -> ST s Drawable -}
+
+  pure native getApplicationEnabledSetting  :: PackageManager -> String -> Int
+
+{-   native getApplicationIcon  :: -- ["ApplicationInfo"] -- PackageManager -> ApplicationInfo -> ST s Drawable
+        -- ["PackageManager_NameNotFoundException"] -- PackageManager -> String -> ST s Drawable throws PackageManager_NameNotFoundException -}
+
+{-   native getApplicationInfo  :: -- ["ApplicationInfo","PackageManager_NameNotFoundException"] -- PackageManager -> String -> Int -> ST s ApplicationInfo throws PackageManager_NameNotFoundException -}
+
+{-   pure native getApplicationLabel  :: -- ["ApplicationInfo"] -- PackageManager -> ApplicationInfo -> CharSequence -}
+
+{-   native getApplicationLogo  :: -- ["PackageManager_NameNotFoundException"] -- PackageManager -> String -> ST s Drawable throws PackageManager_NameNotFoundException
+        -- ["ApplicationInfo"] -- PackageManager -> ApplicationInfo -> ST s Drawable -}
+
+{-   pure native getComponentEnabledSetting  :: -- ["ComponentName"] -- PackageManager -> ComponentName -> Int -}
+
+  pure native getDefaultActivityIcon  :: PackageManager -> Drawable
+
+{-   pure native getDrawable  :: -- ["ApplicationInfo"] -- PackageManager -> String -> Int -> ApplicationInfo -> Drawable -}
+
+{-   native getInstalledApplications  :: -- ["ApplicationInfo"] -- PackageManager -> Int -> STMutable s ( List ApplicationInfo ) -}
+
+{-   native getInstalledPackages  :: -- ["PackageInfo"] -- PackageManager -> Int -> STMutable s ( List PackageInfo ) -}
+
+  pure native getInstallerPackageName  :: PackageManager -> String -> String
+
+{-   native getInstrumentationInfo  :: -- ["ComponentName","InstrumentationInfo","PackageManager_NameNotFoundException"] -- PackageManager -> ComponentName -> Int -> ST s InstrumentationInfo throws PackageManager_NameNotFoundException -}
+
+  pure native getLaunchIntentForPackage  :: PackageManager -> String -> Intent
+
+  pure native getNameForUid  :: PackageManager -> Int -> String
+
+{-   pure native getPackageArchiveInfo  :: -- ["PackageInfo"] -- PackageManager -> String -> Int -> PackageInfo -}
+
+{-   native getPackageGids  :: -- ["JArray","PackageManager_NameNotFoundException"] -- PackageManager -> String -> STMutable s ( JArray Int ) throws PackageManager_NameNotFoundException -}
+
+{-   native getPackageInfo  :: -- ["PackageInfo","PackageManager_NameNotFoundException"] -- PackageManager -> String -> Int -> ST s PackageInfo throws PackageManager_NameNotFoundException -}
+
+{-   native getPackagesForUid  :: -- ["JArray"] -- PackageManager -> Int -> STMutable s ( JArray String ) -}
+
+{-   native getPackagesHoldingPermissions  :: -- ["JArray","PackageInfo"] -- PackageManager -> Mutable s ( JArray String ) -> Int -> STMutable s ( List PackageInfo ) -}
+
+{-   native getPermissionGroupInfo  :: -- ["PackageManager_NameNotFoundException","PermissionGroupInfo"] -- PackageManager -> String -> Int -> ST s PermissionGroupInfo throws PackageManager_NameNotFoundException -}
+
+{-   native getPermissionInfo  :: -- ["PackageManager_NameNotFoundException","PermissionInfo"] -- PackageManager -> String -> Int -> ST s PermissionInfo throws PackageManager_NameNotFoundException -}
+
+{-   native getPreferredActivities  :: -- ["ComponentName","IntentFilter"] -- PackageManager -> Mutable s ( List IntentFilter ) -> Mutable s ( List ComponentName ) -> String -> ST s Int -}
+
+{-   native getPreferredPackages  :: -- ["PackageInfo"] -- PackageManager -> Int -> STMutable s ( List PackageInfo ) -}
+
+{-   native getProviderInfo  :: -- ["ComponentName","PackageManager_NameNotFoundException","ProviderInfo"] -- PackageManager -> ComponentName -> Int -> ST s ProviderInfo throws PackageManager_NameNotFoundException -}
+
+{-   native getReceiverInfo  :: -- ["ActivityInfo","ComponentName","PackageManager_NameNotFoundException"] -- PackageManager -> ComponentName -> Int -> ST s ActivityInfo throws PackageManager_NameNotFoundException -}
+
+{-   native getResourcesForActivity  :: -- ["ComponentName","PackageManager_NameNotFoundException","Resources"] -- PackageManager -> ComponentName -> ST s Resources throws PackageManager_NameNotFoundException -}
+
+{-   native getResourcesForApplication  :: -- ["ApplicationInfo","PackageManager_NameNotFoundException","Resources"] -- PackageManager -> ApplicationInfo -> ST s Resources throws PackageManager_NameNotFoundException
+        -- ["PackageManager_NameNotFoundException","Resources"] -- PackageManager -> String -> ST s Resources throws PackageManager_NameNotFoundException -}
+
+{-   native getServiceInfo  :: -- ["ComponentName","PackageManager_NameNotFoundException","ServiceInfo"] -- PackageManager -> ComponentName -> Int -> ST s ServiceInfo throws PackageManager_NameNotFoundException -}
+
+{-   native getSystemAvailableFeatures  :: -- ["FeatureInfo","JArray"] -- PackageManager -> STMutable s ( JArray FeatureInfo ) -}
+
+{-   native getSystemSharedLibraryNames  :: -- ["JArray"] -- PackageManager -> STMutable s ( JArray String ) -}
+
+{-   pure native getText  :: -- ["ApplicationInfo"] -- PackageManager -> String -> Int -> ApplicationInfo -> CharSequence -}
+
+{-   pure native getXml  :: -- ["ApplicationInfo","XmlResourceParser"] -- PackageManager -> String -> Int -> ApplicationInfo -> XmlResourceParser -}
+
+  pure native hasSystemFeature  :: PackageManager -> String -> Bool
+
+  pure native isSafeMode  :: PackageManager -> Bool
+
+{-   native queryBroadcastReceivers  :: -- ["ResolveInfo"] -- PackageManager -> Intent -> Int -> STMutable s ( List ResolveInfo ) -}
+
+{-   native queryContentProviders  :: -- ["ProviderInfo"] -- PackageManager -> String -> Int -> Int -> STMutable s ( List ProviderInfo ) -}
+
+{-   native queryInstrumentation  :: -- ["InstrumentationInfo"] -- PackageManager -> String -> Int -> STMutable s ( List InstrumentationInfo ) -}
+
+{-   native queryIntentActivities  :: -- ["ResolveInfo"] -- PackageManager -> Intent -> Int -> STMutable s ( List ResolveInfo ) -}
+
+{-   native queryIntentActivityOptions  :: -- ["ComponentName","JArray","ResolveInfo"] -- PackageManager -> ComponentName -> Mutable s ( JArray Intent ) -> Intent -> Int -> STMutable s ( List ResolveInfo ) -}
+
+{-   native queryIntentContentProviders  :: -- ["ResolveInfo"] -- PackageManager -> Intent -> Int -> STMutable s ( List ResolveInfo ) -}
+
+{-   native queryIntentServices  :: -- ["ResolveInfo"] -- PackageManager -> Intent -> Int -> STMutable s ( List ResolveInfo ) -}
+
+{-   native queryPermissionsByGroup  :: -- ["PackageManager_NameNotFoundException","PermissionInfo"] -- PackageManager -> String -> Int -> STMutable s ( List PermissionInfo ) throws PackageManager_NameNotFoundException -}
+
+  native removePackageFromPreferred  :: PackageManager -> String -> ST s ( )
+
+  native removePermission  :: PackageManager -> String -> ST s ( )
+
+{-   pure native resolveActivity  :: -- ["ResolveInfo"] -- PackageManager -> Intent -> Int -> ResolveInfo -}
+
+{-   pure native resolveContentProvider  :: -- ["ProviderInfo"] -- PackageManager -> String -> Int -> ProviderInfo -}
+
+{-   pure native resolveService  :: -- ["ResolveInfo"] -- PackageManager -> Intent -> Int -> ResolveInfo -}
+
+  native setApplicationEnabledSetting  :: PackageManager -> String -> Int -> Int -> ST s ( )
+
+{-   native setComponentEnabledSetting  :: -- ["ComponentName"] -- PackageManager -> ComponentName -> Int -> Int -> ST s ( ) -}
+
+  native setInstallerPackageName  :: PackageManager -> String -> String -> ST s ( )
+
+  native verifyPendingInstall  :: PackageManager -> Int -> Int -> ST s ( )
+
+
+{-
+data PackageManager = pure native android.content.pm.PackageManager where
+
+  pure native get_activities android.content.pm.PackageManager.GET_ACTIVITIES :: Int
+  pure native get_receivers android.content.pm.PackageManager.GET_RECEIVERS :: Int
+  pure native get_services android.content.pm.PackageManager.GET_SERVICES :: Int
+  pure native get_providers android.content.pm.PackageManager.GET_PROVIDERS :: Int
+  pure native get_instrumentation android.content.pm.PackageManager.GET_INSTRUMENTATION :: Int
+  pure native get_intent_filters android.content.pm.PackageManager.GET_INTENT_FILTERS :: Int
+  pure native get_signatures android.content.pm.PackageManager.GET_SIGNATURES :: Int
+  pure native get_resolved_filter android.content.pm.PackageManager.GET_RESOLVED_FILTER :: Int
+  pure native get_meta_data android.content.pm.PackageManager.GET_META_DATA :: Int
+  pure native get_gids android.content.pm.PackageManager.GET_GIDS :: Int
+  pure native get_disabled_components android.content.pm.PackageManager.GET_DISABLED_COMPONENTS :: Int
+  pure native get_shared_library_files android.content.pm.PackageManager.GET_SHARED_LIBRARY_FILES :: Int
+  pure native get_uri_permission_patterns android.content.pm.PackageManager.GET_URI_PERMISSION_PATTERNS :: Int
+  pure native get_permissions android.content.pm.PackageManager.GET_PERMISSIONS :: Int
+  pure native get_uninstalled_packages android.content.pm.PackageManager.GET_UNINSTALLED_PACKAGES :: Int
+  pure native get_configurations android.content.pm.PackageManager.GET_CONFIGURATIONS :: Int
+  pure native get_disabled_until_used_components android.content.pm.PackageManager.GET_DISABLED_UNTIL_USED_COMPONENTS :: Int
+  pure native match_default_only android.content.pm.PackageManager.MATCH_DEFAULT_ONLY :: Int
+  pure native permission_granted android.content.pm.PackageManager.PERMISSION_GRANTED :: Int
+  pure native permission_denied android.content.pm.PackageManager.PERMISSION_DENIED :: Int
+  pure native signature_match android.content.pm.PackageManager.SIGNATURE_MATCH :: Int
+  pure native signature_neither_signed android.content.pm.PackageManager.SIGNATURE_NEITHER_SIGNED :: Int
+  pure native signature_first_not_signed android.content.pm.PackageManager.SIGNATURE_FIRST_NOT_SIGNED :: Int
+  pure native signature_second_not_signed android.content.pm.PackageManager.SIGNATURE_SECOND_NOT_SIGNED :: Int
+  pure native signature_no_match android.content.pm.PackageManager.SIGNATURE_NO_MATCH :: Int
+  pure native signature_unknown_package android.content.pm.PackageManager.SIGNATURE_UNKNOWN_PACKAGE :: Int
+  pure native component_enabled_state_default android.content.pm.PackageManager.COMPONENT_ENABLED_STATE_DEFAULT :: Int
+  pure native component_enabled_state_enabled android.content.pm.PackageManager.COMPONENT_ENABLED_STATE_ENABLED :: Int
+  pure native component_enabled_state_disabled android.content.pm.PackageManager.COMPONENT_ENABLED_STATE_DISABLED :: Int
+  pure native component_enabled_state_disabled_user android.content.pm.PackageManager.COMPONENT_ENABLED_STATE_DISABLED_USER :: Int
+  pure native component_enabled_state_disabled_until_used android.content.pm.PackageManager.COMPONENT_ENABLED_STATE_DISABLED_UNTIL_USED :: Int
+  pure native dont_kill_app android.content.pm.PackageManager.DONT_KILL_APP :: Int
+  pure native verification_allow android.content.pm.PackageManager.VERIFICATION_ALLOW :: Int
+  pure native verification_reject android.content.pm.PackageManager.VERIFICATION_REJECT :: Int
+  pure native maximum_verification_timeout android.content.pm.PackageManager.MAXIMUM_VERIFICATION_TIMEOUT :: Long
+  pure native feature_audio_low_latency android.content.pm.PackageManager.FEATURE_AUDIO_LOW_LATENCY :: String
+  pure native feature_bluetooth android.content.pm.PackageManager.FEATURE_BLUETOOTH :: String
+  pure native feature_bluetooth_le android.content.pm.PackageManager.FEATURE_BLUETOOTH_LE :: String
+  pure native feature_camera android.content.pm.PackageManager.FEATURE_CAMERA :: String
+  pure native feature_camera_autofocus android.content.pm.PackageManager.FEATURE_CAMERA_AUTOFOCUS :: String
+  pure native feature_camera_any android.content.pm.PackageManager.FEATURE_CAMERA_ANY :: String
+  pure native feature_camera_external android.content.pm.PackageManager.FEATURE_CAMERA_EXTERNAL :: String
+  pure native feature_camera_flash android.content.pm.PackageManager.FEATURE_CAMERA_FLASH :: String
+  pure native feature_camera_front android.content.pm.PackageManager.FEATURE_CAMERA_FRONT :: String
+  pure native feature_consumer_ir android.content.pm.PackageManager.FEATURE_CONSUMER_IR :: String
+  pure native feature_location android.content.pm.PackageManager.FEATURE_LOCATION :: String
+  pure native feature_location_gps android.content.pm.PackageManager.FEATURE_LOCATION_GPS :: String
+  pure native feature_location_network android.content.pm.PackageManager.FEATURE_LOCATION_NETWORK :: String
+  pure native feature_microphone android.content.pm.PackageManager.FEATURE_MICROPHONE :: String
+  pure native feature_nfc android.content.pm.PackageManager.FEATURE_NFC :: String
+  pure native feature_nfc_host_card_emulation android.content.pm.PackageManager.FEATURE_NFC_HOST_CARD_EMULATION :: String
+  pure native feature_sensor_accelerometer android.content.pm.PackageManager.FEATURE_SENSOR_ACCELEROMETER :: String
+  pure native feature_sensor_barometer android.content.pm.PackageManager.FEATURE_SENSOR_BAROMETER :: String
+  pure native feature_sensor_compass android.content.pm.PackageManager.FEATURE_SENSOR_COMPASS :: String
+  pure native feature_sensor_gyroscope android.content.pm.PackageManager.FEATURE_SENSOR_GYROSCOPE :: String
+  pure native feature_sensor_light android.content.pm.PackageManager.FEATURE_SENSOR_LIGHT :: String
+  pure native feature_sensor_proximity android.content.pm.PackageManager.FEATURE_SENSOR_PROXIMITY :: String
+  pure native feature_sensor_step_counter android.content.pm.PackageManager.FEATURE_SENSOR_STEP_COUNTER :: String
+  pure native feature_sensor_step_detector android.content.pm.PackageManager.FEATURE_SENSOR_STEP_DETECTOR :: String
+  pure native feature_sensor_heart_rate android.content.pm.PackageManager.FEATURE_SENSOR_HEART_RATE :: String
+  pure native feature_telephony android.content.pm.PackageManager.FEATURE_TELEPHONY :: String
+  pure native feature_telephony_cdma android.content.pm.PackageManager.FEATURE_TELEPHONY_CDMA :: String
+  pure native feature_telephony_gsm android.content.pm.PackageManager.FEATURE_TELEPHONY_GSM :: String
+  pure native feature_usb_host android.content.pm.PackageManager.FEATURE_USB_HOST :: String
+  pure native feature_usb_accessory android.content.pm.PackageManager.FEATURE_USB_ACCESSORY :: String
+  pure native feature_sip android.content.pm.PackageManager.FEATURE_SIP :: String
+  pure native feature_sip_voip android.content.pm.PackageManager.FEATURE_SIP_VOIP :: String
+  pure native feature_touchscreen android.content.pm.PackageManager.FEATURE_TOUCHSCREEN :: String
+  pure native feature_touchscreen_multitouch android.content.pm.PackageManager.FEATURE_TOUCHSCREEN_MULTITOUCH :: String
+  pure native feature_touchscreen_multitouch_distinct android.content.pm.PackageManager.FEATURE_TOUCHSCREEN_MULTITOUCH_DISTINCT :: String
+  pure native feature_touchscreen_multitouch_jazzhand android.content.pm.PackageManager.FEATURE_TOUCHSCREEN_MULTITOUCH_JAZZHAND :: String
+  pure native feature_faketouch android.content.pm.PackageManager.FEATURE_FAKETOUCH :: String
+  pure native feature_faketouch_multitouch_distinct android.content.pm.PackageManager.FEATURE_FAKETOUCH_MULTITOUCH_DISTINCT :: String
+  pure native feature_faketouch_multitouch_jazzhand android.content.pm.PackageManager.FEATURE_FAKETOUCH_MULTITOUCH_JAZZHAND :: String
+  pure native feature_screen_portrait android.content.pm.PackageManager.FEATURE_SCREEN_PORTRAIT :: String
+  pure native feature_screen_landscape android.content.pm.PackageManager.FEATURE_SCREEN_LANDSCAPE :: String
+  pure native feature_live_wallpaper android.content.pm.PackageManager.FEATURE_LIVE_WALLPAPER :: String
+  pure native feature_app_widgets android.content.pm.PackageManager.FEATURE_APP_WIDGETS :: String
+  pure native feature_home_screen android.content.pm.PackageManager.FEATURE_HOME_SCREEN :: String
+  pure native feature_input_methods android.content.pm.PackageManager.FEATURE_INPUT_METHODS :: String
+  pure native feature_device_admin android.content.pm.PackageManager.FEATURE_DEVICE_ADMIN :: String
+  pure native feature_wifi android.content.pm.PackageManager.FEATURE_WIFI :: String
+  pure native feature_wifi_direct android.content.pm.PackageManager.FEATURE_WIFI_DIRECT :: String
+  pure native feature_television android.content.pm.PackageManager.FEATURE_TELEVISION :: String
+  pure native feature_watch android.content.pm.PackageManager.FEATURE_WATCH :: String
+  pure native feature_printing android.content.pm.PackageManager.FEATURE_PRINTING :: String
+  pure native feature_backup android.content.pm.PackageManager.FEATURE_BACKUP :: String
+  pure native feature_webview android.content.pm.PackageManager.FEATURE_WEBVIEW :: String
+  pure native extra_verification_id android.content.pm.PackageManager.EXTRA_VERIFICATION_ID :: String
+  pure native extra_verification_result android.content.pm.PackageManager.EXTRA_VERIFICATION_RESULT :: String
+
+  native new :: () -> ST s PackageManager
+
+  native addPackageToPreferred :: PackageManager -> String -> ST s ()
+
+  pure native addPermission :: PackageManager -> PermissionInfo -> Bool
+
+  pure native addPermissionAsync :: PackageManager -> PermissionInfo -> Bool
+
+  native addPreferredActivity :: PackageManager -> IntentFilter -> Int -> Mutable s (JArray ComponentName) -> ComponentName -> ST s ()
+
+  native canonicalToCurrentPackageNames :: PackageManager -> Mutable s (JArray String) -> STMutable s (JArray String)
+
+  pure native checkPermission :: PackageManager -> String -> String -> Int
+
+  pure native checkSignatures :: PackageManager -> Int -> Int -> Int
+                               | PackageManager -> String -> String -> Int
+
+  native clearPackagePreferredActivities :: PackageManager -> String -> ST s ()
+
+  native currentToCanonicalPackageNames :: PackageManager -> Mutable s (JArray String) -> STMutable s (JArray String)
+
+  native extendVerificationTimeout :: PackageManager -> Int -> Int -> Long -> ST s ()
+
+  native getActivityBanner :: PackageManager -> Intent -> ST s Drawable throws PackageManager_NameNotFoundException
+                            | PackageManager -> ComponentName -> ST s Drawable throws PackageManager_NameNotFoundException
+
+  native getActivityIcon :: PackageManager -> ComponentName -> ST s Drawable throws PackageManager_NameNotFoundException
+                          | PackageManager -> Intent -> ST s Drawable throws PackageManager_NameNotFoundException
+
+  native getActivityInfo :: PackageManager -> ComponentName -> Int -> ST s ActivityInfo throws PackageManager_NameNotFoundException
+
+  native getActivityLogo :: PackageManager -> ComponentName -> ST s Drawable throws PackageManager_NameNotFoundException
+                          | PackageManager -> Intent -> ST s Drawable throws PackageManager_NameNotFoundException
+
+  native getAllPermissionGroups :: PackageManager -> Int -> STMutable s (List PermissionGroupInfo)
+
+  native getApplicationBanner :: PackageManager -> String -> ST s Drawable throws PackageManager_NameNotFoundException
+                               | PackageManager -> ApplicationInfo -> ST s Drawable
+
+  pure native getApplicationEnabledSetting :: PackageManager -> String -> Int
+
+  native getApplicationIcon :: PackageManager -> ApplicationInfo -> ST s Drawable
+                             | PackageManager -> String -> ST s Drawable throws PackageManager_NameNotFoundException
+
+  native getApplicationInfo :: PackageManager -> String -> Int -> ST s ApplicationInfo throws PackageManager_NameNotFoundException
+
+  pure native getApplicationLabel :: PackageManager -> ApplicationInfo -> CharSequence
+
+  native getApplicationLogo :: PackageManager -> String -> ST s Drawable throws PackageManager_NameNotFoundException
+                             | PackageManager -> ApplicationInfo -> ST s Drawable
+
+  pure native getComponentEnabledSetting :: PackageManager -> ComponentName -> Int
+
+  pure native getDefaultActivityIcon :: PackageManager -> Drawable
+
+  pure native getDrawable :: PackageManager -> String -> Int -> ApplicationInfo -> Drawable
+
+  native getInstalledApplications :: PackageManager -> Int -> STMutable s (List ApplicationInfo)
+
+  native getInstalledPackages :: PackageManager -> Int -> STMutable s (List PackageInfo)
+
+  pure native getInstallerPackageName :: PackageManager -> String -> String
+
+  native getInstrumentationInfo :: PackageManager -> ComponentName -> Int -> ST s InstrumentationInfo throws PackageManager_NameNotFoundException
+
+  pure native getLaunchIntentForPackage :: PackageManager -> String -> Intent
+
+  pure native getNameForUid :: PackageManager -> Int -> String
+
+  pure native getPackageArchiveInfo :: PackageManager -> String -> Int -> PackageInfo
+
+  native getPackageGids :: PackageManager -> String -> STMutable s (JArray Int) throws PackageManager_NameNotFoundException
+
+  native getPackageInfo :: PackageManager -> String -> Int -> ST s PackageInfo throws PackageManager_NameNotFoundException
+
+  native getPackagesForUid :: PackageManager -> Int -> STMutable s (JArray String)
+
+  native getPackagesHoldingPermissions :: PackageManager -> Mutable s (JArray String) -> Int -> STMutable s (List PackageInfo)
+
+  native getPermissionGroupInfo :: PackageManager -> String -> Int -> ST s PermissionGroupInfo throws PackageManager_NameNotFoundException
+
+  native getPermissionInfo :: PackageManager -> String -> Int -> ST s PermissionInfo throws PackageManager_NameNotFoundException
+
+  native getPreferredActivities :: PackageManager -> Mutable s (List IntentFilter) -> Mutable s (List ComponentName) -> String -> ST s Int
+
+  native getPreferredPackages :: PackageManager -> Int -> STMutable s (List PackageInfo)
+
+  native getProviderInfo :: PackageManager -> ComponentName -> Int -> ST s ProviderInfo throws PackageManager_NameNotFoundException
+
+  native getReceiverInfo :: PackageManager -> ComponentName -> Int -> ST s ActivityInfo throws PackageManager_NameNotFoundException
+
+  native getResourcesForActivity :: PackageManager -> ComponentName -> ST s Resources throws PackageManager_NameNotFoundException
+
+  native getResourcesForApplication :: PackageManager -> ApplicationInfo -> ST s Resources throws PackageManager_NameNotFoundException
+                                     | PackageManager -> String -> ST s Resources throws PackageManager_NameNotFoundException
+
+  native getServiceInfo :: PackageManager -> ComponentName -> Int -> ST s ServiceInfo throws PackageManager_NameNotFoundException
+
+  native getSystemAvailableFeatures :: PackageManager -> STMutable s (JArray FeatureInfo)
+
+  native getSystemSharedLibraryNames :: PackageManager -> STMutable s (JArray String)
+
+  pure native getText :: PackageManager -> String -> Int -> ApplicationInfo -> CharSequence
+
+  pure native getXml :: PackageManager -> String -> Int -> ApplicationInfo -> XmlResourceParser
+
+  pure native hasSystemFeature :: PackageManager -> String -> Bool
+
+  pure native isSafeMode :: PackageManager -> Bool
+
+  native queryBroadcastReceivers :: PackageManager -> Intent -> Int -> STMutable s (List ResolveInfo)
+
+  native queryContentProviders :: PackageManager -> String -> Int -> Int -> STMutable s (List ProviderInfo)
+
+  native queryInstrumentation :: PackageManager -> String -> Int -> STMutable s (List InstrumentationInfo)
+
+  native queryIntentActivities :: PackageManager -> Intent -> Int -> STMutable s (List ResolveInfo)
+
+  native queryIntentActivityOptions :: PackageManager -> ComponentName -> Mutable s (JArray Intent) -> Intent -> Int -> STMutable s (List ResolveInfo)
+
+  native queryIntentContentProviders :: PackageManager -> Intent -> Int -> STMutable s (List ResolveInfo)
+
+  native queryIntentServices :: PackageManager -> Intent -> Int -> STMutable s (List ResolveInfo)
+
+  native queryPermissionsByGroup :: PackageManager -> String -> Int -> STMutable s (List PermissionInfo) throws PackageManager_NameNotFoundException
+
+  native removePackageFromPreferred :: PackageManager -> String -> ST s ()
+
+  native removePermission :: PackageManager -> String -> ST s ()
+
+  pure native resolveActivity :: PackageManager -> Intent -> Int -> ResolveInfo
+
+  pure native resolveContentProvider :: PackageManager -> String -> Int -> ProviderInfo
+
+  pure native resolveService :: PackageManager -> Intent -> Int -> ResolveInfo
+
+  native setApplicationEnabledSetting :: PackageManager -> String -> Int -> Int -> ST s ()
+
+  native setComponentEnabledSetting :: PackageManager -> ComponentName -> Int -> Int -> ST s ()
+
+  native setInstallerPackageName :: PackageManager -> String -> String -> ST s ()
+
+  native verifyPendingInstall :: PackageManager -> Int -> Int -> ST s ()
+
+
+
+-}

@@ -1,0 +1,210 @@
+package frege.android.graphics.Matrix where
+
+import frege.android.graphics.RectF
+
+data Matrix = native android.graphics.Matrix where
+
+
+  pure native mscale_x  android.graphics.Matrix.MSCALE_X :: Int
+
+  pure native mskew_x  android.graphics.Matrix.MSKEW_X :: Int
+
+  pure native mtrans_x  android.graphics.Matrix.MTRANS_X :: Int
+
+  pure native mskew_y  android.graphics.Matrix.MSKEW_Y :: Int
+
+  pure native mscale_y  android.graphics.Matrix.MSCALE_Y :: Int
+
+  pure native mtrans_y  android.graphics.Matrix.MTRANS_Y :: Int
+
+  pure native mpersp_0  android.graphics.Matrix.MPERSP_0 :: Int
+
+  pure native mpersp_1  android.graphics.Matrix.MPERSP_1 :: Int
+
+  pure native mpersp_2  android.graphics.Matrix.MPERSP_2 :: Int
+
+  native new  :: ( ) -> STMutable s Matrix
+        | Mutable s Matrix -> STMutable s Matrix
+
+  native equals  :: Mutable s Matrix -> Object -> ST s Bool
+
+{-   native getValues  :: -- ["JArray"] -- Mutable s Matrix -> Mutable s ( JArray Float ) -> ST s ( ) -}
+
+  native hashCode  :: Mutable s Matrix -> ST s Int
+
+  native invert  :: Mutable s Matrix -> Mutable s Matrix -> ST s Bool
+
+  native isIdentity  :: Mutable s Matrix -> ST s Bool
+
+{-   native mapPoints  :: -- ["JArray"] -- Mutable s Matrix -> Mutable s ( JArray Float ) -> ST s ( )
+        -- ["JArray"] -- Mutable s Matrix -> Mutable s ( JArray Float ) -> Mutable s ( JArray Float ) -> ST s ( )
+        -- ["JArray"] -- Mutable s Matrix -> Mutable s ( JArray Float ) -> Int -> Mutable s ( JArray Float ) -> Int -> Int -> ST s ( ) -}
+
+  native mapRadius  :: Mutable s Matrix -> Float -> ST s Float
+
+  native mapRect  :: Mutable s Matrix -> Mutable s RectF -> ST s Bool
+        | Mutable s Matrix -> Mutable s RectF -> Mutable s RectF -> ST s Bool
+
+{-   native mapVectors  :: -- ["JArray"] -- Mutable s Matrix -> Mutable s ( JArray Float ) -> Mutable s ( JArray Float ) -> ST s ( )
+        -- ["JArray"] -- Mutable s Matrix -> Mutable s ( JArray Float ) -> Int -> Mutable s ( JArray Float ) -> Int -> Int -> ST s ( )
+        -- ["JArray"] -- Mutable s Matrix -> Mutable s ( JArray Float ) -> ST s ( ) -}
+
+  native postConcat  :: Mutable s Matrix -> Mutable s Matrix -> ST s Bool
+
+  native postRotate  :: Mutable s Matrix -> Float -> Float -> Float -> ST s Bool
+        | Mutable s Matrix -> Float -> ST s Bool
+
+  native postScale  :: Mutable s Matrix -> Float -> Float -> Float -> Float -> ST s Bool
+        | Mutable s Matrix -> Float -> Float -> ST s Bool
+
+  native postSkew  :: Mutable s Matrix -> Float -> Float -> Float -> Float -> ST s Bool
+        | Mutable s Matrix -> Float -> Float -> ST s Bool
+
+  native postTranslate  :: Mutable s Matrix -> Float -> Float -> ST s Bool
+
+  native preConcat  :: Mutable s Matrix -> Mutable s Matrix -> ST s Bool
+
+  native preRotate  :: Mutable s Matrix -> Float -> Float -> Float -> ST s Bool
+        | Mutable s Matrix -> Float -> ST s Bool
+
+  native preScale  :: Mutable s Matrix -> Float -> Float -> ST s Bool
+        | Mutable s Matrix -> Float -> Float -> Float -> Float -> ST s Bool
+
+  native preSkew  :: Mutable s Matrix -> Float -> Float -> ST s Bool
+        | Mutable s Matrix -> Float -> Float -> Float -> Float -> ST s Bool
+
+  native preTranslate  :: Mutable s Matrix -> Float -> Float -> ST s Bool
+
+  native rectStaysRect  :: Mutable s Matrix -> ST s Bool
+
+  native reset  :: Mutable s Matrix -> ST s ( )
+
+  native set  :: Mutable s Matrix -> Mutable s Matrix -> ST s ( )
+
+  native setConcat  :: Mutable s Matrix -> Mutable s Matrix -> Mutable s Matrix -> ST s Bool
+
+{-   native setPolyToPoly  :: -- ["JArray"] -- Mutable s Matrix -> Mutable s ( JArray Float ) -> Int -> Mutable s ( JArray Float ) -> Int -> Int -> ST s Bool -}
+
+{-   native setRectToRect  :: -- ["Matrix_ScaleToFit"] -- Mutable s Matrix -> Mutable s RectF -> Mutable s RectF -> Matrix_ScaleToFit -> ST s Bool -}
+
+  native setRotate  :: Mutable s Matrix -> Float -> Float -> Float -> ST s ( )
+        | Mutable s Matrix -> Float -> ST s ( )
+
+  native setScale  :: Mutable s Matrix -> Float -> Float -> ST s ( )
+        | Mutable s Matrix -> Float -> Float -> Float -> Float -> ST s ( )
+
+  native setSinCos  :: Mutable s Matrix -> Float -> Float -> ST s ( )
+        | Mutable s Matrix -> Float -> Float -> Float -> Float -> ST s ( )
+
+  native setSkew  :: Mutable s Matrix -> Float -> Float -> ST s ( )
+        | Mutable s Matrix -> Float -> Float -> Float -> Float -> ST s ( )
+
+  native setTranslate  :: Mutable s Matrix -> Float -> Float -> ST s ( )
+
+{-   native setValues  :: -- ["JArray"] -- Mutable s Matrix -> Mutable s ( JArray Float ) -> ST s ( ) -}
+
+  native toShortString  :: Mutable s Matrix -> ST s String
+
+  native toString  :: Mutable s Matrix -> ST s String
+
+
+{-
+data Matrix = native android.graphics.Matrix where
+
+  pure native mscale_x android.graphics.Matrix.MSCALE_X :: Int
+  pure native mskew_x android.graphics.Matrix.MSKEW_X :: Int
+  pure native mtrans_x android.graphics.Matrix.MTRANS_X :: Int
+  pure native mskew_y android.graphics.Matrix.MSKEW_Y :: Int
+  pure native mscale_y android.graphics.Matrix.MSCALE_Y :: Int
+  pure native mtrans_y android.graphics.Matrix.MTRANS_Y :: Int
+  pure native mpersp_0 android.graphics.Matrix.MPERSP_0 :: Int
+  pure native mpersp_1 android.graphics.Matrix.MPERSP_1 :: Int
+  pure native mpersp_2 android.graphics.Matrix.MPERSP_2 :: Int
+
+  native new :: () -> STMutable s Matrix
+              | Mutable s Matrix -> STMutable s Matrix
+
+  native equals :: Mutable s Matrix -> Object -> ST s Bool
+
+  native getValues :: Mutable s Matrix -> Mutable s (JArray Float) -> ST s ()
+
+  native hashCode :: Mutable s Matrix -> ST s Int
+
+  native invert :: Mutable s Matrix -> Mutable s Matrix -> ST s Bool
+
+  native isIdentity :: Mutable s Matrix -> ST s Bool
+
+  native mapPoints :: Mutable s Matrix -> Mutable s (JArray Float) -> ST s ()
+                    | Mutable s Matrix -> Mutable s (JArray Float) -> Mutable s (JArray Float) -> ST s ()
+                    | Mutable s Matrix -> Mutable s (JArray Float) -> Int -> Mutable s (JArray Float) -> Int -> Int -> ST s ()
+
+  native mapRadius :: Mutable s Matrix -> Float -> ST s Float
+
+  native mapRect :: Mutable s Matrix -> Mutable s RectF -> ST s Bool
+                  | Mutable s Matrix -> Mutable s RectF -> Mutable s RectF -> ST s Bool
+
+  native mapVectors :: Mutable s Matrix -> Mutable s (JArray Float) -> Mutable s (JArray Float) -> ST s ()
+                     | Mutable s Matrix -> Mutable s (JArray Float) -> Int -> Mutable s (JArray Float) -> Int -> Int -> ST s ()
+                     | Mutable s Matrix -> Mutable s (JArray Float) -> ST s ()
+
+  native postConcat :: Mutable s Matrix -> Mutable s Matrix -> ST s Bool
+
+  native postRotate :: Mutable s Matrix -> Float -> Float -> Float -> ST s Bool
+                     | Mutable s Matrix -> Float -> ST s Bool
+
+  native postScale :: Mutable s Matrix -> Float -> Float -> Float -> Float -> ST s Bool
+                    | Mutable s Matrix -> Float -> Float -> ST s Bool
+
+  native postSkew :: Mutable s Matrix -> Float -> Float -> Float -> Float -> ST s Bool
+                   | Mutable s Matrix -> Float -> Float -> ST s Bool
+
+  native postTranslate :: Mutable s Matrix -> Float -> Float -> ST s Bool
+
+  native preConcat :: Mutable s Matrix -> Mutable s Matrix -> ST s Bool
+
+  native preRotate :: Mutable s Matrix -> Float -> Float -> Float -> ST s Bool
+                    | Mutable s Matrix -> Float -> ST s Bool
+
+  native preScale :: Mutable s Matrix -> Float -> Float -> ST s Bool
+                   | Mutable s Matrix -> Float -> Float -> Float -> Float -> ST s Bool
+
+  native preSkew :: Mutable s Matrix -> Float -> Float -> ST s Bool
+                  | Mutable s Matrix -> Float -> Float -> Float -> Float -> ST s Bool
+
+  native preTranslate :: Mutable s Matrix -> Float -> Float -> ST s Bool
+
+  native rectStaysRect :: Mutable s Matrix -> ST s Bool
+
+  native reset :: Mutable s Matrix -> ST s ()
+
+  native set :: Mutable s Matrix -> Mutable s Matrix -> ST s ()
+
+  native setConcat :: Mutable s Matrix -> Mutable s Matrix -> Mutable s Matrix -> ST s Bool
+
+  native setPolyToPoly :: Mutable s Matrix -> Mutable s (JArray Float) -> Int -> Mutable s (JArray Float) -> Int -> Int -> ST s Bool
+
+  native setRectToRect :: Mutable s Matrix -> Mutable s RectF -> Mutable s RectF -> Matrix_ScaleToFit -> ST s Bool
+
+  native setRotate :: Mutable s Matrix -> Float -> Float -> Float -> ST s ()
+                    | Mutable s Matrix -> Float -> ST s ()
+
+  native setScale :: Mutable s Matrix -> Float -> Float -> ST s ()
+                   | Mutable s Matrix -> Float -> Float -> Float -> Float -> ST s ()
+
+  native setSinCos :: Mutable s Matrix -> Float -> Float -> ST s ()
+                    | Mutable s Matrix -> Float -> Float -> Float -> Float -> ST s ()
+
+  native setSkew :: Mutable s Matrix -> Float -> Float -> ST s ()
+                  | Mutable s Matrix -> Float -> Float -> Float -> Float -> ST s ()
+
+  native setTranslate :: Mutable s Matrix -> Float -> Float -> ST s ()
+
+  native setValues :: Mutable s Matrix -> Mutable s (JArray Float) -> ST s ()
+
+  native toShortString :: Mutable s Matrix -> ST s String
+
+  native toString :: Mutable s Matrix -> ST s String
+
+
+
+-}

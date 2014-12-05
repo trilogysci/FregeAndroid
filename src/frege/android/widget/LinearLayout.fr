@@ -1,0 +1,139 @@
+package frege.android.widget.LinearLayout where
+
+import frege.android.content.Context
+import frege.android.util.AttributeSet
+import frege.android.graphics.drawable.Drawable
+
+data LinearLayout = pure native android.widget.LinearLayout where
+
+
+  pure native horizontal  android.widget.LinearLayout.HORIZONTAL :: Int
+
+  pure native vertical  android.widget.LinearLayout.VERTICAL :: Int
+
+  pure native show_divider_none  android.widget.LinearLayout.SHOW_DIVIDER_NONE :: Int
+
+  pure native show_divider_beginning  android.widget.LinearLayout.SHOW_DIVIDER_BEGINNING :: Int
+
+  pure native show_divider_middle  android.widget.LinearLayout.SHOW_DIVIDER_MIDDLE :: Int
+
+  pure native show_divider_end  android.widget.LinearLayout.SHOW_DIVIDER_END :: Int
+
+  native new  :: Context -> ST s LinearLayout
+        | Context -> AttributeSet -> ST s LinearLayout
+        | Context -> AttributeSet -> Int -> ST s LinearLayout
+
+{-   pure native generateLayoutParams  :: -- ["LinearLayout_LayoutParams"] -- LinearLayout -> AttributeSet -> LinearLayout_LayoutParams -}
+
+  pure native getBaseline  :: LinearLayout -> Int
+
+  pure native getBaselineAlignedChildIndex  :: LinearLayout -> Int
+
+  pure native getDividerDrawable  :: LinearLayout -> Drawable
+
+  pure native getDividerPadding  :: LinearLayout -> Int
+
+  pure native getOrientation  :: LinearLayout -> Int
+
+  pure native getShowDividers  :: LinearLayout -> Int
+
+  pure native getWeightSum  :: LinearLayout -> Float
+
+  pure native isBaselineAligned  :: LinearLayout -> Bool
+
+  pure native isMeasureWithLargestChildEnabled  :: LinearLayout -> Bool
+
+{-   native onInitializeAccessibilityEvent  :: -- ["AccessibilityEvent"] -- LinearLayout -> AccessibilityEvent -> ST s ( ) -}
+
+{-   native onInitializeAccessibilityNodeInfo  :: -- ["AccessibilityNodeInfo"] -- LinearLayout -> AccessibilityNodeInfo -> ST s ( ) -}
+
+  native setBaselineAligned  :: LinearLayout -> Bool -> ST s ( )
+
+  native setBaselineAlignedChildIndex  :: LinearLayout -> Int -> ST s ( )
+
+  native setDividerDrawable  :: LinearLayout -> Drawable -> ST s ( )
+
+  native setDividerPadding  :: LinearLayout -> Int -> ST s ( )
+
+  native setGravity  :: LinearLayout -> Int -> ST s ( )
+
+  native setHorizontalGravity  :: LinearLayout -> Int -> ST s ( )
+
+  native setMeasureWithLargestChildEnabled  :: LinearLayout -> Bool -> ST s ( )
+
+  native setOrientation  :: LinearLayout -> Int -> ST s ( )
+
+  native setShowDividers  :: LinearLayout -> Int -> ST s ( )
+
+  native setVerticalGravity  :: LinearLayout -> Int -> ST s ( )
+
+  native setWeightSum  :: LinearLayout -> Float -> ST s ( )
+
+  pure native shouldDelayChildPressedState  :: LinearLayout -> Bool
+
+
+{-
+data LinearLayout = pure native android.widget.LinearLayout where
+
+  pure native horizontal android.widget.LinearLayout.HORIZONTAL :: Int
+  pure native vertical android.widget.LinearLayout.VERTICAL :: Int
+  pure native show_divider_none android.widget.LinearLayout.SHOW_DIVIDER_NONE :: Int
+  pure native show_divider_beginning android.widget.LinearLayout.SHOW_DIVIDER_BEGINNING :: Int
+  pure native show_divider_middle android.widget.LinearLayout.SHOW_DIVIDER_MIDDLE :: Int
+  pure native show_divider_end android.widget.LinearLayout.SHOW_DIVIDER_END :: Int
+
+  native new :: Context -> ST s LinearLayout
+              | Context -> AttributeSet -> ST s LinearLayout
+              | Context -> AttributeSet -> Int -> ST s LinearLayout
+
+  pure native generateLayoutParams :: LinearLayout -> AttributeSet -> LinearLayout_LayoutParams
+
+  pure native getBaseline :: LinearLayout -> Int
+
+  pure native getBaselineAlignedChildIndex :: LinearLayout -> Int
+
+  pure native getDividerDrawable :: LinearLayout -> Drawable
+
+  pure native getDividerPadding :: LinearLayout -> Int
+
+  pure native getOrientation :: LinearLayout -> Int
+
+  pure native getShowDividers :: LinearLayout -> Int
+
+  pure native getWeightSum :: LinearLayout -> Float
+
+  pure native isBaselineAligned :: LinearLayout -> Bool
+
+  pure native isMeasureWithLargestChildEnabled :: LinearLayout -> Bool
+
+  native onInitializeAccessibilityEvent :: LinearLayout -> AccessibilityEvent -> ST s ()
+
+  native onInitializeAccessibilityNodeInfo :: LinearLayout -> AccessibilityNodeInfo -> ST s ()
+
+  native setBaselineAligned :: LinearLayout -> Bool -> ST s ()
+
+  native setBaselineAlignedChildIndex :: LinearLayout -> Int -> ST s ()
+
+  native setDividerDrawable :: LinearLayout -> Drawable -> ST s ()
+
+  native setDividerPadding :: LinearLayout -> Int -> ST s ()
+
+  native setGravity :: LinearLayout -> Int -> ST s ()
+
+  native setHorizontalGravity :: LinearLayout -> Int -> ST s ()
+
+  native setMeasureWithLargestChildEnabled :: LinearLayout -> Bool -> ST s ()
+
+  native setOrientation :: LinearLayout -> Int -> ST s ()
+
+  native setShowDividers :: LinearLayout -> Int -> ST s ()
+
+  native setVerticalGravity :: LinearLayout -> Int -> ST s ()
+
+  native setWeightSum :: LinearLayout -> Float -> ST s ()
+
+  pure native shouldDelayChildPressedState :: LinearLayout -> Bool
+
+
+
+-}

@@ -1,0 +1,115 @@
+package frege.android.view.Display where
+
+import frege.android.graphics.Point
+import frege.android.graphics.Rect
+
+data Display = native android.view.Display where
+
+
+  pure native default_display  android.view.Display.DEFAULT_DISPLAY :: Int
+
+  pure native flag_supports_protected_buffers  android.view.Display.FLAG_SUPPORTS_PROTECTED_BUFFERS :: Int
+
+  pure native flag_secure  android.view.Display.FLAG_SECURE :: Int
+
+  pure native flag_private  android.view.Display.FLAG_PRIVATE :: Int
+
+  pure native flag_presentation  android.view.Display.FLAG_PRESENTATION :: Int
+
+  pure native state_unknown  android.view.Display.STATE_UNKNOWN :: Int
+
+  pure native state_off  android.view.Display.STATE_OFF :: Int
+
+  pure native state_on  android.view.Display.STATE_ON :: Int
+
+  pure native state_dozing  android.view.Display.STATE_DOZING :: Int
+
+  native getCurrentSizeRange  :: MutableIO Display -> MutableIO Point -> MutableIO Point -> IO ( )
+
+  native getDisplayId  :: MutableIO Display -> IO Int
+
+  native getFlags  :: MutableIO Display -> IO Int
+
+  native getHeight  :: MutableIO Display -> IO Int
+
+{-   native getMetrics  :: -- ["DisplayMetrics"] -- MutableIO Display -> DisplayMetrics -> IO ( ) -}
+
+  native getName  :: MutableIO Display -> IO String
+
+  native getOrientation  :: MutableIO Display -> IO Int
+
+  native getPixelFormat  :: MutableIO Display -> IO Int
+
+{-   native getRealMetrics  :: -- ["DisplayMetrics"] -- MutableIO Display -> DisplayMetrics -> IO ( ) -}
+
+  native getRealSize  :: MutableIO Display -> MutableIO Point -> IO ( )
+
+  native getRectSize  :: MutableIO Display -> MutableIO Rect -> IO ( )
+
+  native getRefreshRate  :: MutableIO Display -> IO Float
+
+  native getRotation  :: MutableIO Display -> IO Int
+
+  native getSize  :: MutableIO Display -> MutableIO Point -> IO ( )
+
+  native getState  :: MutableIO Display -> IO Int
+
+  native getWidth  :: MutableIO Display -> IO Int
+
+  native isValid  :: MutableIO Display -> IO Bool
+
+  native toString  :: MutableIO Display -> IO String
+
+
+{-
+data Display = native android.view.Display where
+
+  pure native default_display android.view.Display.DEFAULT_DISPLAY :: Int
+  pure native flag_supports_protected_buffers android.view.Display.FLAG_SUPPORTS_PROTECTED_BUFFERS :: Int
+  pure native flag_secure android.view.Display.FLAG_SECURE :: Int
+  pure native flag_private android.view.Display.FLAG_PRIVATE :: Int
+  pure native flag_presentation android.view.Display.FLAG_PRESENTATION :: Int
+  pure native state_unknown android.view.Display.STATE_UNKNOWN :: Int
+  pure native state_off android.view.Display.STATE_OFF :: Int
+  pure native state_on android.view.Display.STATE_ON :: Int
+  pure native state_dozing android.view.Display.STATE_DOZING :: Int
+
+  native getCurrentSizeRange :: MutableIO Display -> MutableIO Point -> MutableIO Point -> IO ()
+
+  native getDisplayId :: MutableIO Display -> IO Int
+
+  native getFlags :: MutableIO Display -> IO Int
+
+  native getHeight :: MutableIO Display -> IO Int
+
+  native getMetrics :: MutableIO Display -> DisplayMetrics -> IO ()
+
+  native getName :: MutableIO Display -> IO String
+
+  native getOrientation :: MutableIO Display -> IO Int
+
+  native getPixelFormat :: MutableIO Display -> IO Int
+
+  native getRealMetrics :: MutableIO Display -> DisplayMetrics -> IO ()
+
+  native getRealSize :: MutableIO Display -> MutableIO Point -> IO ()
+
+  native getRectSize :: MutableIO Display -> MutableIO Rect -> IO ()
+
+  native getRefreshRate :: MutableIO Display -> IO Float
+
+  native getRotation :: MutableIO Display -> IO Int
+
+  native getSize :: MutableIO Display -> MutableIO Point -> IO ()
+
+  native getState :: MutableIO Display -> IO Int
+
+  native getWidth :: MutableIO Display -> IO Int
+
+  native isValid :: MutableIO Display -> IO Bool
+
+  native toString :: MutableIO Display -> IO String
+
+
+
+-}

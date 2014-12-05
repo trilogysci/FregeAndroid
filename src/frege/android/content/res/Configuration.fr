@@ -1,0 +1,318 @@
+package frege.android.content.res.Configuration where
+
+import frege.java.util.Locale
+
+data Configuration = pure native android.content.res.Configuration where
+
+
+  pure native fontscale ".fontScale" :: Configuration -> Float
+
+  pure native mcc ".mcc" :: Configuration -> Int
+
+  pure native mnc ".mnc" :: Configuration -> Int
+
+  pure native mnc_zero  android.content.res.Configuration.MNC_ZERO :: Int
+
+  pure native locale ".locale" :: Configuration -> Locale
+
+  pure native screenlayout_size_mask  android.content.res.Configuration.SCREENLAYOUT_SIZE_MASK :: Int
+
+  pure native screenlayout_size_undefined  android.content.res.Configuration.SCREENLAYOUT_SIZE_UNDEFINED :: Int
+
+  pure native screenlayout_size_small  android.content.res.Configuration.SCREENLAYOUT_SIZE_SMALL :: Int
+
+  pure native screenlayout_size_normal  android.content.res.Configuration.SCREENLAYOUT_SIZE_NORMAL :: Int
+
+  pure native screenlayout_size_large  android.content.res.Configuration.SCREENLAYOUT_SIZE_LARGE :: Int
+
+  pure native screenlayout_size_xlarge  android.content.res.Configuration.SCREENLAYOUT_SIZE_XLARGE :: Int
+
+  pure native screenlayout_long_mask  android.content.res.Configuration.SCREENLAYOUT_LONG_MASK :: Int
+
+  pure native screenlayout_long_undefined  android.content.res.Configuration.SCREENLAYOUT_LONG_UNDEFINED :: Int
+
+  pure native screenlayout_long_no  android.content.res.Configuration.SCREENLAYOUT_LONG_NO :: Int
+
+  pure native screenlayout_long_yes  android.content.res.Configuration.SCREENLAYOUT_LONG_YES :: Int
+
+  pure native screenlayout_layoutdir_mask  android.content.res.Configuration.SCREENLAYOUT_LAYOUTDIR_MASK :: Int
+
+  pure native screenlayout_layoutdir_shift  android.content.res.Configuration.SCREENLAYOUT_LAYOUTDIR_SHIFT :: Int
+
+  pure native screenlayout_layoutdir_undefined  android.content.res.Configuration.SCREENLAYOUT_LAYOUTDIR_UNDEFINED :: Int
+
+  pure native screenlayout_layoutdir_ltr  android.content.res.Configuration.SCREENLAYOUT_LAYOUTDIR_LTR :: Int
+
+  pure native screenlayout_layoutdir_rtl  android.content.res.Configuration.SCREENLAYOUT_LAYOUTDIR_RTL :: Int
+
+  pure native screenlayout_undefined  android.content.res.Configuration.SCREENLAYOUT_UNDEFINED :: Int
+
+  pure native screenlayout ".screenLayout" :: Configuration -> Int
+
+  pure native touchscreen_undefined  android.content.res.Configuration.TOUCHSCREEN_UNDEFINED :: Int
+
+  pure native touchscreen_notouch  android.content.res.Configuration.TOUCHSCREEN_NOTOUCH :: Int
+
+  pure native touchscreen_stylus  android.content.res.Configuration.TOUCHSCREEN_STYLUS :: Int
+
+  pure native touchscreen_finger  android.content.res.Configuration.TOUCHSCREEN_FINGER :: Int
+
+  pure native touchscreen ".touchscreen" :: Configuration -> Int
+
+  pure native keyboard_undefined  android.content.res.Configuration.KEYBOARD_UNDEFINED :: Int
+
+  pure native keyboard_nokeys  android.content.res.Configuration.KEYBOARD_NOKEYS :: Int
+
+  pure native keyboard_qwerty  android.content.res.Configuration.KEYBOARD_QWERTY :: Int
+
+  pure native keyboard_12key  android.content.res.Configuration.KEYBOARD_12KEY :: Int
+
+  pure native keyboard ".keyboard" :: Configuration -> Int
+
+  pure native keyboardhidden_undefined  android.content.res.Configuration.KEYBOARDHIDDEN_UNDEFINED :: Int
+
+  pure native keyboardhidden_no  android.content.res.Configuration.KEYBOARDHIDDEN_NO :: Int
+
+  pure native keyboardhidden_yes  android.content.res.Configuration.KEYBOARDHIDDEN_YES :: Int
+
+  pure native keyboardhidden ".keyboardHidden" :: Configuration -> Int
+
+  pure native hardkeyboardhidden_undefined  android.content.res.Configuration.HARDKEYBOARDHIDDEN_UNDEFINED :: Int
+
+  pure native hardkeyboardhidden_no  android.content.res.Configuration.HARDKEYBOARDHIDDEN_NO :: Int
+
+  pure native hardkeyboardhidden_yes  android.content.res.Configuration.HARDKEYBOARDHIDDEN_YES :: Int
+
+  pure native hardkeyboardhidden ".hardKeyboardHidden" :: Configuration -> Int
+
+  pure native navigation_undefined  android.content.res.Configuration.NAVIGATION_UNDEFINED :: Int
+
+  pure native navigation_nonav  android.content.res.Configuration.NAVIGATION_NONAV :: Int
+
+  pure native navigation_dpad  android.content.res.Configuration.NAVIGATION_DPAD :: Int
+
+  pure native navigation_trackball  android.content.res.Configuration.NAVIGATION_TRACKBALL :: Int
+
+  pure native navigation_wheel  android.content.res.Configuration.NAVIGATION_WHEEL :: Int
+
+  pure native navigation ".navigation" :: Configuration -> Int
+
+  pure native navigationhidden_undefined  android.content.res.Configuration.NAVIGATIONHIDDEN_UNDEFINED :: Int
+
+  pure native navigationhidden_no  android.content.res.Configuration.NAVIGATIONHIDDEN_NO :: Int
+
+  pure native navigationhidden_yes  android.content.res.Configuration.NAVIGATIONHIDDEN_YES :: Int
+
+  pure native navigationhidden ".navigationHidden" :: Configuration -> Int
+
+  pure native orientation_undefined  android.content.res.Configuration.ORIENTATION_UNDEFINED :: Int
+
+  pure native orientation_portrait  android.content.res.Configuration.ORIENTATION_PORTRAIT :: Int
+
+  pure native orientation_landscape  android.content.res.Configuration.ORIENTATION_LANDSCAPE :: Int
+
+  pure native orientation_square  android.content.res.Configuration.ORIENTATION_SQUARE :: Int
+
+  pure native orientation ".orientation" :: Configuration -> Int
+
+  pure native ui_mode_type_mask  android.content.res.Configuration.UI_MODE_TYPE_MASK :: Int
+
+  pure native ui_mode_type_undefined  android.content.res.Configuration.UI_MODE_TYPE_UNDEFINED :: Int
+
+  pure native ui_mode_type_normal  android.content.res.Configuration.UI_MODE_TYPE_NORMAL :: Int
+
+  pure native ui_mode_type_desk  android.content.res.Configuration.UI_MODE_TYPE_DESK :: Int
+
+  pure native ui_mode_type_car  android.content.res.Configuration.UI_MODE_TYPE_CAR :: Int
+
+  pure native ui_mode_type_television  android.content.res.Configuration.UI_MODE_TYPE_TELEVISION :: Int
+
+  pure native ui_mode_type_appliance  android.content.res.Configuration.UI_MODE_TYPE_APPLIANCE :: Int
+
+  pure native ui_mode_type_watch  android.content.res.Configuration.UI_MODE_TYPE_WATCH :: Int
+
+  pure native ui_mode_night_mask  android.content.res.Configuration.UI_MODE_NIGHT_MASK :: Int
+
+  pure native ui_mode_night_undefined  android.content.res.Configuration.UI_MODE_NIGHT_UNDEFINED :: Int
+
+  pure native ui_mode_night_no  android.content.res.Configuration.UI_MODE_NIGHT_NO :: Int
+
+  pure native ui_mode_night_yes  android.content.res.Configuration.UI_MODE_NIGHT_YES :: Int
+
+  pure native uimode ".uiMode" :: Configuration -> Int
+
+  pure native screen_width_dp_undefined  android.content.res.Configuration.SCREEN_WIDTH_DP_UNDEFINED :: Int
+
+  pure native screenwidthdp ".screenWidthDp" :: Configuration -> Int
+
+  pure native screen_height_dp_undefined  android.content.res.Configuration.SCREEN_HEIGHT_DP_UNDEFINED :: Int
+
+  pure native screenheightdp ".screenHeightDp" :: Configuration -> Int
+
+  pure native smallest_screen_width_dp_undefined  android.content.res.Configuration.SMALLEST_SCREEN_WIDTH_DP_UNDEFINED :: Int
+
+  pure native smallestscreenwidthdp ".smallestScreenWidthDp" :: Configuration -> Int
+
+  pure native density_dpi_undefined  android.content.res.Configuration.DENSITY_DPI_UNDEFINED :: Int
+
+  pure native densitydpi ".densityDpi" :: Configuration -> Int
+
+{-   pure native creator  android.content.res.Configuration.CREATOR :: -- ["Parcelable_Creator"] -- Parcelable_Creator Configuration -}
+
+  native new  :: ( ) -> ST s Configuration
+        | Configuration -> ST s Configuration
+
+  pure native compareTo  :: Configuration -> Configuration -> Int
+
+  pure native describeContents  :: Configuration -> Int
+
+  pure native diff  :: Configuration -> Configuration -> Int
+
+  pure native equals  :: Configuration -> Configuration -> Bool
+        | Configuration -> Object -> Bool
+
+  pure native getLayoutDirection  :: Configuration -> Int
+
+  pure native hashCode  :: Configuration -> Int
+
+  pure native isLayoutSizeAtLeast  :: Configuration -> Int -> Bool
+
+  pure native needNewResources  android.content.res.Configuration.needNewResources :: Int -> Int -> Bool
+
+{-   native readFromParcel  :: -- ["Parcel"] -- Configuration -> Parcel -> ST s ( ) -}
+
+  native setLayoutDirection  :: Configuration -> Locale -> ST s ( )
+
+  native setLocale  :: Configuration -> Locale -> ST s ( )
+
+  native setTo  :: Configuration -> Configuration -> ST s ( )
+
+  native setToDefaults  :: Configuration -> ST s ( )
+
+  pure native toString  :: Configuration -> String
+
+  pure native updateFrom  :: Configuration -> Configuration -> Int
+
+{-   native writeToParcel  :: -- ["Parcel"] -- Configuration -> Parcel -> Int -> ST s ( ) -}
+
+
+{-
+data Configuration = pure native android.content.res.Configuration where
+
+  pure native fontscale ".fontScale" :: Configuration -> Float
+  pure native mcc ".mcc" :: Configuration -> Int
+  pure native mnc ".mnc" :: Configuration -> Int
+  pure native mnc_zero android.content.res.Configuration.MNC_ZERO :: Int
+  pure native locale ".locale" :: Configuration -> Locale
+  pure native screenlayout_size_mask android.content.res.Configuration.SCREENLAYOUT_SIZE_MASK :: Int
+  pure native screenlayout_size_undefined android.content.res.Configuration.SCREENLAYOUT_SIZE_UNDEFINED :: Int
+  pure native screenlayout_size_small android.content.res.Configuration.SCREENLAYOUT_SIZE_SMALL :: Int
+  pure native screenlayout_size_normal android.content.res.Configuration.SCREENLAYOUT_SIZE_NORMAL :: Int
+  pure native screenlayout_size_large android.content.res.Configuration.SCREENLAYOUT_SIZE_LARGE :: Int
+  pure native screenlayout_size_xlarge android.content.res.Configuration.SCREENLAYOUT_SIZE_XLARGE :: Int
+  pure native screenlayout_long_mask android.content.res.Configuration.SCREENLAYOUT_LONG_MASK :: Int
+  pure native screenlayout_long_undefined android.content.res.Configuration.SCREENLAYOUT_LONG_UNDEFINED :: Int
+  pure native screenlayout_long_no android.content.res.Configuration.SCREENLAYOUT_LONG_NO :: Int
+  pure native screenlayout_long_yes android.content.res.Configuration.SCREENLAYOUT_LONG_YES :: Int
+  pure native screenlayout_layoutdir_mask android.content.res.Configuration.SCREENLAYOUT_LAYOUTDIR_MASK :: Int
+  pure native screenlayout_layoutdir_shift android.content.res.Configuration.SCREENLAYOUT_LAYOUTDIR_SHIFT :: Int
+  pure native screenlayout_layoutdir_undefined android.content.res.Configuration.SCREENLAYOUT_LAYOUTDIR_UNDEFINED :: Int
+  pure native screenlayout_layoutdir_ltr android.content.res.Configuration.SCREENLAYOUT_LAYOUTDIR_LTR :: Int
+  pure native screenlayout_layoutdir_rtl android.content.res.Configuration.SCREENLAYOUT_LAYOUTDIR_RTL :: Int
+  pure native screenlayout_undefined android.content.res.Configuration.SCREENLAYOUT_UNDEFINED :: Int
+  pure native screenlayout ".screenLayout" :: Configuration -> Int
+  pure native touchscreen_undefined android.content.res.Configuration.TOUCHSCREEN_UNDEFINED :: Int
+  pure native touchscreen_notouch android.content.res.Configuration.TOUCHSCREEN_NOTOUCH :: Int
+  pure native touchscreen_stylus android.content.res.Configuration.TOUCHSCREEN_STYLUS :: Int
+  pure native touchscreen_finger android.content.res.Configuration.TOUCHSCREEN_FINGER :: Int
+  pure native touchscreen ".touchscreen" :: Configuration -> Int
+  pure native keyboard_undefined android.content.res.Configuration.KEYBOARD_UNDEFINED :: Int
+  pure native keyboard_nokeys android.content.res.Configuration.KEYBOARD_NOKEYS :: Int
+  pure native keyboard_qwerty android.content.res.Configuration.KEYBOARD_QWERTY :: Int
+  pure native keyboard_12key android.content.res.Configuration.KEYBOARD_12KEY :: Int
+  pure native keyboard ".keyboard" :: Configuration -> Int
+  pure native keyboardhidden_undefined android.content.res.Configuration.KEYBOARDHIDDEN_UNDEFINED :: Int
+  pure native keyboardhidden_no android.content.res.Configuration.KEYBOARDHIDDEN_NO :: Int
+  pure native keyboardhidden_yes android.content.res.Configuration.KEYBOARDHIDDEN_YES :: Int
+  pure native keyboardhidden ".keyboardHidden" :: Configuration -> Int
+  pure native hardkeyboardhidden_undefined android.content.res.Configuration.HARDKEYBOARDHIDDEN_UNDEFINED :: Int
+  pure native hardkeyboardhidden_no android.content.res.Configuration.HARDKEYBOARDHIDDEN_NO :: Int
+  pure native hardkeyboardhidden_yes android.content.res.Configuration.HARDKEYBOARDHIDDEN_YES :: Int
+  pure native hardkeyboardhidden ".hardKeyboardHidden" :: Configuration -> Int
+  pure native navigation_undefined android.content.res.Configuration.NAVIGATION_UNDEFINED :: Int
+  pure native navigation_nonav android.content.res.Configuration.NAVIGATION_NONAV :: Int
+  pure native navigation_dpad android.content.res.Configuration.NAVIGATION_DPAD :: Int
+  pure native navigation_trackball android.content.res.Configuration.NAVIGATION_TRACKBALL :: Int
+  pure native navigation_wheel android.content.res.Configuration.NAVIGATION_WHEEL :: Int
+  pure native navigation ".navigation" :: Configuration -> Int
+  pure native navigationhidden_undefined android.content.res.Configuration.NAVIGATIONHIDDEN_UNDEFINED :: Int
+  pure native navigationhidden_no android.content.res.Configuration.NAVIGATIONHIDDEN_NO :: Int
+  pure native navigationhidden_yes android.content.res.Configuration.NAVIGATIONHIDDEN_YES :: Int
+  pure native navigationhidden ".navigationHidden" :: Configuration -> Int
+  pure native orientation_undefined android.content.res.Configuration.ORIENTATION_UNDEFINED :: Int
+  pure native orientation_portrait android.content.res.Configuration.ORIENTATION_PORTRAIT :: Int
+  pure native orientation_landscape android.content.res.Configuration.ORIENTATION_LANDSCAPE :: Int
+  pure native orientation_square android.content.res.Configuration.ORIENTATION_SQUARE :: Int
+  pure native orientation ".orientation" :: Configuration -> Int
+  pure native ui_mode_type_mask android.content.res.Configuration.UI_MODE_TYPE_MASK :: Int
+  pure native ui_mode_type_undefined android.content.res.Configuration.UI_MODE_TYPE_UNDEFINED :: Int
+  pure native ui_mode_type_normal android.content.res.Configuration.UI_MODE_TYPE_NORMAL :: Int
+  pure native ui_mode_type_desk android.content.res.Configuration.UI_MODE_TYPE_DESK :: Int
+  pure native ui_mode_type_car android.content.res.Configuration.UI_MODE_TYPE_CAR :: Int
+  pure native ui_mode_type_television android.content.res.Configuration.UI_MODE_TYPE_TELEVISION :: Int
+  pure native ui_mode_type_appliance android.content.res.Configuration.UI_MODE_TYPE_APPLIANCE :: Int
+  pure native ui_mode_type_watch android.content.res.Configuration.UI_MODE_TYPE_WATCH :: Int
+  pure native ui_mode_night_mask android.content.res.Configuration.UI_MODE_NIGHT_MASK :: Int
+  pure native ui_mode_night_undefined android.content.res.Configuration.UI_MODE_NIGHT_UNDEFINED :: Int
+  pure native ui_mode_night_no android.content.res.Configuration.UI_MODE_NIGHT_NO :: Int
+  pure native ui_mode_night_yes android.content.res.Configuration.UI_MODE_NIGHT_YES :: Int
+  pure native uimode ".uiMode" :: Configuration -> Int
+  pure native screen_width_dp_undefined android.content.res.Configuration.SCREEN_WIDTH_DP_UNDEFINED :: Int
+  pure native screenwidthdp ".screenWidthDp" :: Configuration -> Int
+  pure native screen_height_dp_undefined android.content.res.Configuration.SCREEN_HEIGHT_DP_UNDEFINED :: Int
+  pure native screenheightdp ".screenHeightDp" :: Configuration -> Int
+  pure native smallest_screen_width_dp_undefined android.content.res.Configuration.SMALLEST_SCREEN_WIDTH_DP_UNDEFINED :: Int
+  pure native smallestscreenwidthdp ".smallestScreenWidthDp" :: Configuration -> Int
+  pure native density_dpi_undefined android.content.res.Configuration.DENSITY_DPI_UNDEFINED :: Int
+  pure native densitydpi ".densityDpi" :: Configuration -> Int
+  pure native creator android.content.res.Configuration.CREATOR :: Parcelable_Creator Configuration
+
+  native new :: () -> ST s Configuration
+              | Configuration -> ST s Configuration
+
+  pure native compareTo :: Configuration -> Configuration -> Int
+
+  pure native describeContents :: Configuration -> Int
+
+  pure native diff :: Configuration -> Configuration -> Int
+
+  pure native equals :: Configuration -> Configuration -> Bool
+                      | Configuration -> Object -> Bool
+
+  pure native getLayoutDirection :: Configuration -> Int
+
+  pure native hashCode :: Configuration -> Int
+
+  pure native isLayoutSizeAtLeast :: Configuration -> Int -> Bool
+
+  pure native needNewResources android.content.res.Configuration.needNewResources :: Int -> Int -> Bool
+
+  native readFromParcel :: Configuration -> Parcel -> ST s ()
+
+  native setLayoutDirection :: Configuration -> Locale -> ST s ()
+
+  native setLocale :: Configuration -> Locale -> ST s ()
+
+  native setTo :: Configuration -> Configuration -> ST s ()
+
+  native setToDefaults :: Configuration -> ST s ()
+
+  pure native toString :: Configuration -> String
+
+  pure native updateFrom :: Configuration -> Configuration -> Int
+
+  native writeToParcel :: Configuration -> Parcel -> Int -> ST s ()
+
+
+
+-}

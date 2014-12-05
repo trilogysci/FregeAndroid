@@ -1,0 +1,765 @@
+package frege.android.widget.TextView where
+
+import frege.android.content.Context
+import frege.android.util.AttributeSet
+import frege.android.view.View
+import frege.android.graphics.drawable.Drawable
+import frege.android.graphics.Rect
+import frege.java.util.Locale
+import frege.android.view.MotionEvent
+import frege.android.view.KeyEvent
+
+data TextView = pure native android.widget.TextView where
+
+
+  native new  :: Context -> AttributeSet -> Int -> ST s TextView
+        | Context -> AttributeSet -> ST s TextView
+        | Context -> ST s TextView
+
+{-   native addTextChangedListener  :: -- ["TextWatcher"] -- TextView -> TextWatcher -> ST s ( ) -}
+
+  native append  :: TextView -> CharSequence -> ST s ( )
+        | TextView -> CharSequence -> Int -> Int -> ST s ( )
+
+  native beginBatchEdit  :: TextView -> ST s ( )
+
+  pure native bringPointIntoView  :: TextView -> Int -> Bool
+
+  native cancelLongPress  :: TextView -> ST s ( )
+
+  native clearComposingText  :: TextView -> ST s ( )
+
+  native computeScroll  :: TextView -> ST s ( )
+
+  native debug  :: TextView -> Int -> ST s ( )
+
+  pure native didTouchFocusSelect  :: TextView -> Bool
+
+  native endBatchEdit  :: TextView -> ST s ( )
+
+{-   pure native extractText  :: -- ["ExtractedText","ExtractedTextRequest"] -- TextView -> ExtractedTextRequest -> ExtractedText -> Bool -}
+
+{-   native findViewsWithText  :: -- ["ArrayList"] -- TextView -> Mutable s ( ArrayList View ) -> CharSequence -> Int -> ST s ( ) -}
+
+  pure native getAutoLinkMask  :: TextView -> Int
+
+  pure native getBaseline  :: TextView -> Int
+
+  pure native getCompoundDrawablePadding  :: TextView -> Int
+
+{-   native getCompoundDrawables  :: -- ["JArray"] -- TextView -> STMutable s ( JArray Drawable ) -}
+
+{-   native getCompoundDrawablesRelative  :: -- ["JArray"] -- TextView -> STMutable s ( JArray Drawable ) -}
+
+  pure native getCompoundPaddingBottom  :: TextView -> Int
+
+  pure native getCompoundPaddingEnd  :: TextView -> Int
+
+  pure native getCompoundPaddingLeft  :: TextView -> Int
+
+  pure native getCompoundPaddingRight  :: TextView -> Int
+
+  pure native getCompoundPaddingStart  :: TextView -> Int
+
+  pure native getCompoundPaddingTop  :: TextView -> Int
+
+  pure native getCurrentHintTextColor  :: TextView -> Int
+
+  pure native getCurrentTextColor  :: TextView -> Int
+
+{-   pure native getCustomSelectionActionModeCallback  :: -- ["ActionMode_Callback"] -- TextView -> ActionMode_Callback -}
+
+{-   pure native getEditableText  :: -- ["Editable"] -- TextView -> Editable -}
+
+{-   pure native getEllipsize  :: -- ["TextUtils_TruncateAt"] -- TextView -> TextUtils_TruncateAt -}
+
+  pure native getError  :: TextView -> CharSequence
+
+  pure native getExtendedPaddingBottom  :: TextView -> Int
+
+  pure native getExtendedPaddingTop  :: TextView -> Int
+
+{-   native getFilters  :: -- ["InputFilter","JArray"] -- TextView -> STMutable s ( JArray InputFilter ) -}
+
+  native getFocusedRect  :: TextView -> Mutable s Rect -> ST s ( )
+
+  pure native getFreezesText  :: TextView -> Bool
+
+  pure native getGravity  :: TextView -> Int
+
+  pure native getHighlightColor  :: TextView -> Int
+
+  pure native getHint  :: TextView -> CharSequence
+
+{-   pure native getHintTextColors  :: -- ["ColorStateList"] -- TextView -> ColorStateList -}
+
+  pure native getImeActionId  :: TextView -> Int
+
+  pure native getImeActionLabel  :: TextView -> CharSequence
+
+  pure native getImeOptions  :: TextView -> Int
+
+  pure native getIncludeFontPadding  :: TextView -> Bool
+
+{-   pure native getInputExtras  :: -- ["Bundle"] -- TextView -> Bool -> Bundle -}
+
+  pure native getInputType  :: TextView -> Int
+
+{-   pure native getKeyListener  :: -- ["KeyListener"] -- TextView -> KeyListener -}
+
+{-   pure native getLayout  :: -- ["Layout"] -- TextView -> Layout -}
+
+  native getLineBounds  :: TextView -> Int -> Mutable s Rect -> ST s Int
+
+  pure native getLineCount  :: TextView -> Int
+
+  pure native getLineHeight  :: TextView -> Int
+
+  pure native getLineSpacingExtra  :: TextView -> Float
+
+  pure native getLineSpacingMultiplier  :: TextView -> Float
+
+{-   pure native getLinkTextColors  :: -- ["ColorStateList"] -- TextView -> ColorStateList -}
+
+  pure native getLinksClickable  :: TextView -> Bool
+
+  pure native getMarqueeRepeatLimit  :: TextView -> Int
+
+  pure native getMaxEms  :: TextView -> Int
+
+  pure native getMaxHeight  :: TextView -> Int
+
+  pure native getMaxLines  :: TextView -> Int
+
+  pure native getMaxWidth  :: TextView -> Int
+
+  pure native getMinEms  :: TextView -> Int
+
+  pure native getMinHeight  :: TextView -> Int
+
+  pure native getMinLines  :: TextView -> Int
+
+  pure native getMinWidth  :: TextView -> Int
+
+{-   pure native getMovementMethod  :: -- ["MovementMethod"] -- TextView -> MovementMethod -}
+
+  pure native getOffsetForPosition  :: TextView -> Float -> Float -> Int
+
+{-   pure native getPaint  :: -- ["TextPaint"] -- TextView -> TextPaint -}
+
+  pure native getPaintFlags  :: TextView -> Int
+
+  pure native getPrivateImeOptions  :: TextView -> String
+
+  pure native getSelectionEnd  :: TextView -> Int
+
+  pure native getSelectionStart  :: TextView -> Int
+
+  pure native getShadowColor  :: TextView -> Int
+
+  pure native getShadowDx  :: TextView -> Float
+
+  pure native getShadowDy  :: TextView -> Float
+
+  pure native getShadowRadius  :: TextView -> Float
+
+  pure native getText  :: TextView -> CharSequence
+
+{-   pure native getTextColor  android.widget.TextView.getTextColor :: -- ["TypedArray"] -- Context -> TypedArray -> Int -> Int -}
+
+{-   pure native getTextColors  :: -- ["ColorStateList"] -- TextView -> ColorStateList -}
+
+{-   pure native getTextColors  android.widget.TextView.getTextColors :: -- ["ColorStateList","TypedArray"] -- Context -> TypedArray -> ColorStateList -}
+
+  pure native getTextLocale  :: TextView -> Locale
+
+  pure native getTextScaleX  :: TextView -> Float
+
+  pure native getTextSize  :: TextView -> Float
+
+  pure native getTotalPaddingBottom  :: TextView -> Int
+
+  pure native getTotalPaddingEnd  :: TextView -> Int
+
+  pure native getTotalPaddingLeft  :: TextView -> Int
+
+  pure native getTotalPaddingRight  :: TextView -> Int
+
+  pure native getTotalPaddingStart  :: TextView -> Int
+
+  pure native getTotalPaddingTop  :: TextView -> Int
+
+{-   pure native getTransformationMethod  :: -- ["TransformationMethod"] -- TextView -> TransformationMethod -}
+
+{-   pure native getTypeface  :: -- ["Typeface"] -- TextView -> Typeface -}
+
+{-   native getUrls  :: -- ["JArray","URLSpan"] -- TextView -> STMutable s ( JArray URLSpan ) -}
+
+  pure native hasOverlappingRendering  :: TextView -> Bool
+
+  pure native hasSelection  :: TextView -> Bool
+
+  native invalidateDrawable  :: TextView -> Drawable -> ST s ( )
+
+  pure native isCursorVisible  :: TextView -> Bool
+
+  pure native isInputMethodTarget  :: TextView -> Bool
+
+  pure native isSuggestionsEnabled  :: TextView -> Bool
+
+  pure native isTextSelectable  :: TextView -> Bool
+
+  native jumpDrawablesToCurrentState  :: TextView -> ST s ( )
+
+  pure native length  :: TextView -> Int
+
+  pure native moveCursorToVisibleOffset  :: TextView -> Bool
+
+  native onBeginBatchEdit  :: TextView -> ST s ( )
+
+  pure native onCheckIsTextEditor  :: TextView -> Bool
+
+{-   native onCommitCompletion  :: -- ["CompletionInfo"] -- TextView -> CompletionInfo -> ST s ( ) -}
+
+{-   native onCommitCorrection  :: -- ["CorrectionInfo"] -- TextView -> CorrectionInfo -> ST s ( ) -}
+
+{-   pure native onCreateInputConnection  :: -- ["EditorInfo","InputConnection"] -- TextView -> EditorInfo -> InputConnection -}
+
+{-   pure native onDragEvent  :: -- ["DragEvent"] -- TextView -> DragEvent -> Bool -}
+
+  native onEditorAction  :: TextView -> Int -> ST s ( )
+
+  native onEndBatchEdit  :: TextView -> ST s ( )
+
+  native onFinishTemporaryDetach  :: TextView -> ST s ( )
+
+  pure native onGenericMotionEvent  :: TextView -> MotionEvent -> Bool
+
+{-   native onInitializeAccessibilityEvent  :: -- ["AccessibilityEvent"] -- TextView -> AccessibilityEvent -> ST s ( ) -}
+
+{-   native onInitializeAccessibilityNodeInfo  :: -- ["AccessibilityNodeInfo"] -- TextView -> AccessibilityNodeInfo -> ST s ( ) -}
+
+  pure native onKeyDown  :: TextView -> Int -> KeyEvent -> Bool
+
+  pure native onKeyMultiple  :: TextView -> Int -> Int -> KeyEvent -> Bool
+
+  pure native onKeyPreIme  :: TextView -> Int -> KeyEvent -> Bool
+
+  pure native onKeyShortcut  :: TextView -> Int -> KeyEvent -> Bool
+
+  pure native onKeyUp  :: TextView -> Int -> KeyEvent -> Bool
+
+{-   native onPopulateAccessibilityEvent  :: -- ["AccessibilityEvent"] -- TextView -> AccessibilityEvent -> ST s ( ) -}
+
+  pure native onPreDraw  :: TextView -> Bool
+
+{-   pure native onPrivateIMECommand  :: -- ["Bundle"] -- TextView -> String -> Bundle -> Bool -}
+
+{-   native onRestoreInstanceState  :: -- ["Parcelable"] -- TextView -> Parcelable -> ST s ( ) -}
+
+  native onRtlPropertiesChanged  :: TextView -> Int -> ST s ( )
+
+{-   pure native onSaveInstanceState  :: -- ["Parcelable"] -- TextView -> Parcelable -}
+
+  native onScreenStateChanged  :: TextView -> Int -> ST s ( )
+
+  native onStartTemporaryDetach  :: TextView -> ST s ( )
+
+  pure native onTextContextMenuItem  :: TextView -> Int -> Bool
+
+  pure native onTouchEvent  :: TextView -> MotionEvent -> Bool
+
+  pure native onTrackballEvent  :: TextView -> MotionEvent -> Bool
+
+  native onWindowFocusChanged  :: TextView -> Bool -> ST s ( )
+
+{-   pure native performAccessibilityAction  :: -- ["Bundle"] -- TextView -> Int -> Bundle -> Bool -}
+
+  pure native performLongClick  :: TextView -> Bool
+
+{-   native removeTextChangedListener  :: -- ["TextWatcher"] -- TextView -> TextWatcher -> ST s ( ) -}
+
+  native sendAccessibilityEvent  :: TextView -> Int -> ST s ( )
+
+  native setAllCaps  :: TextView -> Bool -> ST s ( )
+
+  native setAutoLinkMask  :: TextView -> Int -> ST s ( )
+
+  native setCompoundDrawablePadding  :: TextView -> Int -> ST s ( )
+
+  native setCompoundDrawables  :: TextView -> Drawable -> Drawable -> Drawable -> Drawable -> ST s ( )
+
+  native setCompoundDrawablesRelative  :: TextView -> Drawable -> Drawable -> Drawable -> Drawable -> ST s ( )
+
+  native setCompoundDrawablesRelativeWithIntrinsicBounds  :: TextView -> Drawable -> Drawable -> Drawable -> Drawable -> ST s ( )
+        | TextView -> Int -> Int -> Int -> Int -> ST s ( )
+
+  native setCompoundDrawablesWithIntrinsicBounds  :: TextView -> Int -> Int -> Int -> Int -> ST s ( )
+        | TextView -> Drawable -> Drawable -> Drawable -> Drawable -> ST s ( )
+
+  native setCursorVisible  :: TextView -> Bool -> ST s ( )
+
+{-   native setCustomSelectionActionModeCallback  :: -- ["ActionMode_Callback"] -- TextView -> ActionMode_Callback -> ST s ( ) -}
+
+{-   native setEditableFactory  :: -- ["Editable_Factory"] -- TextView -> Editable_Factory -> ST s ( ) -}
+
+{-   native setEllipsize  :: -- ["TextUtils_TruncateAt"] -- TextView -> TextUtils_TruncateAt -> ST s ( ) -}
+
+  native setEms  :: TextView -> Int -> ST s ( )
+
+  native setEnabled  :: TextView -> Bool -> ST s ( )
+
+  native setError  :: TextView -> CharSequence -> Drawable -> ST s ( )
+        | TextView -> CharSequence -> ST s ( )
+
+{-   native setExtractedText  :: -- ["ExtractedText"] -- TextView -> ExtractedText -> ST s ( ) -}
+
+{-   native setFilters  :: -- ["InputFilter","JArray"] -- TextView -> Mutable s ( JArray InputFilter ) -> ST s ( ) -}
+
+  native setFreezesText  :: TextView -> Bool -> ST s ( )
+
+  native setGravity  :: TextView -> Int -> ST s ( )
+
+  native setHeight  :: TextView -> Int -> ST s ( )
+
+  native setHighlightColor  :: TextView -> Int -> ST s ( )
+
+  native setHint  :: TextView -> CharSequence -> ST s ( )
+        | TextView -> Int -> ST s ( )
+
+  native setHintTextColor  :: -- ["ColorStateList"] -- TextView -> ColorStateList -> ST s ( )
+        TextView -> Int -> ST s ( )
+
+  native setHorizontallyScrolling  :: TextView -> Bool -> ST s ( )
+
+  native setImeActionLabel  :: TextView -> CharSequence -> Int -> ST s ( )
+
+  native setImeOptions  :: TextView -> Int -> ST s ( )
+
+  native setIncludeFontPadding  :: TextView -> Bool -> ST s ( )
+
+{-   native setInputExtras  :: -- ["XmlPullParserException"] -- TextView -> Int -> ST s ( ) throws XmlPullParserException -}
+
+
+{-
+data TextView = pure native android.widget.TextView where
+
+  native new :: Context -> AttributeSet -> Int -> ST s TextView
+              | Context -> AttributeSet -> ST s TextView
+              | Context -> ST s TextView
+
+  native addTextChangedListener :: TextView -> TextWatcher -> ST s ()
+
+  native append :: TextView -> CharSequence -> ST s ()
+                 | TextView -> CharSequence -> Int -> Int -> ST s ()
+
+  native beginBatchEdit :: TextView -> ST s ()
+
+  pure native bringPointIntoView :: TextView -> Int -> Bool
+
+  native cancelLongPress :: TextView -> ST s ()
+
+  native clearComposingText :: TextView -> ST s ()
+
+  native computeScroll :: TextView -> ST s ()
+
+  native debug :: TextView -> Int -> ST s ()
+
+  pure native didTouchFocusSelect :: TextView -> Bool
+
+  native endBatchEdit :: TextView -> ST s ()
+
+  pure native extractText :: TextView -> ExtractedTextRequest -> ExtractedText -> Bool
+
+  native findViewsWithText :: TextView -> Mutable s (ArrayList View) -> CharSequence -> Int -> ST s ()
+
+  pure native getAutoLinkMask :: TextView -> Int
+
+  pure native getBaseline :: TextView -> Int
+
+  pure native getCompoundDrawablePadding :: TextView -> Int
+
+  native getCompoundDrawables :: TextView -> STMutable s (JArray Drawable)
+
+  native getCompoundDrawablesRelative :: TextView -> STMutable s (JArray Drawable)
+
+  pure native getCompoundPaddingBottom :: TextView -> Int
+
+  pure native getCompoundPaddingEnd :: TextView -> Int
+
+  pure native getCompoundPaddingLeft :: TextView -> Int
+
+  pure native getCompoundPaddingRight :: TextView -> Int
+
+  pure native getCompoundPaddingStart :: TextView -> Int
+
+  pure native getCompoundPaddingTop :: TextView -> Int
+
+  pure native getCurrentHintTextColor :: TextView -> Int
+
+  pure native getCurrentTextColor :: TextView -> Int
+
+  pure native getCustomSelectionActionModeCallback :: TextView -> ActionMode_Callback
+
+  pure native getEditableText :: TextView -> Editable
+
+  pure native getEllipsize :: TextView -> TextUtils_TruncateAt
+
+  pure native getError :: TextView -> CharSequence
+
+  pure native getExtendedPaddingBottom :: TextView -> Int
+
+  pure native getExtendedPaddingTop :: TextView -> Int
+
+  native getFilters :: TextView -> STMutable s (JArray InputFilter)
+
+  native getFocusedRect :: TextView -> Mutable s Rect -> ST s ()
+
+  pure native getFreezesText :: TextView -> Bool
+
+  pure native getGravity :: TextView -> Int
+
+  pure native getHighlightColor :: TextView -> Int
+
+  pure native getHint :: TextView -> CharSequence
+
+  pure native getHintTextColors :: TextView -> ColorStateList
+
+  pure native getImeActionId :: TextView -> Int
+
+  pure native getImeActionLabel :: TextView -> CharSequence
+
+  pure native getImeOptions :: TextView -> Int
+
+  pure native getIncludeFontPadding :: TextView -> Bool
+
+  pure native getInputExtras :: TextView -> Bool -> Bundle
+
+  pure native getInputType :: TextView -> Int
+
+  pure native getKeyListener :: TextView -> KeyListener
+
+  pure native getLayout :: TextView -> Layout
+
+  native getLineBounds :: TextView -> Int -> Mutable s Rect -> ST s Int
+
+  pure native getLineCount :: TextView -> Int
+
+  pure native getLineHeight :: TextView -> Int
+
+  pure native getLineSpacingExtra :: TextView -> Float
+
+  pure native getLineSpacingMultiplier :: TextView -> Float
+
+  pure native getLinkTextColors :: TextView -> ColorStateList
+
+  pure native getLinksClickable :: TextView -> Bool
+
+  pure native getMarqueeRepeatLimit :: TextView -> Int
+
+  pure native getMaxEms :: TextView -> Int
+
+  pure native getMaxHeight :: TextView -> Int
+
+  pure native getMaxLines :: TextView -> Int
+
+  pure native getMaxWidth :: TextView -> Int
+
+  pure native getMinEms :: TextView -> Int
+
+  pure native getMinHeight :: TextView -> Int
+
+  pure native getMinLines :: TextView -> Int
+
+  pure native getMinWidth :: TextView -> Int
+
+  pure native getMovementMethod :: TextView -> MovementMethod
+
+  pure native getOffsetForPosition :: TextView -> Float -> Float -> Int
+
+  pure native getPaint :: TextView -> TextPaint
+
+  pure native getPaintFlags :: TextView -> Int
+
+  pure native getPrivateImeOptions :: TextView -> String
+
+  pure native getSelectionEnd :: TextView -> Int
+
+  pure native getSelectionStart :: TextView -> Int
+
+  pure native getShadowColor :: TextView -> Int
+
+  pure native getShadowDx :: TextView -> Float
+
+  pure native getShadowDy :: TextView -> Float
+
+  pure native getShadowRadius :: TextView -> Float
+
+  pure native getText :: TextView -> CharSequence
+
+  pure native getTextColor android.widget.TextView.getTextColor :: Context -> TypedArray -> Int -> Int
+
+  pure native getTextColors :: TextView -> ColorStateList
+
+  pure native getTextColors android.widget.TextView.getTextColors :: Context -> TypedArray -> ColorStateList
+
+  pure native getTextLocale :: TextView -> Locale
+
+  pure native getTextScaleX :: TextView -> Float
+
+  pure native getTextSize :: TextView -> Float
+
+  pure native getTotalPaddingBottom :: TextView -> Int
+
+  pure native getTotalPaddingEnd :: TextView -> Int
+
+  pure native getTotalPaddingLeft :: TextView -> Int
+
+  pure native getTotalPaddingRight :: TextView -> Int
+
+  pure native getTotalPaddingStart :: TextView -> Int
+
+  pure native getTotalPaddingTop :: TextView -> Int
+
+  pure native getTransformationMethod :: TextView -> TransformationMethod
+
+  pure native getTypeface :: TextView -> Typeface
+
+  native getUrls :: TextView -> STMutable s (JArray URLSpan)
+
+  pure native hasOverlappingRendering :: TextView -> Bool
+
+  pure native hasSelection :: TextView -> Bool
+
+  native invalidateDrawable :: TextView -> Drawable -> ST s ()
+
+  pure native isCursorVisible :: TextView -> Bool
+
+  pure native isInputMethodTarget :: TextView -> Bool
+
+  pure native isSuggestionsEnabled :: TextView -> Bool
+
+  pure native isTextSelectable :: TextView -> Bool
+
+  native jumpDrawablesToCurrentState :: TextView -> ST s ()
+
+  pure native length :: TextView -> Int
+
+  pure native moveCursorToVisibleOffset :: TextView -> Bool
+
+  native onBeginBatchEdit :: TextView -> ST s ()
+
+  pure native onCheckIsTextEditor :: TextView -> Bool
+
+  native onCommitCompletion :: TextView -> CompletionInfo -> ST s ()
+
+  native onCommitCorrection :: TextView -> CorrectionInfo -> ST s ()
+
+  pure native onCreateInputConnection :: TextView -> EditorInfo -> InputConnection
+
+  pure native onDragEvent :: TextView -> DragEvent -> Bool
+
+  native onEditorAction :: TextView -> Int -> ST s ()
+
+  native onEndBatchEdit :: TextView -> ST s ()
+
+  native onFinishTemporaryDetach :: TextView -> ST s ()
+
+  pure native onGenericMotionEvent :: TextView -> MotionEvent -> Bool
+
+  native onInitializeAccessibilityEvent :: TextView -> AccessibilityEvent -> ST s ()
+
+  native onInitializeAccessibilityNodeInfo :: TextView -> AccessibilityNodeInfo -> ST s ()
+
+  pure native onKeyDown :: TextView -> Int -> KeyEvent -> Bool
+
+  pure native onKeyMultiple :: TextView -> Int -> Int -> KeyEvent -> Bool
+
+  pure native onKeyPreIme :: TextView -> Int -> KeyEvent -> Bool
+
+  pure native onKeyShortcut :: TextView -> Int -> KeyEvent -> Bool
+
+  pure native onKeyUp :: TextView -> Int -> KeyEvent -> Bool
+
+  native onPopulateAccessibilityEvent :: TextView -> AccessibilityEvent -> ST s ()
+
+  pure native onPreDraw :: TextView -> Bool
+
+  pure native onPrivateIMECommand :: TextView -> String -> Bundle -> Bool
+
+  native onRestoreInstanceState :: TextView -> Parcelable -> ST s ()
+
+  native onRtlPropertiesChanged :: TextView -> Int -> ST s ()
+
+  pure native onSaveInstanceState :: TextView -> Parcelable
+
+  native onScreenStateChanged :: TextView -> Int -> ST s ()
+
+  native onStartTemporaryDetach :: TextView -> ST s ()
+
+  pure native onTextContextMenuItem :: TextView -> Int -> Bool
+
+  pure native onTouchEvent :: TextView -> MotionEvent -> Bool
+
+  pure native onTrackballEvent :: TextView -> MotionEvent -> Bool
+
+  native onWindowFocusChanged :: TextView -> Bool -> ST s ()
+
+  pure native performAccessibilityAction :: TextView -> Int -> Bundle -> Bool
+
+  pure native performLongClick :: TextView -> Bool
+
+  native removeTextChangedListener :: TextView -> TextWatcher -> ST s ()
+
+  native sendAccessibilityEvent :: TextView -> Int -> ST s ()
+
+  native setAllCaps :: TextView -> Bool -> ST s ()
+
+  native setAutoLinkMask :: TextView -> Int -> ST s ()
+
+  native setCompoundDrawablePadding :: TextView -> Int -> ST s ()
+
+  native setCompoundDrawables :: TextView -> Drawable -> Drawable -> Drawable -> Drawable -> ST s ()
+
+  native setCompoundDrawablesRelative :: TextView -> Drawable -> Drawable -> Drawable -> Drawable -> ST s ()
+
+  native setCompoundDrawablesRelativeWithIntrinsicBounds :: TextView -> Drawable -> Drawable -> Drawable -> Drawable -> ST s ()
+                                                          | TextView -> Int -> Int -> Int -> Int -> ST s ()
+
+  native setCompoundDrawablesWithIntrinsicBounds :: TextView -> Int -> Int -> Int -> Int -> ST s ()
+                                                  | TextView -> Drawable -> Drawable -> Drawable -> Drawable -> ST s ()
+
+  native setCursorVisible :: TextView -> Bool -> ST s ()
+
+  native setCustomSelectionActionModeCallback :: TextView -> ActionMode_Callback -> ST s ()
+
+  native setEditableFactory :: TextView -> Editable_Factory -> ST s ()
+
+  native setEllipsize :: TextView -> TextUtils_TruncateAt -> ST s ()
+
+  native setEms :: TextView -> Int -> ST s ()
+
+  native setEnabled :: TextView -> Bool -> ST s ()
+
+  native setError :: TextView -> CharSequence -> Drawable -> ST s ()
+                   | TextView -> CharSequence -> ST s ()
+
+  native setExtractedText :: TextView -> ExtractedText -> ST s ()
+
+  native setFilters :: TextView -> Mutable s (JArray InputFilter) -> ST s ()
+
+  native setFreezesText :: TextView -> Bool -> ST s ()
+
+  native setGravity :: TextView -> Int -> ST s ()
+
+  native setHeight :: TextView -> Int -> ST s ()
+
+  native setHighlightColor :: TextView -> Int -> ST s ()
+
+  native setHint :: TextView -> CharSequence -> ST s ()
+                  | TextView -> Int -> ST s ()
+
+  native setHintTextColor :: TextView -> ColorStateList -> ST s ()
+                           | TextView -> Int -> ST s ()
+
+  native setHorizontallyScrolling :: TextView -> Bool -> ST s ()
+
+  native setImeActionLabel :: TextView -> CharSequence -> Int -> ST s ()
+
+  native setImeOptions :: TextView -> Int -> ST s ()
+
+  native setIncludeFontPadding :: TextView -> Bool -> ST s ()
+
+  native setInputExtras :: TextView -> Int -> ST s () throws XmlPullParserException, IOException
+
+  native setInputType :: TextView -> Int -> ST s ()
+
+  native setKeyListener :: TextView -> KeyListener -> ST s ()
+
+  native setLineSpacing :: TextView -> Float -> Float -> ST s ()
+
+  native setLines :: TextView -> Int -> ST s ()
+
+  native setLinkTextColor :: TextView -> Int -> ST s ()
+                           | TextView -> ColorStateList -> ST s ()
+
+  native setLinksClickable :: TextView -> Bool -> ST s ()
+
+  native setMarqueeRepeatLimit :: TextView -> Int -> ST s ()
+
+  native setMaxEms :: TextView -> Int -> ST s ()
+
+  native setMaxHeight :: TextView -> Int -> ST s ()
+
+  native setMaxLines :: TextView -> Int -> ST s ()
+
+  native setMaxWidth :: TextView -> Int -> ST s ()
+
+  native setMinEms :: TextView -> Int -> ST s ()
+
+  native setMinHeight :: TextView -> Int -> ST s ()
+
+  native setMinLines :: TextView -> Int -> ST s ()
+
+  native setMinWidth :: TextView -> Int -> ST s ()
+
+  native setMovementMethod :: TextView -> MovementMethod -> ST s ()
+
+  native setOnEditorActionListener :: TextView -> TextView_OnEditorActionListener -> ST s ()
+
+  native setPadding :: TextView -> Int -> Int -> Int -> Int -> ST s ()
+
+  native setPaddingRelative :: TextView -> Int -> Int -> Int -> Int -> ST s ()
+
+  native setPaintFlags :: TextView -> Int -> ST s ()
+
+  native setPrivateImeOptions :: TextView -> String -> ST s ()
+
+  native setRawInputType :: TextView -> Int -> ST s ()
+
+  native setScroller :: TextView -> Scroller -> ST s ()
+
+  native setSelectAllOnFocus :: TextView -> Bool -> ST s ()
+
+  native setSelected :: TextView -> Bool -> ST s ()
+
+  native setShadowLayer :: TextView -> Float -> Float -> Float -> Int -> ST s ()
+
+  native setSingleLine :: TextView -> Bool -> ST s ()
+                        | TextView -> ST s ()
+
+  native setSpannableFactory :: TextView -> Spannable_Factory -> ST s ()
+
+  native setText :: TextView -> CharSequence -> ST s ()
+                  | TextView -> Int -> ST s ()
+                  | TextView -> Mutable s (JArray Char) -> Int -> Int -> ST s ()
+                  | TextView -> CharSequence -> TextView_BufferType -> ST s ()
+                  | TextView -> Int -> TextView_BufferType -> ST s ()
+
+  native setTextAppearance :: TextView -> Context -> Int -> ST s ()
+
+  native setTextColor :: TextView -> Int -> ST s ()
+                       | TextView -> ColorStateList -> ST s ()
+
+  native setTextIsSelectable :: TextView -> Bool -> ST s ()
+
+  native setTextKeepState :: TextView -> CharSequence -> ST s ()
+                           | TextView -> CharSequence -> TextView_BufferType -> ST s ()
+
+  native setTextLocale :: TextView -> Locale -> ST s ()
+
+  native setTextScaleX :: TextView -> Float -> ST s ()
+
+  native setTextSize :: TextView -> Float -> ST s ()
+                      | TextView -> Int -> Float -> ST s ()
+
+  native setTransformationMethod :: TextView -> TransformationMethod -> ST s ()
+
+  native setTypeface :: TextView -> Typeface -> ST s ()
+                      | TextView -> Typeface -> Int -> ST s ()
+
+  native setWidth :: TextView -> Int -> ST s ()
+
+
+
+-}

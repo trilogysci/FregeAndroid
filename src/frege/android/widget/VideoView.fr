@@ -1,0 +1,142 @@
+package frege.android.widget.VideoView where
+
+import frege.android.content.Context
+import frege.android.util.AttributeSet
+import frege.android.view.KeyEvent
+import frege.android.view.MotionEvent
+import frege.android.widget.MediaController
+
+data VideoView = pure native android.widget.VideoView where
+
+
+  native new  :: Context -> AttributeSet -> Int -> ST s VideoView
+        | Context -> AttributeSet -> ST s VideoView
+        | Context -> ST s VideoView
+
+{-   native addSubtitleSource  :: -- ["InputStream","MediaFormat"] -- VideoView -> MutableIO InputStream -> MediaFormat -> IO ( ) -}
+
+  pure native canPause  :: VideoView -> Bool
+
+  pure native canSeekBackward  :: VideoView -> Bool
+
+  pure native canSeekForward  :: VideoView -> Bool
+
+{-   native draw  :: -- ["Canvas"] -- VideoView -> Canvas -> ST s ( ) -}
+
+  pure native getAudioSessionId  :: VideoView -> Int
+
+  pure native getBufferPercentage  :: VideoView -> Int
+
+  pure native getCurrentPosition  :: VideoView -> Int
+
+  pure native getDuration  :: VideoView -> Int
+
+  pure native isPlaying  :: VideoView -> Bool
+
+{-   native onInitializeAccessibilityEvent  :: -- ["AccessibilityEvent"] -- VideoView -> AccessibilityEvent -> ST s ( ) -}
+
+{-   native onInitializeAccessibilityNodeInfo  :: -- ["AccessibilityNodeInfo"] -- VideoView -> AccessibilityNodeInfo -> ST s ( ) -}
+
+  pure native onKeyDown  :: VideoView -> Int -> KeyEvent -> Bool
+
+  pure native onTouchEvent  :: VideoView -> MotionEvent -> Bool
+
+  pure native onTrackballEvent  :: VideoView -> MotionEvent -> Bool
+
+  native pause  :: VideoView -> ST s ( )
+
+  pure native resolveAdjustedSize  :: VideoView -> Int -> Int -> Int
+
+  native resume  :: VideoView -> ST s ( )
+
+  native seekTo  :: VideoView -> Int -> ST s ( )
+
+  native setMediaController  :: VideoView -> MediaController -> ST s ( )
+
+{-   native setOnCompletionListener  :: -- ["MediaPlayer_OnCompletionListener"] -- VideoView -> MediaPlayer_OnCompletionListener -> ST s ( ) -}
+
+{-   native setOnErrorListener  :: -- ["MediaPlayer_OnErrorListener"] -- VideoView -> MediaPlayer_OnErrorListener -> ST s ( ) -}
+
+{-   native setOnInfoListener  :: -- ["MediaPlayer_OnInfoListener"] -- VideoView -> MediaPlayer_OnInfoListener -> ST s ( ) -}
+
+{-   native setOnPreparedListener  :: -- ["MediaPlayer_OnPreparedListener"] -- VideoView -> MediaPlayer_OnPreparedListener -> ST s ( ) -}
+
+  native setVideoPath  :: VideoView -> String -> ST s ( )
+
+{-   native setVideoURI  :: -- ["Uri"] -- VideoView -> Uri -> ST s ( ) -}
+
+  native start  :: VideoView -> ST s ( )
+
+  native stopPlayback  :: VideoView -> ST s ( )
+
+  native suspend  :: VideoView -> ST s ( )
+
+
+{-
+data VideoView = pure native android.widget.VideoView where
+
+  native new :: Context -> AttributeSet -> Int -> ST s VideoView
+              | Context -> AttributeSet -> ST s VideoView
+              | Context -> ST s VideoView
+
+  native addSubtitleSource :: VideoView -> MutableIO InputStream -> MediaFormat -> IO ()
+
+  pure native canPause :: VideoView -> Bool
+
+  pure native canSeekBackward :: VideoView -> Bool
+
+  pure native canSeekForward :: VideoView -> Bool
+
+  native draw :: VideoView -> Canvas -> ST s ()
+
+  pure native getAudioSessionId :: VideoView -> Int
+
+  pure native getBufferPercentage :: VideoView -> Int
+
+  pure native getCurrentPosition :: VideoView -> Int
+
+  pure native getDuration :: VideoView -> Int
+
+  pure native isPlaying :: VideoView -> Bool
+
+  native onInitializeAccessibilityEvent :: VideoView -> AccessibilityEvent -> ST s ()
+
+  native onInitializeAccessibilityNodeInfo :: VideoView -> AccessibilityNodeInfo -> ST s ()
+
+  pure native onKeyDown :: VideoView -> Int -> KeyEvent -> Bool
+
+  pure native onTouchEvent :: VideoView -> MotionEvent -> Bool
+
+  pure native onTrackballEvent :: VideoView -> MotionEvent -> Bool
+
+  native pause :: VideoView -> ST s ()
+
+  pure native resolveAdjustedSize :: VideoView -> Int -> Int -> Int
+
+  native resume :: VideoView -> ST s ()
+
+  native seekTo :: VideoView -> Int -> ST s ()
+
+  native setMediaController :: VideoView -> MediaController -> ST s ()
+
+  native setOnCompletionListener :: VideoView -> MediaPlayer_OnCompletionListener -> ST s ()
+
+  native setOnErrorListener :: VideoView -> MediaPlayer_OnErrorListener -> ST s ()
+
+  native setOnInfoListener :: VideoView -> MediaPlayer_OnInfoListener -> ST s ()
+
+  native setOnPreparedListener :: VideoView -> MediaPlayer_OnPreparedListener -> ST s ()
+
+  native setVideoPath :: VideoView -> String -> ST s ()
+
+  native setVideoURI :: VideoView -> Uri -> ST s ()
+
+  native start :: VideoView -> ST s ()
+
+  native stopPlayback :: VideoView -> ST s ()
+
+  native suspend :: VideoView -> ST s ()
+
+
+
+-}

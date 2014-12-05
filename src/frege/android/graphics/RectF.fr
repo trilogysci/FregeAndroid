@@ -1,0 +1,158 @@
+package frege.android.graphics.RectF where
+
+import frege.android.graphics.Rect
+
+data RectF = native android.graphics.RectF where
+
+
+  native left ".left" :: Mutable s RectF -> ST s Float
+
+  native top ".top" :: Mutable s RectF -> ST s Float
+
+  native right ".right" :: Mutable s RectF -> ST s Float
+
+  native bottom ".bottom" :: Mutable s RectF -> ST s Float
+
+{-   pure native creator  android.graphics.RectF.CREATOR :: -- ["Parcelable_Creator"] -- Parcelable_Creator RectF -}
+
+  native new  :: ( ) -> STMutable s RectF
+        | Mutable s RectF -> STMutable s RectF
+        | Float -> Float -> Float -> Float -> STMutable s RectF
+        | Mutable s Rect -> STMutable s RectF
+
+  native centerX  :: Mutable s RectF -> ST s Float
+
+  native centerY  :: Mutable s RectF -> ST s Float
+
+  native contains  :: Mutable s RectF -> Float -> Float -> ST s Bool
+        | Mutable s RectF -> Mutable s RectF -> ST s Bool
+        | Mutable s RectF -> Float -> Float -> Float -> Float -> ST s Bool
+
+  native describeContents  :: Mutable s RectF -> ST s Int
+
+  native equals  :: Mutable s RectF -> Object -> ST s Bool
+
+  native hashCode  :: Mutable s RectF -> ST s Int
+
+  native height  :: Mutable s RectF -> ST s Float
+
+  native inset  :: Mutable s RectF -> Float -> Float -> ST s ( )
+
+  native intersect  :: Mutable s RectF -> Float -> Float -> Float -> Float -> ST s Bool
+        | Mutable s RectF -> Mutable s RectF -> ST s Bool
+
+{-name collision  native intersects  android.graphics.RectF.intersects :: Mutable s RectF -> Mutable s RectF -> ST s Bool-}
+
+  native intersects  :: Mutable s RectF -> Float -> Float -> Float -> Float -> ST s Bool
+
+  native isEmpty  :: Mutable s RectF -> ST s Bool
+
+  native offset  :: Mutable s RectF -> Float -> Float -> ST s ( )
+
+  native offsetTo  :: Mutable s RectF -> Float -> Float -> ST s ( )
+
+{-   native readFromParcel  :: -- ["Parcel"] -- Mutable s RectF -> Parcel -> ST s ( ) -}
+
+  native round  :: Mutable s RectF -> Mutable s Rect -> ST s ( )
+
+  native roundOut  :: Mutable s RectF -> Mutable s Rect -> ST s ( )
+
+  native set  :: Mutable s RectF -> Mutable s RectF -> ST s ( )
+        | Mutable s RectF -> Mutable s Rect -> ST s ( )
+        | Mutable s RectF -> Float -> Float -> Float -> Float -> ST s ( )
+
+  native setEmpty  :: Mutable s RectF -> ST s ( )
+
+  native setIntersect  :: Mutable s RectF -> Mutable s RectF -> Mutable s RectF -> ST s Bool
+
+  native sort  :: Mutable s RectF -> ST s ( )
+
+  native toShortString  :: Mutable s RectF -> ST s String
+
+  native toString  :: Mutable s RectF -> ST s String
+
+  native union  :: Mutable s RectF -> Float -> Float -> Float -> Float -> ST s ( )
+        | Mutable s RectF -> Mutable s RectF -> ST s ( )
+        | Mutable s RectF -> Float -> Float -> ST s ( )
+
+  native width  :: Mutable s RectF -> ST s Float
+
+{-   native writeToParcel  :: -- ["Parcel"] -- Mutable s RectF -> Parcel -> Int -> ST s ( ) -}
+
+
+{-
+data RectF = native android.graphics.RectF where
+
+  native left ".left" :: Mutable s RectF -> ST s Float
+  native top ".top" :: Mutable s RectF -> ST s Float
+  native right ".right" :: Mutable s RectF -> ST s Float
+  native bottom ".bottom" :: Mutable s RectF -> ST s Float
+  pure native creator android.graphics.RectF.CREATOR :: Parcelable_Creator RectF
+
+  native new :: () -> STMutable s RectF
+              | Mutable s RectF -> STMutable s RectF
+              | Float -> Float -> Float -> Float -> STMutable s RectF
+              | Mutable s Rect -> STMutable s RectF
+
+  native centerX :: Mutable s RectF -> ST s Float
+
+  native centerY :: Mutable s RectF -> ST s Float
+
+  native contains :: Mutable s RectF -> Float -> Float -> ST s Bool
+                   | Mutable s RectF -> Mutable s RectF -> ST s Bool
+                   | Mutable s RectF -> Float -> Float -> Float -> Float -> ST s Bool
+
+  native describeContents :: Mutable s RectF -> ST s Int
+
+  native equals :: Mutable s RectF -> Object -> ST s Bool
+
+  native hashCode :: Mutable s RectF -> ST s Int
+
+  native height :: Mutable s RectF -> ST s Float
+
+  native inset :: Mutable s RectF -> Float -> Float -> ST s ()
+
+  native intersect :: Mutable s RectF -> Float -> Float -> Float -> Float -> ST s Bool
+                    | Mutable s RectF -> Mutable s RectF -> ST s Bool
+
+  native intersects android.graphics.RectF.intersects :: Mutable s RectF -> Mutable s RectF -> ST s Bool
+
+  native intersects :: Mutable s RectF -> Float -> Float -> Float -> Float -> ST s Bool
+
+  native isEmpty :: Mutable s RectF -> ST s Bool
+
+  native offset :: Mutable s RectF -> Float -> Float -> ST s ()
+
+  native offsetTo :: Mutable s RectF -> Float -> Float -> ST s ()
+
+  native readFromParcel :: Mutable s RectF -> Parcel -> ST s ()
+
+  native round :: Mutable s RectF -> Mutable s Rect -> ST s ()
+
+  native roundOut :: Mutable s RectF -> Mutable s Rect -> ST s ()
+
+  native set :: Mutable s RectF -> Mutable s RectF -> ST s ()
+              | Mutable s RectF -> Mutable s Rect -> ST s ()
+              | Mutable s RectF -> Float -> Float -> Float -> Float -> ST s ()
+
+  native setEmpty :: Mutable s RectF -> ST s ()
+
+  native setIntersect :: Mutable s RectF -> Mutable s RectF -> Mutable s RectF -> ST s Bool
+
+  native sort :: Mutable s RectF -> ST s ()
+
+  native toShortString :: Mutable s RectF -> ST s String
+
+  native toString :: Mutable s RectF -> ST s String
+
+  native union :: Mutable s RectF -> Float -> Float -> Float -> Float -> ST s ()
+                | Mutable s RectF -> Mutable s RectF -> ST s ()
+                | Mutable s RectF -> Float -> Float -> ST s ()
+
+  native width :: Mutable s RectF -> ST s Float
+
+  native writeToParcel :: Mutable s RectF -> Parcel -> Int -> ST s ()
+
+
+
+-}

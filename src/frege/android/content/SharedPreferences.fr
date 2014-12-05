@@ -1,0 +1,56 @@
+package frege.android.content.SharedPreferences where
+
+data SharedPreferences = pure native android.content.SharedPreferences where
+
+
+  pure native contains  :: SharedPreferences -> String -> Bool
+
+{-   pure native edit  :: -- ["SharedPreferences_Editor"] -- SharedPreferences -> SharedPreferences_Editor -}
+
+{-   native getAll  :: -- ["Map"] -- SharedPreferences -> STMutable s ( Map String Object ) -}
+
+  pure native getBoolean  :: SharedPreferences -> String -> Bool -> Bool
+
+  pure native getFloat  :: SharedPreferences -> String -> Float -> Float
+
+  pure native getInt  :: SharedPreferences -> String -> Int -> Int
+
+  pure native getLong  :: SharedPreferences -> String -> Long -> Long
+
+  pure native getString  :: SharedPreferences -> String -> String -> String
+
+{-   native getStringSet  :: -- ["Set"] -- SharedPreferences -> String -> Mutable s ( Set String ) -> STMutable s ( Set String ) -}
+
+{-   native registerOnSharedPreferenceChangeListener  :: -- ["SharedPreferences_OnSharedPreferenceChangeListener"] -- SharedPreferences -> SharedPreferences_OnSharedPreferenceChangeListener -> ST s ( ) -}
+
+{-   native unregisterOnSharedPreferenceChangeListener  :: -- ["SharedPreferences_OnSharedPreferenceChangeListener"] -- SharedPreferences -> SharedPreferences_OnSharedPreferenceChangeListener -> ST s ( ) -}
+
+
+{-
+data SharedPreferences = pure native android.content.SharedPreferences where
+
+  pure native contains :: SharedPreferences -> String -> Bool
+
+  pure native edit :: SharedPreferences -> SharedPreferences_Editor
+
+  native getAll :: SharedPreferences -> STMutable s (Map String Object)
+
+  pure native getBoolean :: SharedPreferences -> String -> Bool -> Bool
+
+  pure native getFloat :: SharedPreferences -> String -> Float -> Float
+
+  pure native getInt :: SharedPreferences -> String -> Int -> Int
+
+  pure native getLong :: SharedPreferences -> String -> Long -> Long
+
+  pure native getString :: SharedPreferences -> String -> String -> String
+
+  native getStringSet :: SharedPreferences -> String -> Mutable s (Set String) -> STMutable s (Set String)
+
+  native registerOnSharedPreferenceChangeListener :: SharedPreferences -> SharedPreferences_OnSharedPreferenceChangeListener -> ST s ()
+
+  native unregisterOnSharedPreferenceChangeListener :: SharedPreferences -> SharedPreferences_OnSharedPreferenceChangeListener -> ST s ()
+
+
+
+-}

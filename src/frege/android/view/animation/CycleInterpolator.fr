@@ -1,0 +1,25 @@
+package frege.android.view.animation.CycleInterpolator where
+
+import frege.android.content.Context
+import frege.android.util.AttributeSet
+
+data CycleInterpolator = pure native android.view.animation.CycleInterpolator where
+
+
+  native new  :: Context -> AttributeSet -> ST s CycleInterpolator
+        | Float -> ST s CycleInterpolator
+
+  pure native getInterpolation  :: CycleInterpolator -> Float -> Float
+
+
+{-
+data CycleInterpolator = pure native android.view.animation.CycleInterpolator where
+
+  native new :: Context -> AttributeSet -> ST s CycleInterpolator
+              | Float -> ST s CycleInterpolator
+
+  pure native getInterpolation :: CycleInterpolator -> Float -> Float
+
+
+
+-}

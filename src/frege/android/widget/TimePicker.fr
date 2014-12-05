@@ -1,0 +1,79 @@
+package frege.android.widget.TimePicker where
+
+import frege.android.content.Context
+import frege.android.util.AttributeSet
+
+data TimePicker = pure native android.widget.TimePicker where
+
+
+  native new  :: Context -> AttributeSet -> ST s TimePicker
+        | Context -> ST s TimePicker
+        | Context -> AttributeSet -> Int -> ST s TimePicker
+
+{-   pure native dispatchPopulateAccessibilityEvent  :: -- ["AccessibilityEvent"] -- TimePicker -> AccessibilityEvent -> Bool -}
+
+  pure native getBaseline  :: TimePicker -> Int
+
+{-   pure native getCurrentHour  :: -- ["Integer"] -- TimePicker -> Integer -}
+
+{-   pure native getCurrentMinute  :: -- ["Integer"] -- TimePicker -> Integer -}
+
+  pure native is24HourView  :: TimePicker -> Bool
+
+  pure native isEnabled  :: TimePicker -> Bool
+
+{-   native onInitializeAccessibilityEvent  :: -- ["AccessibilityEvent"] -- TimePicker -> AccessibilityEvent -> ST s ( ) -}
+
+{-   native onInitializeAccessibilityNodeInfo  :: -- ["AccessibilityNodeInfo"] -- TimePicker -> AccessibilityNodeInfo -> ST s ( ) -}
+
+{-   native onPopulateAccessibilityEvent  :: -- ["AccessibilityEvent"] -- TimePicker -> AccessibilityEvent -> ST s ( ) -}
+
+{-   native setCurrentHour  :: -- ["Integer"] -- TimePicker -> Integer -> ST s ( ) -}
+
+{-   native setCurrentMinute  :: -- ["Integer"] -- TimePicker -> Integer -> ST s ( ) -}
+
+  native setEnabled  :: TimePicker -> Bool -> ST s ( )
+
+{-   native setIs24HourView  :: -- ["Boolean"] -- TimePicker -> Boolean -> ST s ( ) -}
+
+{-   native setOnTimeChangedListener  :: -- ["TimePicker_OnTimeChangedListener"] -- TimePicker -> TimePicker_OnTimeChangedListener -> ST s ( ) -}
+
+
+{-
+data TimePicker = pure native android.widget.TimePicker where
+
+  native new :: Context -> AttributeSet -> ST s TimePicker
+              | Context -> ST s TimePicker
+              | Context -> AttributeSet -> Int -> ST s TimePicker
+
+  pure native dispatchPopulateAccessibilityEvent :: TimePicker -> AccessibilityEvent -> Bool
+
+  pure native getBaseline :: TimePicker -> Int
+
+  pure native getCurrentHour :: TimePicker -> Integer
+
+  pure native getCurrentMinute :: TimePicker -> Integer
+
+  pure native is24HourView :: TimePicker -> Bool
+
+  pure native isEnabled :: TimePicker -> Bool
+
+  native onInitializeAccessibilityEvent :: TimePicker -> AccessibilityEvent -> ST s ()
+
+  native onInitializeAccessibilityNodeInfo :: TimePicker -> AccessibilityNodeInfo -> ST s ()
+
+  native onPopulateAccessibilityEvent :: TimePicker -> AccessibilityEvent -> ST s ()
+
+  native setCurrentHour :: TimePicker -> Integer -> ST s ()
+
+  native setCurrentMinute :: TimePicker -> Integer -> ST s ()
+
+  native setEnabled :: TimePicker -> Bool -> ST s ()
+
+  native setIs24HourView :: TimePicker -> Boolean -> ST s ()
+
+  native setOnTimeChangedListener :: TimePicker -> TimePicker_OnTimeChangedListener -> ST s ()
+
+
+
+-}

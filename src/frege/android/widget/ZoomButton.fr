@@ -1,0 +1,58 @@
+package frege.android.widget.ZoomButton where
+
+import frege.android.content.Context
+import frege.android.util.AttributeSet
+import frege.android.view.View
+import frege.android.view.MotionEvent
+import frege.android.view.KeyEvent
+
+data ZoomButton = pure native android.widget.ZoomButton where
+
+
+  native new  :: Context -> AttributeSet -> Int -> ST s ZoomButton
+        | Context -> AttributeSet -> ST s ZoomButton
+        | Context -> ST s ZoomButton
+
+  native dispatchUnhandledMove  :: ZoomButton -> MutableIO View -> Int -> IO Bool
+
+{-   native onInitializeAccessibilityEvent  :: -- ["AccessibilityEvent"] -- ZoomButton -> AccessibilityEvent -> ST s ( ) -}
+
+{-   native onInitializeAccessibilityNodeInfo  :: -- ["AccessibilityNodeInfo"] -- ZoomButton -> AccessibilityNodeInfo -> ST s ( ) -}
+
+  pure native onKeyUp  :: ZoomButton -> Int -> KeyEvent -> Bool
+
+  native onLongClick  :: ZoomButton -> MutableIO View -> IO Bool
+
+  pure native onTouchEvent  :: ZoomButton -> MotionEvent -> Bool
+
+  native setEnabled  :: ZoomButton -> Bool -> ST s ( )
+
+  native setZoomSpeed  :: ZoomButton -> Long -> ST s ( )
+
+
+{-
+data ZoomButton = pure native android.widget.ZoomButton where
+
+  native new :: Context -> AttributeSet -> Int -> ST s ZoomButton
+              | Context -> AttributeSet -> ST s ZoomButton
+              | Context -> ST s ZoomButton
+
+  native dispatchUnhandledMove :: ZoomButton -> MutableIO View -> Int -> IO Bool
+
+  native onInitializeAccessibilityEvent :: ZoomButton -> AccessibilityEvent -> ST s ()
+
+  native onInitializeAccessibilityNodeInfo :: ZoomButton -> AccessibilityNodeInfo -> ST s ()
+
+  pure native onKeyUp :: ZoomButton -> Int -> KeyEvent -> Bool
+
+  native onLongClick :: ZoomButton -> MutableIO View -> IO Bool
+
+  pure native onTouchEvent :: ZoomButton -> MotionEvent -> Bool
+
+  native setEnabled :: ZoomButton -> Bool -> ST s ()
+
+  native setZoomSpeed :: ZoomButton -> Long -> ST s ()
+
+
+
+-}

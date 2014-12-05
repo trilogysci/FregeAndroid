@@ -1,0 +1,97 @@
+package frege.android.view.ViewTreeObserver where
+
+
+data ViewTreeObserver = pure native android.view.ViewTreeObserver where
+
+
+{-   native addOnDrawListener  :: -- ["ViewTreeObserver_OnDrawListener"] -- ViewTreeObserver -> ViewTreeObserver_OnDrawListener -> ST s ( ) -}
+
+{-   native addOnGlobalFocusChangeListener  :: -- ["ViewTreeObserver_OnGlobalFocusChangeListener"] -- ViewTreeObserver -> ViewTreeObserver_OnGlobalFocusChangeListener -> ST s ( ) -}
+
+{-   native addOnGlobalLayoutListener  :: -- ["ViewTreeObserver_OnGlobalLayoutListener"] -- ViewTreeObserver -> ViewTreeObserver_OnGlobalLayoutListener -> ST s ( ) -}
+
+{-   native addOnPreDrawListener  :: -- ["ViewTreeObserver_OnPreDrawListener"] -- ViewTreeObserver -> ViewTreeObserver_OnPreDrawListener -> ST s ( ) -}
+
+{-   native addOnScrollChangedListener  :: -- ["ViewTreeObserver_OnScrollChangedListener"] -- ViewTreeObserver -> ViewTreeObserver_OnScrollChangedListener -> ST s ( ) -}
+
+{-   native addOnTouchModeChangeListener  :: -- ["ViewTreeObserver_OnTouchModeChangeListener"] -- ViewTreeObserver -> ViewTreeObserver_OnTouchModeChangeListener -> ST s ( ) -}
+
+{-   native addOnWindowAttachListener  :: -- ["ViewTreeObserver_OnWindowAttachListener"] -- ViewTreeObserver -> ViewTreeObserver_OnWindowAttachListener -> ST s ( ) -}
+
+{-   native addOnWindowFocusChangeListener  :: -- ["ViewTreeObserver_OnWindowFocusChangeListener"] -- ViewTreeObserver -> ViewTreeObserver_OnWindowFocusChangeListener -> ST s ( ) -}
+
+  native dispatchOnDraw  :: ViewTreeObserver -> ST s ( )
+
+  native dispatchOnGlobalLayout  :: ViewTreeObserver -> ST s ( )
+
+  pure native dispatchOnPreDraw  :: ViewTreeObserver -> Bool
+
+  pure native isAlive  :: ViewTreeObserver -> Bool
+
+{-   native removeGlobalOnLayoutListener  :: -- ["ViewTreeObserver_OnGlobalLayoutListener"] -- ViewTreeObserver -> ViewTreeObserver_OnGlobalLayoutListener -> ST s ( ) -}
+
+{-   native removeOnDrawListener  :: -- ["ViewTreeObserver_OnDrawListener"] -- ViewTreeObserver -> ViewTreeObserver_OnDrawListener -> ST s ( ) -}
+
+{-   native removeOnGlobalFocusChangeListener  :: -- ["ViewTreeObserver_OnGlobalFocusChangeListener"] -- ViewTreeObserver -> ViewTreeObserver_OnGlobalFocusChangeListener -> ST s ( ) -}
+
+{-   native removeOnGlobalLayoutListener  :: -- ["ViewTreeObserver_OnGlobalLayoutListener"] -- ViewTreeObserver -> ViewTreeObserver_OnGlobalLayoutListener -> ST s ( ) -}
+
+{-   native removeOnPreDrawListener  :: -- ["ViewTreeObserver_OnPreDrawListener"] -- ViewTreeObserver -> ViewTreeObserver_OnPreDrawListener -> ST s ( ) -}
+
+{-   native removeOnScrollChangedListener  :: -- ["ViewTreeObserver_OnScrollChangedListener"] -- ViewTreeObserver -> ViewTreeObserver_OnScrollChangedListener -> ST s ( ) -}
+
+{-   native removeOnTouchModeChangeListener  :: -- ["ViewTreeObserver_OnTouchModeChangeListener"] -- ViewTreeObserver -> ViewTreeObserver_OnTouchModeChangeListener -> ST s ( ) -}
+
+{-   native removeOnWindowAttachListener  :: -- ["ViewTreeObserver_OnWindowAttachListener"] -- ViewTreeObserver -> ViewTreeObserver_OnWindowAttachListener -> ST s ( ) -}
+
+{-   native removeOnWindowFocusChangeListener  :: -- ["ViewTreeObserver_OnWindowFocusChangeListener"] -- ViewTreeObserver -> ViewTreeObserver_OnWindowFocusChangeListener -> ST s ( ) -}
+
+
+{-
+data ViewTreeObserver = pure native android.view.ViewTreeObserver where
+
+  native addOnDrawListener :: ViewTreeObserver -> ViewTreeObserver_OnDrawListener -> ST s ()
+
+  native addOnGlobalFocusChangeListener :: ViewTreeObserver -> ViewTreeObserver_OnGlobalFocusChangeListener -> ST s ()
+
+  native addOnGlobalLayoutListener :: ViewTreeObserver -> ViewTreeObserver_OnGlobalLayoutListener -> ST s ()
+
+  native addOnPreDrawListener :: ViewTreeObserver -> ViewTreeObserver_OnPreDrawListener -> ST s ()
+
+  native addOnScrollChangedListener :: ViewTreeObserver -> ViewTreeObserver_OnScrollChangedListener -> ST s ()
+
+  native addOnTouchModeChangeListener :: ViewTreeObserver -> ViewTreeObserver_OnTouchModeChangeListener -> ST s ()
+
+  native addOnWindowAttachListener :: ViewTreeObserver -> ViewTreeObserver_OnWindowAttachListener -> ST s ()
+
+  native addOnWindowFocusChangeListener :: ViewTreeObserver -> ViewTreeObserver_OnWindowFocusChangeListener -> ST s ()
+
+  native dispatchOnDraw :: ViewTreeObserver -> ST s ()
+
+  native dispatchOnGlobalLayout :: ViewTreeObserver -> ST s ()
+
+  pure native dispatchOnPreDraw :: ViewTreeObserver -> Bool
+
+  pure native isAlive :: ViewTreeObserver -> Bool
+
+  native removeGlobalOnLayoutListener :: ViewTreeObserver -> ViewTreeObserver_OnGlobalLayoutListener -> ST s ()
+
+  native removeOnDrawListener :: ViewTreeObserver -> ViewTreeObserver_OnDrawListener -> ST s ()
+
+  native removeOnGlobalFocusChangeListener :: ViewTreeObserver -> ViewTreeObserver_OnGlobalFocusChangeListener -> ST s ()
+
+  native removeOnGlobalLayoutListener :: ViewTreeObserver -> ViewTreeObserver_OnGlobalLayoutListener -> ST s ()
+
+  native removeOnPreDrawListener :: ViewTreeObserver -> ViewTreeObserver_OnPreDrawListener -> ST s ()
+
+  native removeOnScrollChangedListener :: ViewTreeObserver -> ViewTreeObserver_OnScrollChangedListener -> ST s ()
+
+  native removeOnTouchModeChangeListener :: ViewTreeObserver -> ViewTreeObserver_OnTouchModeChangeListener -> ST s ()
+
+  native removeOnWindowAttachListener :: ViewTreeObserver -> ViewTreeObserver_OnWindowAttachListener -> ST s ()
+
+  native removeOnWindowFocusChangeListener :: ViewTreeObserver -> ViewTreeObserver_OnWindowFocusChangeListener -> ST s ()
+
+
+
+-}

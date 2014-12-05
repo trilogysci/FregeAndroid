@@ -1,0 +1,162 @@
+package frege.android.app.DownloadManager where
+
+import frege.android.content.Context
+
+data DownloadManager = pure native android.app.DownloadManager where
+
+
+  pure native column_id  android.app.DownloadManager.COLUMN_ID :: String
+
+  pure native column_title  android.app.DownloadManager.COLUMN_TITLE :: String
+
+  pure native column_description  android.app.DownloadManager.COLUMN_DESCRIPTION :: String
+
+  pure native column_uri  android.app.DownloadManager.COLUMN_URI :: String
+
+  pure native column_media_type  android.app.DownloadManager.COLUMN_MEDIA_TYPE :: String
+
+  pure native column_total_size_bytes  android.app.DownloadManager.COLUMN_TOTAL_SIZE_BYTES :: String
+
+  pure native column_local_uri  android.app.DownloadManager.COLUMN_LOCAL_URI :: String
+
+  pure native column_local_filename  android.app.DownloadManager.COLUMN_LOCAL_FILENAME :: String
+
+  pure native column_status  android.app.DownloadManager.COLUMN_STATUS :: String
+
+  pure native column_reason  android.app.DownloadManager.COLUMN_REASON :: String
+
+  pure native column_bytes_downloaded_so_far  android.app.DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR :: String
+
+  pure native column_last_modified_timestamp  android.app.DownloadManager.COLUMN_LAST_MODIFIED_TIMESTAMP :: String
+
+  pure native column_mediaprovider_uri  android.app.DownloadManager.COLUMN_MEDIAPROVIDER_URI :: String
+
+  pure native status_pending  android.app.DownloadManager.STATUS_PENDING :: Int
+
+  pure native status_running  android.app.DownloadManager.STATUS_RUNNING :: Int
+
+  pure native status_paused  android.app.DownloadManager.STATUS_PAUSED :: Int
+
+  pure native status_successful  android.app.DownloadManager.STATUS_SUCCESSFUL :: Int
+
+  pure native status_failed  android.app.DownloadManager.STATUS_FAILED :: Int
+
+  pure native error_unknown  android.app.DownloadManager.ERROR_UNKNOWN :: Int
+
+  pure native error_file_error  android.app.DownloadManager.ERROR_FILE_ERROR :: Int
+
+  pure native error_unhandled_http_code  android.app.DownloadManager.ERROR_UNHANDLED_HTTP_CODE :: Int
+
+  pure native error_http_data_error  android.app.DownloadManager.ERROR_HTTP_DATA_ERROR :: Int
+
+  pure native error_too_many_redirects  android.app.DownloadManager.ERROR_TOO_MANY_REDIRECTS :: Int
+
+  pure native error_insufficient_space  android.app.DownloadManager.ERROR_INSUFFICIENT_SPACE :: Int
+
+  pure native error_device_not_found  android.app.DownloadManager.ERROR_DEVICE_NOT_FOUND :: Int
+
+  pure native error_cannot_resume  android.app.DownloadManager.ERROR_CANNOT_RESUME :: Int
+
+  pure native error_file_already_exists  android.app.DownloadManager.ERROR_FILE_ALREADY_EXISTS :: Int
+
+  pure native paused_waiting_to_retry  android.app.DownloadManager.PAUSED_WAITING_TO_RETRY :: Int
+
+  pure native paused_waiting_for_network  android.app.DownloadManager.PAUSED_WAITING_FOR_NETWORK :: Int
+
+  pure native paused_queued_for_wifi  android.app.DownloadManager.PAUSED_QUEUED_FOR_WIFI :: Int
+
+  pure native paused_unknown  android.app.DownloadManager.PAUSED_UNKNOWN :: Int
+
+  pure native action_download_complete  android.app.DownloadManager.ACTION_DOWNLOAD_COMPLETE :: String
+
+  pure native action_notification_clicked  android.app.DownloadManager.ACTION_NOTIFICATION_CLICKED :: String
+
+  pure native action_view_downloads  android.app.DownloadManager.ACTION_VIEW_DOWNLOADS :: String
+
+  pure native intent_extras_sort_by_size  android.app.DownloadManager.INTENT_EXTRAS_SORT_BY_SIZE :: String
+
+  pure native extra_download_id  android.app.DownloadManager.EXTRA_DOWNLOAD_ID :: String
+
+  pure native extra_notification_click_download_ids  android.app.DownloadManager.EXTRA_NOTIFICATION_CLICK_DOWNLOAD_IDS :: String
+
+  pure native addCompletedDownload  :: DownloadManager -> String -> String -> Bool -> String -> String -> Long -> Bool -> Long
+
+{-   pure native enqueue  :: -- ["DownloadManager_Request"] -- DownloadManager -> DownloadManager_Request -> Long -}
+
+  pure native getMaxBytesOverMobile  android.app.DownloadManager.getMaxBytesOverMobile :: Context -> Long
+
+  pure native getMimeTypeForDownloadedFile  :: DownloadManager -> Long -> String
+
+  pure native getRecommendedMaxBytesOverMobile  android.app.DownloadManager.getRecommendedMaxBytesOverMobile :: Context -> Long
+
+{-   pure native getUriForDownloadedFile  :: -- ["Uri"] -- DownloadManager -> Long -> Uri -}
+
+{-   native openDownloadedFile  :: -- ["FileNotFoundException","ParcelFileDescriptor"] -- DownloadManager -> Long -> ST s ParcelFileDescriptor throws FileNotFoundException -}
+
+{-   pure native query  :: -- ["Cursor","DownloadManager_Query"] -- DownloadManager -> DownloadManager_Query -> Cursor -}
+
+{-   native remove  :: -- ["JArray"] -- DownloadManager -> Mutable s ( JArray Long ) -> ST s Int -}
+
+
+{-
+data DownloadManager = pure native android.app.DownloadManager where
+
+  pure native column_id android.app.DownloadManager.COLUMN_ID :: String
+  pure native column_title android.app.DownloadManager.COLUMN_TITLE :: String
+  pure native column_description android.app.DownloadManager.COLUMN_DESCRIPTION :: String
+  pure native column_uri android.app.DownloadManager.COLUMN_URI :: String
+  pure native column_media_type android.app.DownloadManager.COLUMN_MEDIA_TYPE :: String
+  pure native column_total_size_bytes android.app.DownloadManager.COLUMN_TOTAL_SIZE_BYTES :: String
+  pure native column_local_uri android.app.DownloadManager.COLUMN_LOCAL_URI :: String
+  pure native column_local_filename android.app.DownloadManager.COLUMN_LOCAL_FILENAME :: String
+  pure native column_status android.app.DownloadManager.COLUMN_STATUS :: String
+  pure native column_reason android.app.DownloadManager.COLUMN_REASON :: String
+  pure native column_bytes_downloaded_so_far android.app.DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR :: String
+  pure native column_last_modified_timestamp android.app.DownloadManager.COLUMN_LAST_MODIFIED_TIMESTAMP :: String
+  pure native column_mediaprovider_uri android.app.DownloadManager.COLUMN_MEDIAPROVIDER_URI :: String
+  pure native status_pending android.app.DownloadManager.STATUS_PENDING :: Int
+  pure native status_running android.app.DownloadManager.STATUS_RUNNING :: Int
+  pure native status_paused android.app.DownloadManager.STATUS_PAUSED :: Int
+  pure native status_successful android.app.DownloadManager.STATUS_SUCCESSFUL :: Int
+  pure native status_failed android.app.DownloadManager.STATUS_FAILED :: Int
+  pure native error_unknown android.app.DownloadManager.ERROR_UNKNOWN :: Int
+  pure native error_file_error android.app.DownloadManager.ERROR_FILE_ERROR :: Int
+  pure native error_unhandled_http_code android.app.DownloadManager.ERROR_UNHANDLED_HTTP_CODE :: Int
+  pure native error_http_data_error android.app.DownloadManager.ERROR_HTTP_DATA_ERROR :: Int
+  pure native error_too_many_redirects android.app.DownloadManager.ERROR_TOO_MANY_REDIRECTS :: Int
+  pure native error_insufficient_space android.app.DownloadManager.ERROR_INSUFFICIENT_SPACE :: Int
+  pure native error_device_not_found android.app.DownloadManager.ERROR_DEVICE_NOT_FOUND :: Int
+  pure native error_cannot_resume android.app.DownloadManager.ERROR_CANNOT_RESUME :: Int
+  pure native error_file_already_exists android.app.DownloadManager.ERROR_FILE_ALREADY_EXISTS :: Int
+  pure native paused_waiting_to_retry android.app.DownloadManager.PAUSED_WAITING_TO_RETRY :: Int
+  pure native paused_waiting_for_network android.app.DownloadManager.PAUSED_WAITING_FOR_NETWORK :: Int
+  pure native paused_queued_for_wifi android.app.DownloadManager.PAUSED_QUEUED_FOR_WIFI :: Int
+  pure native paused_unknown android.app.DownloadManager.PAUSED_UNKNOWN :: Int
+  pure native action_download_complete android.app.DownloadManager.ACTION_DOWNLOAD_COMPLETE :: String
+  pure native action_notification_clicked android.app.DownloadManager.ACTION_NOTIFICATION_CLICKED :: String
+  pure native action_view_downloads android.app.DownloadManager.ACTION_VIEW_DOWNLOADS :: String
+  pure native intent_extras_sort_by_size android.app.DownloadManager.INTENT_EXTRAS_SORT_BY_SIZE :: String
+  pure native extra_download_id android.app.DownloadManager.EXTRA_DOWNLOAD_ID :: String
+  pure native extra_notification_click_download_ids android.app.DownloadManager.EXTRA_NOTIFICATION_CLICK_DOWNLOAD_IDS :: String
+
+  pure native addCompletedDownload :: DownloadManager -> String -> String -> Bool -> String -> String -> Long -> Bool -> Long
+
+  pure native enqueue :: DownloadManager -> DownloadManager_Request -> Long
+
+  pure native getMaxBytesOverMobile android.app.DownloadManager.getMaxBytesOverMobile :: Context -> Long
+
+  pure native getMimeTypeForDownloadedFile :: DownloadManager -> Long -> String
+
+  pure native getRecommendedMaxBytesOverMobile android.app.DownloadManager.getRecommendedMaxBytesOverMobile :: Context -> Long
+
+  pure native getUriForDownloadedFile :: DownloadManager -> Long -> Uri
+
+  native openDownloadedFile :: DownloadManager -> Long -> ST s ParcelFileDescriptor throws FileNotFoundException
+
+  pure native query :: DownloadManager -> DownloadManager_Query -> Cursor
+
+  native remove :: DownloadManager -> Mutable s (JArray Long) -> ST s Int
+
+
+
+-}

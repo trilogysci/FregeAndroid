@@ -1,0 +1,103 @@
+package frege.android.widget.DatePicker where
+
+import frege.android.content.Context
+import frege.android.util.AttributeSet
+
+data DatePicker = pure native android.widget.DatePicker where
+
+
+  native new  :: Context -> ST s DatePicker
+        | Context -> AttributeSet -> Int -> ST s DatePicker
+        | Context -> AttributeSet -> ST s DatePicker
+
+{-   pure native dispatchPopulateAccessibilityEvent  :: -- ["AccessibilityEvent"] -- DatePicker -> AccessibilityEvent -> Bool -}
+
+{-   pure native getCalendarView  :: -- ["CalendarView"] -- DatePicker -> CalendarView -}
+
+  pure native getCalendarViewShown  :: DatePicker -> Bool
+
+  pure native getDayOfMonth  :: DatePicker -> Int
+
+  pure native getMaxDate  :: DatePicker -> Long
+
+  pure native getMinDate  :: DatePicker -> Long
+
+  pure native getMonth  :: DatePicker -> Int
+
+  pure native getSpinnersShown  :: DatePicker -> Bool
+
+  pure native getYear  :: DatePicker -> Int
+
+{-   native init  :: -- ["DatePicker_OnDateChangedListener"] -- DatePicker -> Int -> Int -> Int -> DatePicker_OnDateChangedListener -> ST s ( ) -}
+
+  pure native isEnabled  :: DatePicker -> Bool
+
+{-   native onInitializeAccessibilityEvent  :: -- ["AccessibilityEvent"] -- DatePicker -> AccessibilityEvent -> ST s ( ) -}
+
+{-   native onInitializeAccessibilityNodeInfo  :: -- ["AccessibilityNodeInfo"] -- DatePicker -> AccessibilityNodeInfo -> ST s ( ) -}
+
+{-   native onPopulateAccessibilityEvent  :: -- ["AccessibilityEvent"] -- DatePicker -> AccessibilityEvent -> ST s ( ) -}
+
+  native setCalendarViewShown  :: DatePicker -> Bool -> ST s ( )
+
+  native setEnabled  :: DatePicker -> Bool -> ST s ( )
+
+  native setMaxDate  :: DatePicker -> Long -> ST s ( )
+
+  native setMinDate  :: DatePicker -> Long -> ST s ( )
+
+  native setSpinnersShown  :: DatePicker -> Bool -> ST s ( )
+
+  native updateDate  :: DatePicker -> Int -> Int -> Int -> ST s ( )
+
+
+{-
+data DatePicker = pure native android.widget.DatePicker where
+
+  native new :: Context -> ST s DatePicker
+              | Context -> AttributeSet -> Int -> ST s DatePicker
+              | Context -> AttributeSet -> ST s DatePicker
+
+  pure native dispatchPopulateAccessibilityEvent :: DatePicker -> AccessibilityEvent -> Bool
+
+  pure native getCalendarView :: DatePicker -> CalendarView
+
+  pure native getCalendarViewShown :: DatePicker -> Bool
+
+  pure native getDayOfMonth :: DatePicker -> Int
+
+  pure native getMaxDate :: DatePicker -> Long
+
+  pure native getMinDate :: DatePicker -> Long
+
+  pure native getMonth :: DatePicker -> Int
+
+  pure native getSpinnersShown :: DatePicker -> Bool
+
+  pure native getYear :: DatePicker -> Int
+
+  native init :: DatePicker -> Int -> Int -> Int -> DatePicker_OnDateChangedListener -> ST s ()
+
+  pure native isEnabled :: DatePicker -> Bool
+
+  native onInitializeAccessibilityEvent :: DatePicker -> AccessibilityEvent -> ST s ()
+
+  native onInitializeAccessibilityNodeInfo :: DatePicker -> AccessibilityNodeInfo -> ST s ()
+
+  native onPopulateAccessibilityEvent :: DatePicker -> AccessibilityEvent -> ST s ()
+
+  native setCalendarViewShown :: DatePicker -> Bool -> ST s ()
+
+  native setEnabled :: DatePicker -> Bool -> ST s ()
+
+  native setMaxDate :: DatePicker -> Long -> ST s ()
+
+  native setMinDate :: DatePicker -> Long -> ST s ()
+
+  native setSpinnersShown :: DatePicker -> Bool -> ST s ()
+
+  native updateDate :: DatePicker -> Int -> Int -> Int -> ST s ()
+
+
+
+-}

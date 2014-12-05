@@ -1,0 +1,35 @@
+package frege.android.widget.SeekBar where
+
+import frege.android.content.Context
+import frege.android.util.AttributeSet
+
+data SeekBar = pure native android.widget.SeekBar where
+
+
+  native new  :: Context -> AttributeSet -> Int -> ST s SeekBar
+        | Context -> AttributeSet -> ST s SeekBar
+        | Context -> ST s SeekBar
+
+{-   native onInitializeAccessibilityEvent  :: -- ["AccessibilityEvent"] -- SeekBar -> AccessibilityEvent -> ST s ( ) -}
+
+{-   native onInitializeAccessibilityNodeInfo  :: -- ["AccessibilityNodeInfo"] -- SeekBar -> AccessibilityNodeInfo -> ST s ( ) -}
+
+{-   native setOnSeekBarChangeListener  :: -- ["SeekBar_OnSeekBarChangeListener"] -- SeekBar -> SeekBar_OnSeekBarChangeListener -> ST s ( ) -}
+
+
+{-
+data SeekBar = pure native android.widget.SeekBar where
+
+  native new :: Context -> AttributeSet -> Int -> ST s SeekBar
+              | Context -> AttributeSet -> ST s SeekBar
+              | Context -> ST s SeekBar
+
+  native onInitializeAccessibilityEvent :: SeekBar -> AccessibilityEvent -> ST s ()
+
+  native onInitializeAccessibilityNodeInfo :: SeekBar -> AccessibilityNodeInfo -> ST s ()
+
+  native setOnSeekBarChangeListener :: SeekBar -> SeekBar_OnSeekBarChangeListener -> ST s ()
+
+
+
+-}

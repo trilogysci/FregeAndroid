@@ -1,0 +1,68 @@
+package frege.android.graphics.Point where
+
+data Point = native android.graphics.Point where
+
+
+  native x ".x" :: Mutable s Point -> ST s Int
+
+  native y ".y" :: Mutable s Point -> ST s Int
+
+{-   pure native creator  android.graphics.Point.CREATOR :: -- ["Parcelable_Creator"] -- Parcelable_Creator Point -}
+
+  native new  :: Mutable s Point -> STMutable s Point
+        | Int -> Int -> STMutable s Point
+        | ( ) -> STMutable s Point
+
+  native describeContents  :: Mutable s Point -> ST s Int
+
+  native equals  :: Mutable s Point -> Int -> Int -> ST s Bool
+        | Mutable s Point -> Object -> ST s Bool
+
+  native hashCode  :: Mutable s Point -> ST s Int
+
+  native negate  :: Mutable s Point -> ST s ( )
+
+  native offset  :: Mutable s Point -> Int -> Int -> ST s ( )
+
+{-   native readFromParcel  :: -- ["Parcel"] -- Mutable s Point -> Parcel -> ST s ( ) -}
+
+  native set  :: Mutable s Point -> Int -> Int -> ST s ( )
+
+  native toString  :: Mutable s Point -> ST s String
+
+{-   native writeToParcel  :: -- ["Parcel"] -- Mutable s Point -> Parcel -> Int -> ST s ( ) -}
+
+
+{-
+data Point = native android.graphics.Point where
+
+  native x ".x" :: Mutable s Point -> ST s Int
+  native y ".y" :: Mutable s Point -> ST s Int
+  pure native creator android.graphics.Point.CREATOR :: Parcelable_Creator Point
+
+  native new :: Mutable s Point -> STMutable s Point
+              | Int -> Int -> STMutable s Point
+              | () -> STMutable s Point
+
+  native describeContents :: Mutable s Point -> ST s Int
+
+  native equals :: Mutable s Point -> Int -> Int -> ST s Bool
+                 | Mutable s Point -> Object -> ST s Bool
+
+  native hashCode :: Mutable s Point -> ST s Int
+
+  native negate :: Mutable s Point -> ST s ()
+
+  native offset :: Mutable s Point -> Int -> Int -> ST s ()
+
+  native readFromParcel :: Mutable s Point -> Parcel -> ST s ()
+
+  native set :: Mutable s Point -> Int -> Int -> ST s ()
+
+  native toString :: Mutable s Point -> ST s String
+
+  native writeToParcel :: Mutable s Point -> Parcel -> Int -> ST s ()
+
+
+
+-}

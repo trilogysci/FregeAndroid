@@ -1,0 +1,41 @@
+package frege.android.view.InputEvent where
+
+
+data InputEvent = pure native android.view.InputEvent where
+
+
+{-   pure native creator  android.view.InputEvent.CREATOR :: -- ["Parcelable_Creator"] -- Parcelable_Creator InputEvent -}
+
+  pure native describeContents  :: InputEvent -> Int
+
+{-   pure native getDevice  :: -- ["InputDevice"] -- InputEvent -> InputDevice -}
+
+  pure native getDeviceId  :: InputEvent -> Int
+
+  pure native getEventTime  :: InputEvent -> Long
+
+  pure native getSource  :: InputEvent -> Int
+
+  pure native isFromSource  :: InputEvent -> Int -> Bool
+
+
+{-
+data InputEvent = pure native android.view.InputEvent where
+
+  pure native creator android.view.InputEvent.CREATOR :: Parcelable_Creator InputEvent
+
+  pure native describeContents :: InputEvent -> Int
+
+  pure native getDevice :: InputEvent -> InputDevice
+
+  pure native getDeviceId :: InputEvent -> Int
+
+  pure native getEventTime :: InputEvent -> Long
+
+  pure native getSource :: InputEvent -> Int
+
+  pure native isFromSource :: InputEvent -> Int -> Bool
+
+
+
+-}

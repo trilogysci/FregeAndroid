@@ -1,0 +1,124 @@
+package frege.android.graphics.drawable.Drawable where
+
+import frege.android.graphics.Rect
+
+data Drawable = pure native android.graphics.drawable.Drawable where
+
+
+{- this is abstract native new  :: ( ) -> ST s Drawable-}
+
+  native clearColorFilter  :: Drawable -> ST s ( )
+
+  native copyBounds  :: Drawable -> Mutable s Rect -> ST s ( )
+        | Drawable -> STMutable s Rect
+
+  pure native createFromPath  android.graphics.drawable.Drawable.createFromPath :: String -> Drawable
+
+{-   native createFromResourceStream  android.graphics.drawable.Drawable.createFromResourceStream :: -- ["InputStream","Resources","TypedValue"] -- Resources -> TypedValue -> MutableIO InputStream -> String -> IO Drawable
+        -- ["BitmapFactory_Options","InputStream","Resources","TypedValue"] -- Resources -> TypedValue -> MutableIO InputStream -> String -> BitmapFactory_Options -> IO Drawable -}
+
+{-   native createFromStream  android.graphics.drawable.Drawable.createFromStream :: -- ["InputStream"] -- MutableIO InputStream -> String -> IO Drawable -}
+
+{-   native createFromXml  android.graphics.drawable.Drawable.createFromXml :: -- ["Resources","XmlPullParser","XmlPullParserException"] -- Resources -> XmlPullParser -> ST s Drawable throws XmlPullParserException -}
+
+
+{-
+data Drawable = pure native android.graphics.drawable.Drawable where
+
+  native new :: () -> ST s Drawable
+
+  native clearColorFilter :: Drawable -> ST s ()
+
+  native copyBounds :: Drawable -> Mutable s Rect -> ST s ()
+                     | Drawable -> STMutable s Rect
+
+  pure native createFromPath android.graphics.drawable.Drawable.createFromPath :: String -> Drawable
+
+  native createFromResourceStream android.graphics.drawable.Drawable.createFromResourceStream :: Resources -> TypedValue -> MutableIO InputStream -> String -> IO Drawable
+                                                                                               | Resources -> TypedValue -> MutableIO InputStream -> String -> BitmapFactory_Options -> IO Drawable
+
+  native createFromStream android.graphics.drawable.Drawable.createFromStream :: MutableIO InputStream -> String -> IO Drawable
+
+  native createFromXml android.graphics.drawable.Drawable.createFromXml :: Resources -> XmlPullParser -> ST s Drawable throws XmlPullParserException, IOException
+
+  native createFromXmlInner android.graphics.drawable.Drawable.createFromXmlInner :: Resources -> XmlPullParser -> AttributeSet -> ST s Drawable throws XmlPullParserException, IOException
+
+  native draw :: Drawable -> Canvas -> ST s ()
+
+  pure native getAlpha :: Drawable -> Int
+
+  native getBounds :: Drawable -> STMutable s Rect
+
+  pure native getCallback :: Drawable -> Drawable_Callback
+
+  pure native getChangingConfigurations :: Drawable -> Int
+
+  pure native getConstantState :: Drawable -> Drawable_ConstantState
+
+  pure native getCurrent :: Drawable -> Drawable
+
+  pure native getIntrinsicHeight :: Drawable -> Int
+
+  pure native getIntrinsicWidth :: Drawable -> Int
+
+  pure native getLevel :: Drawable -> Int
+
+  pure native getMinimumHeight :: Drawable -> Int
+
+  pure native getMinimumWidth :: Drawable -> Int
+
+  pure native getOpacity :: Drawable -> Int
+
+  native getPadding :: Drawable -> Mutable s Rect -> ST s Bool
+
+  native getState :: Drawable -> STMutable s (JArray Int)
+
+  pure native getTransparentRegion :: Drawable -> Region
+
+  native inflate :: Drawable -> Resources -> XmlPullParser -> AttributeSet -> ST s () throws XmlPullParserException, IOException
+
+  native invalidateSelf :: Drawable -> ST s ()
+
+  pure native isAutoMirrored :: Drawable -> Bool
+
+  pure native isStateful :: Drawable -> Bool
+
+  pure native isVisible :: Drawable -> Bool
+
+  native jumpToCurrentState :: Drawable -> ST s ()
+
+  pure native mutate :: Drawable -> Drawable
+
+  pure native resolveOpacity android.graphics.drawable.Drawable.resolveOpacity :: Int -> Int -> Int
+
+  native scheduleSelf :: Drawable -> Runnable -> Long -> ST s ()
+
+  native setAlpha :: Drawable -> Int -> ST s ()
+
+  native setAutoMirrored :: Drawable -> Bool -> ST s ()
+
+  native setBounds :: Drawable -> Int -> Int -> Int -> Int -> ST s ()
+                    | Drawable -> Mutable s Rect -> ST s ()
+
+  native setCallback :: Drawable -> Drawable_Callback -> ST s ()
+
+  native setChangingConfigurations :: Drawable -> Int -> ST s ()
+
+  native setColorFilter :: Drawable -> ColorFilter -> ST s ()
+                         | Drawable -> Int -> PorterDuff_Mode -> ST s ()
+
+  native setDither :: Drawable -> Bool -> ST s ()
+
+  native setFilterBitmap :: Drawable -> Bool -> ST s ()
+
+  pure native setLevel :: Drawable -> Int -> Bool
+
+  native setState :: Drawable -> Mutable s (JArray Int) -> ST s Bool
+
+  pure native setVisible :: Drawable -> Bool -> Bool -> Bool
+
+  native unscheduleSelf :: Drawable -> Runnable -> ST s ()
+
+
+
+-}

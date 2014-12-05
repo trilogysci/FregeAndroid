@@ -1,0 +1,128 @@
+package frege.android.os.Handler where
+
+import frege.android.os.Looper
+
+data Handler = pure native android.os.Handler where
+
+
+  native new  :: -- ["Handler_Callback"] -- Handler_Callback -> ST s Handler
+        Looper -> ST s Handler
+        -- ["Handler_Callback"] -- | Looper -> Handler_Callback -> ST s Handler
+        | ( ) -> ST s Handler
+
+{-   native dispatchMessage  :: -- ["Message"] -- Handler -> Message -> ST s ( ) -}
+
+{-   native dump  :: -- ["Printer"] -- Handler -> Printer -> String -> ST s ( ) -}
+
+  pure native getLooper  :: Handler -> Looper
+
+{-   pure native getMessageName  :: -- ["Message"] -- Handler -> Message -> String -}
+
+{-   native handleMessage  :: -- ["Message"] -- Handler -> Message -> ST s ( ) -}
+
+  pure native hasMessages  :: Handler -> Int -> Bool
+        | Handler -> Int -> Object -> Bool
+
+{-   pure native obtainMessage  :: -- ["Message"] -- Handler -> Int -> Int -> Int -> Message
+        -- ["Message"] -- Handler -> Int -> Int -> Int -> Object -> Message
+        -- ["Message"] -- Handler -> Message
+        -- ["Message"] -- Handler -> Int -> Message
+        -- ["Message"] -- Handler -> Int -> Object -> Message -}
+
+{-   pure native post  :: -- ["Runnable"] -- Handler -> Runnable -> Bool -}
+
+{-   pure native postAtFrontOfQueue  :: -- ["Runnable"] -- Handler -> Runnable -> Bool -}
+
+{-   pure native postAtTime  :: -- ["Runnable"] -- Handler -> Runnable -> Object -> Long -> Bool
+        -- ["Runnable"] -- Handler -> Runnable -> Long -> Bool -}
+
+{-   pure native postDelayed  :: -- ["Runnable"] -- Handler -> Runnable -> Long -> Bool -}
+
+{-   native removeCallbacks  :: -- ["Runnable"] -- Handler -> Runnable -> Object -> ST s ( )
+        -- ["Runnable"] -- Handler -> Runnable -> ST s ( ) -}
+
+  native removeCallbacksAndMessages  :: Handler -> Object -> ST s ( )
+
+  native removeMessages  :: Handler -> Int -> Object -> ST s ( )
+        | Handler -> Int -> ST s ( )
+
+  pure native sendEmptyMessage  :: Handler -> Int -> Bool
+
+  pure native sendEmptyMessageAtTime  :: Handler -> Int -> Long -> Bool
+
+  pure native sendEmptyMessageDelayed  :: Handler -> Int -> Long -> Bool
+
+{-   pure native sendMessage  :: -- ["Message"] -- Handler -> Message -> Bool -}
+
+{-   pure native sendMessageAtFrontOfQueue  :: -- ["Message"] -- Handler -> Message -> Bool -}
+
+{-   pure native sendMessageAtTime  :: -- ["Message"] -- Handler -> Message -> Long -> Bool -}
+
+{-   pure native sendMessageDelayed  :: -- ["Message"] -- Handler -> Message -> Long -> Bool -}
+
+  pure native toString  :: Handler -> String
+
+
+{-
+data Handler = pure native android.os.Handler where
+
+  native new :: Handler_Callback -> ST s Handler
+              | Looper -> ST s Handler
+              | Looper -> Handler_Callback -> ST s Handler
+              | () -> ST s Handler
+
+  native dispatchMessage :: Handler -> Message -> ST s ()
+
+  native dump :: Handler -> Printer -> String -> ST s ()
+
+  pure native getLooper :: Handler -> Looper
+
+  pure native getMessageName :: Handler -> Message -> String
+
+  native handleMessage :: Handler -> Message -> ST s ()
+
+  pure native hasMessages :: Handler -> Int -> Bool
+                           | Handler -> Int -> Object -> Bool
+
+  pure native obtainMessage :: Handler -> Int -> Int -> Int -> Message
+                             | Handler -> Int -> Int -> Int -> Object -> Message
+                             | Handler -> Message
+                             | Handler -> Int -> Message
+                             | Handler -> Int -> Object -> Message
+
+  pure native post :: Handler -> Runnable -> Bool
+
+  pure native postAtFrontOfQueue :: Handler -> Runnable -> Bool
+
+  pure native postAtTime :: Handler -> Runnable -> Object -> Long -> Bool
+                          | Handler -> Runnable -> Long -> Bool
+
+  pure native postDelayed :: Handler -> Runnable -> Long -> Bool
+
+  native removeCallbacks :: Handler -> Runnable -> Object -> ST s ()
+                          | Handler -> Runnable -> ST s ()
+
+  native removeCallbacksAndMessages :: Handler -> Object -> ST s ()
+
+  native removeMessages :: Handler -> Int -> Object -> ST s ()
+                         | Handler -> Int -> ST s ()
+
+  pure native sendEmptyMessage :: Handler -> Int -> Bool
+
+  pure native sendEmptyMessageAtTime :: Handler -> Int -> Long -> Bool
+
+  pure native sendEmptyMessageDelayed :: Handler -> Int -> Long -> Bool
+
+  pure native sendMessage :: Handler -> Message -> Bool
+
+  pure native sendMessageAtFrontOfQueue :: Handler -> Message -> Bool
+
+  pure native sendMessageAtTime :: Handler -> Message -> Long -> Bool
+
+  pure native sendMessageDelayed :: Handler -> Message -> Long -> Bool
+
+  pure native toString :: Handler -> String
+
+
+
+-}

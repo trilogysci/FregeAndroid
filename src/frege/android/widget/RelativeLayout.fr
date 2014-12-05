@@ -1,0 +1,141 @@
+package frege.android.widget.RelativeLayout where
+
+import frege.android.content.Context
+import frege.android.util.AttributeSet
+
+data RelativeLayout = pure native android.widget.RelativeLayout where
+
+
+{-name collision  pure native true  android.widget.RelativeLayout.TRUE :: Int-}
+
+  pure native left_of  android.widget.RelativeLayout.LEFT_OF :: Int
+
+  pure native right_of  android.widget.RelativeLayout.RIGHT_OF :: Int
+
+  pure native above  android.widget.RelativeLayout.ABOVE :: Int
+
+  pure native below  android.widget.RelativeLayout.BELOW :: Int
+
+  pure native align_baseline  android.widget.RelativeLayout.ALIGN_BASELINE :: Int
+
+  pure native align_left  android.widget.RelativeLayout.ALIGN_LEFT :: Int
+
+  pure native align_top  android.widget.RelativeLayout.ALIGN_TOP :: Int
+
+  pure native align_right  android.widget.RelativeLayout.ALIGN_RIGHT :: Int
+
+  pure native align_bottom  android.widget.RelativeLayout.ALIGN_BOTTOM :: Int
+
+  pure native align_parent_left  android.widget.RelativeLayout.ALIGN_PARENT_LEFT :: Int
+
+  pure native align_parent_top  android.widget.RelativeLayout.ALIGN_PARENT_TOP :: Int
+
+  pure native align_parent_right  android.widget.RelativeLayout.ALIGN_PARENT_RIGHT :: Int
+
+  pure native align_parent_bottom  android.widget.RelativeLayout.ALIGN_PARENT_BOTTOM :: Int
+
+  pure native center_in_parent  android.widget.RelativeLayout.CENTER_IN_PARENT :: Int
+
+  pure native center_horizontal  android.widget.RelativeLayout.CENTER_HORIZONTAL :: Int
+
+  pure native center_vertical  android.widget.RelativeLayout.CENTER_VERTICAL :: Int
+
+  pure native start_of  android.widget.RelativeLayout.START_OF :: Int
+
+  pure native end_of  android.widget.RelativeLayout.END_OF :: Int
+
+  pure native align_start  android.widget.RelativeLayout.ALIGN_START :: Int
+
+  pure native align_end  android.widget.RelativeLayout.ALIGN_END :: Int
+
+  pure native align_parent_start  android.widget.RelativeLayout.ALIGN_PARENT_START :: Int
+
+  pure native align_parent_end  android.widget.RelativeLayout.ALIGN_PARENT_END :: Int
+
+  native new  :: Context -> AttributeSet -> Int -> ST s RelativeLayout
+        | Context -> AttributeSet -> ST s RelativeLayout
+        | Context -> ST s RelativeLayout
+
+{-   pure native dispatchPopulateAccessibilityEvent  :: -- ["AccessibilityEvent"] -- RelativeLayout -> AccessibilityEvent -> Bool -}
+
+{-   pure native generateLayoutParams  :: -- ["RelativeLayout_LayoutParams"] -- RelativeLayout -> AttributeSet -> RelativeLayout_LayoutParams -}
+
+  pure native getBaseline  :: RelativeLayout -> Int
+
+  pure native getGravity  :: RelativeLayout -> Int
+
+{-   native onInitializeAccessibilityEvent  :: -- ["AccessibilityEvent"] -- RelativeLayout -> AccessibilityEvent -> ST s ( ) -}
+
+{-   native onInitializeAccessibilityNodeInfo  :: -- ["AccessibilityNodeInfo"] -- RelativeLayout -> AccessibilityNodeInfo -> ST s ( ) -}
+
+  native requestLayout  :: RelativeLayout -> ST s ( )
+
+  native setGravity  :: RelativeLayout -> Int -> ST s ( )
+
+  native setHorizontalGravity  :: RelativeLayout -> Int -> ST s ( )
+
+  native setIgnoreGravity  :: RelativeLayout -> Int -> ST s ( )
+
+  native setVerticalGravity  :: RelativeLayout -> Int -> ST s ( )
+
+  pure native shouldDelayChildPressedState  :: RelativeLayout -> Bool
+
+
+{-
+data RelativeLayout = pure native android.widget.RelativeLayout where
+
+  pure native true android.widget.RelativeLayout.TRUE :: Int
+  pure native left_of android.widget.RelativeLayout.LEFT_OF :: Int
+  pure native right_of android.widget.RelativeLayout.RIGHT_OF :: Int
+  pure native above android.widget.RelativeLayout.ABOVE :: Int
+  pure native below android.widget.RelativeLayout.BELOW :: Int
+  pure native align_baseline android.widget.RelativeLayout.ALIGN_BASELINE :: Int
+  pure native align_left android.widget.RelativeLayout.ALIGN_LEFT :: Int
+  pure native align_top android.widget.RelativeLayout.ALIGN_TOP :: Int
+  pure native align_right android.widget.RelativeLayout.ALIGN_RIGHT :: Int
+  pure native align_bottom android.widget.RelativeLayout.ALIGN_BOTTOM :: Int
+  pure native align_parent_left android.widget.RelativeLayout.ALIGN_PARENT_LEFT :: Int
+  pure native align_parent_top android.widget.RelativeLayout.ALIGN_PARENT_TOP :: Int
+  pure native align_parent_right android.widget.RelativeLayout.ALIGN_PARENT_RIGHT :: Int
+  pure native align_parent_bottom android.widget.RelativeLayout.ALIGN_PARENT_BOTTOM :: Int
+  pure native center_in_parent android.widget.RelativeLayout.CENTER_IN_PARENT :: Int
+  pure native center_horizontal android.widget.RelativeLayout.CENTER_HORIZONTAL :: Int
+  pure native center_vertical android.widget.RelativeLayout.CENTER_VERTICAL :: Int
+  pure native start_of android.widget.RelativeLayout.START_OF :: Int
+  pure native end_of android.widget.RelativeLayout.END_OF :: Int
+  pure native align_start android.widget.RelativeLayout.ALIGN_START :: Int
+  pure native align_end android.widget.RelativeLayout.ALIGN_END :: Int
+  pure native align_parent_start android.widget.RelativeLayout.ALIGN_PARENT_START :: Int
+  pure native align_parent_end android.widget.RelativeLayout.ALIGN_PARENT_END :: Int
+
+  native new :: Context -> AttributeSet -> Int -> ST s RelativeLayout
+              | Context -> AttributeSet -> ST s RelativeLayout
+              | Context -> ST s RelativeLayout
+
+  pure native dispatchPopulateAccessibilityEvent :: RelativeLayout -> AccessibilityEvent -> Bool
+
+  pure native generateLayoutParams :: RelativeLayout -> AttributeSet -> RelativeLayout_LayoutParams
+
+  pure native getBaseline :: RelativeLayout -> Int
+
+  pure native getGravity :: RelativeLayout -> Int
+
+  native onInitializeAccessibilityEvent :: RelativeLayout -> AccessibilityEvent -> ST s ()
+
+  native onInitializeAccessibilityNodeInfo :: RelativeLayout -> AccessibilityNodeInfo -> ST s ()
+
+  native requestLayout :: RelativeLayout -> ST s ()
+
+  native setGravity :: RelativeLayout -> Int -> ST s ()
+
+  native setHorizontalGravity :: RelativeLayout -> Int -> ST s ()
+
+  native setIgnoreGravity :: RelativeLayout -> Int -> ST s ()
+
+  native setVerticalGravity :: RelativeLayout -> Int -> ST s ()
+
+  pure native shouldDelayChildPressedState :: RelativeLayout -> Bool
+
+
+
+-}

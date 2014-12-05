@@ -1,0 +1,23 @@
+package frege.android.view.WindowManager where
+
+import frege.android.view.Display
+import frege.android.view.View
+
+data WindowManager = pure native android.view.WindowManager where
+
+
+  native getDefaultDisplay  :: WindowManager -> IOMutable Display
+
+  native removeViewImmediate  :: WindowManager -> MutableIO View -> IO ( )
+
+
+{-
+data WindowManager = pure native android.view.WindowManager where
+
+  native getDefaultDisplay :: WindowManager -> IOMutable Display
+
+  native removeViewImmediate :: WindowManager -> MutableIO View -> IO ()
+
+
+
+-}
