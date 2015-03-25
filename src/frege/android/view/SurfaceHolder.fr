@@ -1,77 +1,50 @@
 package frege.android.view.SurfaceHolder where
 
+import frege.android.graphics.Canvas
 import frege.android.graphics.Rect
+import frege.android.view.Surface
 
-data SurfaceHolder = pure native android.view.SurfaceHolder where
-
-
-  pure native surface_type_normal  android.view.SurfaceHolder.SURFACE_TYPE_NORMAL :: Int
-
-  pure native surface_type_hardware  android.view.SurfaceHolder.SURFACE_TYPE_HARDWARE :: Int
-
-  pure native surface_type_gpu  android.view.SurfaceHolder.SURFACE_TYPE_GPU :: Int
-
-  pure native surface_type_push_buffers  android.view.SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS :: Int
-
-{-   native addCallback  :: -- ["SurfaceHolder_Callback"] -- SurfaceHolder -> SurfaceHolder_Callback -> ST s ( ) -}
-
-{-   pure native getSurface  :: -- ["Surface"] -- SurfaceHolder -> Surface -}
-
-  native getSurfaceFrame  :: SurfaceHolder -> STMutable s Rect
-
-  pure native isCreating  :: SurfaceHolder -> Bool
-
-{-   native lockCanvas  :: -- ["Canvas"] -- SurfaceHolder -> ST s Canvas
-        -- ["Canvas"] -- SurfaceHolder -> Mutable s Rect -> ST s Canvas -}
-
-{-   native removeCallback  :: -- ["SurfaceHolder_Callback"] -- SurfaceHolder -> SurfaceHolder_Callback -> ST s ( ) -}
-
-  native setFixedSize  :: SurfaceHolder -> Int -> Int -> ST s ( )
-
-  native setFormat  :: SurfaceHolder -> Int -> ST s ( )
-
-  native setKeepScreenOn  :: SurfaceHolder -> Bool -> ST s ( )
-
-  native setSizeFromLayout  :: SurfaceHolder -> ST s ( )
-
-  native setType  :: SurfaceHolder -> Int -> ST s ( )
-
-{-   native unlockCanvasAndPost  :: -- ["Canvas"] -- SurfaceHolder -> Canvas -> ST s ( ) -}
+data SurfaceHolder_Callback = pure native android.view.SurfaceHolder.Callback where
 
 
-{-
-data SurfaceHolder = pure native android.view.SurfaceHolder where
+  native surfaceChanged :: SurfaceHolder_Callback -> MutableIO SurfaceHolder -> Int -> Int -> Int -> IO ()
+
+  native surfaceCreated :: SurfaceHolder_Callback -> MutableIO SurfaceHolder -> IO ()
+
+  native surfaceDestroyed :: SurfaceHolder_Callback -> MutableIO SurfaceHolder -> IO ()
+{-  -}
+
+data SurfaceHolder =  native android.view.SurfaceHolder where
 
   pure native surface_type_normal android.view.SurfaceHolder.SURFACE_TYPE_NORMAL :: Int
   pure native surface_type_hardware android.view.SurfaceHolder.SURFACE_TYPE_HARDWARE :: Int
   pure native surface_type_gpu android.view.SurfaceHolder.SURFACE_TYPE_GPU :: Int
   pure native surface_type_push_buffers android.view.SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS :: Int
 
-  native addCallback :: SurfaceHolder -> SurfaceHolder_Callback -> ST s ()
+  native addCallback :: MutableIO SurfaceHolder -> SurfaceHolder_Callback -> IO ()
 
-  pure native getSurface :: SurfaceHolder -> Surface
+  native getSurface :: MutableIO SurfaceHolder -> IOMutable Surface
 
-  native getSurfaceFrame :: SurfaceHolder -> STMutable s Rect
+  native getSurfaceFrame :: MutableIO SurfaceHolder -> IOMutable Rect
 
-  pure native isCreating :: SurfaceHolder -> Bool
+  native isCreating :: MutableIO SurfaceHolder -> IO Bool
 
-  native lockCanvas :: SurfaceHolder -> ST s Canvas
-                     | SurfaceHolder -> Mutable s Rect -> ST s Canvas
+  native lockCanvas :: MutableIO SurfaceHolder -> IOMutable Canvas
+          | MutableIO SurfaceHolder -> MutableIO Rect -> IOMutable Canvas
 
-  native removeCallback :: SurfaceHolder -> SurfaceHolder_Callback -> ST s ()
+  native removeCallback :: MutableIO SurfaceHolder -> SurfaceHolder_Callback -> IO ()
 
-  native setFixedSize :: SurfaceHolder -> Int -> Int -> ST s ()
+  native setFixedSize :: MutableIO SurfaceHolder -> Int -> Int -> IO ()
 
-  native setFormat :: SurfaceHolder -> Int -> ST s ()
+  native setFormat :: MutableIO SurfaceHolder -> Int -> IO ()
 
-  native setKeepScreenOn :: SurfaceHolder -> Bool -> ST s ()
+  native setKeepScreenOn :: MutableIO SurfaceHolder -> Bool -> IO ()
 
-  native setSizeFromLayout :: SurfaceHolder -> ST s ()
+  native setSizeFromLayout :: MutableIO SurfaceHolder -> IO ()
 
-  native setType :: SurfaceHolder -> Int -> ST s ()
+  native setType :: MutableIO SurfaceHolder -> Int -> IO ()
 
-  native unlockCanvasAndPost :: SurfaceHolder -> Canvas -> ST s ()
+  native unlockCanvasAndPost :: MutableIO SurfaceHolder -> MutableIO Canvas -> IO ()
+{-  -}
 
 
-
--}

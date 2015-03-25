@@ -5,21 +5,10 @@ import frege.android.util.AttributeSet
 
 data CycleInterpolator = pure native android.view.animation.CycleInterpolator where
 
-
-  native new  :: Context -> AttributeSet -> ST s CycleInterpolator
-        | Float -> ST s CycleInterpolator
-
-  pure native getInterpolation  :: CycleInterpolator -> Float -> Float
-
-
-{-
-data CycleInterpolator = pure native android.view.animation.CycleInterpolator where
-
-  native new :: Context -> AttributeSet -> ST s CycleInterpolator
+  native new :: MutableIO Context -> AttributeSet -> IO CycleInterpolator
               | Float -> ST s CycleInterpolator
 
   pure native getInterpolation :: CycleInterpolator -> Float -> Float
+{-  -}
 
 
-
--}

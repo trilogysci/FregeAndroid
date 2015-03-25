@@ -1,75 +1,32 @@
 package frege.android.util.AttributeSet where
 
+
 data AttributeSet = pure native android.util.AttributeSet where
 
-
-  pure native getAttributeBooleanValue  :: AttributeSet -> Int -> Bool -> Bool
-        | AttributeSet -> String -> String -> Bool -> Bool
-
-  pure native getAttributeCount  :: AttributeSet -> Int
-
-  pure native getAttributeFloatValue  :: AttributeSet -> Int -> Float -> Float
-        | AttributeSet -> String -> String -> Float -> Float
-
-  pure native getAttributeIntValue  :: AttributeSet -> String -> String -> Int -> Int
-        | AttributeSet -> Int -> Int -> Int
-
-{-   native getAttributeListValue  :: -- ["JArray"] -- AttributeSet -> Int -> Mutable s ( JArray String ) -> Int -> ST s Int
-        -- ["JArray"] -- AttributeSet -> String -> String -> Mutable s ( JArray String ) -> Int -> ST s Int -}
-
-  pure native getAttributeName  :: AttributeSet -> Int -> String
-
-  pure native getAttributeNameResource  :: AttributeSet -> Int -> Int
-
-  pure native getAttributeResourceValue  :: AttributeSet -> Int -> Int -> Int
-        | AttributeSet -> String -> String -> Int -> Int
-
-  pure native getAttributeUnsignedIntValue  :: AttributeSet -> Int -> Int -> Int
-        | AttributeSet -> String -> String -> Int -> Int
-
-  pure native getAttributeValue  :: AttributeSet -> String -> String -> String
-        | AttributeSet -> Int -> String
-
-  pure native getClassAttribute  :: AttributeSet -> String
-
-  pure native getIdAttribute  :: AttributeSet -> String
-
-  pure native getIdAttributeResourceValue  :: AttributeSet -> Int -> Int
-
-  pure native getPositionDescription  :: AttributeSet -> String
-
-  pure native getStyleAttribute  :: AttributeSet -> Int
-
-
-{-
-data AttributeSet = pure native android.util.AttributeSet where
 
   pure native getAttributeBooleanValue :: AttributeSet -> Int -> Bool -> Bool
-                                        | AttributeSet -> String -> String -> Bool -> Bool
+          | AttributeSet -> String -> String -> Bool -> Bool
 
   pure native getAttributeCount :: AttributeSet -> Int
 
-  pure native getAttributeFloatValue :: AttributeSet -> Int -> Float -> Float
-                                      | AttributeSet -> String -> String -> Float -> Float
+  pure native getAttributeFloatValue :: AttributeSet -> String -> String -> Float -> Float
+          | AttributeSet -> Int -> Float -> Float
 
   pure native getAttributeIntValue :: AttributeSet -> String -> String -> Int -> Int
-                                    | AttributeSet -> Int -> Int -> Int
-
-  native getAttributeListValue :: AttributeSet -> Int -> Mutable s (JArray String) -> Int -> ST s Int
-                                | AttributeSet -> String -> String -> Mutable s (JArray String) -> Int -> ST s Int
+          | AttributeSet -> Int -> Int -> Int
 
   pure native getAttributeName :: AttributeSet -> Int -> String
 
   pure native getAttributeNameResource :: AttributeSet -> Int -> Int
 
-  pure native getAttributeResourceValue :: AttributeSet -> Int -> Int -> Int
-                                         | AttributeSet -> String -> String -> Int -> Int
+  pure native getAttributeResourceValue :: AttributeSet -> String -> String -> Int -> Int
+          | AttributeSet -> Int -> Int -> Int
 
-  pure native getAttributeUnsignedIntValue :: AttributeSet -> Int -> Int -> Int
-                                            | AttributeSet -> String -> String -> Int -> Int
+  pure native getAttributeUnsignedIntValue :: AttributeSet -> String -> String -> Int -> Int
+          | AttributeSet -> Int -> Int -> Int
 
-  pure native getAttributeValue :: AttributeSet -> String -> String -> String
-                                 | AttributeSet -> Int -> String
+  pure native getAttributeValue :: AttributeSet -> Int -> String
+          | AttributeSet -> String -> String -> String
 
   pure native getClassAttribute :: AttributeSet -> String
 
@@ -80,7 +37,6 @@ data AttributeSet = pure native android.util.AttributeSet where
   pure native getPositionDescription :: AttributeSet -> String
 
   pure native getStyleAttribute :: AttributeSet -> Int
+{-  -}
 
 
-
--}

@@ -1,185 +1,103 @@
 package frege.android.widget.ImageView where
 
 import frege.android.content.Context
-import frege.android.util.AttributeSet
-import frege.android.graphics.drawable.Drawable
+import frege.android.graphics.Bitmap
+import frege.android.graphics.ColorFilter
 import frege.android.graphics.Matrix
+import frege.android.graphics.PorterDuff
+import frege.android.graphics.drawable.Drawable
+import frege.android.net.Uri
+import frege.android.util.AttributeSet
 
-data ImageView = pure native android.widget.ImageView where
+data ImageView_ScaleType = pure native android.widget.ImageView.ScaleType where
 
+  pure native center android.widget.ImageView.ScaleType.CENTER :: ImageView_ScaleType
+  pure native center_crop android.widget.ImageView.ScaleType.CENTER_CROP :: ImageView_ScaleType
+  pure native center_inside android.widget.ImageView.ScaleType.CENTER_INSIDE :: ImageView_ScaleType
+  pure native fit_center android.widget.ImageView.ScaleType.FIT_CENTER :: ImageView_ScaleType
+  pure native fit_end android.widget.ImageView.ScaleType.FIT_END :: ImageView_ScaleType
+  pure native fit_start android.widget.ImageView.ScaleType.FIT_START :: ImageView_ScaleType
+  pure native fit_xy android.widget.ImageView.ScaleType.FIT_XY :: ImageView_ScaleType
+  pure native matrix android.widget.ImageView.ScaleType.MATRIX :: ImageView_ScaleType
 
-  native new  :: Context -> AttributeSet -> Int -> ST s ImageView
-        | Context -> AttributeSet -> ST s ImageView
-        | Context -> ST s ImageView
+  pure native valueOf android.widget.ImageView.ScaleType.valueOf :: String -> ImageView_ScaleType
+{- derive Serializable ImageView_ScaleType -}
 
-  native clearColorFilter  :: ImageView -> ST s ( )
+data ImageView =  native android.widget.ImageView where
 
-  pure native getAdjustViewBounds  :: ImageView -> Bool
+  native new :: MutableIO Context -> IOMutable ImageView
+              | MutableIO Context -> AttributeSet -> IOMutable ImageView
+              | MutableIO Context -> AttributeSet -> Int -> IOMutable ImageView
 
-  pure native getBaseline  :: ImageView -> Int
+  native clearColorFilter :: MutableIO ImageView -> IO ()
 
-  pure native getBaselineAlignBottom  :: ImageView -> Bool
+  native getAdjustViewBounds :: MutableIO ImageView -> IO Bool
 
-{-   pure native getColorFilter  :: -- ["ColorFilter"] -- ImageView -> ColorFilter -}
+  native getBaseline :: MutableIO ImageView -> IO Int
 
-  pure native getCropToPadding  :: ImageView -> Bool
+  native getBaselineAlignBottom :: MutableIO ImageView -> IO Bool
 
-  pure native getDrawable  :: ImageView -> Drawable
+  native getColorFilter :: MutableIO ImageView -> IO ColorFilter
 
-  pure native getImageAlpha  :: ImageView -> Int
+  native getCropToPadding :: MutableIO ImageView -> IO Bool
 
-  native getImageMatrix  :: ImageView -> STMutable s Matrix
+  native getDrawable :: MutableIO ImageView -> IO Drawable
 
-  pure native getMaxHeight  :: ImageView -> Int
+  native getImageAlpha :: MutableIO ImageView -> IO Int
 
-  pure native getMaxWidth  :: ImageView -> Int
+  native getImageMatrix :: MutableIO ImageView -> IOMutable Matrix
 
-{-   pure native getScaleType  :: -- ["ImageView_ScaleType"] -- ImageView -> ImageView_ScaleType -}
+  native getMaxHeight :: MutableIO ImageView -> IO Int
 
-  pure native hasOverlappingRendering  :: ImageView -> Bool
+  native getMaxWidth :: MutableIO ImageView -> IO Int
 
-  native invalidateDrawable  :: ImageView -> Drawable -> ST s ( )
+  native getScaleType :: MutableIO ImageView -> IO ImageView_ScaleType
 
-  native jumpDrawablesToCurrentState  :: ImageView -> ST s ( )
+  native hasOverlappingRendering :: MutableIO ImageView -> IO Bool
 
-{-   native onCreateDrawableState  :: -- ["JArray"] -- ImageView -> Int -> STMutable s ( JArray Int ) -}
+  native invalidateDrawable :: MutableIO ImageView -> Drawable -> IO ()
 
-{-   native onInitializeAccessibilityEvent  :: -- ["AccessibilityEvent"] -- ImageView -> AccessibilityEvent -> ST s ( ) -}
+  native jumpDrawablesToCurrentState :: MutableIO ImageView -> IO ()
 
-{-   native onInitializeAccessibilityNodeInfo  :: -- ["AccessibilityNodeInfo"] -- ImageView -> AccessibilityNodeInfo -> ST s ( ) -}
+  native onRtlPropertiesChanged :: MutableIO ImageView -> Int -> IO ()
 
-{-   native onPopulateAccessibilityEvent  :: -- ["AccessibilityEvent"] -- ImageView -> AccessibilityEvent -> ST s ( ) -}
+  native setAdjustViewBounds :: MutableIO ImageView -> Bool -> IO ()
 
-  native onRtlPropertiesChanged  :: ImageView -> Int -> ST s ( )
+  native setAlpha :: MutableIO ImageView -> Int -> IO ()
 
-  native setAdjustViewBounds  :: ImageView -> Bool -> ST s ( )
+  native setBaseline :: MutableIO ImageView -> Int -> IO ()
 
-  native setAlpha  :: ImageView -> Int -> ST s ( )
+  native setBaselineAlignBottom :: MutableIO ImageView -> Bool -> IO ()
 
-  native setBaseline  :: ImageView -> Int -> ST s ( )
+  native setColorFilter :: MutableIO ImageView -> ColorFilter -> IO ()
+          | MutableIO ImageView -> Int -> IO ()
+          | MutableIO ImageView -> Int -> PorterDuff_Mode -> IO ()
 
-  native setBaselineAlignBottom  :: ImageView -> Bool -> ST s ( )
+  native setCropToPadding :: MutableIO ImageView -> Bool -> IO ()
 
-  native setColorFilter  :: -- ["ColorFilter"] -- ImageView -> ColorFilter -> ST s ( )
-        ImageView -> Int -> ST s ( )
-        -- ["PorterDuff_Mode"] -- | ImageView -> Int -> PorterDuff_Mode -> ST s ( )
+  native setImageAlpha :: MutableIO ImageView -> Int -> IO ()
 
-  native setCropToPadding  :: ImageView -> Bool -> ST s ( )
+  native setImageBitmap :: MutableIO ImageView -> Bitmap -> IO ()
 
-  native setImageAlpha  :: ImageView -> Int -> ST s ( )
+  native setImageDrawable :: MutableIO ImageView -> Drawable -> IO ()
 
-{-   native setImageBitmap  :: -- ["Bitmap"] -- ImageView -> Bitmap -> ST s ( ) -}
+  native setImageLevel :: MutableIO ImageView -> Int -> IO ()
 
-  native setImageDrawable  :: ImageView -> Drawable -> ST s ( )
+  native setImageMatrix :: MutableIO ImageView -> MutableIO Matrix -> IO ()
 
-  native setImageLevel  :: ImageView -> Int -> ST s ( )
+  native setImageResource :: MutableIO ImageView -> Int -> IO ()
 
-  native setImageMatrix  :: ImageView -> Mutable s Matrix -> ST s ( )
+  native setImageURI :: MutableIO ImageView -> Uri -> IO ()
 
-  native setImageResource  :: ImageView -> Int -> ST s ( )
+  native setMaxHeight :: MutableIO ImageView -> Int -> IO ()
 
-{-   native setImageState  :: -- ["JArray"] -- ImageView -> Mutable s ( JArray Int ) -> Bool -> ST s ( ) -}
+  native setMaxWidth :: MutableIO ImageView -> Int -> IO ()
 
-{-   native setImageURI  :: -- ["Uri"] -- ImageView -> Uri -> ST s ( ) -}
+  native setScaleType :: MutableIO ImageView -> ImageView_ScaleType -> IO ()
 
-  native setMaxHeight  :: ImageView -> Int -> ST s ( )
+  native setSelected :: MutableIO ImageView -> Bool -> IO ()
 
-  native setMaxWidth  :: ImageView -> Int -> ST s ( )
+  native setVisibility :: MutableIO ImageView -> Int -> IO ()
+{-  -}
 
-{-   native setScaleType  :: -- ["ImageView_ScaleType"] -- ImageView -> ImageView_ScaleType -> ST s ( ) -}
 
-  native setSelected  :: ImageView -> Bool -> ST s ( )
-
-  native setVisibility  :: ImageView -> Int -> ST s ( )
-
-
-{-
-data ImageView = pure native android.widget.ImageView where
-
-  native new :: Context -> AttributeSet -> Int -> ST s ImageView
-              | Context -> AttributeSet -> ST s ImageView
-              | Context -> ST s ImageView
-
-  native clearColorFilter :: ImageView -> ST s ()
-
-  pure native getAdjustViewBounds :: ImageView -> Bool
-
-  pure native getBaseline :: ImageView -> Int
-
-  pure native getBaselineAlignBottom :: ImageView -> Bool
-
-  pure native getColorFilter :: ImageView -> ColorFilter
-
-  pure native getCropToPadding :: ImageView -> Bool
-
-  pure native getDrawable :: ImageView -> Drawable
-
-  pure native getImageAlpha :: ImageView -> Int
-
-  native getImageMatrix :: ImageView -> STMutable s Matrix
-
-  pure native getMaxHeight :: ImageView -> Int
-
-  pure native getMaxWidth :: ImageView -> Int
-
-  pure native getScaleType :: ImageView -> ImageView_ScaleType
-
-  pure native hasOverlappingRendering :: ImageView -> Bool
-
-  native invalidateDrawable :: ImageView -> Drawable -> ST s ()
-
-  native jumpDrawablesToCurrentState :: ImageView -> ST s ()
-
-  native onCreateDrawableState :: ImageView -> Int -> STMutable s (JArray Int)
-
-  native onInitializeAccessibilityEvent :: ImageView -> AccessibilityEvent -> ST s ()
-
-  native onInitializeAccessibilityNodeInfo :: ImageView -> AccessibilityNodeInfo -> ST s ()
-
-  native onPopulateAccessibilityEvent :: ImageView -> AccessibilityEvent -> ST s ()
-
-  native onRtlPropertiesChanged :: ImageView -> Int -> ST s ()
-
-  native setAdjustViewBounds :: ImageView -> Bool -> ST s ()
-
-  native setAlpha :: ImageView -> Int -> ST s ()
-
-  native setBaseline :: ImageView -> Int -> ST s ()
-
-  native setBaselineAlignBottom :: ImageView -> Bool -> ST s ()
-
-  native setColorFilter :: ImageView -> ColorFilter -> ST s ()
-                         | ImageView -> Int -> ST s ()
-                         | ImageView -> Int -> PorterDuff_Mode -> ST s ()
-
-  native setCropToPadding :: ImageView -> Bool -> ST s ()
-
-  native setImageAlpha :: ImageView -> Int -> ST s ()
-
-  native setImageBitmap :: ImageView -> Bitmap -> ST s ()
-
-  native setImageDrawable :: ImageView -> Drawable -> ST s ()
-
-  native setImageLevel :: ImageView -> Int -> ST s ()
-
-  native setImageMatrix :: ImageView -> Mutable s Matrix -> ST s ()
-
-  native setImageResource :: ImageView -> Int -> ST s ()
-
-  native setImageState :: ImageView -> Mutable s (JArray Int) -> Bool -> ST s ()
-
-  native setImageURI :: ImageView -> Uri -> ST s ()
-
-  native setMaxHeight :: ImageView -> Int -> ST s ()
-
-  native setMaxWidth :: ImageView -> Int -> ST s ()
-
-  native setScaleType :: ImageView -> ImageView_ScaleType -> ST s ()
-
-  native setSelected :: ImageView -> Bool -> ST s ()
-
-  native setVisibility :: ImageView -> Int -> ST s ()
-
-
-
--}

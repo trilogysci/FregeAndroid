@@ -1,146 +1,77 @@
 package frege.android.media.MediaPlayer where
 
 import frege.android.content.Context
+import frege.android.media.MediaFormat
+import frege.android.media.TimedText
+import frege.android.net.Uri
+import frege.android.view.Surface
 import frege.android.view.SurfaceHolder
+import frege.java.io.IOException
 
-data MediaPlayer = pure native android.media.MediaPlayer where
+data MediaPlayer_OnBufferingUpdateListener = pure native android.media.MediaPlayer.OnBufferingUpdateListener where
 
 
-  pure native video_scaling_mode_scale_to_fit  android.media.MediaPlayer.VIDEO_SCALING_MODE_SCALE_TO_FIT :: Int
+  native onBufferingUpdate :: MediaPlayer_OnBufferingUpdateListener -> MediaPlayer -> Int -> ST s ()
+{-  -}
 
-  pure native video_scaling_mode_scale_to_fit_with_cropping  android.media.MediaPlayer.VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING :: Int
+data MediaPlayer_OnCompletionListener = pure native android.media.MediaPlayer.OnCompletionListener where
 
-  pure native media_mimetype_text_subrip  android.media.MediaPlayer.MEDIA_MIMETYPE_TEXT_SUBRIP :: String
 
-  pure native media_error_unknown  android.media.MediaPlayer.MEDIA_ERROR_UNKNOWN :: Int
+  native onCompletion :: MediaPlayer_OnCompletionListener -> MediaPlayer -> ST s ()
+{-  -}
 
-  pure native media_error_server_died  android.media.MediaPlayer.MEDIA_ERROR_SERVER_DIED :: Int
+data MediaPlayer_OnErrorListener = pure native android.media.MediaPlayer.OnErrorListener where
 
-  pure native media_error_not_valid_for_progressive_playback  android.media.MediaPlayer.MEDIA_ERROR_NOT_VALID_FOR_PROGRESSIVE_PLAYBACK :: Int
 
-  pure native media_error_io  android.media.MediaPlayer.MEDIA_ERROR_IO :: Int
+  pure native onError :: MediaPlayer_OnErrorListener -> MediaPlayer -> Int -> Int -> Bool
+{-  -}
 
-  pure native media_error_malformed  android.media.MediaPlayer.MEDIA_ERROR_MALFORMED :: Int
+data MediaPlayer_OnInfoListener = pure native android.media.MediaPlayer.OnInfoListener where
 
-  pure native media_error_unsupported  android.media.MediaPlayer.MEDIA_ERROR_UNSUPPORTED :: Int
 
-  pure native media_error_timed_out  android.media.MediaPlayer.MEDIA_ERROR_TIMED_OUT :: Int
+  pure native onInfo :: MediaPlayer_OnInfoListener -> MediaPlayer -> Int -> Int -> Bool
+{-  -}
 
-  pure native media_info_unknown  android.media.MediaPlayer.MEDIA_INFO_UNKNOWN :: Int
+data MediaPlayer_OnPreparedListener = pure native android.media.MediaPlayer.OnPreparedListener where
 
-  pure native media_info_video_rendering_start  android.media.MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START :: Int
 
-  pure native media_info_video_track_lagging  android.media.MediaPlayer.MEDIA_INFO_VIDEO_TRACK_LAGGING :: Int
+  native onPrepared :: MediaPlayer_OnPreparedListener -> MediaPlayer -> ST s ()
+{-  -}
 
-  pure native media_info_buffering_start  android.media.MediaPlayer.MEDIA_INFO_BUFFERING_START :: Int
+data MediaPlayer_OnSeekCompleteListener = pure native android.media.MediaPlayer.OnSeekCompleteListener where
 
-  pure native media_info_buffering_end  android.media.MediaPlayer.MEDIA_INFO_BUFFERING_END :: Int
 
-  pure native media_info_bad_interleaving  android.media.MediaPlayer.MEDIA_INFO_BAD_INTERLEAVING :: Int
+  native onSeekComplete :: MediaPlayer_OnSeekCompleteListener -> MediaPlayer -> ST s ()
+{-  -}
 
-  pure native media_info_not_seekable  android.media.MediaPlayer.MEDIA_INFO_NOT_SEEKABLE :: Int
+data MediaPlayer_OnTimedTextListener = pure native android.media.MediaPlayer.OnTimedTextListener where
 
-  pure native media_info_metadata_update  android.media.MediaPlayer.MEDIA_INFO_METADATA_UPDATE :: Int
 
-  pure native media_info_unsupported_subtitle  android.media.MediaPlayer.MEDIA_INFO_UNSUPPORTED_SUBTITLE :: Int
+  native onTimedText :: MediaPlayer_OnTimedTextListener -> MediaPlayer -> TimedText -> ST s ()
+{-  -}
 
-  pure native media_info_subtitle_timed_out  android.media.MediaPlayer.MEDIA_INFO_SUBTITLE_TIMED_OUT :: Int
+data MediaPlayer_OnVideoSizeChangedListener = pure native android.media.MediaPlayer.OnVideoSizeChangedListener where
 
-  native new  :: ( ) -> ST s MediaPlayer
 
-{-   native addTimedTextSource  :: -- ["IOException"] -- MediaPlayer -> String -> String -> ST s ( ) throws IOException
-        -- ["FileDescriptor"] -- MediaPlayer -> FileDescriptor -> String -> ST s ( )
-        -- ["IOException","Uri"] -- MediaPlayer -> Context -> Uri -> String -> ST s ( ) throws IOException
-        -- ["FileDescriptor"] -- MediaPlayer -> FileDescriptor -> Long -> Long -> String -> ST s ( ) -}
+  native onVideoSizeChanged :: MediaPlayer_OnVideoSizeChangedListener -> MediaPlayer -> Int -> Int -> ST s ()
+{-  -}
 
-  native attachAuxEffect  :: MediaPlayer -> Int -> ST s ( )
+data MediaPlayer_TrackInfo = pure native android.media.MediaPlayer.TrackInfo where
 
-  pure native create  android.media.MediaPlayer.create :: Context -> Int -> MediaPlayer
-        -- ["Uri"] -- | Context -> Uri -> MediaPlayer
-        -- ["Uri"] -- | Context -> Uri -> SurfaceHolder -> MediaPlayer
+  pure native media_track_type_unknown android.media.MediaPlayer.TrackInfo.MEDIA_TRACK_TYPE_UNKNOWN :: Int
+  pure native media_track_type_video android.media.MediaPlayer.TrackInfo.MEDIA_TRACK_TYPE_VIDEO :: Int
+  pure native media_track_type_audio android.media.MediaPlayer.TrackInfo.MEDIA_TRACK_TYPE_AUDIO :: Int
+  pure native media_track_type_timedtext android.media.MediaPlayer.TrackInfo.MEDIA_TRACK_TYPE_TIMEDTEXT :: Int
 
-  native deselectTrack  :: MediaPlayer -> Int -> ST s ( )
+  pure native describeContents :: MediaPlayer_TrackInfo -> Int
 
-  pure native getAudioSessionId  :: MediaPlayer -> Int
+  pure native getFormat :: MediaPlayer_TrackInfo -> MediaFormat
 
-  pure native getCurrentPosition  :: MediaPlayer -> Int
+  pure native getLanguage :: MediaPlayer_TrackInfo -> String
 
-  pure native getDuration  :: MediaPlayer -> Int
+  pure native getTrackType :: MediaPlayer_TrackInfo -> Int
+{-  -}
 
-{-   native getTrackInfo  :: -- ["JArray","MediaPlayer_TrackInfo"] -- MediaPlayer -> STMutable s ( JArray MediaPlayer_TrackInfo ) -}
-
-  pure native getVideoHeight  :: MediaPlayer -> Int
-
-  pure native getVideoWidth  :: MediaPlayer -> Int
-
-  pure native isLooping  :: MediaPlayer -> Bool
-
-  pure native isPlaying  :: MediaPlayer -> Bool
-
-  native pause  :: MediaPlayer -> ST s ( )
-
-{-   native prepare  :: -- ["IOException"] -- MediaPlayer -> ST s ( ) throws IOException -}
-
-  native prepareAsync  :: MediaPlayer -> ST s ( )
-
-  native release  :: MediaPlayer -> ST s ( )
-
-  native reset  :: MediaPlayer -> ST s ( )
-
-  native seekTo  :: MediaPlayer -> Int -> ST s ( )
-
-  native selectTrack  :: MediaPlayer -> Int -> ST s ( )
-
-  native setAudioSessionId  :: MediaPlayer -> Int -> ST s ( )
-
-  native setAudioStreamType  :: MediaPlayer -> Int -> ST s ( )
-
-  native setAuxEffectSendLevel  :: MediaPlayer -> Float -> ST s ( )
-
-{-   native setDataSource  :: -- ["FileDescriptor","IOException"] -- MediaPlayer -> FileDescriptor -> Long -> Long -> ST s ( ) throws IOException
-        -- ["FileDescriptor","IOException"] -- MediaPlayer -> FileDescriptor -> ST s ( ) throws IOException
-        -- ["IOException"] -- MediaPlayer -> String -> ST s ( ) throws IOException
-        -- ["IOException","Map","Uri"] -- MediaPlayer -> Context -> Uri -> Mutable s ( Map String String ) -> ST s ( ) throws IOException
-        -- ["IOException","Uri"] -- MediaPlayer -> Context -> Uri -> ST s ( ) throws IOException -}
-
-  native setDisplay  :: MediaPlayer -> SurfaceHolder -> ST s ( )
-
-  native setLooping  :: MediaPlayer -> Bool -> ST s ( )
-
-  native setNextMediaPlayer  :: MediaPlayer -> MediaPlayer -> ST s ( )
-
-{-   native setOnBufferingUpdateListener  :: -- ["MediaPlayer_OnBufferingUpdateListener"] -- MediaPlayer -> MediaPlayer_OnBufferingUpdateListener -> ST s ( ) -}
-
-{-   native setOnCompletionListener  :: -- ["MediaPlayer_OnCompletionListener"] -- MediaPlayer -> MediaPlayer_OnCompletionListener -> ST s ( ) -}
-
-{-   native setOnErrorListener  :: -- ["MediaPlayer_OnErrorListener"] -- MediaPlayer -> MediaPlayer_OnErrorListener -> ST s ( ) -}
-
-{-   native setOnInfoListener  :: -- ["MediaPlayer_OnInfoListener"] -- MediaPlayer -> MediaPlayer_OnInfoListener -> ST s ( ) -}
-
-{-   native setOnPreparedListener  :: -- ["MediaPlayer_OnPreparedListener"] -- MediaPlayer -> MediaPlayer_OnPreparedListener -> ST s ( ) -}
-
-{-   native setOnSeekCompleteListener  :: -- ["MediaPlayer_OnSeekCompleteListener"] -- MediaPlayer -> MediaPlayer_OnSeekCompleteListener -> ST s ( ) -}
-
-{-   native setOnTimedTextListener  :: -- ["MediaPlayer_OnTimedTextListener"] -- MediaPlayer -> MediaPlayer_OnTimedTextListener -> ST s ( ) -}
-
-{-   native setOnVideoSizeChangedListener  :: -- ["MediaPlayer_OnVideoSizeChangedListener"] -- MediaPlayer -> MediaPlayer_OnVideoSizeChangedListener -> ST s ( ) -}
-
-  native setScreenOnWhilePlaying  :: MediaPlayer -> Bool -> ST s ( )
-
-{-   native setSurface  :: -- ["Surface"] -- MediaPlayer -> Surface -> ST s ( ) -}
-
-  native setVideoScalingMode  :: MediaPlayer -> Int -> ST s ( )
-
-  native setVolume  :: MediaPlayer -> Float -> Float -> ST s ( )
-
-  native setWakeMode  :: MediaPlayer -> Context -> Int -> ST s ( )
-
-  native start  :: MediaPlayer -> ST s ( )
-
-  native stop  :: MediaPlayer -> ST s ( )
-
-
-{-
 data MediaPlayer = pure native android.media.MediaPlayer where
 
   pure native video_scaling_mode_scale_to_fit android.media.MediaPlayer.VIDEO_SCALING_MODE_SCALE_TO_FIT :: Int
@@ -163,19 +94,16 @@ data MediaPlayer = pure native android.media.MediaPlayer where
   pure native media_info_metadata_update android.media.MediaPlayer.MEDIA_INFO_METADATA_UPDATE :: Int
   pure native media_info_unsupported_subtitle android.media.MediaPlayer.MEDIA_INFO_UNSUPPORTED_SUBTITLE :: Int
   pure native media_info_subtitle_timed_out android.media.MediaPlayer.MEDIA_INFO_SUBTITLE_TIMED_OUT :: Int
-
   native new :: () -> ST s MediaPlayer
 
-  native addTimedTextSource :: MediaPlayer -> String -> String -> ST s () throws IOException
-                             | MediaPlayer -> FileDescriptor -> String -> ST s ()
-                             | MediaPlayer -> Context -> Uri -> String -> ST s () throws IOException
-                             | MediaPlayer -> FileDescriptor -> Long -> Long -> String -> ST s ()
+  native addTimedTextSource :: MediaPlayer -> MutableIO Context -> Uri -> String -> IO () throws IOException
+          | MediaPlayer -> String -> String -> ST s () throws IOException
 
   native attachAuxEffect :: MediaPlayer -> Int -> ST s ()
 
-  pure native create android.media.MediaPlayer.create :: Context -> Int -> MediaPlayer
-                                                       | Context -> Uri -> MediaPlayer
-                                                       | Context -> Uri -> SurfaceHolder -> MediaPlayer
+  native create android.media.MediaPlayer.create :: MutableIO Context -> Int -> IO MediaPlayer
+          | MutableIO Context -> Uri -> IO MediaPlayer
+          | MutableIO Context -> Uri -> MutableIO SurfaceHolder -> IO MediaPlayer
 
   native deselectTrack :: MediaPlayer -> Int -> ST s ()
 
@@ -184,8 +112,6 @@ data MediaPlayer = pure native android.media.MediaPlayer where
   pure native getCurrentPosition :: MediaPlayer -> Int
 
   pure native getDuration :: MediaPlayer -> Int
-
-  native getTrackInfo :: MediaPlayer -> STMutable s (JArray MediaPlayer_TrackInfo)
 
   pure native getVideoHeight :: MediaPlayer -> Int
 
@@ -215,13 +141,10 @@ data MediaPlayer = pure native android.media.MediaPlayer where
 
   native setAuxEffectSendLevel :: MediaPlayer -> Float -> ST s ()
 
-  native setDataSource :: MediaPlayer -> FileDescriptor -> Long -> Long -> ST s () throws IOException
-                        | MediaPlayer -> FileDescriptor -> ST s () throws IOException
-                        | MediaPlayer -> String -> ST s () throws IOException
-                        | MediaPlayer -> Context -> Uri -> Mutable s (Map String String) -> ST s () throws IOException
-                        | MediaPlayer -> Context -> Uri -> ST s () throws IOException
+  native setDataSource :: MediaPlayer -> String -> ST s () throws IOException
+          | MediaPlayer -> MutableIO Context -> Uri -> IO () throws IOException
 
-  native setDisplay :: MediaPlayer -> SurfaceHolder -> ST s ()
+  native setDisplay :: MediaPlayer -> MutableIO SurfaceHolder -> IO ()
 
   native setLooping :: MediaPlayer -> Bool -> ST s ()
 
@@ -245,18 +168,17 @@ data MediaPlayer = pure native android.media.MediaPlayer where
 
   native setScreenOnWhilePlaying :: MediaPlayer -> Bool -> ST s ()
 
-  native setSurface :: MediaPlayer -> Surface -> ST s ()
+  native setSurface :: MediaPlayer -> MutableIO Surface -> IO ()
 
   native setVideoScalingMode :: MediaPlayer -> Int -> ST s ()
 
   native setVolume :: MediaPlayer -> Float -> Float -> ST s ()
 
-  native setWakeMode :: MediaPlayer -> Context -> Int -> ST s ()
+  native setWakeMode :: MediaPlayer -> MutableIO Context -> Int -> IO ()
 
   native start :: MediaPlayer -> ST s ()
 
   native stop :: MediaPlayer -> ST s ()
+{-  -}
 
 
-
--}

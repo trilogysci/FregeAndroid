@@ -1,653 +1,35 @@
 package frege.android.view.KeyEvent where
 
+import frege.android.view.KeyCharacterMap
 
-data KeyEvent = pure native android.view.KeyEvent where
+data KeyEvent_Callback = pure native android.view.KeyEvent.Callback where
 
 
-  pure native keycode_unknown  android.view.KeyEvent.KEYCODE_UNKNOWN :: Int
+  pure native onKeyDown :: KeyEvent_Callback -> Int -> KeyEvent -> Bool
 
-  pure native keycode_soft_left  android.view.KeyEvent.KEYCODE_SOFT_LEFT :: Int
+  pure native onKeyLongPress :: KeyEvent_Callback -> Int -> KeyEvent -> Bool
 
-  pure native keycode_soft_right  android.view.KeyEvent.KEYCODE_SOFT_RIGHT :: Int
+  pure native onKeyMultiple :: KeyEvent_Callback -> Int -> Int -> KeyEvent -> Bool
 
-  pure native keycode_home  android.view.KeyEvent.KEYCODE_HOME :: Int
+  pure native onKeyUp :: KeyEvent_Callback -> Int -> KeyEvent -> Bool
+{-  -}
 
-  pure native keycode_back  android.view.KeyEvent.KEYCODE_BACK :: Int
+data KeyEvent_DispatcherState = pure native android.view.KeyEvent.DispatcherState where
 
-  pure native keycode_call  android.view.KeyEvent.KEYCODE_CALL :: Int
+  native new :: () -> ST s KeyEvent_DispatcherState
 
-  pure native keycode_endcall  android.view.KeyEvent.KEYCODE_ENDCALL :: Int
+  native handleUpEvent :: KeyEvent_DispatcherState -> KeyEvent -> ST s ()
 
-  pure native keycode_0  android.view.KeyEvent.KEYCODE_0 :: Int
+  pure native isTracking :: KeyEvent_DispatcherState -> KeyEvent -> Bool
 
-  pure native keycode_1  android.view.KeyEvent.KEYCODE_1 :: Int
+  native performedLongPress :: KeyEvent_DispatcherState -> KeyEvent -> ST s ()
 
-  pure native keycode_2  android.view.KeyEvent.KEYCODE_2 :: Int
+  native reset :: KeyEvent_DispatcherState -> ST s ()
+          | KeyEvent_DispatcherState -> Object -> ST s ()
 
-  pure native keycode_3  android.view.KeyEvent.KEYCODE_3 :: Int
+  native startTracking :: KeyEvent_DispatcherState -> KeyEvent -> Object -> ST s ()
+{-  -}
 
-  pure native keycode_4  android.view.KeyEvent.KEYCODE_4 :: Int
-
-  pure native keycode_5  android.view.KeyEvent.KEYCODE_5 :: Int
-
-  pure native keycode_6  android.view.KeyEvent.KEYCODE_6 :: Int
-
-  pure native keycode_7  android.view.KeyEvent.KEYCODE_7 :: Int
-
-  pure native keycode_8  android.view.KeyEvent.KEYCODE_8 :: Int
-
-  pure native keycode_9  android.view.KeyEvent.KEYCODE_9 :: Int
-
-  pure native keycode_star  android.view.KeyEvent.KEYCODE_STAR :: Int
-
-  pure native keycode_pound  android.view.KeyEvent.KEYCODE_POUND :: Int
-
-  pure native keycode_dpad_up  android.view.KeyEvent.KEYCODE_DPAD_UP :: Int
-
-  pure native keycode_dpad_down  android.view.KeyEvent.KEYCODE_DPAD_DOWN :: Int
-
-  pure native keycode_dpad_left  android.view.KeyEvent.KEYCODE_DPAD_LEFT :: Int
-
-  pure native keycode_dpad_right  android.view.KeyEvent.KEYCODE_DPAD_RIGHT :: Int
-
-  pure native keycode_dpad_center  android.view.KeyEvent.KEYCODE_DPAD_CENTER :: Int
-
-  pure native keycode_volume_up  android.view.KeyEvent.KEYCODE_VOLUME_UP :: Int
-
-  pure native keycode_volume_down  android.view.KeyEvent.KEYCODE_VOLUME_DOWN :: Int
-
-  pure native keycode_power  android.view.KeyEvent.KEYCODE_POWER :: Int
-
-  pure native keycode_camera  android.view.KeyEvent.KEYCODE_CAMERA :: Int
-
-  pure native keycode_clear  android.view.KeyEvent.KEYCODE_CLEAR :: Int
-
-  pure native keycode_a  android.view.KeyEvent.KEYCODE_A :: Int
-
-  pure native keycode_b  android.view.KeyEvent.KEYCODE_B :: Int
-
-  pure native keycode_c  android.view.KeyEvent.KEYCODE_C :: Int
-
-  pure native keycode_d  android.view.KeyEvent.KEYCODE_D :: Int
-
-  pure native keycode_e  android.view.KeyEvent.KEYCODE_E :: Int
-
-  pure native keycode_f  android.view.KeyEvent.KEYCODE_F :: Int
-
-  pure native keycode_g  android.view.KeyEvent.KEYCODE_G :: Int
-
-  pure native keycode_h  android.view.KeyEvent.KEYCODE_H :: Int
-
-  pure native keycode_i  android.view.KeyEvent.KEYCODE_I :: Int
-
-  pure native keycode_j  android.view.KeyEvent.KEYCODE_J :: Int
-
-  pure native keycode_k  android.view.KeyEvent.KEYCODE_K :: Int
-
-  pure native keycode_l  android.view.KeyEvent.KEYCODE_L :: Int
-
-  pure native keycode_m  android.view.KeyEvent.KEYCODE_M :: Int
-
-  pure native keycode_n  android.view.KeyEvent.KEYCODE_N :: Int
-
-  pure native keycode_o  android.view.KeyEvent.KEYCODE_O :: Int
-
-  pure native keycode_p  android.view.KeyEvent.KEYCODE_P :: Int
-
-  pure native keycode_q  android.view.KeyEvent.KEYCODE_Q :: Int
-
-  pure native keycode_r  android.view.KeyEvent.KEYCODE_R :: Int
-
-  pure native keycode_s  android.view.KeyEvent.KEYCODE_S :: Int
-
-  pure native keycode_t  android.view.KeyEvent.KEYCODE_T :: Int
-
-  pure native keycode_u  android.view.KeyEvent.KEYCODE_U :: Int
-
-  pure native keycode_v  android.view.KeyEvent.KEYCODE_V :: Int
-
-  pure native keycode_w  android.view.KeyEvent.KEYCODE_W :: Int
-
-  pure native keycode_x  android.view.KeyEvent.KEYCODE_X :: Int
-
-  pure native keycode_y  android.view.KeyEvent.KEYCODE_Y :: Int
-
-  pure native keycode_z  android.view.KeyEvent.KEYCODE_Z :: Int
-
-  pure native keycode_comma  android.view.KeyEvent.KEYCODE_COMMA :: Int
-
-  pure native keycode_period  android.view.KeyEvent.KEYCODE_PERIOD :: Int
-
-  pure native keycode_alt_left  android.view.KeyEvent.KEYCODE_ALT_LEFT :: Int
-
-  pure native keycode_alt_right  android.view.KeyEvent.KEYCODE_ALT_RIGHT :: Int
-
-  pure native keycode_shift_left  android.view.KeyEvent.KEYCODE_SHIFT_LEFT :: Int
-
-  pure native keycode_shift_right  android.view.KeyEvent.KEYCODE_SHIFT_RIGHT :: Int
-
-  pure native keycode_tab  android.view.KeyEvent.KEYCODE_TAB :: Int
-
-  pure native keycode_space  android.view.KeyEvent.KEYCODE_SPACE :: Int
-
-  pure native keycode_sym  android.view.KeyEvent.KEYCODE_SYM :: Int
-
-  pure native keycode_explorer  android.view.KeyEvent.KEYCODE_EXPLORER :: Int
-
-  pure native keycode_envelope  android.view.KeyEvent.KEYCODE_ENVELOPE :: Int
-
-  pure native keycode_enter  android.view.KeyEvent.KEYCODE_ENTER :: Int
-
-  pure native keycode_del  android.view.KeyEvent.KEYCODE_DEL :: Int
-
-  pure native keycode_grave  android.view.KeyEvent.KEYCODE_GRAVE :: Int
-
-  pure native keycode_minus  android.view.KeyEvent.KEYCODE_MINUS :: Int
-
-  pure native keycode_equals  android.view.KeyEvent.KEYCODE_EQUALS :: Int
-
-  pure native keycode_left_bracket  android.view.KeyEvent.KEYCODE_LEFT_BRACKET :: Int
-
-  pure native keycode_right_bracket  android.view.KeyEvent.KEYCODE_RIGHT_BRACKET :: Int
-
-  pure native keycode_backslash  android.view.KeyEvent.KEYCODE_BACKSLASH :: Int
-
-  pure native keycode_semicolon  android.view.KeyEvent.KEYCODE_SEMICOLON :: Int
-
-  pure native keycode_apostrophe  android.view.KeyEvent.KEYCODE_APOSTROPHE :: Int
-
-  pure native keycode_slash  android.view.KeyEvent.KEYCODE_SLASH :: Int
-
-  pure native keycode_at  android.view.KeyEvent.KEYCODE_AT :: Int
-
-  pure native keycode_num  android.view.KeyEvent.KEYCODE_NUM :: Int
-
-  pure native keycode_headsethook  android.view.KeyEvent.KEYCODE_HEADSETHOOK :: Int
-
-  pure native keycode_focus  android.view.KeyEvent.KEYCODE_FOCUS :: Int
-
-  pure native keycode_plus  android.view.KeyEvent.KEYCODE_PLUS :: Int
-
-  pure native keycode_menu  android.view.KeyEvent.KEYCODE_MENU :: Int
-
-  pure native keycode_notification  android.view.KeyEvent.KEYCODE_NOTIFICATION :: Int
-
-  pure native keycode_search  android.view.KeyEvent.KEYCODE_SEARCH :: Int
-
-  pure native keycode_media_play_pause  android.view.KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE :: Int
-
-  pure native keycode_media_stop  android.view.KeyEvent.KEYCODE_MEDIA_STOP :: Int
-
-  pure native keycode_media_next  android.view.KeyEvent.KEYCODE_MEDIA_NEXT :: Int
-
-  pure native keycode_media_previous  android.view.KeyEvent.KEYCODE_MEDIA_PREVIOUS :: Int
-
-  pure native keycode_media_rewind  android.view.KeyEvent.KEYCODE_MEDIA_REWIND :: Int
-
-  pure native keycode_media_fast_forward  android.view.KeyEvent.KEYCODE_MEDIA_FAST_FORWARD :: Int
-
-  pure native keycode_mute  android.view.KeyEvent.KEYCODE_MUTE :: Int
-
-  pure native keycode_page_up  android.view.KeyEvent.KEYCODE_PAGE_UP :: Int
-
-  pure native keycode_page_down  android.view.KeyEvent.KEYCODE_PAGE_DOWN :: Int
-
-  pure native keycode_pictsymbols  android.view.KeyEvent.KEYCODE_PICTSYMBOLS :: Int
-
-  pure native keycode_switch_charset  android.view.KeyEvent.KEYCODE_SWITCH_CHARSET :: Int
-
-  pure native keycode_button_a  android.view.KeyEvent.KEYCODE_BUTTON_A :: Int
-
-  pure native keycode_button_b  android.view.KeyEvent.KEYCODE_BUTTON_B :: Int
-
-  pure native keycode_button_c  android.view.KeyEvent.KEYCODE_BUTTON_C :: Int
-
-  pure native keycode_button_x  android.view.KeyEvent.KEYCODE_BUTTON_X :: Int
-
-  pure native keycode_button_y  android.view.KeyEvent.KEYCODE_BUTTON_Y :: Int
-
-  pure native keycode_button_z  android.view.KeyEvent.KEYCODE_BUTTON_Z :: Int
-
-  pure native keycode_button_l1  android.view.KeyEvent.KEYCODE_BUTTON_L1 :: Int
-
-  pure native keycode_button_r1  android.view.KeyEvent.KEYCODE_BUTTON_R1 :: Int
-
-  pure native keycode_button_l2  android.view.KeyEvent.KEYCODE_BUTTON_L2 :: Int
-
-  pure native keycode_button_r2  android.view.KeyEvent.KEYCODE_BUTTON_R2 :: Int
-
-  pure native keycode_button_thumbl  android.view.KeyEvent.KEYCODE_BUTTON_THUMBL :: Int
-
-  pure native keycode_button_thumbr  android.view.KeyEvent.KEYCODE_BUTTON_THUMBR :: Int
-
-  pure native keycode_button_start  android.view.KeyEvent.KEYCODE_BUTTON_START :: Int
-
-  pure native keycode_button_select  android.view.KeyEvent.KEYCODE_BUTTON_SELECT :: Int
-
-  pure native keycode_button_mode  android.view.KeyEvent.KEYCODE_BUTTON_MODE :: Int
-
-  pure native keycode_escape  android.view.KeyEvent.KEYCODE_ESCAPE :: Int
-
-  pure native keycode_forward_del  android.view.KeyEvent.KEYCODE_FORWARD_DEL :: Int
-
-  pure native keycode_ctrl_left  android.view.KeyEvent.KEYCODE_CTRL_LEFT :: Int
-
-  pure native keycode_ctrl_right  android.view.KeyEvent.KEYCODE_CTRL_RIGHT :: Int
-
-  pure native keycode_caps_lock  android.view.KeyEvent.KEYCODE_CAPS_LOCK :: Int
-
-  pure native keycode_scroll_lock  android.view.KeyEvent.KEYCODE_SCROLL_LOCK :: Int
-
-  pure native keycode_meta_left  android.view.KeyEvent.KEYCODE_META_LEFT :: Int
-
-  pure native keycode_meta_right  android.view.KeyEvent.KEYCODE_META_RIGHT :: Int
-
-  pure native keycode_function  android.view.KeyEvent.KEYCODE_FUNCTION :: Int
-
-  pure native keycode_sysrq  android.view.KeyEvent.KEYCODE_SYSRQ :: Int
-
-  pure native keycode_break  android.view.KeyEvent.KEYCODE_BREAK :: Int
-
-  pure native keycode_move_home  android.view.KeyEvent.KEYCODE_MOVE_HOME :: Int
-
-  pure native keycode_move_end  android.view.KeyEvent.KEYCODE_MOVE_END :: Int
-
-  pure native keycode_insert  android.view.KeyEvent.KEYCODE_INSERT :: Int
-
-  pure native keycode_forward  android.view.KeyEvent.KEYCODE_FORWARD :: Int
-
-  pure native keycode_media_play  android.view.KeyEvent.KEYCODE_MEDIA_PLAY :: Int
-
-  pure native keycode_media_pause  android.view.KeyEvent.KEYCODE_MEDIA_PAUSE :: Int
-
-  pure native keycode_media_close  android.view.KeyEvent.KEYCODE_MEDIA_CLOSE :: Int
-
-  pure native keycode_media_eject  android.view.KeyEvent.KEYCODE_MEDIA_EJECT :: Int
-
-  pure native keycode_media_record  android.view.KeyEvent.KEYCODE_MEDIA_RECORD :: Int
-
-  pure native keycode_f1  android.view.KeyEvent.KEYCODE_F1 :: Int
-
-  pure native keycode_f2  android.view.KeyEvent.KEYCODE_F2 :: Int
-
-  pure native keycode_f3  android.view.KeyEvent.KEYCODE_F3 :: Int
-
-  pure native keycode_f4  android.view.KeyEvent.KEYCODE_F4 :: Int
-
-  pure native keycode_f5  android.view.KeyEvent.KEYCODE_F5 :: Int
-
-  pure native keycode_f6  android.view.KeyEvent.KEYCODE_F6 :: Int
-
-  pure native keycode_f7  android.view.KeyEvent.KEYCODE_F7 :: Int
-
-  pure native keycode_f8  android.view.KeyEvent.KEYCODE_F8 :: Int
-
-  pure native keycode_f9  android.view.KeyEvent.KEYCODE_F9 :: Int
-
-  pure native keycode_f10  android.view.KeyEvent.KEYCODE_F10 :: Int
-
-  pure native keycode_f11  android.view.KeyEvent.KEYCODE_F11 :: Int
-
-  pure native keycode_f12  android.view.KeyEvent.KEYCODE_F12 :: Int
-
-  pure native keycode_num_lock  android.view.KeyEvent.KEYCODE_NUM_LOCK :: Int
-
-  pure native keycode_numpad_0  android.view.KeyEvent.KEYCODE_NUMPAD_0 :: Int
-
-  pure native keycode_numpad_1  android.view.KeyEvent.KEYCODE_NUMPAD_1 :: Int
-
-  pure native keycode_numpad_2  android.view.KeyEvent.KEYCODE_NUMPAD_2 :: Int
-
-  pure native keycode_numpad_3  android.view.KeyEvent.KEYCODE_NUMPAD_3 :: Int
-
-  pure native keycode_numpad_4  android.view.KeyEvent.KEYCODE_NUMPAD_4 :: Int
-
-  pure native keycode_numpad_5  android.view.KeyEvent.KEYCODE_NUMPAD_5 :: Int
-
-  pure native keycode_numpad_6  android.view.KeyEvent.KEYCODE_NUMPAD_6 :: Int
-
-  pure native keycode_numpad_7  android.view.KeyEvent.KEYCODE_NUMPAD_7 :: Int
-
-  pure native keycode_numpad_8  android.view.KeyEvent.KEYCODE_NUMPAD_8 :: Int
-
-  pure native keycode_numpad_9  android.view.KeyEvent.KEYCODE_NUMPAD_9 :: Int
-
-  pure native keycode_numpad_divide  android.view.KeyEvent.KEYCODE_NUMPAD_DIVIDE :: Int
-
-  pure native keycode_numpad_multiply  android.view.KeyEvent.KEYCODE_NUMPAD_MULTIPLY :: Int
-
-  pure native keycode_numpad_subtract  android.view.KeyEvent.KEYCODE_NUMPAD_SUBTRACT :: Int
-
-  pure native keycode_numpad_add  android.view.KeyEvent.KEYCODE_NUMPAD_ADD :: Int
-
-  pure native keycode_numpad_dot  android.view.KeyEvent.KEYCODE_NUMPAD_DOT :: Int
-
-  pure native keycode_numpad_comma  android.view.KeyEvent.KEYCODE_NUMPAD_COMMA :: Int
-
-  pure native keycode_numpad_enter  android.view.KeyEvent.KEYCODE_NUMPAD_ENTER :: Int
-
-  pure native keycode_numpad_equals  android.view.KeyEvent.KEYCODE_NUMPAD_EQUALS :: Int
-
-  pure native keycode_numpad_left_paren  android.view.KeyEvent.KEYCODE_NUMPAD_LEFT_PAREN :: Int
-
-  pure native keycode_numpad_right_paren  android.view.KeyEvent.KEYCODE_NUMPAD_RIGHT_PAREN :: Int
-
-  pure native keycode_volume_mute  android.view.KeyEvent.KEYCODE_VOLUME_MUTE :: Int
-
-  pure native keycode_info  android.view.KeyEvent.KEYCODE_INFO :: Int
-
-  pure native keycode_channel_up  android.view.KeyEvent.KEYCODE_CHANNEL_UP :: Int
-
-  pure native keycode_channel_down  android.view.KeyEvent.KEYCODE_CHANNEL_DOWN :: Int
-
-  pure native keycode_zoom_in  android.view.KeyEvent.KEYCODE_ZOOM_IN :: Int
-
-  pure native keycode_zoom_out  android.view.KeyEvent.KEYCODE_ZOOM_OUT :: Int
-
-  pure native keycode_tv  android.view.KeyEvent.KEYCODE_TV :: Int
-
-  pure native keycode_window  android.view.KeyEvent.KEYCODE_WINDOW :: Int
-
-  pure native keycode_guide  android.view.KeyEvent.KEYCODE_GUIDE :: Int
-
-  pure native keycode_dvr  android.view.KeyEvent.KEYCODE_DVR :: Int
-
-  pure native keycode_bookmark  android.view.KeyEvent.KEYCODE_BOOKMARK :: Int
-
-  pure native keycode_captions  android.view.KeyEvent.KEYCODE_CAPTIONS :: Int
-
-  pure native keycode_settings  android.view.KeyEvent.KEYCODE_SETTINGS :: Int
-
-  pure native keycode_tv_power  android.view.KeyEvent.KEYCODE_TV_POWER :: Int
-
-  pure native keycode_tv_input  android.view.KeyEvent.KEYCODE_TV_INPUT :: Int
-
-  pure native keycode_stb_power  android.view.KeyEvent.KEYCODE_STB_POWER :: Int
-
-  pure native keycode_stb_input  android.view.KeyEvent.KEYCODE_STB_INPUT :: Int
-
-  pure native keycode_avr_power  android.view.KeyEvent.KEYCODE_AVR_POWER :: Int
-
-  pure native keycode_avr_input  android.view.KeyEvent.KEYCODE_AVR_INPUT :: Int
-
-  pure native keycode_prog_red  android.view.KeyEvent.KEYCODE_PROG_RED :: Int
-
-  pure native keycode_prog_green  android.view.KeyEvent.KEYCODE_PROG_GREEN :: Int
-
-  pure native keycode_prog_yellow  android.view.KeyEvent.KEYCODE_PROG_YELLOW :: Int
-
-  pure native keycode_prog_blue  android.view.KeyEvent.KEYCODE_PROG_BLUE :: Int
-
-  pure native keycode_app_switch  android.view.KeyEvent.KEYCODE_APP_SWITCH :: Int
-
-  pure native keycode_button_1  android.view.KeyEvent.KEYCODE_BUTTON_1 :: Int
-
-  pure native keycode_button_2  android.view.KeyEvent.KEYCODE_BUTTON_2 :: Int
-
-  pure native keycode_button_3  android.view.KeyEvent.KEYCODE_BUTTON_3 :: Int
-
-  pure native keycode_button_4  android.view.KeyEvent.KEYCODE_BUTTON_4 :: Int
-
-  pure native keycode_button_5  android.view.KeyEvent.KEYCODE_BUTTON_5 :: Int
-
-  pure native keycode_button_6  android.view.KeyEvent.KEYCODE_BUTTON_6 :: Int
-
-  pure native keycode_button_7  android.view.KeyEvent.KEYCODE_BUTTON_7 :: Int
-
-  pure native keycode_button_8  android.view.KeyEvent.KEYCODE_BUTTON_8 :: Int
-
-  pure native keycode_button_9  android.view.KeyEvent.KEYCODE_BUTTON_9 :: Int
-
-  pure native keycode_button_10  android.view.KeyEvent.KEYCODE_BUTTON_10 :: Int
-
-  pure native keycode_button_11  android.view.KeyEvent.KEYCODE_BUTTON_11 :: Int
-
-  pure native keycode_button_12  android.view.KeyEvent.KEYCODE_BUTTON_12 :: Int
-
-  pure native keycode_button_13  android.view.KeyEvent.KEYCODE_BUTTON_13 :: Int
-
-  pure native keycode_button_14  android.view.KeyEvent.KEYCODE_BUTTON_14 :: Int
-
-  pure native keycode_button_15  android.view.KeyEvent.KEYCODE_BUTTON_15 :: Int
-
-  pure native keycode_button_16  android.view.KeyEvent.KEYCODE_BUTTON_16 :: Int
-
-  pure native keycode_language_switch  android.view.KeyEvent.KEYCODE_LANGUAGE_SWITCH :: Int
-
-  pure native keycode_manner_mode  android.view.KeyEvent.KEYCODE_MANNER_MODE :: Int
-
-  pure native keycode_3d_mode  android.view.KeyEvent.KEYCODE_3D_MODE :: Int
-
-  pure native keycode_contacts  android.view.KeyEvent.KEYCODE_CONTACTS :: Int
-
-  pure native keycode_calendar  android.view.KeyEvent.KEYCODE_CALENDAR :: Int
-
-  pure native keycode_music  android.view.KeyEvent.KEYCODE_MUSIC :: Int
-
-  pure native keycode_calculator  android.view.KeyEvent.KEYCODE_CALCULATOR :: Int
-
-  pure native keycode_zenkaku_hankaku  android.view.KeyEvent.KEYCODE_ZENKAKU_HANKAKU :: Int
-
-  pure native keycode_eisu  android.view.KeyEvent.KEYCODE_EISU :: Int
-
-  pure native keycode_muhenkan  android.view.KeyEvent.KEYCODE_MUHENKAN :: Int
-
-  pure native keycode_henkan  android.view.KeyEvent.KEYCODE_HENKAN :: Int
-
-  pure native keycode_katakana_hiragana  android.view.KeyEvent.KEYCODE_KATAKANA_HIRAGANA :: Int
-
-  pure native keycode_yen  android.view.KeyEvent.KEYCODE_YEN :: Int
-
-  pure native keycode_ro  android.view.KeyEvent.KEYCODE_RO :: Int
-
-  pure native keycode_kana  android.view.KeyEvent.KEYCODE_KANA :: Int
-
-  pure native keycode_assist  android.view.KeyEvent.KEYCODE_ASSIST :: Int
-
-  pure native keycode_brightness_down  android.view.KeyEvent.KEYCODE_BRIGHTNESS_DOWN :: Int
-
-  pure native keycode_brightness_up  android.view.KeyEvent.KEYCODE_BRIGHTNESS_UP :: Int
-
-  pure native keycode_media_audio_track  android.view.KeyEvent.KEYCODE_MEDIA_AUDIO_TRACK :: Int
-
-  pure native keycode_sleep  android.view.KeyEvent.KEYCODE_SLEEP :: Int
-
-  pure native keycode_wakeup  android.view.KeyEvent.KEYCODE_WAKEUP :: Int
-
-  pure native max_keycode  android.view.KeyEvent.MAX_KEYCODE :: Int
-
-  pure native action_down  android.view.KeyEvent.ACTION_DOWN :: Int
-
-  pure native action_up  android.view.KeyEvent.ACTION_UP :: Int
-
-  pure native action_multiple  android.view.KeyEvent.ACTION_MULTIPLE :: Int
-
-  pure native meta_alt_on  android.view.KeyEvent.META_ALT_ON :: Int
-
-  pure native meta_alt_left_on  android.view.KeyEvent.META_ALT_LEFT_ON :: Int
-
-  pure native meta_alt_right_on  android.view.KeyEvent.META_ALT_RIGHT_ON :: Int
-
-  pure native meta_shift_on  android.view.KeyEvent.META_SHIFT_ON :: Int
-
-  pure native meta_shift_left_on  android.view.KeyEvent.META_SHIFT_LEFT_ON :: Int
-
-  pure native meta_shift_right_on  android.view.KeyEvent.META_SHIFT_RIGHT_ON :: Int
-
-  pure native meta_sym_on  android.view.KeyEvent.META_SYM_ON :: Int
-
-  pure native meta_function_on  android.view.KeyEvent.META_FUNCTION_ON :: Int
-
-  pure native meta_ctrl_on  android.view.KeyEvent.META_CTRL_ON :: Int
-
-  pure native meta_ctrl_left_on  android.view.KeyEvent.META_CTRL_LEFT_ON :: Int
-
-  pure native meta_ctrl_right_on  android.view.KeyEvent.META_CTRL_RIGHT_ON :: Int
-
-  pure native meta_meta_on  android.view.KeyEvent.META_META_ON :: Int
-
-  pure native meta_meta_left_on  android.view.KeyEvent.META_META_LEFT_ON :: Int
-
-  pure native meta_meta_right_on  android.view.KeyEvent.META_META_RIGHT_ON :: Int
-
-  pure native meta_caps_lock_on  android.view.KeyEvent.META_CAPS_LOCK_ON :: Int
-
-  pure native meta_num_lock_on  android.view.KeyEvent.META_NUM_LOCK_ON :: Int
-
-  pure native meta_scroll_lock_on  android.view.KeyEvent.META_SCROLL_LOCK_ON :: Int
-
-  pure native meta_shift_mask  android.view.KeyEvent.META_SHIFT_MASK :: Int
-
-  pure native meta_alt_mask  android.view.KeyEvent.META_ALT_MASK :: Int
-
-  pure native meta_ctrl_mask  android.view.KeyEvent.META_CTRL_MASK :: Int
-
-  pure native meta_meta_mask  android.view.KeyEvent.META_META_MASK :: Int
-
-  pure native flag_woke_here  android.view.KeyEvent.FLAG_WOKE_HERE :: Int
-
-  pure native flag_soft_keyboard  android.view.KeyEvent.FLAG_SOFT_KEYBOARD :: Int
-
-  pure native flag_keep_touch_mode  android.view.KeyEvent.FLAG_KEEP_TOUCH_MODE :: Int
-
-  pure native flag_from_system  android.view.KeyEvent.FLAG_FROM_SYSTEM :: Int
-
-  pure native flag_editor_action  android.view.KeyEvent.FLAG_EDITOR_ACTION :: Int
-
-  pure native flag_canceled  android.view.KeyEvent.FLAG_CANCELED :: Int
-
-  pure native flag_virtual_hard_key  android.view.KeyEvent.FLAG_VIRTUAL_HARD_KEY :: Int
-
-  pure native flag_long_press  android.view.KeyEvent.FLAG_LONG_PRESS :: Int
-
-  pure native flag_canceled_long_press  android.view.KeyEvent.FLAG_CANCELED_LONG_PRESS :: Int
-
-  pure native flag_tracking  android.view.KeyEvent.FLAG_TRACKING :: Int
-
-  pure native flag_fallback  android.view.KeyEvent.FLAG_FALLBACK :: Int
-
-{-   pure native creator  android.view.KeyEvent.CREATOR :: -- ["Parcelable_Creator"] -- Parcelable_Creator KeyEvent -}
-
-  native new  :: Long -> Long -> Int -> Int -> Int -> Int -> Int -> Int -> Int -> Int -> ST s KeyEvent
-        | Long -> Long -> Int -> Int -> Int -> Int -> Int -> Int -> Int -> ST s KeyEvent
-        | Long -> Long -> Int -> Int -> Int -> Int -> Int -> Int -> ST s KeyEvent
-        | Long -> Long -> Int -> Int -> Int -> Int -> ST s KeyEvent
-        | Long -> Long -> Int -> Int -> Int -> ST s KeyEvent
-        | KeyEvent -> Long -> Int -> ST s KeyEvent
-        | KeyEvent -> ST s KeyEvent
-        | Int -> Int -> ST s KeyEvent
-        | Long -> String -> Int -> Int -> ST s KeyEvent
-
-  pure native changeAction  android.view.KeyEvent.changeAction :: KeyEvent -> Int -> KeyEvent
-
-  pure native changeFlags  android.view.KeyEvent.changeFlags :: KeyEvent -> Int -> KeyEvent
-
-  pure native changeTimeRepeat  android.view.KeyEvent.changeTimeRepeat :: KeyEvent -> Long -> Int -> Int -> KeyEvent
-        | KeyEvent -> Long -> Int -> KeyEvent
-
-{-   pure native dispatch  :: -- ["KeyEvent_Callback","KeyEvent_DispatcherState"] -- KeyEvent -> KeyEvent_Callback -> KeyEvent_DispatcherState -> Object -> Bool
-        -- ["KeyEvent_Callback"] -- KeyEvent -> KeyEvent_Callback -> Bool -}
-
-  pure native getAction  :: KeyEvent -> Int
-
-  pure native getCharacters  :: KeyEvent -> String
-
-  pure native getDeadChar  android.view.KeyEvent.getDeadChar :: Int -> Int -> Int
-
-  pure native getDeviceId  :: KeyEvent -> Int
-
-{-   pure native getDisplayLabel  :: -- ["Char"] -- KeyEvent -> Char -}
-
-  pure native getDownTime  :: KeyEvent -> Long
-
-  pure native getEventTime  :: KeyEvent -> Long
-
-  pure native getFlags  :: KeyEvent -> Int
-
-{-   pure native getKeyCharacterMap  :: -- ["KeyCharacterMap"] -- KeyEvent -> KeyCharacterMap -}
-
-  pure native getKeyCode  :: KeyEvent -> Int
-
-{-   pure native getKeyData  :: -- ["KeyCharacterMap_KeyData"] -- KeyEvent -> KeyCharacterMap_KeyData -> Bool -}
-
-{-   native getMatch  :: -- ["Char","JArray"] -- KeyEvent -> Mutable s ( JArray Char ) -> Int -> ST s Char
-        -- ["Char","JArray"] -- KeyEvent -> Mutable s ( JArray Char ) -> ST s Char -}
-
-  native getMaxKeyCode  android.view.KeyEvent.getMaxKeyCode :: ( ) -> ST s Int
-
-  pure native getMetaState  :: KeyEvent -> Int
-
-  native getModifierMetaStateMask  android.view.KeyEvent.getModifierMetaStateMask :: ( ) -> ST s Int
-
-  pure native getModifiers  :: KeyEvent -> Int
-
-{-   pure native getNumber  :: -- ["Char"] -- KeyEvent -> Char -}
-
-  pure native getRepeatCount  :: KeyEvent -> Int
-
-  pure native getScanCode  :: KeyEvent -> Int
-
-  pure native getSource  :: KeyEvent -> Int
-
-  pure native getUnicodeChar  :: KeyEvent -> Int
-        | KeyEvent -> Int -> Int
-
-  pure native hasModifiers  :: KeyEvent -> Int -> Bool
-
-  pure native hasNoModifiers  :: KeyEvent -> Bool
-
-  pure native isAltPressed  :: KeyEvent -> Bool
-
-  pure native isCanceled  :: KeyEvent -> Bool
-
-  pure native isCapsLockOn  :: KeyEvent -> Bool
-
-  pure native isCtrlPressed  :: KeyEvent -> Bool
-
-  pure native isFunctionPressed  :: KeyEvent -> Bool
-
-  pure native isGamepadButton  android.view.KeyEvent.isGamepadButton :: Int -> Bool
-
-  pure native isLongPress  :: KeyEvent -> Bool
-
-  pure native isMetaPressed  :: KeyEvent -> Bool
-
-  pure native isModifierKey  android.view.KeyEvent.isModifierKey :: Int -> Bool
-
-  pure native isNumLockOn  :: KeyEvent -> Bool
-
-  pure native isPrintingKey  :: KeyEvent -> Bool
-
-  pure native isScrollLockOn  :: KeyEvent -> Bool
-
-  pure native isShiftPressed  :: KeyEvent -> Bool
-
-  pure native isSymPressed  :: KeyEvent -> Bool
-
-  pure native isSystem  :: KeyEvent -> Bool
-
-  pure native isTracking  :: KeyEvent -> Bool
-
-  pure native keyCodeFromString  android.view.KeyEvent.keyCodeFromString :: String -> Int
-
-  pure native keyCodeToString  android.view.KeyEvent.keyCodeToString :: Int -> String
-
-  pure native metaStateHasModifiers  android.view.KeyEvent.metaStateHasModifiers :: Int -> Int -> Bool
-
-  pure native metaStateHasNoModifiers  android.view.KeyEvent.metaStateHasNoModifiers :: Int -> Bool
-
-  pure native normalizeMetaState  android.view.KeyEvent.normalizeMetaState :: Int -> Int
-
-  native setSource  :: KeyEvent -> Int -> ST s ( )
-
-  native startTracking  :: KeyEvent -> ST s ( )
-
-  pure native toString  :: KeyEvent -> String
-
-{-   native writeToParcel  :: -- ["Parcel"] -- KeyEvent -> Parcel -> Int -> ST s ( ) -}
-
-
-{-
 data KeyEvent = pure native android.view.KeyEvent where
 
   pure native keycode_unknown android.view.KeyEvent.KEYCODE_UNKNOWN :: Int
@@ -911,8 +293,6 @@ data KeyEvent = pure native android.view.KeyEvent where
   pure native flag_canceled_long_press android.view.KeyEvent.FLAG_CANCELED_LONG_PRESS :: Int
   pure native flag_tracking android.view.KeyEvent.FLAG_TRACKING :: Int
   pure native flag_fallback android.view.KeyEvent.FLAG_FALLBACK :: Int
-  pure native creator android.view.KeyEvent.CREATOR :: Parcelable_Creator KeyEvent
-
   native new :: Long -> Long -> Int -> Int -> Int -> Int -> Int -> Int -> Int -> Int -> ST s KeyEvent
               | Long -> Long -> Int -> Int -> Int -> Int -> Int -> Int -> Int -> ST s KeyEvent
               | Long -> Long -> Int -> Int -> Int -> Int -> Int -> Int -> ST s KeyEvent
@@ -928,10 +308,10 @@ data KeyEvent = pure native android.view.KeyEvent where
   pure native changeFlags android.view.KeyEvent.changeFlags :: KeyEvent -> Int -> KeyEvent
 
   pure native changeTimeRepeat android.view.KeyEvent.changeTimeRepeat :: KeyEvent -> Long -> Int -> Int -> KeyEvent
-                                                                       | KeyEvent -> Long -> Int -> KeyEvent
+          | KeyEvent -> Long -> Int -> KeyEvent
 
   pure native dispatch :: KeyEvent -> KeyEvent_Callback -> KeyEvent_DispatcherState -> Object -> Bool
-                        | KeyEvent -> KeyEvent_Callback -> Bool
+          | KeyEvent -> KeyEvent_Callback -> Bool
 
   pure native getAction :: KeyEvent -> Int
 
@@ -955,9 +335,6 @@ data KeyEvent = pure native android.view.KeyEvent where
 
   pure native getKeyData :: KeyEvent -> KeyCharacterMap_KeyData -> Bool
 
-  native getMatch :: KeyEvent -> Mutable s (JArray Char) -> Int -> ST s Char
-                   | KeyEvent -> Mutable s (JArray Char) -> ST s Char
-
   native getMaxKeyCode android.view.KeyEvent.getMaxKeyCode :: () -> ST s Int
 
   pure native getMetaState :: KeyEvent -> Int
@@ -974,8 +351,8 @@ data KeyEvent = pure native android.view.KeyEvent where
 
   pure native getSource :: KeyEvent -> Int
 
-  pure native getUnicodeChar :: KeyEvent -> Int
-                              | KeyEvent -> Int -> Int
+  pure native getUnicodeChar :: KeyEvent -> Int -> Int
+          | KeyEvent -> Int
 
   pure native hasModifiers :: KeyEvent -> Int -> Bool
 
@@ -1028,9 +405,6 @@ data KeyEvent = pure native android.view.KeyEvent where
   native startTracking :: KeyEvent -> ST s ()
 
   pure native toString :: KeyEvent -> String
-
-  native writeToParcel :: KeyEvent -> Parcel -> Int -> ST s ()
-
+{-  -}
 
 
--}

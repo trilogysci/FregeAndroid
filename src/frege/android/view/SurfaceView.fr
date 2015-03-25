@@ -1,52 +1,30 @@
 package frege.android.view.SurfaceView where
 
 import frege.android.content.Context
+import frege.android.graphics.Canvas
+import frege.android.graphics.Region
 import frege.android.util.AttributeSet
 import frege.android.view.SurfaceHolder
 
-data SurfaceView = pure native android.view.SurfaceView where
+data SurfaceView =  native android.view.SurfaceView where
+
+  native new :: MutableIO Context -> IOMutable SurfaceView
+              | MutableIO Context -> AttributeSet -> IOMutable SurfaceView
+              | MutableIO Context -> AttributeSet -> Int -> IOMutable SurfaceView
+
+  native draw :: MutableIO SurfaceView -> MutableIO Canvas -> IO ()
+
+  native gatherTransparentRegion :: MutableIO SurfaceView -> Region -> IO Bool
+
+  native getHolder :: MutableIO SurfaceView -> IOMutable SurfaceHolder
+
+  native setSecure :: MutableIO SurfaceView -> Bool -> IO ()
+
+  native setVisibility :: MutableIO SurfaceView -> Int -> IO ()
+
+  native setZOrderMediaOverlay :: MutableIO SurfaceView -> Bool -> IO ()
+
+  native setZOrderOnTop :: MutableIO SurfaceView -> Bool -> IO ()
+{-  -}
 
 
-  native new  :: Context -> ST s SurfaceView
-        | Context -> AttributeSet -> ST s SurfaceView
-        | Context -> AttributeSet -> Int -> ST s SurfaceView
-
-{-   native draw  :: -- ["Canvas"] -- SurfaceView -> Canvas -> ST s ( ) -}
-
-{-   pure native gatherTransparentRegion  :: -- ["Region"] -- SurfaceView -> Region -> Bool -}
-
-  pure native getHolder  :: SurfaceView -> SurfaceHolder
-
-  native setSecure  :: SurfaceView -> Bool -> ST s ( )
-
-  native setVisibility  :: SurfaceView -> Int -> ST s ( )
-
-  native setZOrderMediaOverlay  :: SurfaceView -> Bool -> ST s ( )
-
-  native setZOrderOnTop  :: SurfaceView -> Bool -> ST s ( )
-
-
-{-
-data SurfaceView = pure native android.view.SurfaceView where
-
-  native new :: Context -> ST s SurfaceView
-              | Context -> AttributeSet -> ST s SurfaceView
-              | Context -> AttributeSet -> Int -> ST s SurfaceView
-
-  native draw :: SurfaceView -> Canvas -> ST s ()
-
-  pure native gatherTransparentRegion :: SurfaceView -> Region -> Bool
-
-  pure native getHolder :: SurfaceView -> SurfaceHolder
-
-  native setSecure :: SurfaceView -> Bool -> ST s ()
-
-  native setVisibility :: SurfaceView -> Int -> ST s ()
-
-  native setZOrderMediaOverlay :: SurfaceView -> Bool -> ST s ()
-
-  native setZOrderOnTop :: SurfaceView -> Bool -> ST s ()
-
-
-
--}

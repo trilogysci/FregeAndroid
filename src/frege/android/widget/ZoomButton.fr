@@ -2,57 +2,27 @@ package frege.android.widget.ZoomButton where
 
 import frege.android.content.Context
 import frege.android.util.AttributeSet
-import frege.android.view.View
-import frege.android.view.MotionEvent
 import frege.android.view.KeyEvent
+import frege.android.view.MotionEvent
+import frege.android.view.View
 
-data ZoomButton = pure native android.widget.ZoomButton where
+data ZoomButton =  native android.widget.ZoomButton where
 
+  native new :: MutableIO Context -> IOMutable ZoomButton
+              | MutableIO Context -> AttributeSet -> IOMutable ZoomButton
+              | MutableIO Context -> AttributeSet -> Int -> IOMutable ZoomButton
 
-  native new  :: Context -> AttributeSet -> Int -> ST s ZoomButton
-        | Context -> AttributeSet -> ST s ZoomButton
-        | Context -> ST s ZoomButton
+  native dispatchUnhandledMove :: MutableIO ZoomButton -> MutableIO View -> Int -> IO Bool
 
-  native dispatchUnhandledMove  :: ZoomButton -> MutableIO View -> Int -> IO Bool
+  native onKeyUp :: MutableIO ZoomButton -> Int -> KeyEvent -> IO Bool
 
-{-   native onInitializeAccessibilityEvent  :: -- ["AccessibilityEvent"] -- ZoomButton -> AccessibilityEvent -> ST s ( ) -}
+  native onLongClick :: MutableIO ZoomButton -> MutableIO View -> IO Bool
 
-{-   native onInitializeAccessibilityNodeInfo  :: -- ["AccessibilityNodeInfo"] -- ZoomButton -> AccessibilityNodeInfo -> ST s ( ) -}
+  native onTouchEvent :: MutableIO ZoomButton -> MutableIO MotionEvent -> IO Bool
 
-  pure native onKeyUp  :: ZoomButton -> Int -> KeyEvent -> Bool
+  native setEnabled :: MutableIO ZoomButton -> Bool -> IO ()
 
-  native onLongClick  :: ZoomButton -> MutableIO View -> IO Bool
-
-  pure native onTouchEvent  :: ZoomButton -> MotionEvent -> Bool
-
-  native setEnabled  :: ZoomButton -> Bool -> ST s ( )
-
-  native setZoomSpeed  :: ZoomButton -> Long -> ST s ( )
+  native setZoomSpeed :: MutableIO ZoomButton -> Long -> IO ()
+{-  -}
 
 
-{-
-data ZoomButton = pure native android.widget.ZoomButton where
-
-  native new :: Context -> AttributeSet -> Int -> ST s ZoomButton
-              | Context -> AttributeSet -> ST s ZoomButton
-              | Context -> ST s ZoomButton
-
-  native dispatchUnhandledMove :: ZoomButton -> MutableIO View -> Int -> IO Bool
-
-  native onInitializeAccessibilityEvent :: ZoomButton -> AccessibilityEvent -> ST s ()
-
-  native onInitializeAccessibilityNodeInfo :: ZoomButton -> AccessibilityNodeInfo -> ST s ()
-
-  pure native onKeyUp :: ZoomButton -> Int -> KeyEvent -> Bool
-
-  native onLongClick :: ZoomButton -> MutableIO View -> IO Bool
-
-  pure native onTouchEvent :: ZoomButton -> MotionEvent -> Bool
-
-  native setEnabled :: ZoomButton -> Bool -> ST s ()
-
-  native setZoomSpeed :: ZoomButton -> Long -> ST s ()
-
-
-
--}

@@ -3,21 +3,151 @@ package frege.android.view.WindowManager where
 import frege.android.view.Display
 import frege.android.view.View
 
-data WindowManager = pure native android.view.WindowManager where
+data WindowManager_LayoutParams = pure native android.view.WindowManager.LayoutParams where
+
+  pure native x ".x" :: WindowManager_LayoutParams -> Int
+  pure native y ".y" :: WindowManager_LayoutParams -> Int
+  pure native horizontalweight ".horizontalWeight" :: WindowManager_LayoutParams -> Float
+  pure native verticalweight ".verticalWeight" :: WindowManager_LayoutParams -> Float
+  pure native type_ ".type" :: WindowManager_LayoutParams -> Int
+  pure native first_application_window android.view.WindowManager.LayoutParams.FIRST_APPLICATION_WINDOW :: Int
+  pure native type_base_application android.view.WindowManager.LayoutParams.TYPE_BASE_APPLICATION :: Int
+  pure native type_application android.view.WindowManager.LayoutParams.TYPE_APPLICATION :: Int
+  pure native type_application_starting android.view.WindowManager.LayoutParams.TYPE_APPLICATION_STARTING :: Int
+  pure native last_application_window android.view.WindowManager.LayoutParams.LAST_APPLICATION_WINDOW :: Int
+  pure native first_sub_window android.view.WindowManager.LayoutParams.FIRST_SUB_WINDOW :: Int
+  pure native type_application_panel android.view.WindowManager.LayoutParams.TYPE_APPLICATION_PANEL :: Int
+  pure native type_application_media android.view.WindowManager.LayoutParams.TYPE_APPLICATION_MEDIA :: Int
+  pure native type_application_sub_panel android.view.WindowManager.LayoutParams.TYPE_APPLICATION_SUB_PANEL :: Int
+  pure native type_application_attached_dialog android.view.WindowManager.LayoutParams.TYPE_APPLICATION_ATTACHED_DIALOG :: Int
+  pure native last_sub_window android.view.WindowManager.LayoutParams.LAST_SUB_WINDOW :: Int
+  pure native first_system_window android.view.WindowManager.LayoutParams.FIRST_SYSTEM_WINDOW :: Int
+  pure native type_status_bar android.view.WindowManager.LayoutParams.TYPE_STATUS_BAR :: Int
+  pure native type_search_bar android.view.WindowManager.LayoutParams.TYPE_SEARCH_BAR :: Int
+  pure native type_phone android.view.WindowManager.LayoutParams.TYPE_PHONE :: Int
+  pure native type_system_alert android.view.WindowManager.LayoutParams.TYPE_SYSTEM_ALERT :: Int
+  pure native type_keyguard android.view.WindowManager.LayoutParams.TYPE_KEYGUARD :: Int
+  pure native type_toast android.view.WindowManager.LayoutParams.TYPE_TOAST :: Int
+  pure native type_system_overlay android.view.WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY :: Int
+  pure native type_priority_phone android.view.WindowManager.LayoutParams.TYPE_PRIORITY_PHONE :: Int
+  pure native type_system_dialog android.view.WindowManager.LayoutParams.TYPE_SYSTEM_DIALOG :: Int
+  pure native type_keyguard_dialog android.view.WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG :: Int
+  pure native type_system_error android.view.WindowManager.LayoutParams.TYPE_SYSTEM_ERROR :: Int
+  pure native type_input_method android.view.WindowManager.LayoutParams.TYPE_INPUT_METHOD :: Int
+  pure native type_input_method_dialog android.view.WindowManager.LayoutParams.TYPE_INPUT_METHOD_DIALOG :: Int
+  pure native type_wallpaper android.view.WindowManager.LayoutParams.TYPE_WALLPAPER :: Int
+  pure native type_status_bar_panel android.view.WindowManager.LayoutParams.TYPE_STATUS_BAR_PANEL :: Int
+  pure native type_private_presentation android.view.WindowManager.LayoutParams.TYPE_PRIVATE_PRESENTATION :: Int
+  pure native last_system_window android.view.WindowManager.LayoutParams.LAST_SYSTEM_WINDOW :: Int
+  pure native memory_type_normal android.view.WindowManager.LayoutParams.MEMORY_TYPE_NORMAL :: Int
+  pure native memory_type_hardware android.view.WindowManager.LayoutParams.MEMORY_TYPE_HARDWARE :: Int
+  pure native memory_type_gpu android.view.WindowManager.LayoutParams.MEMORY_TYPE_GPU :: Int
+  pure native memory_type_push_buffers android.view.WindowManager.LayoutParams.MEMORY_TYPE_PUSH_BUFFERS :: Int
+  pure native memorytype ".memoryType" :: WindowManager_LayoutParams -> Int
+  pure native flag_allow_lock_while_screen_on android.view.WindowManager.LayoutParams.FLAG_ALLOW_LOCK_WHILE_SCREEN_ON :: Int
+  pure native flag_dim_behind android.view.WindowManager.LayoutParams.FLAG_DIM_BEHIND :: Int
+  pure native flag_blur_behind android.view.WindowManager.LayoutParams.FLAG_BLUR_BEHIND :: Int
+  pure native flag_not_focusable android.view.WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE :: Int
+  pure native flag_not_touchable android.view.WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE :: Int
+  pure native flag_not_touch_modal android.view.WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL :: Int
+  pure native flag_touchable_when_waking android.view.WindowManager.LayoutParams.FLAG_TOUCHABLE_WHEN_WAKING :: Int
+  pure native flag_keep_screen_on android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON :: Int
+  pure native flag_layout_in_screen android.view.WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN :: Int
+  pure native flag_layout_no_limits android.view.WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS :: Int
+  pure native flag_fullscreen android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN :: Int
+  pure native flag_force_not_fullscreen android.view.WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN :: Int
+  pure native flag_dither android.view.WindowManager.LayoutParams.FLAG_DITHER :: Int
+  pure native flag_secure android.view.WindowManager.LayoutParams.FLAG_SECURE :: Int
+  pure native flag_scaled android.view.WindowManager.LayoutParams.FLAG_SCALED :: Int
+  pure native flag_ignore_cheek_presses android.view.WindowManager.LayoutParams.FLAG_IGNORE_CHEEK_PRESSES :: Int
+  pure native flag_layout_inset_decor android.view.WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR :: Int
+  pure native flag_alt_focusable_im android.view.WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM :: Int
+  pure native flag_watch_outside_touch android.view.WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH :: Int
+  pure native flag_show_when_locked android.view.WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED :: Int
+  pure native flag_show_wallpaper android.view.WindowManager.LayoutParams.FLAG_SHOW_WALLPAPER :: Int
+  pure native flag_turn_screen_on android.view.WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON :: Int
+  pure native flag_dismiss_keyguard android.view.WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD :: Int
+  pure native flag_split_touch android.view.WindowManager.LayoutParams.FLAG_SPLIT_TOUCH :: Int
+  pure native flag_hardware_accelerated android.view.WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED :: Int
+  pure native flag_layout_in_overscan android.view.WindowManager.LayoutParams.FLAG_LAYOUT_IN_OVERSCAN :: Int
+  pure native flag_translucent_status android.view.WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS :: Int
+  pure native flag_translucent_navigation android.view.WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION :: Int
+  pure native flag_local_focus_mode android.view.WindowManager.LayoutParams.FLAG_LOCAL_FOCUS_MODE :: Int
+  pure native flags ".flags" :: WindowManager_LayoutParams -> Int
+  pure native soft_input_mask_state android.view.WindowManager.LayoutParams.SOFT_INPUT_MASK_STATE :: Int
+  pure native soft_input_state_unspecified android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_UNSPECIFIED :: Int
+  pure native soft_input_state_unchanged android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_UNCHANGED :: Int
+  pure native soft_input_state_hidden android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN :: Int
+  pure native soft_input_state_always_hidden android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN :: Int
+  pure native soft_input_state_visible android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE :: Int
+  pure native soft_input_state_always_visible android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE :: Int
+  pure native soft_input_mask_adjust android.view.WindowManager.LayoutParams.SOFT_INPUT_MASK_ADJUST :: Int
+  pure native soft_input_adjust_unspecified android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_UNSPECIFIED :: Int
+  pure native soft_input_adjust_resize android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE :: Int
+  pure native soft_input_adjust_pan android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN :: Int
+  pure native soft_input_adjust_nothing android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING :: Int
+  pure native soft_input_is_forward_navigation android.view.WindowManager.LayoutParams.SOFT_INPUT_IS_FORWARD_NAVIGATION :: Int
+  pure native softinputmode ".softInputMode" :: WindowManager_LayoutParams -> Int
+  pure native gravity ".gravity" :: WindowManager_LayoutParams -> Int
+  pure native horizontalmargin ".horizontalMargin" :: WindowManager_LayoutParams -> Float
+  pure native verticalmargin ".verticalMargin" :: WindowManager_LayoutParams -> Float
+  pure native format ".format" :: WindowManager_LayoutParams -> Int
+  pure native windowanimations ".windowAnimations" :: WindowManager_LayoutParams -> Int
+  pure native alpha ".alpha" :: WindowManager_LayoutParams -> Float
+  pure native dimamount ".dimAmount" :: WindowManager_LayoutParams -> Float
+  pure native brightness_override_none android.view.WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE :: Float
+  pure native brightness_override_off android.view.WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_OFF :: Float
+  pure native brightness_override_full android.view.WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_FULL :: Float
+  pure native screenbrightness ".screenBrightness" :: WindowManager_LayoutParams -> Float
+  pure native buttonbrightness ".buttonBrightness" :: WindowManager_LayoutParams -> Float
+  pure native rotation_animation_rotate android.view.WindowManager.LayoutParams.ROTATION_ANIMATION_ROTATE :: Int
+  pure native rotation_animation_crossfade android.view.WindowManager.LayoutParams.ROTATION_ANIMATION_CROSSFADE :: Int
+  pure native rotation_animation_jumpcut android.view.WindowManager.LayoutParams.ROTATION_ANIMATION_JUMPCUT :: Int
+  pure native rotationanimation ".rotationAnimation" :: WindowManager_LayoutParams -> Int
+  pure native packagename ".packageName" :: WindowManager_LayoutParams -> String
+  pure native screenorientation ".screenOrientation" :: WindowManager_LayoutParams -> Int
+  pure native systemuivisibility ".systemUiVisibility" :: WindowManager_LayoutParams -> Int
+  pure native layout_changed android.view.WindowManager.LayoutParams.LAYOUT_CHANGED :: Int
+  pure native type_changed android.view.WindowManager.LayoutParams.TYPE_CHANGED :: Int
+  pure native flags_changed android.view.WindowManager.LayoutParams.FLAGS_CHANGED :: Int
+  pure native format_changed android.view.WindowManager.LayoutParams.FORMAT_CHANGED :: Int
+  pure native animation_changed android.view.WindowManager.LayoutParams.ANIMATION_CHANGED :: Int
+  pure native dim_amount_changed android.view.WindowManager.LayoutParams.DIM_AMOUNT_CHANGED :: Int
+  pure native title_changed android.view.WindowManager.LayoutParams.TITLE_CHANGED :: Int
+  pure native alpha_changed android.view.WindowManager.LayoutParams.ALPHA_CHANGED :: Int
+  pure native memory_type_changed android.view.WindowManager.LayoutParams.MEMORY_TYPE_CHANGED :: Int
+  pure native soft_input_mode_changed android.view.WindowManager.LayoutParams.SOFT_INPUT_MODE_CHANGED :: Int
+  pure native screen_orientation_changed android.view.WindowManager.LayoutParams.SCREEN_ORIENTATION_CHANGED :: Int
+  pure native screen_brightness_changed android.view.WindowManager.LayoutParams.SCREEN_BRIGHTNESS_CHANGED :: Int
+  pure native rotation_animation_changed android.view.WindowManager.LayoutParams.ROTATION_ANIMATION_CHANGED :: Int
+  native new :: () -> ST s WindowManager_LayoutParams
+              | Int -> ST s WindowManager_LayoutParams
+              | Int -> Int -> ST s WindowManager_LayoutParams
+              | Int -> Int -> Int -> ST s WindowManager_LayoutParams
+              | Int -> Int -> Int -> Int -> Int -> Int -> Int -> ST s WindowManager_LayoutParams
+              | Int -> Int -> Int -> Int -> Int -> ST s WindowManager_LayoutParams
+
+  pure native copyFrom :: WindowManager_LayoutParams -> WindowManager_LayoutParams -> Int
+
+  pure native debug :: WindowManager_LayoutParams -> String -> String
+
+  pure native describeContents :: WindowManager_LayoutParams -> Int
+
+  pure native getTitle :: WindowManager_LayoutParams -> CharSequence
+
+  pure native mayUseInputMethod android.view.WindowManager.LayoutParams.mayUseInputMethod :: Int -> Bool
+
+  native setTitle :: WindowManager_LayoutParams -> CharSequence -> ST s ()
+
+  pure native toString :: WindowManager_LayoutParams -> String
+{-  -}
+
+data WindowManager =  native android.view.WindowManager where
 
 
-  native getDefaultDisplay  :: WindowManager -> IOMutable Display
+  native getDefaultDisplay :: MutableIO WindowManager -> IOMutable Display
 
-  native removeViewImmediate  :: WindowManager -> MutableIO View -> IO ( )
-
-
-{-
-data WindowManager = pure native android.view.WindowManager where
-
-  native getDefaultDisplay :: WindowManager -> IOMutable Display
-
-  native removeViewImmediate :: WindowManager -> MutableIO View -> IO ()
+  native removeViewImmediate :: MutableIO WindowManager -> MutableIO View -> IO ()
+{-  -}
 
 
-
--}

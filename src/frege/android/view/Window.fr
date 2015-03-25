@@ -1,210 +1,66 @@
 package frege.android.view.Window where
 
-import frege.android.view.View
 import frege.android.content.Context
-import frege.android.view.WindowManager
-import frege.android.view.InputEvent
-import frege.android.view.KeyEvent
 import frege.android.content.res.Configuration
 import frege.android.graphics.drawable.Drawable
+import frege.android.net.Uri
+import frege.android.os.Bundle
+import frege.android.view.ActionMode
+import frege.android.view.InputEvent
+import frege.android.view.KeyEvent
+import frege.android.view.LayoutInflater
+import frege.android.view.Menu
+import frege.android.view.MenuItem
 import frege.android.view.MotionEvent
+import frege.android.view.View
+import frege.android.view.ViewGroup
+import frege.android.view.WindowManager
 
-data Window = pure native android.view.Window where
+data Window_Callback = pure native android.view.Window.Callback where
 
 
-  pure native feature_options_panel  android.view.Window.FEATURE_OPTIONS_PANEL :: Int
+  native dispatchGenericMotionEvent :: Window_Callback -> Mutable s MotionEvent -> ST s Bool
 
-  pure native feature_no_title  android.view.Window.FEATURE_NO_TITLE :: Int
+  pure native dispatchKeyEvent :: Window_Callback -> KeyEvent -> Bool
 
-  pure native feature_progress  android.view.Window.FEATURE_PROGRESS :: Int
+  pure native dispatchKeyShortcutEvent :: Window_Callback -> KeyEvent -> Bool
 
-  pure native feature_left_icon  android.view.Window.FEATURE_LEFT_ICON :: Int
+  native dispatchTouchEvent :: Window_Callback -> Mutable s MotionEvent -> ST s Bool
 
-  pure native feature_right_icon  android.view.Window.FEATURE_RIGHT_ICON :: Int
+  native dispatchTrackballEvent :: Window_Callback -> Mutable s MotionEvent -> ST s Bool
 
-  pure native feature_indeterminate_progress  android.view.Window.FEATURE_INDETERMINATE_PROGRESS :: Int
+  native onActionModeFinished :: Window_Callback -> MutableIO ActionMode -> IO ()
 
-  pure native feature_context_menu  android.view.Window.FEATURE_CONTEXT_MENU :: Int
+  native onActionModeStarted :: Window_Callback -> MutableIO ActionMode -> IO ()
 
-  pure native feature_custom_title  android.view.Window.FEATURE_CUSTOM_TITLE :: Int
+  native onAttachedToWindow :: Window_Callback -> ST s ()
 
-  pure native feature_action_bar  android.view.Window.FEATURE_ACTION_BAR :: Int
+  native onContentChanged :: Window_Callback -> ST s ()
 
-  pure native feature_action_bar_overlay  android.view.Window.FEATURE_ACTION_BAR_OVERLAY :: Int
+  pure native onCreatePanelMenu :: Window_Callback -> Int -> Menu -> Bool
 
-  pure native feature_action_mode_overlay  android.view.Window.FEATURE_ACTION_MODE_OVERLAY :: Int
+  native onCreatePanelView :: Window_Callback -> Int -> IOMutable View
 
-  pure native feature_swipe_to_dismiss  android.view.Window.FEATURE_SWIPE_TO_DISMISS :: Int
+  native onDetachedFromWindow :: Window_Callback -> ST s ()
 
-  pure native progress_visibility_on  android.view.Window.PROGRESS_VISIBILITY_ON :: Int
+  pure native onMenuItemSelected :: Window_Callback -> Int -> MenuItem -> Bool
 
-  pure native progress_visibility_off  android.view.Window.PROGRESS_VISIBILITY_OFF :: Int
+  pure native onMenuOpened :: Window_Callback -> Int -> Menu -> Bool
 
-  pure native progress_indeterminate_on  android.view.Window.PROGRESS_INDETERMINATE_ON :: Int
+  native onPanelClosed :: Window_Callback -> Int -> Menu -> ST s ()
 
-  pure native progress_indeterminate_off  android.view.Window.PROGRESS_INDETERMINATE_OFF :: Int
+  native onPreparePanel :: Window_Callback -> Int -> MutableIO View -> Menu -> IO Bool
 
-  pure native progress_start  android.view.Window.PROGRESS_START :: Int
+  pure native onSearchRequested :: Window_Callback -> Bool
 
-  pure native progress_end  android.view.Window.PROGRESS_END :: Int
+  native onWindowAttributesChanged :: Window_Callback -> WindowManager_LayoutParams -> ST s ()
 
-  pure native progress_secondary_start  android.view.Window.PROGRESS_SECONDARY_START :: Int
+  native onWindowFocusChanged :: Window_Callback -> Bool -> ST s ()
 
-  pure native progress_secondary_end  android.view.Window.PROGRESS_SECONDARY_END :: Int
+  native onWindowStartingActionMode :: Window_Callback -> ActionMode_Callback -> IOMutable ActionMode
+{-  -}
 
-  pure native id_android_content  android.view.Window.ID_ANDROID_CONTENT :: Int
-
-{- this is abstract native new  :: Context -> ST s Window-}
-
-{-   native addContentView  :: -- ["ViewGroup_LayoutParams"] -- Window -> MutableIO View -> ViewGroup_LayoutParams -> IO ( ) -}
-
-  native addFlags  :: Window -> Int -> ST s ( )
-
-  native clearFlags  :: Window -> Int -> ST s ( )
-
-  native closeAllPanels  :: Window -> ST s ( )
-
-  native closePanel  :: Window -> Int -> ST s ( )
-
-  native findViewById  :: Window -> Int -> IOMutable View
-
-{-   pure native getAttributes  :: -- ["WindowManager_LayoutParams"] -- Window -> WindowManager_LayoutParams -}
-
-{-   pure native getCallback  :: -- ["Window_Callback"] -- Window -> Window_Callback -}
-
-  pure native getContainer  :: Window -> Window
-
-  pure native getContext  :: Window -> Context
-
-  native getCurrentFocus  :: Window -> IOMutable View
-
-  native getDecorView  :: Window -> IOMutable View
-
-{-   pure native getLayoutInflater  :: -- ["LayoutInflater"] -- Window -> LayoutInflater -}
-
-  pure native getVolumeControlStream  :: Window -> Int
-
-  pure native getWindowManager  :: Window -> WindowManager
-
-{-   pure native getWindowStyle  :: -- ["TypedArray"] -- Window -> TypedArray -}
-
-  pure native hasChildren  :: Window -> Bool
-
-  pure native hasFeature  :: Window -> Int -> Bool
-
-  native injectInputEvent  :: Window -> InputEvent -> ST s ( )
-
-  native invalidatePanelMenu  :: Window -> Int -> ST s ( )
-
-  pure native isActive  :: Window -> Bool
-
-  pure native isFloating  :: Window -> Bool
-
-  pure native isShortcutKey  :: Window -> Int -> KeyEvent -> Bool
-
-  native makeActive  :: Window -> ST s ( )
-
-  native onConfigurationChanged  :: Window -> Configuration -> ST s ( )
-
-  native openPanel  :: Window -> Int -> KeyEvent -> ST s ( )
-
-  native peekDecorView  :: Window -> IOMutable View
-
-  pure native performContextMenuIdentifierAction  :: Window -> Int -> Int -> Bool
-
-  pure native performPanelIdentifierAction  :: Window -> Int -> Int -> Int -> Bool
-
-  pure native performPanelShortcut  :: Window -> Int -> Int -> KeyEvent -> Int -> Bool
-
-  pure native requestFeature  :: Window -> Int -> Bool
-
-{-   native restoreHierarchyState  :: -- ["Bundle"] -- Window -> Bundle -> ST s ( ) -}
-
-{-   pure native saveHierarchyState  :: -- ["Bundle"] -- Window -> Bundle -}
-
-{-   native setAttributes  :: -- ["WindowManager_LayoutParams"] -- Window -> WindowManager_LayoutParams -> ST s ( ) -}
-
-  native setBackgroundDrawable  :: Window -> Drawable -> ST s ( )
-
-  native setBackgroundDrawableResource  :: Window -> Int -> ST s ( )
-
-{-   native setCallback  :: -- ["Window_Callback"] -- Window -> Window_Callback -> ST s ( ) -}
-
-  native setChildDrawable  :: Window -> Int -> Drawable -> ST s ( )
-
-  native setChildInt  :: Window -> Int -> Int -> ST s ( )
-
-  native setContainer  :: Window -> Window -> ST s ( )
-
-  native setContentView  :: Window -> Int -> ST s ( )
-        -- ["ViewGroup_LayoutParams"] -- | Window -> MutableIO View -> ViewGroup_LayoutParams -> IO ( )
-        | Window -> MutableIO View -> IO ( )
-
-  native setDimAmount  :: Window -> Float -> ST s ( )
-
-  native setFeatureDrawable  :: Window -> Int -> Drawable -> ST s ( )
-
-  native setFeatureDrawableAlpha  :: Window -> Int -> Int -> ST s ( )
-
-  native setFeatureDrawableResource  :: Window -> Int -> Int -> ST s ( )
-
-{-   native setFeatureDrawableUri  :: -- ["Uri"] -- Window -> Int -> Uri -> ST s ( ) -}
-
-  native setFeatureInt  :: Window -> Int -> Int -> ST s ( )
-
-  native setFlags  :: Window -> Int -> Int -> ST s ( )
-
-  native setFormat  :: Window -> Int -> ST s ( )
-
-  native setGravity  :: Window -> Int -> ST s ( )
-
-  native setIcon  :: Window -> Int -> ST s ( )
-
-  native setLayout  :: Window -> Int -> Int -> ST s ( )
-
-  native setLocalFocus  :: Window -> Bool -> Bool -> ST s ( )
-
-  native setLogo  :: Window -> Int -> ST s ( )
-
-  native setSoftInputMode  :: Window -> Int -> ST s ( )
-
-  native setTitle  :: Window -> CharSequence -> ST s ( )
-
-  native setTitleColor  :: Window -> Int -> ST s ( )
-
-  native setType  :: Window -> Int -> ST s ( )
-
-  native setUiOptions  :: Window -> Int -> ST s ( )
-        | Window -> Int -> Int -> ST s ( )
-
-  native setVolumeControlStream  :: Window -> Int -> ST s ( )
-
-  native setWindowAnimations  :: Window -> Int -> ST s ( )
-
-{-   native setWindowManager  :: -- ["IBinder"] -- Window -> WindowManager -> IBinder -> String -> ST s ( )
-        -- ["IBinder"] -- Window -> WindowManager -> IBinder -> String -> Bool -> ST s ( ) -}
-
-  pure native superDispatchGenericMotionEvent  :: Window -> MotionEvent -> Bool
-
-  pure native superDispatchKeyEvent  :: Window -> KeyEvent -> Bool
-
-  pure native superDispatchKeyShortcutEvent  :: Window -> KeyEvent -> Bool
-
-  pure native superDispatchTouchEvent  :: Window -> MotionEvent -> Bool
-
-  pure native superDispatchTrackballEvent  :: Window -> MotionEvent -> Bool
-
-{-   native takeInputQueue  :: -- ["InputQueue_Callback"] -- Window -> InputQueue_Callback -> ST s ( ) -}
-
-  native takeKeyEvents  :: Window -> Bool -> ST s ( )
-
-{-   native takeSurface  :: -- ["SurfaceHolder_Callback2"] -- Window -> SurfaceHolder_Callback2 -> ST s ( ) -}
-
-  native togglePanel  :: Window -> Int -> KeyEvent -> ST s ( )
-
-
-{-
-data Window = pure native android.view.Window where
+data Window =  native android.view.Window where
 
   pure native feature_options_panel android.view.Window.FEATURE_OPTIONS_PANEL :: Int
   pure native feature_no_title android.view.Window.FEATURE_NO_TITLE :: Int
@@ -228,154 +84,142 @@ data Window = pure native android.view.Window where
   pure native progress_secondary_end android.view.Window.PROGRESS_SECONDARY_END :: Int
   pure native id_android_content android.view.Window.ID_ANDROID_CONTENT :: Int
 
-  native new :: Context -> ST s Window
+  native addContentView :: MutableIO Window -> MutableIO View -> ViewGroup_LayoutParams -> IO ()
 
-  native addContentView :: Window -> MutableIO View -> ViewGroup_LayoutParams -> IO ()
+  native addFlags :: MutableIO Window -> Int -> IO ()
 
-  native addFlags :: Window -> Int -> ST s ()
+  native clearFlags :: MutableIO Window -> Int -> IO ()
 
-  native clearFlags :: Window -> Int -> ST s ()
+  native closeAllPanels :: MutableIO Window -> IO ()
 
-  native closeAllPanels :: Window -> ST s ()
+  native closePanel :: MutableIO Window -> Int -> IO ()
 
-  native closePanel :: Window -> Int -> ST s ()
+  native findViewById :: MutableIO Window -> Int -> IOMutable View
 
-  native findViewById :: Window -> Int -> IOMutable View
+  native getAttributes :: MutableIO Window -> IO WindowManager_LayoutParams
 
-  pure native getAttributes :: Window -> WindowManager_LayoutParams
+  native getCallback :: MutableIO Window -> IO Window_Callback
 
-  pure native getCallback :: Window -> Window_Callback
+  native getContainer :: MutableIO Window -> IOMutable Window
 
-  pure native getContainer :: Window -> Window
+  native getContext :: MutableIO Window -> IOMutable Context
 
-  pure native getContext :: Window -> Context
+  native getCurrentFocus :: MutableIO Window -> IOMutable View
 
-  native getCurrentFocus :: Window -> IOMutable View
+  native getDecorView :: MutableIO Window -> IOMutable View
 
-  native getDecorView :: Window -> IOMutable View
+  native getLayoutInflater :: MutableIO Window -> IO LayoutInflater
 
-  pure native getLayoutInflater :: Window -> LayoutInflater
+  native getVolumeControlStream :: MutableIO Window -> IO Int
 
-  pure native getVolumeControlStream :: Window -> Int
+  native getWindowManager :: MutableIO Window -> IOMutable WindowManager
 
-  pure native getWindowManager :: Window -> WindowManager
+  native hasChildren :: MutableIO Window -> IO Bool
 
-  pure native getWindowStyle :: Window -> TypedArray
+  native hasFeature :: MutableIO Window -> Int -> IO Bool
 
-  pure native hasChildren :: Window -> Bool
+  native injectInputEvent :: MutableIO Window -> InputEvent -> IO ()
 
-  pure native hasFeature :: Window -> Int -> Bool
+  native invalidatePanelMenu :: MutableIO Window -> Int -> IO ()
 
-  native injectInputEvent :: Window -> InputEvent -> ST s ()
+  native isActive :: MutableIO Window -> IO Bool
 
-  native invalidatePanelMenu :: Window -> Int -> ST s ()
+  native isFloating :: MutableIO Window -> IO Bool
 
-  pure native isActive :: Window -> Bool
+  native isShortcutKey :: MutableIO Window -> Int -> KeyEvent -> IO Bool
 
-  pure native isFloating :: Window -> Bool
+  native makeActive :: MutableIO Window -> IO ()
 
-  pure native isShortcutKey :: Window -> Int -> KeyEvent -> Bool
+  native onConfigurationChanged :: MutableIO Window -> Configuration -> IO ()
 
-  native makeActive :: Window -> ST s ()
+  native openPanel :: MutableIO Window -> Int -> KeyEvent -> IO ()
 
-  native onConfigurationChanged :: Window -> Configuration -> ST s ()
+  native peekDecorView :: MutableIO Window -> IOMutable View
 
-  native openPanel :: Window -> Int -> KeyEvent -> ST s ()
+  native performContextMenuIdentifierAction :: MutableIO Window -> Int -> Int -> IO Bool
 
-  native peekDecorView :: Window -> IOMutable View
+  native performPanelIdentifierAction :: MutableIO Window -> Int -> Int -> Int -> IO Bool
 
-  pure native performContextMenuIdentifierAction :: Window -> Int -> Int -> Bool
+  native performPanelShortcut :: MutableIO Window -> Int -> Int -> KeyEvent -> Int -> IO Bool
 
-  pure native performPanelIdentifierAction :: Window -> Int -> Int -> Int -> Bool
+  native requestFeature :: MutableIO Window -> Int -> IO Bool
 
-  pure native performPanelShortcut :: Window -> Int -> Int -> KeyEvent -> Int -> Bool
+  native restoreHierarchyState :: MutableIO Window -> Bundle -> IO ()
 
-  pure native requestFeature :: Window -> Int -> Bool
+  native saveHierarchyState :: MutableIO Window -> IO Bundle
 
-  native restoreHierarchyState :: Window -> Bundle -> ST s ()
+  native setAttributes :: MutableIO Window -> WindowManager_LayoutParams -> IO ()
 
-  pure native saveHierarchyState :: Window -> Bundle
+  native setBackgroundDrawable :: MutableIO Window -> Drawable -> IO ()
 
-  native setAttributes :: Window -> WindowManager_LayoutParams -> ST s ()
+  native setBackgroundDrawableResource :: MutableIO Window -> Int -> IO ()
 
-  native setBackgroundDrawable :: Window -> Drawable -> ST s ()
+  native setCallback :: MutableIO Window -> Window_Callback -> IO ()
 
-  native setBackgroundDrawableResource :: Window -> Int -> ST s ()
+  native setChildDrawable :: MutableIO Window -> Int -> Drawable -> IO ()
 
-  native setCallback :: Window -> Window_Callback -> ST s ()
+  native setChildInt :: MutableIO Window -> Int -> Int -> IO ()
 
-  native setChildDrawable :: Window -> Int -> Drawable -> ST s ()
+  native setContainer :: MutableIO Window -> MutableIO Window -> IO ()
 
-  native setChildInt :: Window -> Int -> Int -> ST s ()
+  native setContentView :: MutableIO Window -> MutableIO View -> ViewGroup_LayoutParams -> IO ()
+          | MutableIO Window -> Int -> IO ()
+          | MutableIO Window -> MutableIO View -> IO ()
 
-  native setContainer :: Window -> Window -> ST s ()
+  native setDimAmount :: MutableIO Window -> Float -> IO ()
 
-  native setContentView :: Window -> Int -> ST s ()
-                         | Window -> MutableIO View -> ViewGroup_LayoutParams -> IO ()
-                         | Window -> MutableIO View -> IO ()
+  native setFeatureDrawable :: MutableIO Window -> Int -> Drawable -> IO ()
 
-  native setDimAmount :: Window -> Float -> ST s ()
+  native setFeatureDrawableAlpha :: MutableIO Window -> Int -> Int -> IO ()
 
-  native setFeatureDrawable :: Window -> Int -> Drawable -> ST s ()
+  native setFeatureDrawableResource :: MutableIO Window -> Int -> Int -> IO ()
 
-  native setFeatureDrawableAlpha :: Window -> Int -> Int -> ST s ()
+  native setFeatureDrawableUri :: MutableIO Window -> Int -> Uri -> IO ()
 
-  native setFeatureDrawableResource :: Window -> Int -> Int -> ST s ()
+  native setFeatureInt :: MutableIO Window -> Int -> Int -> IO ()
 
-  native setFeatureDrawableUri :: Window -> Int -> Uri -> ST s ()
+  native setFlags :: MutableIO Window -> Int -> Int -> IO ()
 
-  native setFeatureInt :: Window -> Int -> Int -> ST s ()
+  native setFormat :: MutableIO Window -> Int -> IO ()
 
-  native setFlags :: Window -> Int -> Int -> ST s ()
+  native setGravity :: MutableIO Window -> Int -> IO ()
 
-  native setFormat :: Window -> Int -> ST s ()
+  native setIcon :: MutableIO Window -> Int -> IO ()
 
-  native setGravity :: Window -> Int -> ST s ()
+  native setLayout :: MutableIO Window -> Int -> Int -> IO ()
 
-  native setIcon :: Window -> Int -> ST s ()
+  native setLocalFocus :: MutableIO Window -> Bool -> Bool -> IO ()
 
-  native setLayout :: Window -> Int -> Int -> ST s ()
+  native setLogo :: MutableIO Window -> Int -> IO ()
 
-  native setLocalFocus :: Window -> Bool -> Bool -> ST s ()
+  native setSoftInputMode :: MutableIO Window -> Int -> IO ()
 
-  native setLogo :: Window -> Int -> ST s ()
+  native setTitle :: MutableIO Window -> CharSequence -> IO ()
 
-  native setSoftInputMode :: Window -> Int -> ST s ()
+  native setTitleColor :: MutableIO Window -> Int -> IO ()
 
-  native setTitle :: Window -> CharSequence -> ST s ()
+  native setType :: MutableIO Window -> Int -> IO ()
 
-  native setTitleColor :: Window -> Int -> ST s ()
+  native setUiOptions :: MutableIO Window -> Int -> Int -> IO ()
+          | MutableIO Window -> Int -> IO ()
 
-  native setType :: Window -> Int -> ST s ()
+  native setVolumeControlStream :: MutableIO Window -> Int -> IO ()
 
-  native setUiOptions :: Window -> Int -> ST s ()
-                       | Window -> Int -> Int -> ST s ()
+  native setWindowAnimations :: MutableIO Window -> Int -> IO ()
 
-  native setVolumeControlStream :: Window -> Int -> ST s ()
+  native superDispatchGenericMotionEvent :: MutableIO Window -> MutableIO MotionEvent -> IO Bool
 
-  native setWindowAnimations :: Window -> Int -> ST s ()
+  native superDispatchKeyEvent :: MutableIO Window -> KeyEvent -> IO Bool
 
-  native setWindowManager :: Window -> WindowManager -> IBinder -> String -> ST s ()
-                           | Window -> WindowManager -> IBinder -> String -> Bool -> ST s ()
+  native superDispatchKeyShortcutEvent :: MutableIO Window -> KeyEvent -> IO Bool
 
-  pure native superDispatchGenericMotionEvent :: Window -> MotionEvent -> Bool
+  native superDispatchTouchEvent :: MutableIO Window -> MutableIO MotionEvent -> IO Bool
 
-  pure native superDispatchKeyEvent :: Window -> KeyEvent -> Bool
+  native superDispatchTrackballEvent :: MutableIO Window -> MutableIO MotionEvent -> IO Bool
 
-  pure native superDispatchKeyShortcutEvent :: Window -> KeyEvent -> Bool
+  native takeKeyEvents :: MutableIO Window -> Bool -> IO ()
 
-  pure native superDispatchTouchEvent :: Window -> MotionEvent -> Bool
+  native togglePanel :: MutableIO Window -> Int -> KeyEvent -> IO ()
+{-  -}
 
-  pure native superDispatchTrackballEvent :: Window -> MotionEvent -> Bool
 
-  native takeInputQueue :: Window -> InputQueue_Callback -> ST s ()
-
-  native takeKeyEvents :: Window -> Bool -> ST s ()
-
-  native takeSurface :: Window -> SurfaceHolder_Callback2 -> ST s ()
-
-  native togglePanel :: Window -> Int -> KeyEvent -> ST s ()
-
-
-
--}

@@ -1,129 +1,21 @@
 package frege.android.gesture.GestureOverlayView where
 
 import frege.android.content.Context
-import frege.android.view.MotionEvent
+import frege.android.gesture.Gesture
+import frege.android.graphics.Canvas
+import frege.android.graphics.Path
 import frege.android.util.AttributeSet
+import frege.android.view.MotionEvent
 
-data GestureOverlayView = pure native android.gesture.GestureOverlayView where
-
-
-  pure native gesture_stroke_type_single  android.gesture.GestureOverlayView.GESTURE_STROKE_TYPE_SINGLE :: Int
-
-  pure native gesture_stroke_type_multiple  android.gesture.GestureOverlayView.GESTURE_STROKE_TYPE_MULTIPLE :: Int
-
-  pure native orientation_horizontal  android.gesture.GestureOverlayView.ORIENTATION_HORIZONTAL :: Int
-
-  pure native orientation_vertical  android.gesture.GestureOverlayView.ORIENTATION_VERTICAL :: Int
-
-  native new  :: Context -> AttributeSet -> Int -> ST s GestureOverlayView
-        | Context -> AttributeSet -> ST s GestureOverlayView
-        | Context -> ST s GestureOverlayView
-
-{-   native addOnGestureListener  :: -- ["GestureOverlayView_OnGestureListener"] -- GestureOverlayView -> GestureOverlayView_OnGestureListener -> ST s ( ) -}
-
-{-   native addOnGesturePerformedListener  :: -- ["GestureOverlayView_OnGesturePerformedListener"] -- GestureOverlayView -> GestureOverlayView_OnGesturePerformedListener -> ST s ( ) -}
-
-{-   native addOnGesturingListener  :: -- ["GestureOverlayView_OnGesturingListener"] -- GestureOverlayView -> GestureOverlayView_OnGesturingListener -> ST s ( ) -}
-
-  native cancelClearAnimation  :: GestureOverlayView -> ST s ( )
-
-  native cancelGesture  :: GestureOverlayView -> ST s ( )
-
-  native clear  :: GestureOverlayView -> Bool -> ST s ( )
-
-  pure native dispatchTouchEvent  :: GestureOverlayView -> MotionEvent -> Bool
-
-{-   native draw  :: -- ["Canvas"] -- GestureOverlayView -> Canvas -> ST s ( ) -}
-
-{-   native getCurrentStroke  :: -- ["ArrayList","GesturePoint"] -- GestureOverlayView -> STMutable s ( ArrayList GesturePoint ) -}
-
-  pure native getFadeOffset  :: GestureOverlayView -> Long
-
-{-   pure native getGesture  :: -- ["Gesture"] -- GestureOverlayView -> Gesture -}
-
-  pure native getGestureColor  :: GestureOverlayView -> Int
-
-{-   pure native getGesturePath  :: -- ["Path"] -- GestureOverlayView -> Path
-        -- ["Path"] -- GestureOverlayView -> Path -> Path -}
-
-  pure native getGestureStrokeAngleThreshold  :: GestureOverlayView -> Float
-
-  pure native getGestureStrokeLengthThreshold  :: GestureOverlayView -> Float
-
-  pure native getGestureStrokeSquarenessTreshold  :: GestureOverlayView -> Float
-
-  pure native getGestureStrokeType  :: GestureOverlayView -> Int
-
-  pure native getGestureStrokeWidth  :: GestureOverlayView -> Float
-
-  pure native getOrientation  :: GestureOverlayView -> Int
-
-  pure native getUncertainGestureColor  :: GestureOverlayView -> Int
-
-  pure native isEventsInterceptionEnabled  :: GestureOverlayView -> Bool
-
-  pure native isFadeEnabled  :: GestureOverlayView -> Bool
-
-  pure native isGestureVisible  :: GestureOverlayView -> Bool
-
-  pure native isGesturing  :: GestureOverlayView -> Bool
-
-  native removeAllOnGestureListeners  :: GestureOverlayView -> ST s ( )
-
-  native removeAllOnGesturePerformedListeners  :: GestureOverlayView -> ST s ( )
-
-  native removeAllOnGesturingListeners  :: GestureOverlayView -> ST s ( )
-
-{-   native removeOnGestureListener  :: -- ["GestureOverlayView_OnGestureListener"] -- GestureOverlayView -> GestureOverlayView_OnGestureListener -> ST s ( ) -}
-
-{-   native removeOnGesturePerformedListener  :: -- ["GestureOverlayView_OnGesturePerformedListener"] -- GestureOverlayView -> GestureOverlayView_OnGesturePerformedListener -> ST s ( ) -}
-
-{-   native removeOnGesturingListener  :: -- ["GestureOverlayView_OnGesturingListener"] -- GestureOverlayView -> GestureOverlayView_OnGesturingListener -> ST s ( ) -}
-
-  native setEventsInterceptionEnabled  :: GestureOverlayView -> Bool -> ST s ( )
-
-  native setFadeEnabled  :: GestureOverlayView -> Bool -> ST s ( )
-
-  native setFadeOffset  :: GestureOverlayView -> Long -> ST s ( )
-
-{-   native setGesture  :: -- ["Gesture"] -- GestureOverlayView -> Gesture -> ST s ( ) -}
-
-  native setGestureColor  :: GestureOverlayView -> Int -> ST s ( )
-
-  native setGestureStrokeAngleThreshold  :: GestureOverlayView -> Float -> ST s ( )
-
-  native setGestureStrokeLengthThreshold  :: GestureOverlayView -> Float -> ST s ( )
-
-  native setGestureStrokeSquarenessTreshold  :: GestureOverlayView -> Float -> ST s ( )
-
-  native setGestureStrokeType  :: GestureOverlayView -> Int -> ST s ( )
-
-  native setGestureStrokeWidth  :: GestureOverlayView -> Float -> ST s ( )
-
-  native setGestureVisible  :: GestureOverlayView -> Bool -> ST s ( )
-
-  native setOrientation  :: GestureOverlayView -> Int -> ST s ( )
-
-  native setUncertainGestureColor  :: GestureOverlayView -> Int -> ST s ( )
-
-
-{-
 data GestureOverlayView = pure native android.gesture.GestureOverlayView where
 
   pure native gesture_stroke_type_single android.gesture.GestureOverlayView.GESTURE_STROKE_TYPE_SINGLE :: Int
   pure native gesture_stroke_type_multiple android.gesture.GestureOverlayView.GESTURE_STROKE_TYPE_MULTIPLE :: Int
   pure native orientation_horizontal android.gesture.GestureOverlayView.ORIENTATION_HORIZONTAL :: Int
   pure native orientation_vertical android.gesture.GestureOverlayView.ORIENTATION_VERTICAL :: Int
-
-  native new :: Context -> AttributeSet -> Int -> ST s GestureOverlayView
-              | Context -> AttributeSet -> ST s GestureOverlayView
-              | Context -> ST s GestureOverlayView
-
-  native addOnGestureListener :: GestureOverlayView -> GestureOverlayView_OnGestureListener -> ST s ()
-
-  native addOnGesturePerformedListener :: GestureOverlayView -> GestureOverlayView_OnGesturePerformedListener -> ST s ()
-
-  native addOnGesturingListener :: GestureOverlayView -> GestureOverlayView_OnGesturingListener -> ST s ()
+  native new :: MutableIO Context -> IO GestureOverlayView
+              | MutableIO Context -> AttributeSet -> IO GestureOverlayView
+              | MutableIO Context -> AttributeSet -> Int -> IO GestureOverlayView
 
   native cancelClearAnimation :: GestureOverlayView -> ST s ()
 
@@ -131,11 +23,9 @@ data GestureOverlayView = pure native android.gesture.GestureOverlayView where
 
   native clear :: GestureOverlayView -> Bool -> ST s ()
 
-  pure native dispatchTouchEvent :: GestureOverlayView -> MotionEvent -> Bool
+  native dispatchTouchEvent :: GestureOverlayView -> Mutable s MotionEvent -> ST s Bool
 
-  native draw :: GestureOverlayView -> Canvas -> ST s ()
-
-  native getCurrentStroke :: GestureOverlayView -> STMutable s (ArrayList GesturePoint)
+  native draw :: GestureOverlayView -> MutableIO Canvas -> IO ()
 
   pure native getFadeOffset :: GestureOverlayView -> Long
 
@@ -143,8 +33,8 @@ data GestureOverlayView = pure native android.gesture.GestureOverlayView where
 
   pure native getGestureColor :: GestureOverlayView -> Int
 
-  pure native getGesturePath :: GestureOverlayView -> Path
-                              | GestureOverlayView -> Path -> Path
+  native getGesturePath :: GestureOverlayView -> Mutable s Path -> STMutable s Path
+          | GestureOverlayView -> STMutable s Path
 
   pure native getGestureStrokeAngleThreshold :: GestureOverlayView -> Float
 
@@ -174,12 +64,6 @@ data GestureOverlayView = pure native android.gesture.GestureOverlayView where
 
   native removeAllOnGesturingListeners :: GestureOverlayView -> ST s ()
 
-  native removeOnGestureListener :: GestureOverlayView -> GestureOverlayView_OnGestureListener -> ST s ()
-
-  native removeOnGesturePerformedListener :: GestureOverlayView -> GestureOverlayView_OnGesturePerformedListener -> ST s ()
-
-  native removeOnGesturingListener :: GestureOverlayView -> GestureOverlayView_OnGesturingListener -> ST s ()
-
   native setEventsInterceptionEnabled :: GestureOverlayView -> Bool -> ST s ()
 
   native setFadeEnabled :: GestureOverlayView -> Bool -> ST s ()
@@ -205,7 +89,6 @@ data GestureOverlayView = pure native android.gesture.GestureOverlayView where
   native setOrientation :: GestureOverlayView -> Int -> ST s ()
 
   native setUncertainGestureColor :: GestureOverlayView -> Int -> ST s ()
+{-  -}
 
 
-
--}

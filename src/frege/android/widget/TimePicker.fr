@@ -3,77 +3,27 @@ package frege.android.widget.TimePicker where
 import frege.android.content.Context
 import frege.android.util.AttributeSet
 
-data TimePicker = pure native android.widget.TimePicker where
+data TimePicker_OnTimeChangedListener = pure native android.widget.TimePicker.OnTimeChangedListener where
 
 
-  native new  :: Context -> AttributeSet -> ST s TimePicker
-        | Context -> ST s TimePicker
-        | Context -> AttributeSet -> Int -> ST s TimePicker
+  native onTimeChanged :: TimePicker_OnTimeChangedListener -> MutableIO TimePicker -> Int -> Int -> IO ()
+{-  -}
 
-{-   pure native dispatchPopulateAccessibilityEvent  :: -- ["AccessibilityEvent"] -- TimePicker -> AccessibilityEvent -> Bool -}
+data TimePicker =  native android.widget.TimePicker where
 
-  pure native getBaseline  :: TimePicker -> Int
+  native new :: MutableIO Context -> AttributeSet -> Int -> IOMutable TimePicker
+              | MutableIO Context -> AttributeSet -> IOMutable TimePicker
+              | MutableIO Context -> IOMutable TimePicker
 
-{-   pure native getCurrentHour  :: -- ["Integer"] -- TimePicker -> Integer -}
+  native getBaseline :: MutableIO TimePicker -> IO Int
 
-{-   pure native getCurrentMinute  :: -- ["Integer"] -- TimePicker -> Integer -}
+  native is24HourView :: MutableIO TimePicker -> IO Bool
 
-  pure native is24HourView  :: TimePicker -> Bool
+  native isEnabled :: MutableIO TimePicker -> IO Bool
 
-  pure native isEnabled  :: TimePicker -> Bool
+  native setEnabled :: MutableIO TimePicker -> Bool -> IO ()
 
-{-   native onInitializeAccessibilityEvent  :: -- ["AccessibilityEvent"] -- TimePicker -> AccessibilityEvent -> ST s ( ) -}
-
-{-   native onInitializeAccessibilityNodeInfo  :: -- ["AccessibilityNodeInfo"] -- TimePicker -> AccessibilityNodeInfo -> ST s ( ) -}
-
-{-   native onPopulateAccessibilityEvent  :: -- ["AccessibilityEvent"] -- TimePicker -> AccessibilityEvent -> ST s ( ) -}
-
-{-   native setCurrentHour  :: -- ["Integer"] -- TimePicker -> Integer -> ST s ( ) -}
-
-{-   native setCurrentMinute  :: -- ["Integer"] -- TimePicker -> Integer -> ST s ( ) -}
-
-  native setEnabled  :: TimePicker -> Bool -> ST s ( )
-
-{-   native setIs24HourView  :: -- ["Boolean"] -- TimePicker -> Boolean -> ST s ( ) -}
-
-{-   native setOnTimeChangedListener  :: -- ["TimePicker_OnTimeChangedListener"] -- TimePicker -> TimePicker_OnTimeChangedListener -> ST s ( ) -}
+  native setOnTimeChangedListener :: MutableIO TimePicker -> TimePicker_OnTimeChangedListener -> IO ()
+{-  -}
 
 
-{-
-data TimePicker = pure native android.widget.TimePicker where
-
-  native new :: Context -> AttributeSet -> ST s TimePicker
-              | Context -> ST s TimePicker
-              | Context -> AttributeSet -> Int -> ST s TimePicker
-
-  pure native dispatchPopulateAccessibilityEvent :: TimePicker -> AccessibilityEvent -> Bool
-
-  pure native getBaseline :: TimePicker -> Int
-
-  pure native getCurrentHour :: TimePicker -> Integer
-
-  pure native getCurrentMinute :: TimePicker -> Integer
-
-  pure native is24HourView :: TimePicker -> Bool
-
-  pure native isEnabled :: TimePicker -> Bool
-
-  native onInitializeAccessibilityEvent :: TimePicker -> AccessibilityEvent -> ST s ()
-
-  native onInitializeAccessibilityNodeInfo :: TimePicker -> AccessibilityNodeInfo -> ST s ()
-
-  native onPopulateAccessibilityEvent :: TimePicker -> AccessibilityEvent -> ST s ()
-
-  native setCurrentHour :: TimePicker -> Integer -> ST s ()
-
-  native setCurrentMinute :: TimePicker -> Integer -> ST s ()
-
-  native setEnabled :: TimePicker -> Bool -> ST s ()
-
-  native setIs24HourView :: TimePicker -> Boolean -> ST s ()
-
-  native setOnTimeChangedListener :: TimePicker -> TimePicker_OnTimeChangedListener -> ST s ()
-
-
-
--}

@@ -4,81 +4,6 @@ import frege.android.graphics.Rect
 
 data Gravity = pure native android.view.Gravity where
 
-
-  pure native no_gravity  android.view.Gravity.NO_GRAVITY :: Int
-
-  pure native axis_specified  android.view.Gravity.AXIS_SPECIFIED :: Int
-
-  pure native axis_pull_before  android.view.Gravity.AXIS_PULL_BEFORE :: Int
-
-  pure native axis_pull_after  android.view.Gravity.AXIS_PULL_AFTER :: Int
-
-  pure native axis_clip  android.view.Gravity.AXIS_CLIP :: Int
-
-  pure native axis_x_shift  android.view.Gravity.AXIS_X_SHIFT :: Int
-
-  pure native axis_y_shift  android.view.Gravity.AXIS_Y_SHIFT :: Int
-
-  pure native top  android.view.Gravity.TOP :: Int
-
-  pure native bottom  android.view.Gravity.BOTTOM :: Int
-
-  pure native left  android.view.Gravity.LEFT :: Int
-
-  pure native right  android.view.Gravity.RIGHT :: Int
-
-  pure native center_vertical  android.view.Gravity.CENTER_VERTICAL :: Int
-
-  pure native fill_vertical  android.view.Gravity.FILL_VERTICAL :: Int
-
-  pure native center_horizontal  android.view.Gravity.CENTER_HORIZONTAL :: Int
-
-  pure native fill_horizontal  android.view.Gravity.FILL_HORIZONTAL :: Int
-
-  pure native center  android.view.Gravity.CENTER :: Int
-
-  pure native fill  android.view.Gravity.FILL :: Int
-
-  pure native clip_vertical  android.view.Gravity.CLIP_VERTICAL :: Int
-
-  pure native clip_horizontal  android.view.Gravity.CLIP_HORIZONTAL :: Int
-
-  pure native relative_layout_direction  android.view.Gravity.RELATIVE_LAYOUT_DIRECTION :: Int
-
-  pure native horizontal_gravity_mask  android.view.Gravity.HORIZONTAL_GRAVITY_MASK :: Int
-
-  pure native vertical_gravity_mask  android.view.Gravity.VERTICAL_GRAVITY_MASK :: Int
-
-  pure native display_clip_vertical  android.view.Gravity.DISPLAY_CLIP_VERTICAL :: Int
-
-  pure native display_clip_horizontal  android.view.Gravity.DISPLAY_CLIP_HORIZONTAL :: Int
-
-  pure native start  android.view.Gravity.START :: Int
-
-  pure native end  android.view.Gravity.END :: Int
-
-  pure native relative_horizontal_gravity_mask  android.view.Gravity.RELATIVE_HORIZONTAL_GRAVITY_MASK :: Int
-
-  native new  :: ( ) -> ST s Gravity
-
-  native apply  android.view.Gravity.apply :: Int -> Int -> Int -> Mutable s Rect -> Int -> Int -> Mutable s Rect -> Int -> ST s ( )
-        | Int -> Int -> Int -> Mutable s Rect -> Int -> Int -> Mutable s Rect -> ST s ( )
-        | Int -> Int -> Int -> Mutable s Rect -> Mutable s Rect -> Int -> ST s ( )
-        | Int -> Int -> Int -> Mutable s Rect -> Mutable s Rect -> ST s ( )
-
-  native applyDisplay  android.view.Gravity.applyDisplay :: Int -> Mutable s Rect -> Mutable s Rect -> Int -> ST s ( )
-        | Int -> Mutable s Rect -> Mutable s Rect -> ST s ( )
-
-  pure native getAbsoluteGravity  android.view.Gravity.getAbsoluteGravity :: Int -> Int -> Int
-
-  pure native isHorizontal  android.view.Gravity.isHorizontal :: Int -> Bool
-
-  pure native isVertical  android.view.Gravity.isVertical :: Int -> Bool
-
-
-{-
-data Gravity = pure native android.view.Gravity where
-
   pure native no_gravity android.view.Gravity.NO_GRAVITY :: Int
   pure native axis_specified android.view.Gravity.AXIS_SPECIFIED :: Int
   pure native axis_pull_before android.view.Gravity.AXIS_PULL_BEFORE :: Int
@@ -106,23 +31,21 @@ data Gravity = pure native android.view.Gravity where
   pure native start android.view.Gravity.START :: Int
   pure native end android.view.Gravity.END :: Int
   pure native relative_horizontal_gravity_mask android.view.Gravity.RELATIVE_HORIZONTAL_GRAVITY_MASK :: Int
-
   native new :: () -> ST s Gravity
 
   native apply android.view.Gravity.apply :: Int -> Int -> Int -> Mutable s Rect -> Int -> Int -> Mutable s Rect -> Int -> ST s ()
-                                           | Int -> Int -> Int -> Mutable s Rect -> Int -> Int -> Mutable s Rect -> ST s ()
-                                           | Int -> Int -> Int -> Mutable s Rect -> Mutable s Rect -> Int -> ST s ()
-                                           | Int -> Int -> Int -> Mutable s Rect -> Mutable s Rect -> ST s ()
+          | Int -> Int -> Int -> Mutable s Rect -> Mutable s Rect -> ST s ()
+          | Int -> Int -> Int -> Mutable s Rect -> Mutable s Rect -> Int -> ST s ()
+          | Int -> Int -> Int -> Mutable s Rect -> Int -> Int -> Mutable s Rect -> ST s ()
 
-  native applyDisplay android.view.Gravity.applyDisplay :: Int -> Mutable s Rect -> Mutable s Rect -> Int -> ST s ()
-                                                         | Int -> Mutable s Rect -> Mutable s Rect -> ST s ()
+  native applyDisplay android.view.Gravity.applyDisplay :: Int -> Mutable s Rect -> Mutable s Rect -> ST s ()
+          | Int -> Mutable s Rect -> Mutable s Rect -> Int -> ST s ()
 
   pure native getAbsoluteGravity android.view.Gravity.getAbsoluteGravity :: Int -> Int -> Int
 
   pure native isHorizontal android.view.Gravity.isHorizontal :: Int -> Bool
 
   pure native isVertical android.view.Gravity.isVertical :: Int -> Bool
+{-  -}
 
 
-
--}

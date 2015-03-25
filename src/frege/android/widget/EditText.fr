@@ -1,57 +1,29 @@
 package frege.android.widget.EditText where
 
 import frege.android.content.Context
+import frege.android.text.Editable
+import frege.android.text.TextUtils
 import frege.android.util.AttributeSet
+import frege.android.widget.TextView
 
-data EditText = pure native android.widget.EditText where
+data EditText =  native android.widget.EditText where
 
+  native new :: MutableIO Context -> IOMutable EditText
+              | MutableIO Context -> AttributeSet -> Int -> IOMutable EditText
+              | MutableIO Context -> AttributeSet -> IOMutable EditText
 
-  native new  :: Context -> ST s EditText
-        | Context -> AttributeSet -> Int -> ST s EditText
-        | Context -> AttributeSet -> ST s EditText
+  native extendSelection :: MutableIO EditText -> Int -> IO ()
 
-  native extendSelection  :: EditText -> Int -> ST s ( )
+  native getText :: MutableIO EditText -> IO Editable
 
-{-   pure native getText  :: -- ["Editable"] -- EditText -> Editable -}
+  native selectAll :: MutableIO EditText -> IO ()
 
-{-   native onInitializeAccessibilityEvent  :: -- ["AccessibilityEvent"] -- EditText -> AccessibilityEvent -> ST s ( ) -}
+  native setEllipsize :: MutableIO EditText -> TextUtils_TruncateAt -> IO ()
 
-{-   native onInitializeAccessibilityNodeInfo  :: -- ["AccessibilityNodeInfo"] -- EditText -> AccessibilityNodeInfo -> ST s ( ) -}
+  native setSelection :: MutableIO EditText -> Int -> Int -> IO ()
+          | MutableIO EditText -> Int -> IO ()
 
-  native selectAll  :: EditText -> ST s ( )
-
-{-   native setEllipsize  :: -- ["TextUtils_TruncateAt"] -- EditText -> TextUtils_TruncateAt -> ST s ( ) -}
-
-  native setSelection  :: EditText -> Int -> ST s ( )
-        | EditText -> Int -> Int -> ST s ( )
-
-{-   native setText  :: -- ["TextView_BufferType"] -- EditText -> CharSequence -> TextView_BufferType -> ST s ( ) -}
+  native setText :: MutableIO EditText -> CharSequence -> TextView_BufferType -> IO ()
+{-  -}
 
 
-{-
-data EditText = pure native android.widget.EditText where
-
-  native new :: Context -> ST s EditText
-              | Context -> AttributeSet -> Int -> ST s EditText
-              | Context -> AttributeSet -> ST s EditText
-
-  native extendSelection :: EditText -> Int -> ST s ()
-
-  pure native getText :: EditText -> Editable
-
-  native onInitializeAccessibilityEvent :: EditText -> AccessibilityEvent -> ST s ()
-
-  native onInitializeAccessibilityNodeInfo :: EditText -> AccessibilityNodeInfo -> ST s ()
-
-  native selectAll :: EditText -> ST s ()
-
-  native setEllipsize :: EditText -> TextUtils_TruncateAt -> ST s ()
-
-  native setSelection :: EditText -> Int -> ST s ()
-                       | EditText -> Int -> Int -> ST s ()
-
-  native setText :: EditText -> CharSequence -> TextView_BufferType -> ST s ()
-
-
-
--}

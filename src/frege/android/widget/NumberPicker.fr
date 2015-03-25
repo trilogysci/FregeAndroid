@@ -5,129 +5,78 @@ import frege.android.util.AttributeSet
 import frege.android.view.KeyEvent
 import frege.android.view.MotionEvent
 
-data NumberPicker = pure native android.widget.NumberPicker where
+data NumberPicker_Formatter = pure native android.widget.NumberPicker.Formatter where
 
 
-  native new  :: Context -> AttributeSet -> Int -> ST s NumberPicker
-        | Context -> AttributeSet -> ST s NumberPicker
-        | Context -> ST s NumberPicker
+  pure native format :: NumberPicker_Formatter -> Int -> String
+{-  -}
 
-  native computeScroll  :: NumberPicker -> ST s ( )
+data NumberPicker_OnScrollListener = pure native android.widget.NumberPicker.OnScrollListener where
 
-  pure native dispatchKeyEvent  :: NumberPicker -> KeyEvent -> Bool
+  pure native scroll_state_idle android.widget.NumberPicker.OnScrollListener.SCROLL_STATE_IDLE :: Int
+  pure native scroll_state_touch_scroll android.widget.NumberPicker.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL :: Int
+  pure native scroll_state_fling android.widget.NumberPicker.OnScrollListener.SCROLL_STATE_FLING :: Int
 
-  pure native dispatchTouchEvent  :: NumberPicker -> MotionEvent -> Bool
+  native onScrollStateChange :: NumberPicker_OnScrollListener -> MutableIO NumberPicker -> Int -> IO ()
+{-  -}
 
-  pure native dispatchTrackballEvent  :: NumberPicker -> MotionEvent -> Bool
-
-{-   pure native getAccessibilityNodeProvider  :: -- ["AccessibilityNodeProvider"] -- NumberPicker -> AccessibilityNodeProvider -}
-
-{-   native getDisplayedValues  :: -- ["JArray"] -- NumberPicker -> STMutable s ( JArray String ) -}
-
-  pure native getMaxValue  :: NumberPicker -> Int
-
-  pure native getMinValue  :: NumberPicker -> Int
-
-  pure native getSolidColor  :: NumberPicker -> Int
-
-  pure native getValue  :: NumberPicker -> Int
-
-  pure native getWrapSelectorWheel  :: NumberPicker -> Bool
-
-{-   native onInitializeAccessibilityEvent  :: -- ["AccessibilityEvent"] -- NumberPicker -> AccessibilityEvent -> ST s ( ) -}
-
-  pure native onInterceptTouchEvent  :: NumberPicker -> MotionEvent -> Bool
-
-  pure native onTouchEvent  :: NumberPicker -> MotionEvent -> Bool
-
-  pure native performClick  :: NumberPicker -> Bool
-
-  pure native performLongClick  :: NumberPicker -> Bool
-
-  native scrollBy  :: NumberPicker -> Int -> Int -> ST s ( )
-
-{-   native setDisplayedValues  :: -- ["JArray"] -- NumberPicker -> Mutable s ( JArray String ) -> ST s ( ) -}
-
-  native setEnabled  :: NumberPicker -> Bool -> ST s ( )
-
-{-   native setFormatter  :: -- ["NumberPicker_Formatter"] -- NumberPicker -> NumberPicker_Formatter -> ST s ( ) -}
-
-  native setMaxValue  :: NumberPicker -> Int -> ST s ( )
-
-  native setMinValue  :: NumberPicker -> Int -> ST s ( )
-
-  native setOnLongPressUpdateInterval  :: NumberPicker -> Long -> ST s ( )
-
-{-   native setOnScrollListener  :: -- ["NumberPicker_OnScrollListener"] -- NumberPicker -> NumberPicker_OnScrollListener -> ST s ( ) -}
-
-{-   native setOnValueChangedListener  :: -- ["NumberPicker_OnValueChangeListener"] -- NumberPicker -> NumberPicker_OnValueChangeListener -> ST s ( ) -}
-
-  native setValue  :: NumberPicker -> Int -> ST s ( )
-
-  native setWrapSelectorWheel  :: NumberPicker -> Bool -> ST s ( )
+data NumberPicker_OnValueChangeListener = pure native android.widget.NumberPicker.OnValueChangeListener where
 
 
-{-
-data NumberPicker = pure native android.widget.NumberPicker where
+  native onValueChange :: NumberPicker_OnValueChangeListener -> MutableIO NumberPicker -> Int -> Int -> IO ()
+{-  -}
 
-  native new :: Context -> AttributeSet -> Int -> ST s NumberPicker
-              | Context -> AttributeSet -> ST s NumberPicker
-              | Context -> ST s NumberPicker
+data NumberPicker =  native android.widget.NumberPicker where
 
-  native computeScroll :: NumberPicker -> ST s ()
+  native new :: MutableIO Context -> AttributeSet -> Int -> IOMutable NumberPicker
+              | MutableIO Context -> AttributeSet -> IOMutable NumberPicker
+              | MutableIO Context -> IOMutable NumberPicker
 
-  pure native dispatchKeyEvent :: NumberPicker -> KeyEvent -> Bool
+  native computeScroll :: MutableIO NumberPicker -> IO ()
 
-  pure native dispatchTouchEvent :: NumberPicker -> MotionEvent -> Bool
+  native dispatchKeyEvent :: MutableIO NumberPicker -> KeyEvent -> IO Bool
 
-  pure native dispatchTrackballEvent :: NumberPicker -> MotionEvent -> Bool
+  native dispatchTouchEvent :: MutableIO NumberPicker -> MutableIO MotionEvent -> IO Bool
 
-  pure native getAccessibilityNodeProvider :: NumberPicker -> AccessibilityNodeProvider
+  native dispatchTrackballEvent :: MutableIO NumberPicker -> MutableIO MotionEvent -> IO Bool
 
-  native getDisplayedValues :: NumberPicker -> STMutable s (JArray String)
+  native getMaxValue :: MutableIO NumberPicker -> IO Int
 
-  pure native getMaxValue :: NumberPicker -> Int
+  native getMinValue :: MutableIO NumberPicker -> IO Int
 
-  pure native getMinValue :: NumberPicker -> Int
+  native getSolidColor :: MutableIO NumberPicker -> IO Int
 
-  pure native getSolidColor :: NumberPicker -> Int
+  native getValue :: MutableIO NumberPicker -> IO Int
 
-  pure native getValue :: NumberPicker -> Int
+  native getWrapSelectorWheel :: MutableIO NumberPicker -> IO Bool
 
-  pure native getWrapSelectorWheel :: NumberPicker -> Bool
+  native onInterceptTouchEvent :: MutableIO NumberPicker -> MutableIO MotionEvent -> IO Bool
 
-  native onInitializeAccessibilityEvent :: NumberPicker -> AccessibilityEvent -> ST s ()
+  native onTouchEvent :: MutableIO NumberPicker -> MutableIO MotionEvent -> IO Bool
 
-  pure native onInterceptTouchEvent :: NumberPicker -> MotionEvent -> Bool
+  native performClick :: MutableIO NumberPicker -> IO Bool
 
-  pure native onTouchEvent :: NumberPicker -> MotionEvent -> Bool
+  native performLongClick :: MutableIO NumberPicker -> IO Bool
 
-  pure native performClick :: NumberPicker -> Bool
+  native scrollBy :: MutableIO NumberPicker -> Int -> Int -> IO ()
 
-  pure native performLongClick :: NumberPicker -> Bool
+  native setEnabled :: MutableIO NumberPicker -> Bool -> IO ()
 
-  native scrollBy :: NumberPicker -> Int -> Int -> ST s ()
+  native setFormatter :: MutableIO NumberPicker -> NumberPicker_Formatter -> IO ()
 
-  native setDisplayedValues :: NumberPicker -> Mutable s (JArray String) -> ST s ()
+  native setMaxValue :: MutableIO NumberPicker -> Int -> IO ()
 
-  native setEnabled :: NumberPicker -> Bool -> ST s ()
+  native setMinValue :: MutableIO NumberPicker -> Int -> IO ()
 
-  native setFormatter :: NumberPicker -> NumberPicker_Formatter -> ST s ()
+  native setOnLongPressUpdateInterval :: MutableIO NumberPicker -> Long -> IO ()
 
-  native setMaxValue :: NumberPicker -> Int -> ST s ()
+  native setOnScrollListener :: MutableIO NumberPicker -> NumberPicker_OnScrollListener -> IO ()
 
-  native setMinValue :: NumberPicker -> Int -> ST s ()
+  native setOnValueChangedListener :: MutableIO NumberPicker -> NumberPicker_OnValueChangeListener -> IO ()
 
-  native setOnLongPressUpdateInterval :: NumberPicker -> Long -> ST s ()
+  native setValue :: MutableIO NumberPicker -> Int -> IO ()
 
-  native setOnScrollListener :: NumberPicker -> NumberPicker_OnScrollListener -> ST s ()
-
-  native setOnValueChangedListener :: NumberPicker -> NumberPicker_OnValueChangeListener -> ST s ()
-
-  native setValue :: NumberPicker -> Int -> ST s ()
-
-  native setWrapSelectorWheel :: NumberPicker -> Bool -> ST s ()
+  native setWrapSelectorWheel :: MutableIO NumberPicker -> Bool -> IO ()
+{-  -}
 
 
-
--}

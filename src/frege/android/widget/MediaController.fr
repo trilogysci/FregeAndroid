@@ -6,75 +6,60 @@ import frege.android.view.KeyEvent
 import frege.android.view.MotionEvent
 import frege.android.view.View
 
-data MediaController = pure native android.widget.MediaController where
+data MediaController_MediaPlayerControl = pure native android.widget.MediaController.MediaPlayerControl where
 
 
-  native new  :: Context -> AttributeSet -> ST s MediaController
-        | Context -> Bool -> ST s MediaController
-        | Context -> ST s MediaController
+  pure native canPause :: MediaController_MediaPlayerControl -> Bool
 
-  pure native dispatchKeyEvent  :: MediaController -> KeyEvent -> Bool
+  pure native canSeekBackward :: MediaController_MediaPlayerControl -> Bool
 
-  native hide  :: MediaController -> ST s ( )
+  pure native canSeekForward :: MediaController_MediaPlayerControl -> Bool
 
-  pure native isShowing  :: MediaController -> Bool
+  pure native getAudioSessionId :: MediaController_MediaPlayerControl -> Int
 
-  native onFinishInflate  :: MediaController -> ST s ( )
+  pure native getBufferPercentage :: MediaController_MediaPlayerControl -> Int
 
-{-   native onInitializeAccessibilityEvent  :: -- ["AccessibilityEvent"] -- MediaController -> AccessibilityEvent -> ST s ( ) -}
+  pure native getCurrentPosition :: MediaController_MediaPlayerControl -> Int
 
-{-   native onInitializeAccessibilityNodeInfo  :: -- ["AccessibilityNodeInfo"] -- MediaController -> AccessibilityNodeInfo -> ST s ( ) -}
+  pure native getDuration :: MediaController_MediaPlayerControl -> Int
 
-  pure native onTouchEvent  :: MediaController -> MotionEvent -> Bool
+  pure native isPlaying :: MediaController_MediaPlayerControl -> Bool
 
-  pure native onTrackballEvent  :: MediaController -> MotionEvent -> Bool
+  native pause :: MediaController_MediaPlayerControl -> ST s ()
 
-  native setAnchorView  :: MediaController -> MutableIO View -> IO ( )
+  native seekTo :: MediaController_MediaPlayerControl -> Int -> ST s ()
 
-  native setEnabled  :: MediaController -> Bool -> ST s ( )
+  native start :: MediaController_MediaPlayerControl -> ST s ()
+{-  -}
 
-{-   native setMediaPlayer  :: -- ["MediaController_MediaPlayerControl"] -- MediaController -> MediaController_MediaPlayerControl -> ST s ( ) -}
+data MediaController =  native android.widget.MediaController where
 
-{-   native setPrevNextListeners  :: -- ["View_OnClickListener"] -- MediaController -> View_OnClickListener -> View_OnClickListener -> ST s ( ) -}
+  native new :: MutableIO Context -> AttributeSet -> IOMutable MediaController
+              | MutableIO Context -> Bool -> IOMutable MediaController
+              | MutableIO Context -> IOMutable MediaController
 
-  native show  :: MediaController -> Int -> ST s ( )
-        | MediaController -> ST s ( )
+  native dispatchKeyEvent :: MutableIO MediaController -> KeyEvent -> IO Bool
 
+  native hide :: MutableIO MediaController -> IO ()
 
-{-
-data MediaController = pure native android.widget.MediaController where
+  native isShowing :: MutableIO MediaController -> IO Bool
 
-  native new :: Context -> AttributeSet -> ST s MediaController
-              | Context -> Bool -> ST s MediaController
-              | Context -> ST s MediaController
+  native onFinishInflate :: MutableIO MediaController -> IO ()
 
-  pure native dispatchKeyEvent :: MediaController -> KeyEvent -> Bool
+  native onTouchEvent :: MutableIO MediaController -> MutableIO MotionEvent -> IO Bool
 
-  native hide :: MediaController -> ST s ()
+  native onTrackballEvent :: MutableIO MediaController -> MutableIO MotionEvent -> IO Bool
 
-  pure native isShowing :: MediaController -> Bool
+  native setAnchorView :: MutableIO MediaController -> MutableIO View -> IO ()
 
-  native onFinishInflate :: MediaController -> ST s ()
+  native setEnabled :: MutableIO MediaController -> Bool -> IO ()
 
-  native onInitializeAccessibilityEvent :: MediaController -> AccessibilityEvent -> ST s ()
+  native setMediaPlayer :: MutableIO MediaController -> MediaController_MediaPlayerControl -> IO ()
 
-  native onInitializeAccessibilityNodeInfo :: MediaController -> AccessibilityNodeInfo -> ST s ()
+  native setPrevNextListeners :: MutableIO MediaController -> View_OnClickListener -> View_OnClickListener -> IO ()
 
-  pure native onTouchEvent :: MediaController -> MotionEvent -> Bool
-
-  pure native onTrackballEvent :: MediaController -> MotionEvent -> Bool
-
-  native setAnchorView :: MediaController -> MutableIO View -> IO ()
-
-  native setEnabled :: MediaController -> Bool -> ST s ()
-
-  native setMediaPlayer :: MediaController -> MediaController_MediaPlayerControl -> ST s ()
-
-  native setPrevNextListeners :: MediaController -> View_OnClickListener -> View_OnClickListener -> ST s ()
-
-  native show :: MediaController -> Int -> ST s ()
-               | MediaController -> ST s ()
+  native show :: MutableIO MediaController -> IO ()
+          | MutableIO MediaController -> Int -> IO ()
+{-  -}
 
 
-
--}

@@ -1,946 +1,104 @@
 package frege.android.view.View where
 
 import frege.android.content.Context
-import frege.android.util.AttributeSet
 import frege.android.content.res.Configuration
-import frege.android.view.MotionEvent
-import frege.android.view.KeyEvent
-import frege.android.graphics.drawable.Drawable
-import frege.android.graphics.Rect
-import frege.android.view.Display
-import frege.android.graphics.Point
-import frege.android.os.Handler
+import frege.android.content.res.Resources
+import frege.android.graphics.Bitmap
+import frege.android.graphics.Canvas
 import frege.android.graphics.Matrix
-import frege.android.view.ViewTreeObserver
+import frege.android.graphics.Paint
+import frege.android.graphics.Point
+import frege.android.graphics.Rect
+import frege.android.graphics.drawable.Drawable
+import frege.android.os.Bundle
+import frege.android.os.Handler
+import frege.android.util.AttributeSet
+import frege.android.view.ActionMode
+import frege.android.view.ContextMenu
+import frege.android.view.Display
+import frege.android.view.DragEvent
+import frege.android.view.KeyEvent
+import frege.android.view.MotionEvent
+import frege.android.view.ViewOverlay
+import frege.android.view.WindowId
+import frege.android.view.animation.Animation
+import frege.java.lang.Runnable
 
-data View = native android.view.View where
+data View_DragShadowBuilder = pure native android.view.View.DragShadowBuilder where
 
+  native new :: () -> ST s View_DragShadowBuilder
+              | MutableIO View -> IO View_DragShadowBuilder
 
-  pure native no_id  android.view.View.NO_ID :: Int
+  native getView :: View_DragShadowBuilder -> IOMutable View
 
-  pure native visible  android.view.View.VISIBLE :: Int
+  native onDrawShadow :: View_DragShadowBuilder -> MutableIO Canvas -> IO ()
 
-  pure native invisible  android.view.View.INVISIBLE :: Int
+  native onProvideShadowMetrics :: View_DragShadowBuilder -> Mutable s Point -> Mutable s Point -> ST s ()
+{-  -}
 
-  pure native gone  android.view.View.GONE :: Int
+data View_OnAttachStateChangeListener = pure native android.view.View.OnAttachStateChangeListener where
 
-  pure native drawing_cache_quality_low  android.view.View.DRAWING_CACHE_QUALITY_LOW :: Int
 
-  pure native drawing_cache_quality_high  android.view.View.DRAWING_CACHE_QUALITY_HIGH :: Int
+  native onViewAttachedToWindow :: View_OnAttachStateChangeListener -> MutableIO View -> IO ()
 
-  pure native drawing_cache_quality_auto  android.view.View.DRAWING_CACHE_QUALITY_AUTO :: Int
+  native onViewDetachedFromWindow :: View_OnAttachStateChangeListener -> MutableIO View -> IO ()
+{-  -}
 
-  pure native scrollbars_inside_overlay  android.view.View.SCROLLBARS_INSIDE_OVERLAY :: Int
+data View_OnClickListener = pure native android.view.View.OnClickListener where
 
-  pure native scrollbars_inside_inset  android.view.View.SCROLLBARS_INSIDE_INSET :: Int
 
-  pure native scrollbars_outside_overlay  android.view.View.SCROLLBARS_OUTSIDE_OVERLAY :: Int
+  native onClick :: View_OnClickListener -> MutableIO View -> IO ()
+{-  -}
 
-  pure native scrollbars_outside_inset  android.view.View.SCROLLBARS_OUTSIDE_INSET :: Int
+data View_OnFocusChangeListener = pure native android.view.View.OnFocusChangeListener where
 
-  pure native keep_screen_on  android.view.View.KEEP_SCREEN_ON :: Int
 
-  pure native sound_effects_enabled  android.view.View.SOUND_EFFECTS_ENABLED :: Int
+  native onFocusChange :: View_OnFocusChangeListener -> MutableIO View -> Bool -> IO ()
+{-  -}
 
-  pure native haptic_feedback_enabled  android.view.View.HAPTIC_FEEDBACK_ENABLED :: Int
+data View_OnGenericMotionListener = pure native android.view.View.OnGenericMotionListener where
 
-  pure native focusables_all  android.view.View.FOCUSABLES_ALL :: Int
 
-  pure native focusables_touch_mode  android.view.View.FOCUSABLES_TOUCH_MODE :: Int
+  native onGenericMotion :: View_OnGenericMotionListener -> MutableIO View -> MutableIO MotionEvent -> IO Bool
+{-  -}
 
-  pure native focus_backward  android.view.View.FOCUS_BACKWARD :: Int
+data View_OnHoverListener = pure native android.view.View.OnHoverListener where
 
-  pure native focus_forward  android.view.View.FOCUS_FORWARD :: Int
 
-  pure native focus_left  android.view.View.FOCUS_LEFT :: Int
+  native onHover :: View_OnHoverListener -> MutableIO View -> MutableIO MotionEvent -> IO Bool
+{-  -}
 
-  pure native focus_up  android.view.View.FOCUS_UP :: Int
+data View_OnKeyListener = pure native android.view.View.OnKeyListener where
 
-  pure native focus_right  android.view.View.FOCUS_RIGHT :: Int
 
-  pure native focus_down  android.view.View.FOCUS_DOWN :: Int
+  native onKey :: View_OnKeyListener -> MutableIO View -> Int -> KeyEvent -> IO Bool
+{-  -}
 
-  pure native measured_size_mask  android.view.View.MEASURED_SIZE_MASK :: Int
+data View_OnLayoutChangeListener = pure native android.view.View.OnLayoutChangeListener where
 
-  pure native measured_state_mask  android.view.View.MEASURED_STATE_MASK :: Int
 
-  pure native measured_height_state_shift  android.view.View.MEASURED_HEIGHT_STATE_SHIFT :: Int
+  native onLayoutChange :: View_OnLayoutChangeListener -> MutableIO View -> Int -> Int -> Int -> Int -> Int -> Int -> Int -> Int -> IO ()
+{-  -}
 
-  pure native measured_state_too_small  android.view.View.MEASURED_STATE_TOO_SMALL :: Int
+data View_OnLongClickListener = pure native android.view.View.OnLongClickListener where
 
-  pure native layout_direction_ltr  android.view.View.LAYOUT_DIRECTION_LTR :: Int
 
-  pure native layout_direction_rtl  android.view.View.LAYOUT_DIRECTION_RTL :: Int
+  native onLongClick :: View_OnLongClickListener -> MutableIO View -> IO Bool
+{-  -}
 
-  pure native layout_direction_inherit  android.view.View.LAYOUT_DIRECTION_INHERIT :: Int
+data View_OnSystemUiVisibilityChangeListener = pure native android.view.View.OnSystemUiVisibilityChangeListener where
 
-  pure native layout_direction_locale  android.view.View.LAYOUT_DIRECTION_LOCALE :: Int
 
-  pure native text_direction_inherit  android.view.View.TEXT_DIRECTION_INHERIT :: Int
+  native onSystemUiVisibilityChange :: View_OnSystemUiVisibilityChangeListener -> Int -> ST s ()
+{-  -}
 
-  pure native text_direction_first_strong  android.view.View.TEXT_DIRECTION_FIRST_STRONG :: Int
+data View_OnTouchListener = pure native android.view.View.OnTouchListener where
 
-  pure native text_direction_any_rtl  android.view.View.TEXT_DIRECTION_ANY_RTL :: Int
 
-  pure native text_direction_ltr  android.view.View.TEXT_DIRECTION_LTR :: Int
+  native onTouch :: View_OnTouchListener -> MutableIO View -> MutableIO MotionEvent -> IO Bool
+{-  -}
 
-  pure native text_direction_rtl  android.view.View.TEXT_DIRECTION_RTL :: Int
-
-  pure native text_direction_locale  android.view.View.TEXT_DIRECTION_LOCALE :: Int
-
-  pure native text_alignment_inherit  android.view.View.TEXT_ALIGNMENT_INHERIT :: Int
-
-  pure native text_alignment_gravity  android.view.View.TEXT_ALIGNMENT_GRAVITY :: Int
-
-  pure native text_alignment_text_start  android.view.View.TEXT_ALIGNMENT_TEXT_START :: Int
-
-  pure native text_alignment_text_end  android.view.View.TEXT_ALIGNMENT_TEXT_END :: Int
-
-  pure native text_alignment_center  android.view.View.TEXT_ALIGNMENT_CENTER :: Int
-
-  pure native text_alignment_view_start  android.view.View.TEXT_ALIGNMENT_VIEW_START :: Int
-
-  pure native text_alignment_view_end  android.view.View.TEXT_ALIGNMENT_VIEW_END :: Int
-
-  pure native important_for_accessibility_auto  android.view.View.IMPORTANT_FOR_ACCESSIBILITY_AUTO :: Int
-
-  pure native important_for_accessibility_yes  android.view.View.IMPORTANT_FOR_ACCESSIBILITY_YES :: Int
-
-  pure native important_for_accessibility_no  android.view.View.IMPORTANT_FOR_ACCESSIBILITY_NO :: Int
-
-  pure native important_for_accessibility_no_hide_descendants  android.view.View.IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS :: Int
-
-  pure native accessibility_live_region_none  android.view.View.ACCESSIBILITY_LIVE_REGION_NONE :: Int
-
-  pure native accessibility_live_region_polite  android.view.View.ACCESSIBILITY_LIVE_REGION_POLITE :: Int
-
-  pure native accessibility_live_region_assertive  android.view.View.ACCESSIBILITY_LIVE_REGION_ASSERTIVE :: Int
-
-  pure native over_scroll_always  android.view.View.OVER_SCROLL_ALWAYS :: Int
-
-  pure native over_scroll_if_content_scrolls  android.view.View.OVER_SCROLL_IF_CONTENT_SCROLLS :: Int
-
-  pure native over_scroll_never  android.view.View.OVER_SCROLL_NEVER :: Int
-
-  pure native system_ui_flag_visible  android.view.View.SYSTEM_UI_FLAG_VISIBLE :: Int
-
-  pure native system_ui_flag_low_profile  android.view.View.SYSTEM_UI_FLAG_LOW_PROFILE :: Int
-
-  pure native system_ui_flag_hide_navigation  android.view.View.SYSTEM_UI_FLAG_HIDE_NAVIGATION :: Int
-
-  pure native system_ui_flag_fullscreen  android.view.View.SYSTEM_UI_FLAG_FULLSCREEN :: Int
-
-  pure native system_ui_flag_layout_stable  android.view.View.SYSTEM_UI_FLAG_LAYOUT_STABLE :: Int
-
-  pure native system_ui_flag_layout_hide_navigation  android.view.View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION :: Int
-
-  pure native system_ui_flag_layout_fullscreen  android.view.View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN :: Int
-
-  pure native system_ui_flag_immersive  android.view.View.SYSTEM_UI_FLAG_IMMERSIVE :: Int
-
-  pure native system_ui_flag_immersive_sticky  android.view.View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY :: Int
-
-  pure native status_bar_hidden  android.view.View.STATUS_BAR_HIDDEN :: Int
-
-  pure native status_bar_visible  android.view.View.STATUS_BAR_VISIBLE :: Int
-
-  pure native system_ui_layout_flags  android.view.View.SYSTEM_UI_LAYOUT_FLAGS :: Int
-
-  pure native find_views_with_text  android.view.View.FIND_VIEWS_WITH_TEXT :: Int
-
-  pure native find_views_with_content_description  android.view.View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION :: Int
-
-  pure native screen_state_off  android.view.View.SCREEN_STATE_OFF :: Int
-
-  pure native screen_state_on  android.view.View.SCREEN_STATE_ON :: Int
-
-  pure native scrollbar_position_default  android.view.View.SCROLLBAR_POSITION_DEFAULT :: Int
-
-  pure native scrollbar_position_left  android.view.View.SCROLLBAR_POSITION_LEFT :: Int
-
-  pure native scrollbar_position_right  android.view.View.SCROLLBAR_POSITION_RIGHT :: Int
-
-  pure native layer_type_none  android.view.View.LAYER_TYPE_NONE :: Int
-
-  pure native layer_type_software  android.view.View.LAYER_TYPE_SOFTWARE :: Int
-
-  pure native layer_type_hardware  android.view.View.LAYER_TYPE_HARDWARE :: Int
-
-{-   pure native alpha  android.view.View.ALPHA :: -- ["Property"] -- Property View Float -}
-
-{-   pure native translation_x  android.view.View.TRANSLATION_X :: -- ["Property"] -- Property View Float -}
-
-{-   pure native translation_y  android.view.View.TRANSLATION_Y :: -- ["Property"] -- Property View Float -}
-
-{-   pure native x  android.view.View.X :: -- ["Property"] -- Property View Float -}
-
-{-   pure native y  android.view.View.Y :: -- ["Property"] -- Property View Float -}
-
-{-   pure native rotation  android.view.View.ROTATION :: -- ["Property"] -- Property View Float -}
-
-{-   pure native rotation_x  android.view.View.ROTATION_X :: -- ["Property"] -- Property View Float -}
-
-{-   pure native rotation_y  android.view.View.ROTATION_Y :: -- ["Property"] -- Property View Float -}
-
-{-   pure native scale_x  android.view.View.SCALE_X :: -- ["Property"] -- Property View Float -}
-
-{-   pure native scale_y  android.view.View.SCALE_Y :: -- ["Property"] -- Property View Float -}
-
-  native new  :: Context -> AttributeSet -> IOMutable View
-        | Context -> IOMutable View
-        | Context -> AttributeSet -> Int -> IOMutable View
-
-{-   native addChildrenForAccessibility  :: -- ["ArrayList"] -- MutableIO View -> MutableIO ( ArrayList View ) -> IO ( ) -}
-
-{-   native addFocusables  :: -- ["ArrayList"] -- MutableIO View -> MutableIO ( ArrayList View ) -> Int -> Int -> IO ( )
-        -- ["ArrayList"] -- MutableIO View -> MutableIO ( ArrayList View ) -> Int -> IO ( ) -}
-
-{-   native addOnAttachStateChangeListener  :: -- ["View_OnAttachStateChangeListener"] -- MutableIO View -> View_OnAttachStateChangeListener -> IO ( ) -}
-
-{-   native addOnLayoutChangeListener  :: -- ["View_OnLayoutChangeListener"] -- MutableIO View -> View_OnLayoutChangeListener -> IO ( ) -}
-
-{-   native addTouchables  :: -- ["ArrayList"] -- MutableIO View -> MutableIO ( ArrayList View ) -> IO ( ) -}
-
-{-   native animate  :: -- ["ViewPropertyAnimator"] -- MutableIO View -> IO ViewPropertyAnimator -}
-
-  native announceForAccessibility  :: MutableIO View -> CharSequence -> IO ( )
-
-  native bringToFront  :: MutableIO View -> IO ( )
-
-  native buildDrawingCache  :: MutableIO View -> IO ( )
-        | MutableIO View -> Bool -> IO ( )
-
-  native buildLayer  :: MutableIO View -> IO ( )
-
-  native callOnClick  :: MutableIO View -> IO Bool
-
-  native canResolveLayoutDirection  :: MutableIO View -> IO Bool
-
-  native canResolveTextAlignment  :: MutableIO View -> IO Bool
-
-  native canResolveTextDirection  :: MutableIO View -> IO Bool
-
-  native canScrollHorizontally  :: MutableIO View -> Int -> IO Bool
-
-  native canScrollVertically  :: MutableIO View -> Int -> IO Bool
-
-  native cancelLongPress  :: MutableIO View -> IO ( )
-
-  native cancelPendingInputEvents  :: MutableIO View -> IO ( )
-
-  native checkInputConnectionProxy  :: MutableIO View -> MutableIO View -> IO Bool
-
-  native clearAnimation  :: MutableIO View -> IO ( )
-
-  native clearFocus  :: MutableIO View -> IO ( )
-
-  pure native combineMeasuredStates  android.view.View.combineMeasuredStates :: Int -> Int -> Int
-
-  native computeScroll  :: MutableIO View -> IO ( )
-
-{-   native createAccessibilityNodeInfo  :: -- ["AccessibilityNodeInfo"] -- MutableIO View -> IO AccessibilityNodeInfo -}
-
-{-   native createContextMenu  :: -- ["ContextMenu"] -- MutableIO View -> ContextMenu -> IO ( ) -}
-
-  native destroyDrawingCache  :: MutableIO View -> IO ( )
-
-{-   native dispatchApplyWindowInsets  :: -- ["WindowInsets"] -- MutableIO View -> WindowInsets -> IO WindowInsets -}
-
-  native dispatchConfigurationChanged  :: MutableIO View -> Configuration -> IO ( )
-
-  native dispatchDisplayHint  :: MutableIO View -> Int -> IO ( )
-
-{-   native dispatchDragEvent  :: -- ["DragEvent"] -- MutableIO View -> DragEvent -> IO Bool -}
-
-  native dispatchGenericMotionEvent  :: MutableIO View -> MotionEvent -> IO Bool
-
-  native dispatchKeyEvent  :: MutableIO View -> KeyEvent -> IO Bool
-
-  native dispatchKeyEventPreIme  :: MutableIO View -> KeyEvent -> IO Bool
-
-  native dispatchKeyShortcutEvent  :: MutableIO View -> KeyEvent -> IO Bool
-
-{-   native dispatchPopulateAccessibilityEvent  :: -- ["AccessibilityEvent"] -- MutableIO View -> AccessibilityEvent -> IO Bool -}
-
-  native dispatchSystemUiVisibilityChanged  :: MutableIO View -> Int -> IO ( )
-
-  native dispatchTouchEvent  :: MutableIO View -> MotionEvent -> IO Bool
-
-  native dispatchTrackballEvent  :: MutableIO View -> MotionEvent -> IO Bool
-
-  native dispatchUnhandledMove  :: MutableIO View -> MutableIO View -> Int -> IO Bool
-
-  native dispatchWindowFocusChanged  :: MutableIO View -> Bool -> IO ( )
-
-  native dispatchWindowSystemUiVisiblityChanged  :: MutableIO View -> Int -> IO ( )
-
-  native dispatchWindowVisibilityChanged  :: MutableIO View -> Int -> IO ( )
-
-{-   native draw  :: -- ["Canvas"] -- MutableIO View -> Canvas -> IO ( ) -}
-
-  native findFocus  :: MutableIO View -> IOMutable View
-
-  native findViewById  :: MutableIO View -> Int -> IOMutable View
-
-  native findViewWithTag  :: MutableIO View -> Object -> IOMutable View
-
-{-   native findViewsWithText  :: -- ["ArrayList"] -- MutableIO View -> MutableIO ( ArrayList View ) -> CharSequence -> Int -> IO ( ) -}
-
-  native focusSearch  :: MutableIO View -> Int -> IOMutable View
-
-  native forceLayout  :: MutableIO View -> IO ( )
-
-  native generateViewId  android.view.View.generateViewId :: ( ) -> ST s Int
-
-  native getAccessibilityLiveRegion  :: MutableIO View -> IO Int
-
-{-   native getAccessibilityNodeProvider  :: -- ["AccessibilityNodeProvider"] -- MutableIO View -> IO AccessibilityNodeProvider -}
-
-  native getAlpha  :: MutableIO View -> IO Float
-
-{-   native getAnimation  :: -- ["Animation"] -- MutableIO View -> IO Animation -}
-
-{-   native getApplicationWindowToken  :: -- ["IBinder"] -- MutableIO View -> IO IBinder -}
-
-  native getBackground  :: MutableIO View -> IO Drawable
-
-  native getBaseline  :: MutableIO View -> IO Int
-
-  native getBottom  :: MutableIO View -> IO Int
-
-  native getCameraDistance  :: MutableIO View -> IO Float
-
-  native getClipBounds  :: MutableIO View -> IOMutable Rect
-
-  native getContentDescription  :: MutableIO View -> IO CharSequence
-
-  native getContext  :: MutableIO View -> IO Context
-
-  pure native getDefaultSize  android.view.View.getDefaultSize :: Int -> Int -> Int
-
-  native getDisplay  :: MutableIO View -> IOMutable Display
-
-{-   native getDrawableState  :: -- ["JArray"] -- MutableIO View -> IOMutable ( JArray Int ) -}
-
-{-   native getDrawingCache  :: -- ["Bitmap"] -- MutableIO View -> IO Bitmap
-        -- ["Bitmap"] -- MutableIO View -> Bool -> IO Bitmap -}
-
-  native getDrawingCacheBackgroundColor  :: MutableIO View -> IO Int
-
-  native getDrawingCacheQuality  :: MutableIO View -> IO Int
-
-  native getDrawingRect  :: MutableIO View -> MutableIO Rect -> IO ( )
-
-  native getDrawingTime  :: MutableIO View -> IO Long
-
-  native getFilterTouchesWhenObscured  :: MutableIO View -> IO Bool
-
-  native getFitsSystemWindows  :: MutableIO View -> IO Bool
-
-{-   native getFocusables  :: -- ["ArrayList"] -- MutableIO View -> Int -> IOMutable ( ArrayList View ) -}
-
-  native getFocusedRect  :: MutableIO View -> MutableIO Rect -> IO ( )
-
-  native getGlobalVisibleRect  :: MutableIO View -> MutableIO Rect -> MutableIO Point -> IO Bool
-        | MutableIO View -> MutableIO Rect -> IO Bool
-
-  native getHandler  :: MutableIO View -> IO Handler
-
-  native getHeight  :: MutableIO View -> IO Int
-
-  native getHitRect  :: MutableIO View -> MutableIO Rect -> IO ( )
-
-  native getHorizontalFadingEdgeLength  :: MutableIO View -> IO Int
-
-  native getId  :: MutableIO View -> IO Int
-
-  native getImportantForAccessibility  :: MutableIO View -> IO Int
-
-  native getKeepScreenOn  :: MutableIO View -> IO Bool
-
-{-   native getKeyDispatcherState  :: -- ["KeyEvent_DispatcherState"] -- MutableIO View -> IO KeyEvent_DispatcherState -}
-
-  native getLabelFor  :: MutableIO View -> IO Int
-
-  native getLayerType  :: MutableIO View -> IO Int
-
-  native getLayoutDirection  :: MutableIO View -> IO Int
-
-{-   native getLayoutParams  :: -- ["ViewGroup_LayoutParams"] -- MutableIO View -> IO ViewGroup_LayoutParams -}
-
-  native getLeft  :: MutableIO View -> IO Int
-
-  native getLocalVisibleRect  :: MutableIO View -> MutableIO Rect -> IO Bool
-
-{-   native getLocationInWindow  :: -- ["JArray"] -- MutableIO View -> MutableIO ( JArray Int ) -> IO ( ) -}
-
-{-   native getLocationOnScreen  :: -- ["JArray"] -- MutableIO View -> MutableIO ( JArray Int ) -> IO ( ) -}
-
-  native getMatrix  :: MutableIO View -> IOMutable Matrix
-
-  native getMeasuredHeight  :: MutableIO View -> IO Int
-
-  native getMeasuredHeightAndState  :: MutableIO View -> IO Int
-
-  native getMeasuredState  :: MutableIO View -> IO Int
-
-  native getMeasuredWidth  :: MutableIO View -> IO Int
-
-  native getMeasuredWidthAndState  :: MutableIO View -> IO Int
-
-  native getMinimumHeight  :: MutableIO View -> IO Int
-
-  native getMinimumWidth  :: MutableIO View -> IO Int
-
-  native getNextFocusDownId  :: MutableIO View -> IO Int
-
-  native getNextFocusForwardId  :: MutableIO View -> IO Int
-
-  native getNextFocusLeftId  :: MutableIO View -> IO Int
-
-  native getNextFocusRightId  :: MutableIO View -> IO Int
-
-  native getNextFocusUpId  :: MutableIO View -> IO Int
-
-{-   native getOnFocusChangeListener  :: -- ["View_OnFocusChangeListener"] -- MutableIO View -> IO View_OnFocusChangeListener -}
-
-  native getOverScrollMode  :: MutableIO View -> IO Int
-
-{-   native getOverlay  :: -- ["ViewOverlay"] -- MutableIO View -> IO ViewOverlay -}
-
-  native getPaddingBottom  :: MutableIO View -> IO Int
-
-  native getPaddingEnd  :: MutableIO View -> IO Int
-
-  native getPaddingLeft  :: MutableIO View -> IO Int
-
-  native getPaddingRight  :: MutableIO View -> IO Int
-
-  native getPaddingStart  :: MutableIO View -> IO Int
-
-  native getPaddingTop  :: MutableIO View -> IO Int
-
-{-   native getParent  :: -- ["ViewParent"] -- MutableIO View -> IO ViewParent -}
-
-{-   native getParentForAccessibility  :: -- ["ViewParent"] -- MutableIO View -> IO ViewParent -}
-
-  native getPivotX  :: MutableIO View -> IO Float
-
-  native getPivotY  :: MutableIO View -> IO Float
-
-{-   native getResources  :: -- ["Resources"] -- MutableIO View -> IO Resources -}
-
-  native getRight  :: MutableIO View -> IO Int
-
-  native getRootView  :: MutableIO View -> IOMutable View
-
-  native getRotation  :: MutableIO View -> IO Float
-
-  native getRotationX  :: MutableIO View -> IO Float
-
-  native getRotationY  :: MutableIO View -> IO Float
-
-  native getScaleX  :: MutableIO View -> IO Float
-
-  native getScaleY  :: MutableIO View -> IO Float
-
-  native getScrollBarDefaultDelayBeforeFade  :: MutableIO View -> IO Int
-
-  native getScrollBarFadeDuration  :: MutableIO View -> IO Int
-
-  native getScrollBarSize  :: MutableIO View -> IO Int
-
-  native getScrollBarStyle  :: MutableIO View -> IO Int
-
-  native getScrollX  :: MutableIO View -> IO Int
-
-  native getScrollY  :: MutableIO View -> IO Int
-
-  native getSolidColor  :: MutableIO View -> IO Int
-
-  native getSystemUiVisibility  :: MutableIO View -> IO Int
-
-  native getTag  :: MutableIO View -> Int -> IO Object
-        | MutableIO View -> IO Object
-
-  native getTextAlignment  :: MutableIO View -> IO Int
-
-  native getTextDirection  :: MutableIO View -> IO Int
-
-  native getTop  :: MutableIO View -> IO Int
-
-{-   native getTouchDelegate  :: -- ["TouchDelegate"] -- MutableIO View -> IO TouchDelegate -}
-
-{-   native getTouchables  :: -- ["ArrayList"] -- MutableIO View -> IOMutable ( ArrayList View ) -}
-
-  native getTranslationX  :: MutableIO View -> IO Float
-
-  native getTranslationY  :: MutableIO View -> IO Float
-
-  native getVerticalFadingEdgeLength  :: MutableIO View -> IO Int
-
-  native getVerticalScrollbarPosition  :: MutableIO View -> IO Int
-
-  native getVerticalScrollbarWidth  :: MutableIO View -> IO Int
-
-  native getViewTreeObserver  :: MutableIO View -> IO ViewTreeObserver
-
-  native getVisibility  :: MutableIO View -> IO Int
-
-  native getWidth  :: MutableIO View -> IO Int
-
-{-   native getWindowId  :: -- ["WindowId"] -- MutableIO View -> IO WindowId -}
-
-  native getWindowSystemUiVisibility  :: MutableIO View -> IO Int
-
-{-   native getWindowToken  :: -- ["IBinder"] -- MutableIO View -> IO IBinder -}
-
-  native getWindowVisibility  :: MutableIO View -> IO Int
-
-  native getWindowVisibleDisplayFrame  :: MutableIO View -> MutableIO Rect -> IO ( )
-
-  native getX  :: MutableIO View -> IO Float
-
-  native getY  :: MutableIO View -> IO Float
-
-  native hasFocus  :: MutableIO View -> IO Bool
-
-  native hasFocusable  :: MutableIO View -> IO Bool
-
-  native hasOnClickListeners  :: MutableIO View -> IO Bool
-
-  native hasOverlappingRendering  :: MutableIO View -> IO Bool
-
-  native hasTransientState  :: MutableIO View -> IO Bool
-
-  native hasWindowFocus  :: MutableIO View -> IO Bool
-
-{-   native inflate  android.view.View.inflate :: -- ["ViewGroup"] -- Context -> Int -> ViewGroup -> IOMutable View -}
-
-  native invalidate  :: MutableIO View -> IO ( )
-        | MutableIO View -> MutableIO Rect -> IO ( )
-        | MutableIO View -> Int -> Int -> Int -> Int -> IO ( )
-
-  native invalidateDrawable  :: MutableIO View -> Drawable -> IO ( )
-
-  native isActivated  :: MutableIO View -> IO Bool
-
-  native isAttachedToWindow  :: MutableIO View -> IO Bool
-
-  native isClickable  :: MutableIO View -> IO Bool
-
-  native isDirty  :: MutableIO View -> IO Bool
-
-  native isDrawingCacheEnabled  :: MutableIO View -> IO Bool
-
-  native isDuplicateParentStateEnabled  :: MutableIO View -> IO Bool
-
-  native isEnabled  :: MutableIO View -> IO Bool
-
-  native isFocusable  :: MutableIO View -> IO Bool
-
-  native isFocusableInTouchMode  :: MutableIO View -> IO Bool
-
-  native isFocused  :: MutableIO View -> IO Bool
-
-  native isHapticFeedbackEnabled  :: MutableIO View -> IO Bool
-
-  native isHardwareAccelerated  :: MutableIO View -> IO Bool
-
-  native isHorizontalFadingEdgeEnabled  :: MutableIO View -> IO Bool
-
-  native isHorizontalScrollBarEnabled  :: MutableIO View -> IO Bool
-
-  native isHovered  :: MutableIO View -> IO Bool
-
-  native isInEditMode  :: MutableIO View -> IO Bool
-
-  native isInLayout  :: MutableIO View -> IO Bool
-
-  native isInTouchMode  :: MutableIO View -> IO Bool
-
-  native isLaidOut  :: MutableIO View -> IO Bool
-
-  native isLayoutDirectionResolved  :: MutableIO View -> IO Bool
-
-  native isLayoutRequested  :: MutableIO View -> IO Bool
-
-  native isLongClickable  :: MutableIO View -> IO Bool
-
-  native isOpaque  :: MutableIO View -> IO Bool
-
-  native isPaddingRelative  :: MutableIO View -> IO Bool
-
-  native isPressed  :: MutableIO View -> IO Bool
-
-  native isSaveEnabled  :: MutableIO View -> IO Bool
-
-  native isSaveFromParentEnabled  :: MutableIO View -> IO Bool
-
-  native isScrollContainer  :: MutableIO View -> IO Bool
-
-  native isScrollbarFadingEnabled  :: MutableIO View -> IO Bool
-
-  native isSelected  :: MutableIO View -> IO Bool
-
-  native isShown  :: MutableIO View -> IO Bool
-
-  native isSoundEffectsEnabled  :: MutableIO View -> IO Bool
-
-  native isTextAlignmentResolved  :: MutableIO View -> IO Bool
-
-  native isTextDirectionResolved  :: MutableIO View -> IO Bool
-
-  native isVerticalFadingEdgeEnabled  :: MutableIO View -> IO Bool
-
-  native isVerticalScrollBarEnabled  :: MutableIO View -> IO Bool
-
-  native jumpDrawablesToCurrentState  :: MutableIO View -> IO ( )
-
-  native layout  :: MutableIO View -> Int -> Int -> Int -> Int -> IO ( )
-
-  native measure  :: MutableIO View -> Int -> Int -> IO ( )
-
-  native offsetLeftAndRight  :: MutableIO View -> Int -> IO ( )
-
-  native offsetTopAndBottom  :: MutableIO View -> Int -> IO ( )
-
-{-   native onApplyWindowInsets  :: -- ["WindowInsets"] -- MutableIO View -> WindowInsets -> IO WindowInsets -}
-
-  native onCancelPendingInputEvents  :: MutableIO View -> IO ( )
-
-  native onCheckIsTextEditor  :: MutableIO View -> IO Bool
-
-{-   native onCreateInputConnection  :: -- ["EditorInfo","InputConnection"] -- MutableIO View -> EditorInfo -> IO InputConnection -}
-
-{-   native onDragEvent  :: -- ["DragEvent"] -- MutableIO View -> DragEvent -> IO Bool -}
-
-  native onFilterTouchEventForSecurity  :: MutableIO View -> MotionEvent -> IO Bool
-
-  native onFinishTemporaryDetach  :: MutableIO View -> IO ( )
-
-  native onGenericMotionEvent  :: MutableIO View -> MotionEvent -> IO Bool
-
-  native onHoverChanged  :: MutableIO View -> Bool -> IO ( )
-
-  native onHoverEvent  :: MutableIO View -> MotionEvent -> IO Bool
-
-{-   native onInitializeAccessibilityEvent  :: -- ["AccessibilityEvent"] -- MutableIO View -> AccessibilityEvent -> IO ( ) -}
-
-{-   native onInitializeAccessibilityNodeInfo  :: -- ["AccessibilityNodeInfo"] -- MutableIO View -> AccessibilityNodeInfo -> IO ( ) -}
-
-  native onKeyDown  :: MutableIO View -> Int -> KeyEvent -> IO Bool
-
-  native onKeyLongPress  :: MutableIO View -> Int -> KeyEvent -> IO Bool
-
-  native onKeyMultiple  :: MutableIO View -> Int -> Int -> KeyEvent -> IO Bool
-
-  native onKeyPreIme  :: MutableIO View -> Int -> KeyEvent -> IO Bool
-
-  native onKeyShortcut  :: MutableIO View -> Int -> KeyEvent -> IO Bool
-
-  native onKeyUp  :: MutableIO View -> Int -> KeyEvent -> IO Bool
-
-{-   native onPopulateAccessibilityEvent  :: -- ["AccessibilityEvent"] -- MutableIO View -> AccessibilityEvent -> IO ( ) -}
-
-  native onRtlPropertiesChanged  :: MutableIO View -> Int -> IO ( )
-
-  native onScreenStateChanged  :: MutableIO View -> Int -> IO ( )
-
-  native onStartTemporaryDetach  :: MutableIO View -> IO ( )
-
-  native onTouchEvent  :: MutableIO View -> MotionEvent -> IO Bool
-
-  native onTrackballEvent  :: MutableIO View -> MotionEvent -> IO Bool
-
-  native onWindowFocusChanged  :: MutableIO View -> Bool -> IO ( )
-
-  native onWindowSystemUiVisibilityChanged  :: MutableIO View -> Int -> IO ( )
-
-{-   native performAccessibilityAction  :: -- ["Bundle"] -- MutableIO View -> Int -> Bundle -> IO Bool -}
-
-  native performClick  :: MutableIO View -> IO Bool
-
-  native performHapticFeedback  :: MutableIO View -> Int -> Int -> IO Bool
-        | MutableIO View -> Int -> IO Bool
-
-  native performLongClick  :: MutableIO View -> IO Bool
-
-  native playSoundEffect  :: MutableIO View -> Int -> IO ( )
-
-{-   native post  :: -- ["Runnable"] -- MutableIO View -> Runnable -> IO Bool -}
-
-{-   native postDelayed  :: -- ["Runnable"] -- MutableIO View -> Runnable -> Long -> IO Bool -}
-
-  native postInvalidate  :: MutableIO View -> IO ( )
-        | MutableIO View -> Int -> Int -> Int -> Int -> IO ( )
-
-  native postInvalidateDelayed  :: MutableIO View -> Long -> IO ( )
-        | MutableIO View -> Long -> Int -> Int -> Int -> Int -> IO ( )
-
-  native postInvalidateOnAnimation  :: MutableIO View -> Int -> Int -> Int -> Int -> IO ( )
-        | MutableIO View -> IO ( )
-
-{-   native postOnAnimation  :: -- ["Runnable"] -- MutableIO View -> Runnable -> IO ( ) -}
-
-{-   native postOnAnimationDelayed  :: -- ["Runnable"] -- MutableIO View -> Runnable -> Long -> IO ( ) -}
-
-  native refreshDrawableState  :: MutableIO View -> IO ( )
-
-{-   native removeCallbacks  :: -- ["Runnable"] -- MutableIO View -> Runnable -> IO Bool -}
-
-{-   native removeOnAttachStateChangeListener  :: -- ["View_OnAttachStateChangeListener"] -- MutableIO View -> View_OnAttachStateChangeListener -> IO ( ) -}
-
-{-   native removeOnLayoutChangeListener  :: -- ["View_OnLayoutChangeListener"] -- MutableIO View -> View_OnLayoutChangeListener -> IO ( ) -}
-
-  native requestApplyInsets  :: MutableIO View -> IO ( )
-
-  native requestFitSystemWindows  :: MutableIO View -> IO ( )
-
-  native requestFocus  :: MutableIO View -> Int -> MutableIO Rect -> IO Bool
-        | MutableIO View -> Int -> IO Bool
-        | MutableIO View -> IO Bool
-
-  native requestFocusFromTouch  :: MutableIO View -> IO Bool
-
-  native requestLayout  :: MutableIO View -> IO ( )
-
-  native requestRectangleOnScreen  :: MutableIO View -> MutableIO Rect -> Bool -> IO Bool
-        | MutableIO View -> MutableIO Rect -> IO Bool
-
-  pure native resolveSize  android.view.View.resolveSize :: Int -> Int -> Int
-
-  pure native resolveSizeAndState  android.view.View.resolveSizeAndState :: Int -> Int -> Int -> Int
-
-{-   native restoreHierarchyState  :: -- ["Parcelable","SparseArray"] -- MutableIO View -> SparseArray Parcelable -> IO ( ) -}
-
-{-   native saveHierarchyState  :: -- ["Parcelable","SparseArray"] -- MutableIO View -> SparseArray Parcelable -> IO ( ) -}
-
-{-   native scheduleDrawable  :: -- ["Runnable"] -- MutableIO View -> Drawable -> Runnable -> Long -> IO ( ) -}
-
-  native scrollBy  :: MutableIO View -> Int -> Int -> IO ( )
-
-  native scrollTo  :: MutableIO View -> Int -> Int -> IO ( )
-
-  native sendAccessibilityEvent  :: MutableIO View -> Int -> IO ( )
-
-{-   native sendAccessibilityEventUnchecked  :: -- ["AccessibilityEvent"] -- MutableIO View -> AccessibilityEvent -> IO ( ) -}
-
-{-   native setAccessibilityDelegate  :: -- ["View_AccessibilityDelegate"] -- MutableIO View -> View_AccessibilityDelegate -> IO ( ) -}
-
-  native setAccessibilityLiveRegion  :: MutableIO View -> Int -> IO ( )
-
-  native setActivated  :: MutableIO View -> Bool -> IO ( )
-
-  native setAlpha  :: MutableIO View -> Float -> IO ( )
-
-{-   native setAnimation  :: -- ["Animation"] -- MutableIO View -> Animation -> IO ( ) -}
-
-  native setBackground  :: MutableIO View -> Drawable -> IO ( )
-
-  native setBackgroundColor  :: MutableIO View -> Int -> IO ( )
-
-  native setBackgroundDrawable  :: MutableIO View -> Drawable -> IO ( )
-
-  native setBackgroundResource  :: MutableIO View -> Int -> IO ( )
-
-  native setBottom  :: MutableIO View -> Int -> IO ( )
-
-  native setCameraDistance  :: MutableIO View -> Float -> IO ( )
-
-  native setClickable  :: MutableIO View -> Bool -> IO ( )
-
-  native setClipBounds  :: MutableIO View -> MutableIO Rect -> IO ( )
-
-  native setContentDescription  :: MutableIO View -> CharSequence -> IO ( )
-
-  native setDrawingCacheBackgroundColor  :: MutableIO View -> Int -> IO ( )
-
-  native setDrawingCacheEnabled  :: MutableIO View -> Bool -> IO ( )
-
-  native setDrawingCacheQuality  :: MutableIO View -> Int -> IO ( )
-
-  native setDuplicateParentStateEnabled  :: MutableIO View -> Bool -> IO ( )
-
-  native setEnabled  :: MutableIO View -> Bool -> IO ( )
-
-  native setFadingEdgeLength  :: MutableIO View -> Int -> IO ( )
-
-  native setFilterTouchesWhenObscured  :: MutableIO View -> Bool -> IO ( )
-
-  native setFitsSystemWindows  :: MutableIO View -> Bool -> IO ( )
-
-  native setFocusable  :: MutableIO View -> Bool -> IO ( )
-
-  native setFocusableInTouchMode  :: MutableIO View -> Bool -> IO ( )
-
-  native setHapticFeedbackEnabled  :: MutableIO View -> Bool -> IO ( )
-
-  native setHasTransientState  :: MutableIO View -> Bool -> IO ( )
-
-  native setHorizontalFadingEdgeEnabled  :: MutableIO View -> Bool -> IO ( )
-
-  native setHorizontalScrollBarEnabled  :: MutableIO View -> Bool -> IO ( )
-
-  native setHovered  :: MutableIO View -> Bool -> IO ( )
-
-  native setId  :: MutableIO View -> Int -> IO ( )
-
-  native setImportantForAccessibility  :: MutableIO View -> Int -> IO ( )
-
-  native setKeepScreenOn  :: MutableIO View -> Bool -> IO ( )
-
-  native setLabelFor  :: MutableIO View -> Int -> IO ( )
-
-{-   native setLayerPaint  :: -- ["Paint"] -- MutableIO View -> Paint -> IO ( ) -}
-
-{-   native setLayerType  :: -- ["Paint"] -- MutableIO View -> Int -> Paint -> IO ( ) -}
-
-  native setLayoutDirection  :: MutableIO View -> Int -> IO ( )
-
-{-   native setLayoutParams  :: -- ["ViewGroup_LayoutParams"] -- MutableIO View -> ViewGroup_LayoutParams -> IO ( ) -}
-
-  native setLeft  :: MutableIO View -> Int -> IO ( )
-
-  native setLongClickable  :: MutableIO View -> Bool -> IO ( )
-
-  native setMinimumHeight  :: MutableIO View -> Int -> IO ( )
-
-  native setMinimumWidth  :: MutableIO View -> Int -> IO ( )
-
-  native setNextFocusDownId  :: MutableIO View -> Int -> IO ( )
-
-  native setNextFocusForwardId  :: MutableIO View -> Int -> IO ( )
-
-  native setNextFocusLeftId  :: MutableIO View -> Int -> IO ( )
-
-  native setNextFocusRightId  :: MutableIO View -> Int -> IO ( )
-
-  native setNextFocusUpId  :: MutableIO View -> Int -> IO ( )
-
-{-   native setOnApplyWindowInsetsListener  :: -- ["View_OnApplyWindowInsetsListener"] -- MutableIO View -> View_OnApplyWindowInsetsListener -> IO ( ) -}
-
-{-   native setOnClickListener  :: -- ["View_OnClickListener"] -- MutableIO View -> View_OnClickListener -> IO ( ) -}
-
-{-   native setOnCreateContextMenuListener  :: -- ["View_OnCreateContextMenuListener"] -- MutableIO View -> View_OnCreateContextMenuListener -> IO ( ) -}
-
-{-   native setOnDragListener  :: -- ["View_OnDragListener"] -- MutableIO View -> View_OnDragListener -> IO ( ) -}
-
-{-   native setOnFocusChangeListener  :: -- ["View_OnFocusChangeListener"] -- MutableIO View -> View_OnFocusChangeListener -> IO ( ) -}
-
-{-   native setOnGenericMotionListener  :: -- ["View_OnGenericMotionListener"] -- MutableIO View -> View_OnGenericMotionListener -> IO ( ) -}
-
-{-   native setOnHoverListener  :: -- ["View_OnHoverListener"] -- MutableIO View -> View_OnHoverListener -> IO ( ) -}
-
-{-   native setOnKeyListener  :: -- ["View_OnKeyListener"] -- MutableIO View -> View_OnKeyListener -> IO ( ) -}
-
-{-   native setOnLongClickListener  :: -- ["View_OnLongClickListener"] -- MutableIO View -> View_OnLongClickListener -> IO ( ) -}
-
-{-   native setOnSystemUiVisibilityChangeListener  :: -- ["View_OnSystemUiVisibilityChangeListener"] -- MutableIO View -> View_OnSystemUiVisibilityChangeListener -> IO ( ) -}
-
-{-   native setOnTouchListener  :: -- ["View_OnTouchListener"] -- MutableIO View -> View_OnTouchListener -> IO ( ) -}
-
-  native setOverScrollMode  :: MutableIO View -> Int -> IO ( )
-
-  native setPadding  :: MutableIO View -> Int -> Int -> Int -> Int -> IO ( )
-
-  native setPaddingRelative  :: MutableIO View -> Int -> Int -> Int -> Int -> IO ( )
-
-  native setPivotX  :: MutableIO View -> Float -> IO ( )
-
-  native setPivotY  :: MutableIO View -> Float -> IO ( )
-
-  native setPressed  :: MutableIO View -> Bool -> IO ( )
-
-  native setRight  :: MutableIO View -> Int -> IO ( )
-
-  native setRotation  :: MutableIO View -> Float -> IO ( )
-
-  native setRotationX  :: MutableIO View -> Float -> IO ( )
-
-  native setRotationY  :: MutableIO View -> Float -> IO ( )
-
-  native setSaveEnabled  :: MutableIO View -> Bool -> IO ( )
-
-  native setSaveFromParentEnabled  :: MutableIO View -> Bool -> IO ( )
-
-  native setScaleX  :: MutableIO View -> Float -> IO ( )
-
-  native setScaleY  :: MutableIO View -> Float -> IO ( )
-
-  native setScrollBarDefaultDelayBeforeFade  :: MutableIO View -> Int -> IO ( )
-
-  native setScrollBarFadeDuration  :: MutableIO View -> Int -> IO ( )
-
-  native setScrollBarSize  :: MutableIO View -> Int -> IO ( )
-
-  native setScrollBarStyle  :: MutableIO View -> Int -> IO ( )
-
-  native setScrollContainer  :: MutableIO View -> Bool -> IO ( )
-
-  native setScrollX  :: MutableIO View -> Int -> IO ( )
-
-  native setScrollY  :: MutableIO View -> Int -> IO ( )
-
-  native setScrollbarFadingEnabled  :: MutableIO View -> Bool -> IO ( )
-
-  native setSelected  :: MutableIO View -> Bool -> IO ( )
-
-  native setSoundEffectsEnabled  :: MutableIO View -> Bool -> IO ( )
-
-  native setSystemUiVisibility  :: MutableIO View -> Int -> IO ( )
-
-  native setTag  :: MutableIO View -> Object -> IO ( )
-        | MutableIO View -> Int -> Object -> IO ( )
-
-  native setTextAlignment  :: MutableIO View -> Int -> IO ( )
-
-  native setTextDirection  :: MutableIO View -> Int -> IO ( )
-
-  native setTop  :: MutableIO View -> Int -> IO ( )
-
-{-   native setTouchDelegate  :: -- ["TouchDelegate"] -- MutableIO View -> TouchDelegate -> IO ( ) -}
-
-  native setTranslationX  :: MutableIO View -> Float -> IO ( )
-
-  native setTranslationY  :: MutableIO View -> Float -> IO ( )
-
-  native setVerticalFadingEdgeEnabled  :: MutableIO View -> Bool -> IO ( )
-
-  native setVerticalScrollBarEnabled  :: MutableIO View -> Bool -> IO ( )
-
-  native setVerticalScrollbarPosition  :: MutableIO View -> Int -> IO ( )
-
-  native setVisibility  :: MutableIO View -> Int -> IO ( )
-
-  native setWillNotCacheDrawing  :: MutableIO View -> Bool -> IO ( )
-
-  native setWillNotDraw  :: MutableIO View -> Bool -> IO ( )
-
-  native setX  :: MutableIO View -> Float -> IO ( )
-
-  native setY  :: MutableIO View -> Float -> IO ( )
-
-  native showContextMenu  :: MutableIO View -> IO Bool
-
-{-   native startActionMode  :: -- ["ActionMode","ActionMode_Callback"] -- MutableIO View -> ActionMode_Callback -> IO ActionMode -}
-
-{-   native startAnimation  :: -- ["Animation"] -- MutableIO View -> Animation -> IO ( ) -}
-
-{-   native startDrag  :: -- ["ClipData","View_DragShadowBuilder"] -- MutableIO View -> ClipData -> View_DragShadowBuilder -> Object -> Int -> IO Bool -}
-
-  native toString  :: MutableIO View -> IO String
-
-  native unscheduleDrawable  :: MutableIO View -> Drawable -> IO ( )
-        -- ["Runnable"] -- | MutableIO View -> Drawable -> Runnable -> IO ( )
-
-  native willNotCacheDrawing  :: MutableIO View -> IO Bool
-
-  native willNotDraw  :: MutableIO View -> IO Bool
-
-
-{-
-data View = native android.view.View where
+data View =  native android.view.View where
 
   pure native no_id android.view.View.NO_ID :: Int
   pure native visible android.view.View.VISIBLE :: Int
@@ -1017,40 +175,20 @@ data View = native android.view.View where
   pure native layer_type_none android.view.View.LAYER_TYPE_NONE :: Int
   pure native layer_type_software android.view.View.LAYER_TYPE_SOFTWARE :: Int
   pure native layer_type_hardware android.view.View.LAYER_TYPE_HARDWARE :: Int
-  pure native alpha android.view.View.ALPHA :: Property View Float
-  pure native translation_x android.view.View.TRANSLATION_X :: Property View Float
-  pure native translation_y android.view.View.TRANSLATION_Y :: Property View Float
-  pure native x android.view.View.X :: Property View Float
-  pure native y android.view.View.Y :: Property View Float
-  pure native rotation android.view.View.ROTATION :: Property View Float
-  pure native rotation_x android.view.View.ROTATION_X :: Property View Float
-  pure native rotation_y android.view.View.ROTATION_Y :: Property View Float
-  pure native scale_x android.view.View.SCALE_X :: Property View Float
-  pure native scale_y android.view.View.SCALE_Y :: Property View Float
-
-  native new :: Context -> AttributeSet -> IOMutable View
-              | Context -> IOMutable View
-              | Context -> AttributeSet -> Int -> IOMutable View
-
-  native addChildrenForAccessibility :: MutableIO View -> MutableIO (ArrayList View) -> IO ()
-
-  native addFocusables :: MutableIO View -> MutableIO (ArrayList View) -> Int -> Int -> IO ()
-                        | MutableIO View -> MutableIO (ArrayList View) -> Int -> IO ()
+  native new :: MutableIO Context -> AttributeSet -> IOMutable View
+              | MutableIO Context -> IOMutable View
+              | MutableIO Context -> AttributeSet -> Int -> IOMutable View
 
   native addOnAttachStateChangeListener :: MutableIO View -> View_OnAttachStateChangeListener -> IO ()
 
   native addOnLayoutChangeListener :: MutableIO View -> View_OnLayoutChangeListener -> IO ()
 
-  native addTouchables :: MutableIO View -> MutableIO (ArrayList View) -> IO ()
-
-  native animate :: MutableIO View -> IO ViewPropertyAnimator
-
   native announceForAccessibility :: MutableIO View -> CharSequence -> IO ()
 
   native bringToFront :: MutableIO View -> IO ()
 
-  native buildDrawingCache :: MutableIO View -> IO ()
-                            | MutableIO View -> Bool -> IO ()
+  native buildDrawingCache :: MutableIO View -> Bool -> IO ()
+          | MutableIO View -> IO ()
 
   native buildLayer :: MutableIO View -> IO ()
 
@@ -1080,21 +218,17 @@ data View = native android.view.View where
 
   native computeScroll :: MutableIO View -> IO ()
 
-  native createAccessibilityNodeInfo :: MutableIO View -> IO AccessibilityNodeInfo
-
-  native createContextMenu :: MutableIO View -> ContextMenu -> IO ()
+  native createContextMenu :: MutableIO View -> MutableIO ContextMenu -> IO ()
 
   native destroyDrawingCache :: MutableIO View -> IO ()
-
-  native dispatchApplyWindowInsets :: MutableIO View -> WindowInsets -> IO WindowInsets
 
   native dispatchConfigurationChanged :: MutableIO View -> Configuration -> IO ()
 
   native dispatchDisplayHint :: MutableIO View -> Int -> IO ()
 
-  native dispatchDragEvent :: MutableIO View -> DragEvent -> IO Bool
+  native dispatchDragEvent :: MutableIO View -> MutableIO DragEvent -> IO Bool
 
-  native dispatchGenericMotionEvent :: MutableIO View -> MotionEvent -> IO Bool
+  native dispatchGenericMotionEvent :: MutableIO View -> MutableIO MotionEvent -> IO Bool
 
   native dispatchKeyEvent :: MutableIO View -> KeyEvent -> IO Bool
 
@@ -1102,13 +236,11 @@ data View = native android.view.View where
 
   native dispatchKeyShortcutEvent :: MutableIO View -> KeyEvent -> IO Bool
 
-  native dispatchPopulateAccessibilityEvent :: MutableIO View -> AccessibilityEvent -> IO Bool
-
   native dispatchSystemUiVisibilityChanged :: MutableIO View -> Int -> IO ()
 
-  native dispatchTouchEvent :: MutableIO View -> MotionEvent -> IO Bool
+  native dispatchTouchEvent :: MutableIO View -> MutableIO MotionEvent -> IO Bool
 
-  native dispatchTrackballEvent :: MutableIO View -> MotionEvent -> IO Bool
+  native dispatchTrackballEvent :: MutableIO View -> MutableIO MotionEvent -> IO Bool
 
   native dispatchUnhandledMove :: MutableIO View -> MutableIO View -> Int -> IO Bool
 
@@ -1118,15 +250,13 @@ data View = native android.view.View where
 
   native dispatchWindowVisibilityChanged :: MutableIO View -> Int -> IO ()
 
-  native draw :: MutableIO View -> Canvas -> IO ()
+  native draw :: MutableIO View -> MutableIO Canvas -> IO ()
 
   native findFocus :: MutableIO View -> IOMutable View
 
   native findViewById :: MutableIO View -> Int -> IOMutable View
 
   native findViewWithTag :: MutableIO View -> Object -> IOMutable View
-
-  native findViewsWithText :: MutableIO View -> MutableIO (ArrayList View) -> CharSequence -> Int -> IO ()
 
   native focusSearch :: MutableIO View -> Int -> IOMutable View
 
@@ -1136,13 +266,9 @@ data View = native android.view.View where
 
   native getAccessibilityLiveRegion :: MutableIO View -> IO Int
 
-  native getAccessibilityNodeProvider :: MutableIO View -> IO AccessibilityNodeProvider
-
   native getAlpha :: MutableIO View -> IO Float
 
-  native getAnimation :: MutableIO View -> IO Animation
-
-  native getApplicationWindowToken :: MutableIO View -> IO IBinder
+  native getAnimation :: MutableIO View -> IOMutable Animation
 
   native getBackground :: MutableIO View -> IO Drawable
 
@@ -1156,16 +282,14 @@ data View = native android.view.View where
 
   native getContentDescription :: MutableIO View -> IO CharSequence
 
-  native getContext :: MutableIO View -> IO Context
+  native getContext :: MutableIO View -> IOMutable Context
 
   pure native getDefaultSize android.view.View.getDefaultSize :: Int -> Int -> Int
 
   native getDisplay :: MutableIO View -> IOMutable Display
 
-  native getDrawableState :: MutableIO View -> IOMutable (JArray Int)
-
-  native getDrawingCache :: MutableIO View -> IO Bitmap
-                          | MutableIO View -> Bool -> IO Bitmap
+  native getDrawingCache :: MutableIO View -> Bool -> IO Bitmap
+          | MutableIO View -> IO Bitmap
 
   native getDrawingCacheBackgroundColor :: MutableIO View -> IO Int
 
@@ -1179,12 +303,10 @@ data View = native android.view.View where
 
   native getFitsSystemWindows :: MutableIO View -> IO Bool
 
-  native getFocusables :: MutableIO View -> Int -> IOMutable (ArrayList View)
-
   native getFocusedRect :: MutableIO View -> MutableIO Rect -> IO ()
 
   native getGlobalVisibleRect :: MutableIO View -> MutableIO Rect -> MutableIO Point -> IO Bool
-                               | MutableIO View -> MutableIO Rect -> IO Bool
+          | MutableIO View -> MutableIO Rect -> IO Bool
 
   native getHandler :: MutableIO View -> IO Handler
 
@@ -1208,15 +330,9 @@ data View = native android.view.View where
 
   native getLayoutDirection :: MutableIO View -> IO Int
 
-  native getLayoutParams :: MutableIO View -> IO ViewGroup_LayoutParams
-
   native getLeft :: MutableIO View -> IO Int
 
   native getLocalVisibleRect :: MutableIO View -> MutableIO Rect -> IO Bool
-
-  native getLocationInWindow :: MutableIO View -> MutableIO (JArray Int) -> IO ()
-
-  native getLocationOnScreen :: MutableIO View -> MutableIO (JArray Int) -> IO ()
 
   native getMatrix :: MutableIO View -> IOMutable Matrix
 
@@ -1248,7 +364,7 @@ data View = native android.view.View where
 
   native getOverScrollMode :: MutableIO View -> IO Int
 
-  native getOverlay :: MutableIO View -> IO ViewOverlay
+  native getOverlay :: MutableIO View -> IOMutable ViewOverlay
 
   native getPaddingBottom :: MutableIO View -> IO Int
 
@@ -1261,10 +377,6 @@ data View = native android.view.View where
   native getPaddingStart :: MutableIO View -> IO Int
 
   native getPaddingTop :: MutableIO View -> IO Int
-
-  native getParent :: MutableIO View -> IO ViewParent
-
-  native getParentForAccessibility :: MutableIO View -> IO ViewParent
 
   native getPivotX :: MutableIO View -> IO Float
 
@@ -1303,17 +415,13 @@ data View = native android.view.View where
   native getSystemUiVisibility :: MutableIO View -> IO Int
 
   native getTag :: MutableIO View -> Int -> IO Object
-                 | MutableIO View -> IO Object
+          | MutableIO View -> IO Object
 
   native getTextAlignment :: MutableIO View -> IO Int
 
   native getTextDirection :: MutableIO View -> IO Int
 
   native getTop :: MutableIO View -> IO Int
-
-  native getTouchDelegate :: MutableIO View -> IO TouchDelegate
-
-  native getTouchables :: MutableIO View -> IOMutable (ArrayList View)
 
   native getTranslationX :: MutableIO View -> IO Float
 
@@ -1325,8 +433,6 @@ data View = native android.view.View where
 
   native getVerticalScrollbarWidth :: MutableIO View -> IO Int
 
-  native getViewTreeObserver :: MutableIO View -> IO ViewTreeObserver
-
   native getVisibility :: MutableIO View -> IO Int
 
   native getWidth :: MutableIO View -> IO Int
@@ -1334,8 +440,6 @@ data View = native android.view.View where
   native getWindowId :: MutableIO View -> IO WindowId
 
   native getWindowSystemUiVisibility :: MutableIO View -> IO Int
-
-  native getWindowToken :: MutableIO View -> IO IBinder
 
   native getWindowVisibility :: MutableIO View -> IO Int
 
@@ -1357,11 +461,9 @@ data View = native android.view.View where
 
   native hasWindowFocus :: MutableIO View -> IO Bool
 
-  native inflate android.view.View.inflate :: Context -> Int -> ViewGroup -> IOMutable View
-
   native invalidate :: MutableIO View -> IO ()
-                     | MutableIO View -> MutableIO Rect -> IO ()
-                     | MutableIO View -> Int -> Int -> Int -> Int -> IO ()
+          | MutableIO View -> MutableIO Rect -> IO ()
+          | MutableIO View -> Int -> Int -> Int -> Int -> IO ()
 
   native invalidateDrawable :: MutableIO View -> Drawable -> IO ()
 
@@ -1447,29 +549,21 @@ data View = native android.view.View where
 
   native offsetTopAndBottom :: MutableIO View -> Int -> IO ()
 
-  native onApplyWindowInsets :: MutableIO View -> WindowInsets -> IO WindowInsets
-
   native onCancelPendingInputEvents :: MutableIO View -> IO ()
 
   native onCheckIsTextEditor :: MutableIO View -> IO Bool
 
-  native onCreateInputConnection :: MutableIO View -> EditorInfo -> IO InputConnection
+  native onDragEvent :: MutableIO View -> MutableIO DragEvent -> IO Bool
 
-  native onDragEvent :: MutableIO View -> DragEvent -> IO Bool
-
-  native onFilterTouchEventForSecurity :: MutableIO View -> MotionEvent -> IO Bool
+  native onFilterTouchEventForSecurity :: MutableIO View -> MutableIO MotionEvent -> IO Bool
 
   native onFinishTemporaryDetach :: MutableIO View -> IO ()
 
-  native onGenericMotionEvent :: MutableIO View -> MotionEvent -> IO Bool
+  native onGenericMotionEvent :: MutableIO View -> MutableIO MotionEvent -> IO Bool
 
   native onHoverChanged :: MutableIO View -> Bool -> IO ()
 
-  native onHoverEvent :: MutableIO View -> MotionEvent -> IO Bool
-
-  native onInitializeAccessibilityEvent :: MutableIO View -> AccessibilityEvent -> IO ()
-
-  native onInitializeAccessibilityNodeInfo :: MutableIO View -> AccessibilityNodeInfo -> IO ()
+  native onHoverEvent :: MutableIO View -> MutableIO MotionEvent -> IO Bool
 
   native onKeyDown :: MutableIO View -> Int -> KeyEvent -> IO Bool
 
@@ -1483,17 +577,15 @@ data View = native android.view.View where
 
   native onKeyUp :: MutableIO View -> Int -> KeyEvent -> IO Bool
 
-  native onPopulateAccessibilityEvent :: MutableIO View -> AccessibilityEvent -> IO ()
-
   native onRtlPropertiesChanged :: MutableIO View -> Int -> IO ()
 
   native onScreenStateChanged :: MutableIO View -> Int -> IO ()
 
   native onStartTemporaryDetach :: MutableIO View -> IO ()
 
-  native onTouchEvent :: MutableIO View -> MotionEvent -> IO Bool
+  native onTouchEvent :: MutableIO View -> MutableIO MotionEvent -> IO Bool
 
-  native onTrackballEvent :: MutableIO View -> MotionEvent -> IO Bool
+  native onTrackballEvent :: MutableIO View -> MutableIO MotionEvent -> IO Bool
 
   native onWindowFocusChanged :: MutableIO View -> Bool -> IO ()
 
@@ -1503,8 +595,8 @@ data View = native android.view.View where
 
   native performClick :: MutableIO View -> IO Bool
 
-  native performHapticFeedback :: MutableIO View -> Int -> Int -> IO Bool
-                                | MutableIO View -> Int -> IO Bool
+  native performHapticFeedback :: MutableIO View -> Int -> IO Bool
+          | MutableIO View -> Int -> Int -> IO Bool
 
   native performLongClick :: MutableIO View -> IO Bool
 
@@ -1515,13 +607,13 @@ data View = native android.view.View where
   native postDelayed :: MutableIO View -> Runnable -> Long -> IO Bool
 
   native postInvalidate :: MutableIO View -> IO ()
-                         | MutableIO View -> Int -> Int -> Int -> Int -> IO ()
+          | MutableIO View -> Int -> Int -> Int -> Int -> IO ()
 
-  native postInvalidateDelayed :: MutableIO View -> Long -> IO ()
-                                | MutableIO View -> Long -> Int -> Int -> Int -> Int -> IO ()
+  native postInvalidateDelayed :: MutableIO View -> Long -> Int -> Int -> Int -> Int -> IO ()
+          | MutableIO View -> Long -> IO ()
 
   native postInvalidateOnAnimation :: MutableIO View -> Int -> Int -> Int -> Int -> IO ()
-                                    | MutableIO View -> IO ()
+          | MutableIO View -> IO ()
 
   native postOnAnimation :: MutableIO View -> Runnable -> IO ()
 
@@ -1539,24 +631,20 @@ data View = native android.view.View where
 
   native requestFitSystemWindows :: MutableIO View -> IO ()
 
-  native requestFocus :: MutableIO View -> Int -> MutableIO Rect -> IO Bool
-                       | MutableIO View -> Int -> IO Bool
-                       | MutableIO View -> IO Bool
+  native requestFocus :: MutableIO View -> Int -> IO Bool
+          | MutableIO View -> Int -> MutableIO Rect -> IO Bool
+          | MutableIO View -> IO Bool
 
   native requestFocusFromTouch :: MutableIO View -> IO Bool
 
   native requestLayout :: MutableIO View -> IO ()
 
-  native requestRectangleOnScreen :: MutableIO View -> MutableIO Rect -> Bool -> IO Bool
-                                   | MutableIO View -> MutableIO Rect -> IO Bool
+  native requestRectangleOnScreen :: MutableIO View -> MutableIO Rect -> IO Bool
+          | MutableIO View -> MutableIO Rect -> Bool -> IO Bool
 
   pure native resolveSize android.view.View.resolveSize :: Int -> Int -> Int
 
   pure native resolveSizeAndState android.view.View.resolveSizeAndState :: Int -> Int -> Int -> Int
-
-  native restoreHierarchyState :: MutableIO View -> SparseArray Parcelable -> IO ()
-
-  native saveHierarchyState :: MutableIO View -> SparseArray Parcelable -> IO ()
 
   native scheduleDrawable :: MutableIO View -> Drawable -> Runnable -> Long -> IO ()
 
@@ -1566,17 +654,13 @@ data View = native android.view.View where
 
   native sendAccessibilityEvent :: MutableIO View -> Int -> IO ()
 
-  native sendAccessibilityEventUnchecked :: MutableIO View -> AccessibilityEvent -> IO ()
-
-  native setAccessibilityDelegate :: MutableIO View -> View_AccessibilityDelegate -> IO ()
-
   native setAccessibilityLiveRegion :: MutableIO View -> Int -> IO ()
 
   native setActivated :: MutableIO View -> Bool -> IO ()
 
   native setAlpha :: MutableIO View -> Float -> IO ()
 
-  native setAnimation :: MutableIO View -> Animation -> IO ()
+  native setAnimation :: MutableIO View -> MutableIO Animation -> IO ()
 
   native setBackground :: MutableIO View -> Drawable -> IO ()
 
@@ -1640,8 +724,6 @@ data View = native android.view.View where
 
   native setLayoutDirection :: MutableIO View -> Int -> IO ()
 
-  native setLayoutParams :: MutableIO View -> ViewGroup_LayoutParams -> IO ()
-
   native setLeft :: MutableIO View -> Int -> IO ()
 
   native setLongClickable :: MutableIO View -> Bool -> IO ()
@@ -1660,13 +742,7 @@ data View = native android.view.View where
 
   native setNextFocusUpId :: MutableIO View -> Int -> IO ()
 
-  native setOnApplyWindowInsetsListener :: MutableIO View -> View_OnApplyWindowInsetsListener -> IO ()
-
   native setOnClickListener :: MutableIO View -> View_OnClickListener -> IO ()
-
-  native setOnCreateContextMenuListener :: MutableIO View -> View_OnCreateContextMenuListener -> IO ()
-
-  native setOnDragListener :: MutableIO View -> View_OnDragListener -> IO ()
 
   native setOnFocusChangeListener :: MutableIO View -> View_OnFocusChangeListener -> IO ()
 
@@ -1733,15 +809,13 @@ data View = native android.view.View where
   native setSystemUiVisibility :: MutableIO View -> Int -> IO ()
 
   native setTag :: MutableIO View -> Object -> IO ()
-                 | MutableIO View -> Int -> Object -> IO ()
+          | MutableIO View -> Int -> Object -> IO ()
 
   native setTextAlignment :: MutableIO View -> Int -> IO ()
 
   native setTextDirection :: MutableIO View -> Int -> IO ()
 
   native setTop :: MutableIO View -> Int -> IO ()
-
-  native setTouchDelegate :: MutableIO View -> TouchDelegate -> IO ()
 
   native setTranslationX :: MutableIO View -> Float -> IO ()
 
@@ -1765,21 +839,18 @@ data View = native android.view.View where
 
   native showContextMenu :: MutableIO View -> IO Bool
 
-  native startActionMode :: MutableIO View -> ActionMode_Callback -> IO ActionMode
+  native startActionMode :: MutableIO View -> ActionMode_Callback -> IOMutable ActionMode
 
-  native startAnimation :: MutableIO View -> Animation -> IO ()
-
-  native startDrag :: MutableIO View -> ClipData -> View_DragShadowBuilder -> Object -> Int -> IO Bool
+  native startAnimation :: MutableIO View -> MutableIO Animation -> IO ()
 
   native toString :: MutableIO View -> IO String
 
   native unscheduleDrawable :: MutableIO View -> Drawable -> IO ()
-                             | MutableIO View -> Drawable -> Runnable -> IO ()
+          | MutableIO View -> Drawable -> Runnable -> IO ()
 
   native willNotCacheDrawing :: MutableIO View -> IO Bool
 
   native willNotDraw :: MutableIO View -> IO Bool
+{-  -}
 
 
-
--}

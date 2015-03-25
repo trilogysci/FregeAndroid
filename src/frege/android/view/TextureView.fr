@@ -1,95 +1,66 @@
 package frege.android.view.TextureView where
 
 import frege.android.content.Context
-import frege.android.util.AttributeSet
+import frege.android.graphics.Bitmap
+import frege.android.graphics.Canvas
 import frege.android.graphics.Matrix
+import frege.android.graphics.Paint
 import frege.android.graphics.Rect
+import frege.android.graphics.SurfaceTexture
+import frege.android.util.AttributeSet
 
-data TextureView = pure native android.view.TextureView where
-
-
-  native new  :: Context -> ST s TextureView
-        | Context -> AttributeSet -> ST s TextureView
-        | Context -> AttributeSet -> Int -> ST s TextureView
-
-  native buildLayer  :: TextureView -> ST s ( )
-
-{-   native draw  :: -- ["Canvas"] -- TextureView -> Canvas -> ST s ( ) -}
-
-{-   pure native getBitmap  :: -- ["Bitmap"] -- TextureView -> Bitmap
-        -- ["Bitmap"] -- TextureView -> Int -> Int -> Bitmap
-        -- ["Bitmap"] -- TextureView -> Bitmap -> Bitmap -}
-
-  pure native getLayerType  :: TextureView -> Int
-
-{-   pure native getSurfaceTexture  :: -- ["SurfaceTexture"] -- TextureView -> SurfaceTexture -}
-
-{-   pure native getSurfaceTextureListener  :: -- ["TextureView_SurfaceTextureListener"] -- TextureView -> TextureView_SurfaceTextureListener -}
-
-  native getTransform  :: TextureView -> Mutable s Matrix -> STMutable s Matrix
-
-  pure native isAvailable  :: TextureView -> Bool
-
-  pure native isOpaque  :: TextureView -> Bool
-
-{-   native lockCanvas  :: -- ["Canvas"] -- TextureView -> Mutable s Rect -> ST s Canvas
-        -- ["Canvas"] -- TextureView -> ST s Canvas -}
-
-{-   native setLayerType  :: -- ["Paint"] -- TextureView -> Int -> Paint -> ST s ( ) -}
-
-  native setOpaque  :: TextureView -> Bool -> ST s ( )
-
-{-   native setSurfaceTexture  :: -- ["SurfaceTexture"] -- TextureView -> SurfaceTexture -> ST s ( ) -}
-
-{-   native setSurfaceTextureListener  :: -- ["TextureView_SurfaceTextureListener"] -- TextureView -> TextureView_SurfaceTextureListener -> ST s ( ) -}
-
-  native setTransform  :: TextureView -> Mutable s Matrix -> ST s ( )
-
-{-   native unlockCanvasAndPost  :: -- ["Canvas"] -- TextureView -> Canvas -> ST s ( ) -}
+data TextureView_SurfaceTextureListener = pure native android.view.TextureView.SurfaceTextureListener where
 
 
-{-
-data TextureView = pure native android.view.TextureView where
+  native onSurfaceTextureAvailable :: TextureView_SurfaceTextureListener -> SurfaceTexture -> Int -> Int -> ST s ()
 
-  native new :: Context -> ST s TextureView
-              | Context -> AttributeSet -> ST s TextureView
-              | Context -> AttributeSet -> Int -> ST s TextureView
+  pure native onSurfaceTextureDestroyed :: TextureView_SurfaceTextureListener -> SurfaceTexture -> Bool
 
-  native buildLayer :: TextureView -> ST s ()
+  native onSurfaceTextureSizeChanged :: TextureView_SurfaceTextureListener -> SurfaceTexture -> Int -> Int -> ST s ()
 
-  native draw :: TextureView -> Canvas -> ST s ()
+  native onSurfaceTextureUpdated :: TextureView_SurfaceTextureListener -> SurfaceTexture -> ST s ()
+{-  -}
 
-  pure native getBitmap :: TextureView -> Bitmap
-                         | TextureView -> Int -> Int -> Bitmap
-                         | TextureView -> Bitmap -> Bitmap
+data TextureView =  native android.view.TextureView where
 
-  pure native getLayerType :: TextureView -> Int
+  native new :: MutableIO Context -> IOMutable TextureView
+              | MutableIO Context -> AttributeSet -> Int -> IOMutable TextureView
+              | MutableIO Context -> AttributeSet -> IOMutable TextureView
 
-  pure native getSurfaceTexture :: TextureView -> SurfaceTexture
+  native buildLayer :: MutableIO TextureView -> IO ()
 
-  pure native getSurfaceTextureListener :: TextureView -> TextureView_SurfaceTextureListener
+  native draw :: MutableIO TextureView -> MutableIO Canvas -> IO ()
 
-  native getTransform :: TextureView -> Mutable s Matrix -> STMutable s Matrix
+  native getBitmap :: MutableIO TextureView -> Int -> Int -> IO Bitmap
+          | MutableIO TextureView -> IO Bitmap
+          | MutableIO TextureView -> Bitmap -> IO Bitmap
 
-  pure native isAvailable :: TextureView -> Bool
+  native getLayerType :: MutableIO TextureView -> IO Int
 
-  pure native isOpaque :: TextureView -> Bool
+  native getSurfaceTexture :: MutableIO TextureView -> IO SurfaceTexture
 
-  native lockCanvas :: TextureView -> Mutable s Rect -> ST s Canvas
-                     | TextureView -> ST s Canvas
+  native getSurfaceTextureListener :: MutableIO TextureView -> IO TextureView_SurfaceTextureListener
 
-  native setLayerType :: TextureView -> Int -> Paint -> ST s ()
+  native getTransform :: MutableIO TextureView -> MutableIO Matrix -> IOMutable Matrix
 
-  native setOpaque :: TextureView -> Bool -> ST s ()
+  native isAvailable :: MutableIO TextureView -> IO Bool
 
-  native setSurfaceTexture :: TextureView -> SurfaceTexture -> ST s ()
+  native isOpaque :: MutableIO TextureView -> IO Bool
 
-  native setSurfaceTextureListener :: TextureView -> TextureView_SurfaceTextureListener -> ST s ()
+  native lockCanvas :: MutableIO TextureView -> MutableIO Rect -> IOMutable Canvas
+          | MutableIO TextureView -> IOMutable Canvas
 
-  native setTransform :: TextureView -> Mutable s Matrix -> ST s ()
+  native setLayerType :: MutableIO TextureView -> Int -> Paint -> IO ()
 
-  native unlockCanvasAndPost :: TextureView -> Canvas -> ST s ()
+  native setOpaque :: MutableIO TextureView -> Bool -> IO ()
+
+  native setSurfaceTexture :: MutableIO TextureView -> SurfaceTexture -> IO ()
+
+  native setSurfaceTextureListener :: MutableIO TextureView -> TextureView_SurfaceTextureListener -> IO ()
+
+  native setTransform :: MutableIO TextureView -> MutableIO Matrix -> IO ()
+
+  native unlockCanvasAndPost :: MutableIO TextureView -> MutableIO Canvas -> IO ()
+{-  -}
 
 
-
--}

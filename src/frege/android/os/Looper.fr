@@ -1,38 +1,9 @@
 package frege.android.os.Looper where
 
+import frege.java.lang.Thread
 
 data Looper = pure native android.os.Looper where
 
-
-{-   native dump  :: -- ["Printer"] -- Looper -> Printer -> String -> ST s ( ) -}
-
-  native getMainLooper  android.os.Looper.getMainLooper :: ( ) -> ST s Looper
-
-{-   pure native getThread  :: -- ["Thread"] -- Looper -> Thread -}
-
-  native loop  android.os.Looper.loop :: ( ) -> ST s ( )
-
-  native myLooper  android.os.Looper.myLooper :: ( ) -> ST s Looper
-
-{-   native myQueue  android.os.Looper.myQueue :: -- ["MessageQueue"] -- ( ) -> ST s MessageQueue -}
-
-  native prepare  android.os.Looper.prepare :: ( ) -> ST s ( )
-
-  native prepareMainLooper  android.os.Looper.prepareMainLooper :: ( ) -> ST s ( )
-
-  native quit  :: Looper -> ST s ( )
-
-  native quitSafely  :: Looper -> ST s ( )
-
-{-   native setMessageLogging  :: -- ["Printer"] -- Looper -> Printer -> ST s ( ) -}
-
-  pure native toString  :: Looper -> String
-
-
-{-
-data Looper = pure native android.os.Looper where
-
-  native dump :: Looper -> Printer -> String -> ST s ()
 
   native getMainLooper android.os.Looper.getMainLooper :: () -> ST s Looper
 
@@ -42,8 +13,6 @@ data Looper = pure native android.os.Looper where
 
   native myLooper android.os.Looper.myLooper :: () -> ST s Looper
 
-  native myQueue android.os.Looper.myQueue :: () -> ST s MessageQueue
-
   native prepare android.os.Looper.prepare :: () -> ST s ()
 
   native prepareMainLooper android.os.Looper.prepareMainLooper :: () -> ST s ()
@@ -52,10 +21,7 @@ data Looper = pure native android.os.Looper where
 
   native quitSafely :: Looper -> ST s ()
 
-  native setMessageLogging :: Looper -> Printer -> ST s ()
-
   pure native toString :: Looper -> String
+{-  -}
 
 
-
--}

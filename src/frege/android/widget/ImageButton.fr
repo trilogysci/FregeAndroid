@@ -3,29 +3,11 @@ package frege.android.widget.ImageButton where
 import frege.android.content.Context
 import frege.android.util.AttributeSet
 
-data ImageButton = pure native android.widget.ImageButton where
+data ImageButton =  native android.widget.ImageButton where
+
+  native new :: MutableIO Context -> AttributeSet -> Int -> IOMutable ImageButton
+              | MutableIO Context -> AttributeSet -> IOMutable ImageButton
+              | MutableIO Context -> IOMutable ImageButton
+{-  -}
 
 
-  native new  :: Context -> AttributeSet -> Int -> ST s ImageButton
-        | Context -> AttributeSet -> ST s ImageButton
-        | Context -> ST s ImageButton
-
-{-   native onInitializeAccessibilityEvent  :: -- ["AccessibilityEvent"] -- ImageButton -> AccessibilityEvent -> ST s ( ) -}
-
-{-   native onInitializeAccessibilityNodeInfo  :: -- ["AccessibilityNodeInfo"] -- ImageButton -> AccessibilityNodeInfo -> ST s ( ) -}
-
-
-{-
-data ImageButton = pure native android.widget.ImageButton where
-
-  native new :: Context -> AttributeSet -> Int -> ST s ImageButton
-              | Context -> AttributeSet -> ST s ImageButton
-              | Context -> ST s ImageButton
-
-  native onInitializeAccessibilityEvent :: ImageButton -> AccessibilityEvent -> ST s ()
-
-  native onInitializeAccessibilityNodeInfo :: ImageButton -> AccessibilityNodeInfo -> ST s ()
-
-
-
--}

@@ -1,96 +1,6 @@
 package frege.android.provider.Settings where
 
-data Settings = pure native android.provider.Settings where
 
-
-  pure native action_settings  android.provider.Settings.ACTION_SETTINGS :: String
-
-  pure native action_apn_settings  android.provider.Settings.ACTION_APN_SETTINGS :: String
-
-  pure native action_location_source_settings  android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS :: String
-
-  pure native action_wireless_settings  android.provider.Settings.ACTION_WIRELESS_SETTINGS :: String
-
-  pure native action_airplane_mode_settings  android.provider.Settings.ACTION_AIRPLANE_MODE_SETTINGS :: String
-
-  pure native action_accessibility_settings  android.provider.Settings.ACTION_ACCESSIBILITY_SETTINGS :: String
-
-  pure native action_security_settings  android.provider.Settings.ACTION_SECURITY_SETTINGS :: String
-
-  pure native action_privacy_settings  android.provider.Settings.ACTION_PRIVACY_SETTINGS :: String
-
-  pure native action_wifi_settings  android.provider.Settings.ACTION_WIFI_SETTINGS :: String
-
-  pure native action_wifi_ip_settings  android.provider.Settings.ACTION_WIFI_IP_SETTINGS :: String
-
-  pure native action_bluetooth_settings  android.provider.Settings.ACTION_BLUETOOTH_SETTINGS :: String
-
-  pure native action_date_settings  android.provider.Settings.ACTION_DATE_SETTINGS :: String
-
-  pure native action_sound_settings  android.provider.Settings.ACTION_SOUND_SETTINGS :: String
-
-  pure native action_display_settings  android.provider.Settings.ACTION_DISPLAY_SETTINGS :: String
-
-  pure native action_locale_settings  android.provider.Settings.ACTION_LOCALE_SETTINGS :: String
-
-  pure native action_input_method_settings  android.provider.Settings.ACTION_INPUT_METHOD_SETTINGS :: String
-
-  pure native action_input_method_subtype_settings  android.provider.Settings.ACTION_INPUT_METHOD_SUBTYPE_SETTINGS :: String
-
-  pure native action_user_dictionary_settings  android.provider.Settings.ACTION_USER_DICTIONARY_SETTINGS :: String
-
-  pure native action_application_settings  android.provider.Settings.ACTION_APPLICATION_SETTINGS :: String
-
-  pure native action_application_development_settings  android.provider.Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS :: String
-
-  pure native action_quick_launch_settings  android.provider.Settings.ACTION_QUICK_LAUNCH_SETTINGS :: String
-
-  pure native action_manage_applications_settings  android.provider.Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS :: String
-
-  pure native action_manage_all_applications_settings  android.provider.Settings.ACTION_MANAGE_ALL_APPLICATIONS_SETTINGS :: String
-
-  pure native action_application_details_settings  android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS :: String
-
-  pure native action_sync_settings  android.provider.Settings.ACTION_SYNC_SETTINGS :: String
-
-  pure native action_add_account  android.provider.Settings.ACTION_ADD_ACCOUNT :: String
-
-  pure native action_network_operator_settings  android.provider.Settings.ACTION_NETWORK_OPERATOR_SETTINGS :: String
-
-  pure native action_data_roaming_settings  android.provider.Settings.ACTION_DATA_ROAMING_SETTINGS :: String
-
-  pure native action_internal_storage_settings  android.provider.Settings.ACTION_INTERNAL_STORAGE_SETTINGS :: String
-
-  pure native action_memory_card_settings  android.provider.Settings.ACTION_MEMORY_CARD_SETTINGS :: String
-
-  pure native action_search_settings  android.provider.Settings.ACTION_SEARCH_SETTINGS :: String
-
-  pure native action_device_info_settings  android.provider.Settings.ACTION_DEVICE_INFO_SETTINGS :: String
-
-  pure native action_nfc_settings  android.provider.Settings.ACTION_NFC_SETTINGS :: String
-
-  pure native action_nfcsharing_settings  android.provider.Settings.ACTION_NFCSHARING_SETTINGS :: String
-
-  pure native action_nfc_payment_settings  android.provider.Settings.ACTION_NFC_PAYMENT_SETTINGS :: String
-
-  pure native action_dream_settings  android.provider.Settings.ACTION_DREAM_SETTINGS :: String
-
-  pure native action_captioning_settings  android.provider.Settings.ACTION_CAPTIONING_SETTINGS :: String
-
-  pure native action_print_settings  android.provider.Settings.ACTION_PRINT_SETTINGS :: String
-
-  pure native extra_authorities  android.provider.Settings.EXTRA_AUTHORITIES :: String
-
-  pure native extra_account_types  android.provider.Settings.EXTRA_ACCOUNT_TYPES :: String
-
-  pure native extra_input_method_id  android.provider.Settings.EXTRA_INPUT_METHOD_ID :: String
-
-  pure native authority  android.provider.Settings.AUTHORITY :: String
-
-  native new  :: ( ) -> ST s Settings
-
-
-{-
 data Settings = pure native android.provider.Settings where
 
   pure native action_settings android.provider.Settings.ACTION_SETTINGS :: String
@@ -135,9 +45,7 @@ data Settings = pure native android.provider.Settings where
   pure native extra_account_types android.provider.Settings.EXTRA_ACCOUNT_TYPES :: String
   pure native extra_input_method_id android.provider.Settings.EXTRA_INPUT_METHOD_ID :: String
   pure native authority android.provider.Settings.AUTHORITY :: String
-
   native new :: () -> ST s Settings
+{-  -}
 
 
-
--}

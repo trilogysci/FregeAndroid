@@ -2,318 +2,46 @@ package frege.android.view.MotionEvent where
 
 import frege.android.graphics.Matrix
 
-data MotionEvent = pure native android.view.MotionEvent where
+data MotionEvent_PointerCoords = pure native android.view.MotionEvent.PointerCoords where
 
+  pure native x ".x" :: MotionEvent_PointerCoords -> Float
+  pure native y ".y" :: MotionEvent_PointerCoords -> Float
+  pure native pressure ".pressure" :: MotionEvent_PointerCoords -> Float
+  pure native size ".size" :: MotionEvent_PointerCoords -> Float
+  pure native touchmajor ".touchMajor" :: MotionEvent_PointerCoords -> Float
+  pure native touchminor ".touchMinor" :: MotionEvent_PointerCoords -> Float
+  pure native toolmajor ".toolMajor" :: MotionEvent_PointerCoords -> Float
+  pure native toolminor ".toolMinor" :: MotionEvent_PointerCoords -> Float
+  pure native orientation ".orientation" :: MotionEvent_PointerCoords -> Float
+  native new :: MotionEvent_PointerCoords -> ST s MotionEvent_PointerCoords
+              | () -> ST s MotionEvent_PointerCoords
 
-  pure native invalid_pointer_id  android.view.MotionEvent.INVALID_POINTER_ID :: Int
+  native clear :: MotionEvent_PointerCoords -> ST s ()
 
-  pure native action_mask  android.view.MotionEvent.ACTION_MASK :: Int
+  native copyFrom :: MotionEvent_PointerCoords -> MotionEvent_PointerCoords -> ST s ()
 
-  pure native action_down  android.view.MotionEvent.ACTION_DOWN :: Int
+  pure native getAxisValue :: MotionEvent_PointerCoords -> Int -> Float
 
-  pure native action_up  android.view.MotionEvent.ACTION_UP :: Int
+  native setAxisValue :: MotionEvent_PointerCoords -> Int -> Float -> ST s ()
+{-  -}
 
-  pure native action_move  android.view.MotionEvent.ACTION_MOVE :: Int
+data MotionEvent_PointerProperties = pure native android.view.MotionEvent.PointerProperties where
 
-  pure native action_cancel  android.view.MotionEvent.ACTION_CANCEL :: Int
+  pure native id ".id" :: MotionEvent_PointerProperties -> Int
+  pure native tooltype ".toolType" :: MotionEvent_PointerProperties -> Int
+  native new :: () -> ST s MotionEvent_PointerProperties
+              | MotionEvent_PointerProperties -> ST s MotionEvent_PointerProperties
 
-  pure native action_outside  android.view.MotionEvent.ACTION_OUTSIDE :: Int
+  native clear :: MotionEvent_PointerProperties -> ST s ()
 
-  pure native action_pointer_down  android.view.MotionEvent.ACTION_POINTER_DOWN :: Int
+  native copyFrom :: MotionEvent_PointerProperties -> MotionEvent_PointerProperties -> ST s ()
 
-  pure native action_pointer_up  android.view.MotionEvent.ACTION_POINTER_UP :: Int
+  pure native equals :: MotionEvent_PointerProperties -> Object -> Bool
 
-  pure native action_hover_move  android.view.MotionEvent.ACTION_HOVER_MOVE :: Int
+  pure native hashCode :: MotionEvent_PointerProperties -> Int
+{-  -}
 
-  pure native action_scroll  android.view.MotionEvent.ACTION_SCROLL :: Int
-
-  pure native action_hover_enter  android.view.MotionEvent.ACTION_HOVER_ENTER :: Int
-
-  pure native action_hover_exit  android.view.MotionEvent.ACTION_HOVER_EXIT :: Int
-
-  pure native action_pointer_index_mask  android.view.MotionEvent.ACTION_POINTER_INDEX_MASK :: Int
-
-  pure native action_pointer_index_shift  android.view.MotionEvent.ACTION_POINTER_INDEX_SHIFT :: Int
-
-  pure native action_pointer_1_down  android.view.MotionEvent.ACTION_POINTER_1_DOWN :: Int
-
-  pure native action_pointer_2_down  android.view.MotionEvent.ACTION_POINTER_2_DOWN :: Int
-
-  pure native action_pointer_3_down  android.view.MotionEvent.ACTION_POINTER_3_DOWN :: Int
-
-  pure native action_pointer_1_up  android.view.MotionEvent.ACTION_POINTER_1_UP :: Int
-
-  pure native action_pointer_2_up  android.view.MotionEvent.ACTION_POINTER_2_UP :: Int
-
-  pure native action_pointer_3_up  android.view.MotionEvent.ACTION_POINTER_3_UP :: Int
-
-  pure native action_pointer_id_mask  android.view.MotionEvent.ACTION_POINTER_ID_MASK :: Int
-
-  pure native action_pointer_id_shift  android.view.MotionEvent.ACTION_POINTER_ID_SHIFT :: Int
-
-  pure native flag_window_is_obscured  android.view.MotionEvent.FLAG_WINDOW_IS_OBSCURED :: Int
-
-  pure native edge_top  android.view.MotionEvent.EDGE_TOP :: Int
-
-  pure native edge_bottom  android.view.MotionEvent.EDGE_BOTTOM :: Int
-
-  pure native edge_left  android.view.MotionEvent.EDGE_LEFT :: Int
-
-  pure native edge_right  android.view.MotionEvent.EDGE_RIGHT :: Int
-
-  pure native axis_x  android.view.MotionEvent.AXIS_X :: Int
-
-  pure native axis_y  android.view.MotionEvent.AXIS_Y :: Int
-
-  pure native axis_pressure  android.view.MotionEvent.AXIS_PRESSURE :: Int
-
-  pure native axis_size  android.view.MotionEvent.AXIS_SIZE :: Int
-
-  pure native axis_touch_major  android.view.MotionEvent.AXIS_TOUCH_MAJOR :: Int
-
-  pure native axis_touch_minor  android.view.MotionEvent.AXIS_TOUCH_MINOR :: Int
-
-  pure native axis_tool_major  android.view.MotionEvent.AXIS_TOOL_MAJOR :: Int
-
-  pure native axis_tool_minor  android.view.MotionEvent.AXIS_TOOL_MINOR :: Int
-
-  pure native axis_orientation  android.view.MotionEvent.AXIS_ORIENTATION :: Int
-
-  pure native axis_vscroll  android.view.MotionEvent.AXIS_VSCROLL :: Int
-
-  pure native axis_hscroll  android.view.MotionEvent.AXIS_HSCROLL :: Int
-
-  pure native axis_z  android.view.MotionEvent.AXIS_Z :: Int
-
-  pure native axis_rx  android.view.MotionEvent.AXIS_RX :: Int
-
-  pure native axis_ry  android.view.MotionEvent.AXIS_RY :: Int
-
-  pure native axis_rz  android.view.MotionEvent.AXIS_RZ :: Int
-
-  pure native axis_hat_x  android.view.MotionEvent.AXIS_HAT_X :: Int
-
-  pure native axis_hat_y  android.view.MotionEvent.AXIS_HAT_Y :: Int
-
-  pure native axis_ltrigger  android.view.MotionEvent.AXIS_LTRIGGER :: Int
-
-  pure native axis_rtrigger  android.view.MotionEvent.AXIS_RTRIGGER :: Int
-
-  pure native axis_throttle  android.view.MotionEvent.AXIS_THROTTLE :: Int
-
-  pure native axis_rudder  android.view.MotionEvent.AXIS_RUDDER :: Int
-
-  pure native axis_wheel  android.view.MotionEvent.AXIS_WHEEL :: Int
-
-  pure native axis_gas  android.view.MotionEvent.AXIS_GAS :: Int
-
-  pure native axis_brake  android.view.MotionEvent.AXIS_BRAKE :: Int
-
-  pure native axis_distance  android.view.MotionEvent.AXIS_DISTANCE :: Int
-
-  pure native axis_tilt  android.view.MotionEvent.AXIS_TILT :: Int
-
-  pure native axis_generic_1  android.view.MotionEvent.AXIS_GENERIC_1 :: Int
-
-  pure native axis_generic_2  android.view.MotionEvent.AXIS_GENERIC_2 :: Int
-
-  pure native axis_generic_3  android.view.MotionEvent.AXIS_GENERIC_3 :: Int
-
-  pure native axis_generic_4  android.view.MotionEvent.AXIS_GENERIC_4 :: Int
-
-  pure native axis_generic_5  android.view.MotionEvent.AXIS_GENERIC_5 :: Int
-
-  pure native axis_generic_6  android.view.MotionEvent.AXIS_GENERIC_6 :: Int
-
-  pure native axis_generic_7  android.view.MotionEvent.AXIS_GENERIC_7 :: Int
-
-  pure native axis_generic_8  android.view.MotionEvent.AXIS_GENERIC_8 :: Int
-
-  pure native axis_generic_9  android.view.MotionEvent.AXIS_GENERIC_9 :: Int
-
-  pure native axis_generic_10  android.view.MotionEvent.AXIS_GENERIC_10 :: Int
-
-  pure native axis_generic_11  android.view.MotionEvent.AXIS_GENERIC_11 :: Int
-
-  pure native axis_generic_12  android.view.MotionEvent.AXIS_GENERIC_12 :: Int
-
-  pure native axis_generic_13  android.view.MotionEvent.AXIS_GENERIC_13 :: Int
-
-  pure native axis_generic_14  android.view.MotionEvent.AXIS_GENERIC_14 :: Int
-
-  pure native axis_generic_15  android.view.MotionEvent.AXIS_GENERIC_15 :: Int
-
-  pure native axis_generic_16  android.view.MotionEvent.AXIS_GENERIC_16 :: Int
-
-  pure native button_primary  android.view.MotionEvent.BUTTON_PRIMARY :: Int
-
-  pure native button_secondary  android.view.MotionEvent.BUTTON_SECONDARY :: Int
-
-  pure native button_tertiary  android.view.MotionEvent.BUTTON_TERTIARY :: Int
-
-  pure native button_back  android.view.MotionEvent.BUTTON_BACK :: Int
-
-  pure native button_forward  android.view.MotionEvent.BUTTON_FORWARD :: Int
-
-  pure native tool_type_unknown  android.view.MotionEvent.TOOL_TYPE_UNKNOWN :: Int
-
-  pure native tool_type_finger  android.view.MotionEvent.TOOL_TYPE_FINGER :: Int
-
-  pure native tool_type_stylus  android.view.MotionEvent.TOOL_TYPE_STYLUS :: Int
-
-  pure native tool_type_mouse  android.view.MotionEvent.TOOL_TYPE_MOUSE :: Int
-
-  pure native tool_type_eraser  android.view.MotionEvent.TOOL_TYPE_ERASER :: Int
-
-{-   pure native creator  android.view.MotionEvent.CREATOR :: -- ["Parcelable_Creator"] -- Parcelable_Creator MotionEvent -}
-
-  pure native actionToString  android.view.MotionEvent.actionToString :: Int -> String
-
-  native addBatch  :: -- ["JArray","MotionEvent_PointerCoords"] -- MotionEvent -> Long -> Mutable s ( JArray MotionEvent_PointerCoords ) -> Int -> ST s ( )
-        MotionEvent -> Long -> Float -> Float -> Float -> Float -> Int -> ST s ( )
-
-  pure native axisFromString  android.view.MotionEvent.axisFromString :: String -> Int
-
-  pure native axisToString  android.view.MotionEvent.axisToString :: Int -> String
-
-  pure native findPointerIndex  :: MotionEvent -> Int -> Int
-
-  pure native getAction  :: MotionEvent -> Int
-
-  pure native getActionIndex  :: MotionEvent -> Int
-
-  pure native getActionMasked  :: MotionEvent -> Int
-
-  pure native getAxisValue  :: MotionEvent -> Int -> Int -> Float
-        | MotionEvent -> Int -> Float
-
-  pure native getButtonState  :: MotionEvent -> Int
-
-  pure native getDeviceId  :: MotionEvent -> Int
-
-  pure native getDownTime  :: MotionEvent -> Long
-
-  pure native getEdgeFlags  :: MotionEvent -> Int
-
-  pure native getEventTime  :: MotionEvent -> Long
-
-  pure native getFlags  :: MotionEvent -> Int
-
-  pure native getHistoricalAxisValue  :: MotionEvent -> Int -> Int -> Int -> Float
-        | MotionEvent -> Int -> Int -> Float
-
-  pure native getHistoricalEventTime  :: MotionEvent -> Int -> Long
-
-  pure native getHistoricalOrientation  :: MotionEvent -> Int -> Float
-        | MotionEvent -> Int -> Int -> Float
-
-{-   native getHistoricalPointerCoords  :: -- ["MotionEvent_PointerCoords"] -- MotionEvent -> Int -> Int -> MotionEvent_PointerCoords -> ST s ( ) -}
-
-  pure native getHistoricalPressure  :: MotionEvent -> Int -> Int -> Float
-        | MotionEvent -> Int -> Float
-
-  pure native getHistoricalSize  :: MotionEvent -> Int -> Int -> Float
-        | MotionEvent -> Int -> Float
-
-  pure native getHistoricalToolMajor  :: MotionEvent -> Int -> Float
-        | MotionEvent -> Int -> Int -> Float
-
-  pure native getHistoricalToolMinor  :: MotionEvent -> Int -> Int -> Float
-        | MotionEvent -> Int -> Float
-
-  pure native getHistoricalTouchMajor  :: MotionEvent -> Int -> Int -> Float
-        | MotionEvent -> Int -> Float
-
-  pure native getHistoricalTouchMinor  :: MotionEvent -> Int -> Int -> Float
-        | MotionEvent -> Int -> Float
-
-  pure native getHistoricalX  :: MotionEvent -> Int -> Float
-        | MotionEvent -> Int -> Int -> Float
-
-  pure native getHistoricalY  :: MotionEvent -> Int -> Int -> Float
-        | MotionEvent -> Int -> Float
-
-  pure native getHistorySize  :: MotionEvent -> Int
-
-  pure native getMetaState  :: MotionEvent -> Int
-
-  pure native getOrientation  :: MotionEvent -> Float
-        | MotionEvent -> Int -> Float
-
-{-   native getPointerCoords  :: -- ["MotionEvent_PointerCoords"] -- MotionEvent -> Int -> MotionEvent_PointerCoords -> ST s ( ) -}
-
-  pure native getPointerCount  :: MotionEvent -> Int
-
-  pure native getPointerId  :: MotionEvent -> Int -> Int
-
-{-   native getPointerProperties  :: -- ["MotionEvent_PointerProperties"] -- MotionEvent -> Int -> MotionEvent_PointerProperties -> ST s ( ) -}
-
-  pure native getPressure  :: MotionEvent -> Int -> Float
-        | MotionEvent -> Float
-
-  pure native getRawX  :: MotionEvent -> Float
-
-  pure native getRawY  :: MotionEvent -> Float
-
-  pure native getSize  :: MotionEvent -> Int -> Float
-        | MotionEvent -> Float
-
-  pure native getSource  :: MotionEvent -> Int
-
-  pure native getToolMajor  :: MotionEvent -> Int -> Float
-        | MotionEvent -> Float
-
-  pure native getToolMinor  :: MotionEvent -> Float
-        | MotionEvent -> Int -> Float
-
-  pure native getToolType  :: MotionEvent -> Int -> Int
-
-  pure native getTouchMajor  :: MotionEvent -> Float
-        | MotionEvent -> Int -> Float
-
-  pure native getTouchMinor  :: MotionEvent -> Float
-        | MotionEvent -> Int -> Float
-
-  pure native getX  :: MotionEvent -> Int -> Float
-        | MotionEvent -> Float
-
-  pure native getXPrecision  :: MotionEvent -> Float
-
-  pure native getY  :: MotionEvent -> Float
-        | MotionEvent -> Int -> Float
-
-  pure native getYPrecision  :: MotionEvent -> Float
-
-  native obtain  android.view.MotionEvent.obtain :: Long -> Long -> Int -> Float -> Float -> Int -> ST s MotionEvent
-        | MotionEvent -> ST s MotionEvent
-        -- ["JArray","MotionEvent_PointerCoords","MotionEvent_PointerProperties"] -- | Long -> Long -> Int -> Int -> Mutable s ( JArray MotionEvent_PointerProperties ) -> Mutable s ( JArray MotionEvent_PointerCoords ) -> Int -> Int -> Float -> Float -> Int -> Int -> Int -> Int -> ST s MotionEvent
-        -- ["JArray","MotionEvent_PointerCoords"] -- | Long -> Long -> Int -> Int -> Mutable s ( JArray Int ) -> Mutable s ( JArray MotionEvent_PointerCoords ) -> Int -> Float -> Float -> Int -> Int -> Int -> Int -> ST s MotionEvent
-        | Long -> Long -> Int -> Float -> Float -> Float -> Float -> Int -> Float -> Float -> Int -> Int -> ST s MotionEvent
-        | Long -> Long -> Int -> Int -> Float -> Float -> Float -> Float -> Int -> Float -> Float -> Int -> Int -> ST s MotionEvent
-
-  pure native obtainNoHistory  android.view.MotionEvent.obtainNoHistory :: MotionEvent -> MotionEvent
-
-  native offsetLocation  :: MotionEvent -> Float -> Float -> ST s ( )
-
-  native recycle  :: MotionEvent -> ST s ( )
-
-  native setAction  :: MotionEvent -> Int -> ST s ( )
-
-  native setEdgeFlags  :: MotionEvent -> Int -> ST s ( )
-
-  native setLocation  :: MotionEvent -> Float -> Float -> ST s ( )
-
-  native setSource  :: MotionEvent -> Int -> ST s ( )
-
-  pure native toString  :: MotionEvent -> String
-
-  native transform  :: MotionEvent -> Mutable s Matrix -> ST s ( )
-
-{-   native writeToParcel  :: -- ["Parcel"] -- MotionEvent -> Parcel -> Int -> ST s ( ) -}
-
-
-{-
-data MotionEvent = pure native android.view.MotionEvent where
+data MotionEvent =  native android.view.MotionEvent where
 
   pure native invalid_pointer_id android.view.MotionEvent.INVALID_POINTER_ID :: Int
   pure native action_mask android.view.MotionEvent.ACTION_MASK :: Int
@@ -395,152 +123,145 @@ data MotionEvent = pure native android.view.MotionEvent where
   pure native tool_type_stylus android.view.MotionEvent.TOOL_TYPE_STYLUS :: Int
   pure native tool_type_mouse android.view.MotionEvent.TOOL_TYPE_MOUSE :: Int
   pure native tool_type_eraser android.view.MotionEvent.TOOL_TYPE_ERASER :: Int
-  pure native creator android.view.MotionEvent.CREATOR :: Parcelable_Creator MotionEvent
 
   pure native actionToString android.view.MotionEvent.actionToString :: Int -> String
 
-  native addBatch :: MotionEvent -> Long -> Mutable s (JArray MotionEvent_PointerCoords) -> Int -> ST s ()
-                   | MotionEvent -> Long -> Float -> Float -> Float -> Float -> Int -> ST s ()
+  native addBatch :: Mutable s MotionEvent -> Long -> Float -> Float -> Float -> Float -> Int -> ST s ()
 
   pure native axisFromString android.view.MotionEvent.axisFromString :: String -> Int
 
   pure native axisToString android.view.MotionEvent.axisToString :: Int -> String
 
-  pure native findPointerIndex :: MotionEvent -> Int -> Int
+  native findPointerIndex :: Mutable s MotionEvent -> Int -> ST s Int
 
-  pure native getAction :: MotionEvent -> Int
+  native getAction :: Mutable s MotionEvent -> ST s Int
 
-  pure native getActionIndex :: MotionEvent -> Int
+  native getActionIndex :: Mutable s MotionEvent -> ST s Int
 
-  pure native getActionMasked :: MotionEvent -> Int
+  native getActionMasked :: Mutable s MotionEvent -> ST s Int
 
-  pure native getAxisValue :: MotionEvent -> Int -> Int -> Float
-                            | MotionEvent -> Int -> Float
+  native getAxisValue :: Mutable s MotionEvent -> Int -> Int -> ST s Float
+          | Mutable s MotionEvent -> Int -> ST s Float
 
-  pure native getButtonState :: MotionEvent -> Int
+  native getButtonState :: Mutable s MotionEvent -> ST s Int
 
-  pure native getDeviceId :: MotionEvent -> Int
+  native getDeviceId :: Mutable s MotionEvent -> ST s Int
 
-  pure native getDownTime :: MotionEvent -> Long
+  native getDownTime :: Mutable s MotionEvent -> ST s Long
 
-  pure native getEdgeFlags :: MotionEvent -> Int
+  native getEdgeFlags :: Mutable s MotionEvent -> ST s Int
 
-  pure native getEventTime :: MotionEvent -> Long
+  native getEventTime :: Mutable s MotionEvent -> ST s Long
 
-  pure native getFlags :: MotionEvent -> Int
+  native getFlags :: Mutable s MotionEvent -> ST s Int
 
-  pure native getHistoricalAxisValue :: MotionEvent -> Int -> Int -> Int -> Float
-                                      | MotionEvent -> Int -> Int -> Float
+  native getHistoricalAxisValue :: Mutable s MotionEvent -> Int -> Int -> Int -> ST s Float
+          | Mutable s MotionEvent -> Int -> Int -> ST s Float
 
-  pure native getHistoricalEventTime :: MotionEvent -> Int -> Long
+  native getHistoricalEventTime :: Mutable s MotionEvent -> Int -> ST s Long
 
-  pure native getHistoricalOrientation :: MotionEvent -> Int -> Float
-                                        | MotionEvent -> Int -> Int -> Float
+  native getHistoricalOrientation :: Mutable s MotionEvent -> Int -> ST s Float
+          | Mutable s MotionEvent -> Int -> Int -> ST s Float
 
-  native getHistoricalPointerCoords :: MotionEvent -> Int -> Int -> MotionEvent_PointerCoords -> ST s ()
+  native getHistoricalPointerCoords :: Mutable s MotionEvent -> Int -> Int -> MotionEvent_PointerCoords -> ST s ()
 
-  pure native getHistoricalPressure :: MotionEvent -> Int -> Int -> Float
-                                     | MotionEvent -> Int -> Float
+  native getHistoricalPressure :: Mutable s MotionEvent -> Int -> Int -> ST s Float
+          | Mutable s MotionEvent -> Int -> ST s Float
 
-  pure native getHistoricalSize :: MotionEvent -> Int -> Int -> Float
-                                 | MotionEvent -> Int -> Float
+  native getHistoricalSize :: Mutable s MotionEvent -> Int -> Int -> ST s Float
+          | Mutable s MotionEvent -> Int -> ST s Float
 
-  pure native getHistoricalToolMajor :: MotionEvent -> Int -> Float
-                                      | MotionEvent -> Int -> Int -> Float
+  native getHistoricalToolMajor :: Mutable s MotionEvent -> Int -> ST s Float
+          | Mutable s MotionEvent -> Int -> Int -> ST s Float
 
-  pure native getHistoricalToolMinor :: MotionEvent -> Int -> Int -> Float
-                                      | MotionEvent -> Int -> Float
+  native getHistoricalToolMinor :: Mutable s MotionEvent -> Int -> Int -> ST s Float
+          | Mutable s MotionEvent -> Int -> ST s Float
 
-  pure native getHistoricalTouchMajor :: MotionEvent -> Int -> Int -> Float
-                                       | MotionEvent -> Int -> Float
+  native getHistoricalTouchMajor :: Mutable s MotionEvent -> Int -> Int -> ST s Float
+          | Mutable s MotionEvent -> Int -> ST s Float
 
-  pure native getHistoricalTouchMinor :: MotionEvent -> Int -> Int -> Float
-                                       | MotionEvent -> Int -> Float
+  native getHistoricalTouchMinor :: Mutable s MotionEvent -> Int -> Int -> ST s Float
+          | Mutable s MotionEvent -> Int -> ST s Float
 
-  pure native getHistoricalX :: MotionEvent -> Int -> Float
-                              | MotionEvent -> Int -> Int -> Float
+  native getHistoricalX :: Mutable s MotionEvent -> Int -> Int -> ST s Float
+          | Mutable s MotionEvent -> Int -> ST s Float
 
-  pure native getHistoricalY :: MotionEvent -> Int -> Int -> Float
-                              | MotionEvent -> Int -> Float
+  native getHistoricalY :: Mutable s MotionEvent -> Int -> Int -> ST s Float
+          | Mutable s MotionEvent -> Int -> ST s Float
 
-  pure native getHistorySize :: MotionEvent -> Int
+  native getHistorySize :: Mutable s MotionEvent -> ST s Int
 
-  pure native getMetaState :: MotionEvent -> Int
+  native getMetaState :: Mutable s MotionEvent -> ST s Int
 
-  pure native getOrientation :: MotionEvent -> Float
-                              | MotionEvent -> Int -> Float
+  native getOrientation :: Mutable s MotionEvent -> ST s Float
+          | Mutable s MotionEvent -> Int -> ST s Float
 
-  native getPointerCoords :: MotionEvent -> Int -> MotionEvent_PointerCoords -> ST s ()
+  native getPointerCoords :: Mutable s MotionEvent -> Int -> MotionEvent_PointerCoords -> ST s ()
 
-  pure native getPointerCount :: MotionEvent -> Int
+  native getPointerCount :: Mutable s MotionEvent -> ST s Int
 
-  pure native getPointerId :: MotionEvent -> Int -> Int
+  native getPointerId :: Mutable s MotionEvent -> Int -> ST s Int
 
-  native getPointerProperties :: MotionEvent -> Int -> MotionEvent_PointerProperties -> ST s ()
+  native getPointerProperties :: Mutable s MotionEvent -> Int -> MotionEvent_PointerProperties -> ST s ()
 
-  pure native getPressure :: MotionEvent -> Int -> Float
-                           | MotionEvent -> Float
+  native getPressure :: Mutable s MotionEvent -> Int -> ST s Float
+          | Mutable s MotionEvent -> ST s Float
 
-  pure native getRawX :: MotionEvent -> Float
+  native getRawX :: Mutable s MotionEvent -> ST s Float
 
-  pure native getRawY :: MotionEvent -> Float
+  native getRawY :: Mutable s MotionEvent -> ST s Float
 
-  pure native getSize :: MotionEvent -> Int -> Float
-                       | MotionEvent -> Float
+  native getSize :: Mutable s MotionEvent -> ST s Float
+          | Mutable s MotionEvent -> Int -> ST s Float
 
-  pure native getSource :: MotionEvent -> Int
+  native getSource :: Mutable s MotionEvent -> ST s Int
 
-  pure native getToolMajor :: MotionEvent -> Int -> Float
-                            | MotionEvent -> Float
+  native getToolMajor :: Mutable s MotionEvent -> ST s Float
+          | Mutable s MotionEvent -> Int -> ST s Float
 
-  pure native getToolMinor :: MotionEvent -> Float
-                            | MotionEvent -> Int -> Float
+  native getToolMinor :: Mutable s MotionEvent -> Int -> ST s Float
+          | Mutable s MotionEvent -> ST s Float
 
-  pure native getToolType :: MotionEvent -> Int -> Int
+  native getToolType :: Mutable s MotionEvent -> Int -> ST s Int
 
-  pure native getTouchMajor :: MotionEvent -> Float
-                             | MotionEvent -> Int -> Float
+  native getTouchMajor :: Mutable s MotionEvent -> Int -> ST s Float
+          | Mutable s MotionEvent -> ST s Float
 
-  pure native getTouchMinor :: MotionEvent -> Float
-                             | MotionEvent -> Int -> Float
+  native getTouchMinor :: Mutable s MotionEvent -> ST s Float
+          | Mutable s MotionEvent -> Int -> ST s Float
 
-  pure native getX :: MotionEvent -> Int -> Float
-                    | MotionEvent -> Float
+  native getX :: Mutable s MotionEvent -> Int -> ST s Float
+          | Mutable s MotionEvent -> ST s Float
 
-  pure native getXPrecision :: MotionEvent -> Float
+  native getXPrecision :: Mutable s MotionEvent -> ST s Float
 
-  pure native getY :: MotionEvent -> Float
-                    | MotionEvent -> Int -> Float
+  native getY :: Mutable s MotionEvent -> Int -> ST s Float
+          | Mutable s MotionEvent -> ST s Float
 
-  pure native getYPrecision :: MotionEvent -> Float
+  native getYPrecision :: Mutable s MotionEvent -> ST s Float
 
-  native obtain android.view.MotionEvent.obtain :: Long -> Long -> Int -> Float -> Float -> Int -> ST s MotionEvent
-                                                 | MotionEvent -> ST s MotionEvent
-                                                 | Long -> Long -> Int -> Int -> Mutable s (JArray MotionEvent_PointerProperties) -> Mutable s (JArray MotionEvent_PointerCoords) -> Int -> Int -> Float -> Float -> Int -> Int -> Int -> Int -> ST s MotionEvent
-                                                 | Long -> Long -> Int -> Int -> Mutable s (JArray Int) -> Mutable s (JArray MotionEvent_PointerCoords) -> Int -> Float -> Float -> Int -> Int -> Int -> Int -> ST s MotionEvent
-                                                 | Long -> Long -> Int -> Float -> Float -> Float -> Float -> Int -> Float -> Float -> Int -> Int -> ST s MotionEvent
-                                                 | Long -> Long -> Int -> Int -> Float -> Float -> Float -> Float -> Int -> Float -> Float -> Int -> Int -> ST s MotionEvent
+  native obtain android.view.MotionEvent.obtain :: Long -> Long -> Int -> Int -> Float -> Float -> Float -> Float -> Int -> Float -> Float -> Int -> Int -> STMutable s MotionEvent
+          | Mutable s MotionEvent -> STMutable s MotionEvent
+          | Long -> Long -> Int -> Float -> Float -> Float -> Float -> Int -> Float -> Float -> Int -> Int -> STMutable s MotionEvent
+          | Long -> Long -> Int -> Float -> Float -> Int -> STMutable s MotionEvent
 
-  pure native obtainNoHistory android.view.MotionEvent.obtainNoHistory :: MotionEvent -> MotionEvent
+  native obtainNoHistory android.view.MotionEvent.obtainNoHistory :: Mutable s MotionEvent -> STMutable s MotionEvent
 
-  native offsetLocation :: MotionEvent -> Float -> Float -> ST s ()
+  native offsetLocation :: Mutable s MotionEvent -> Float -> Float -> ST s ()
 
-  native recycle :: MotionEvent -> ST s ()
+  native recycle :: Mutable s MotionEvent -> ST s ()
 
-  native setAction :: MotionEvent -> Int -> ST s ()
+  native setAction :: Mutable s MotionEvent -> Int -> ST s ()
 
-  native setEdgeFlags :: MotionEvent -> Int -> ST s ()
+  native setEdgeFlags :: Mutable s MotionEvent -> Int -> ST s ()
 
-  native setLocation :: MotionEvent -> Float -> Float -> ST s ()
+  native setLocation :: Mutable s MotionEvent -> Float -> Float -> ST s ()
 
-  native setSource :: MotionEvent -> Int -> ST s ()
+  native setSource :: Mutable s MotionEvent -> Int -> ST s ()
 
-  pure native toString :: MotionEvent -> String
+  native toString :: Mutable s MotionEvent -> ST s String
 
-  native transform :: MotionEvent -> Mutable s Matrix -> ST s ()
-
-  native writeToParcel :: MotionEvent -> Parcel -> Int -> ST s ()
+  native transform :: Mutable s MotionEvent -> Mutable s Matrix -> ST s ()
+{-  -}
 
 
-
--}

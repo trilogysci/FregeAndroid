@@ -1,27 +1,7 @@
 package frege.android.content.DialogInterface where
 
-data DialogInterface = pure native android.content.DialogInterface where
 
-
-  pure native button_positive  android.content.DialogInterface.BUTTON_POSITIVE :: Int
-
-  pure native button_negative  android.content.DialogInterface.BUTTON_NEGATIVE :: Int
-
-  pure native button_neutral  android.content.DialogInterface.BUTTON_NEUTRAL :: Int
-
-  pure native button1  android.content.DialogInterface.BUTTON1 :: Int
-
-  pure native button2  android.content.DialogInterface.BUTTON2 :: Int
-
-  pure native button3  android.content.DialogInterface.BUTTON3 :: Int
-
-  native cancel  :: DialogInterface -> ST s ( )
-
-  native dismiss  :: DialogInterface -> ST s ( )
-
-
-{-
-data DialogInterface = pure native android.content.DialogInterface where
+data DialogInterface =  native android.content.DialogInterface where
 
   pure native button_positive android.content.DialogInterface.BUTTON_POSITIVE :: Int
   pure native button_negative android.content.DialogInterface.BUTTON_NEGATIVE :: Int
@@ -30,10 +10,9 @@ data DialogInterface = pure native android.content.DialogInterface where
   pure native button2 android.content.DialogInterface.BUTTON2 :: Int
   pure native button3 android.content.DialogInterface.BUTTON3 :: Int
 
-  native cancel :: DialogInterface -> ST s ()
+  native cancel :: MutableIO DialogInterface -> IO ()
 
-  native dismiss :: DialogInterface -> ST s ()
+  native dismiss :: MutableIO DialogInterface -> IO ()
+{-  -}
 
 
-
--}

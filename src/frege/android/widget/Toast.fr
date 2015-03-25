@@ -3,88 +3,43 @@ package frege.android.widget.Toast where
 import frege.android.content.Context
 import frege.android.view.View
 
-data Toast = pure native android.widget.Toast where
-
-
-  pure native length_short  android.widget.Toast.LENGTH_SHORT :: Int
-
-  pure native length_long  android.widget.Toast.LENGTH_LONG :: Int
-
-  native new  :: Context -> ST s Toast
-
-  native cancel  :: Toast -> ST s ( )
-
-  pure native getDuration  :: Toast -> Int
-
-  pure native getGravity  :: Toast -> Int
-
-  pure native getHorizontalMargin  :: Toast -> Float
-
-  pure native getVerticalMargin  :: Toast -> Float
-
-  native getView  :: Toast -> IOMutable View
-
-  pure native getXOffset  :: Toast -> Int
-
-  pure native getYOffset  :: Toast -> Int
-
-  pure native makeText  android.widget.Toast.makeText :: Context -> Int -> Int -> Toast
-        | Context -> CharSequence -> Int -> Toast
-
-  native setDuration  :: Toast -> Int -> ST s ( )
-
-  native setGravity  :: Toast -> Int -> Int -> Int -> ST s ( )
-
-  native setMargin  :: Toast -> Float -> Float -> ST s ( )
-
-  native setText  :: Toast -> Int -> ST s ( )
-        | Toast -> CharSequence -> ST s ( )
-
-  native setView  :: Toast -> MutableIO View -> IO ( )
-
-  native show  :: Toast -> ST s ( )
-
-
-{-
-data Toast = pure native android.widget.Toast where
+data Toast =  native android.widget.Toast where
 
   pure native length_short android.widget.Toast.LENGTH_SHORT :: Int
   pure native length_long android.widget.Toast.LENGTH_LONG :: Int
+  native new :: MutableIO Context -> IOMutable Toast
 
-  native new :: Context -> ST s Toast
+  native cancel :: MutableIO Toast -> IO ()
 
-  native cancel :: Toast -> ST s ()
+  native getDuration :: MutableIO Toast -> IO Int
 
-  pure native getDuration :: Toast -> Int
+  native getGravity :: MutableIO Toast -> IO Int
 
-  pure native getGravity :: Toast -> Int
+  native getHorizontalMargin :: MutableIO Toast -> IO Float
 
-  pure native getHorizontalMargin :: Toast -> Float
+  native getVerticalMargin :: MutableIO Toast -> IO Float
 
-  pure native getVerticalMargin :: Toast -> Float
+  native getView :: MutableIO Toast -> IOMutable View
 
-  native getView :: Toast -> IOMutable View
+  native getXOffset :: MutableIO Toast -> IO Int
 
-  pure native getXOffset :: Toast -> Int
+  native getYOffset :: MutableIO Toast -> IO Int
 
-  pure native getYOffset :: Toast -> Int
+  native makeText android.widget.Toast.makeText :: MutableIO Context -> Int -> Int -> IOMutable Toast
+          | MutableIO Context -> CharSequence -> Int -> IOMutable Toast
 
-  pure native makeText android.widget.Toast.makeText :: Context -> Int -> Int -> Toast
-                                                      | Context -> CharSequence -> Int -> Toast
+  native setDuration :: MutableIO Toast -> Int -> IO ()
 
-  native setDuration :: Toast -> Int -> ST s ()
+  native setGravity :: MutableIO Toast -> Int -> Int -> Int -> IO ()
 
-  native setGravity :: Toast -> Int -> Int -> Int -> ST s ()
+  native setMargin :: MutableIO Toast -> Float -> Float -> IO ()
 
-  native setMargin :: Toast -> Float -> Float -> ST s ()
+  native setText :: MutableIO Toast -> Int -> IO ()
+          | MutableIO Toast -> CharSequence -> IO ()
 
-  native setText :: Toast -> Int -> ST s ()
-                  | Toast -> CharSequence -> ST s ()
+  native setView :: MutableIO Toast -> MutableIO View -> IO ()
 
-  native setView :: Toast -> MutableIO View -> IO ()
-
-  native show :: Toast -> ST s ()
-
+  native show :: MutableIO Toast -> IO ()
+{-  -}
 
 
--}

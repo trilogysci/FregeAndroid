@@ -1,26 +1,16 @@
 package frege.android.view.ViewManager where
 
 import frege.android.view.View
+import frege.android.view.ViewGroup
 
-data ViewManager = pure native android.view.ViewManager where
-
-
-{-   native addView  :: -- ["ViewGroup_LayoutParams"] -- ViewManager -> MutableIO View -> ViewGroup_LayoutParams -> IO ( ) -}
-
-  native removeView  :: ViewManager -> MutableIO View -> IO ( )
-
-{-   native updateViewLayout  :: -- ["ViewGroup_LayoutParams"] -- ViewManager -> MutableIO View -> ViewGroup_LayoutParams -> IO ( ) -}
+data ViewManager =  native android.view.ViewManager where
 
 
-{-
-data ViewManager = pure native android.view.ViewManager where
+  native addView :: MutableIO ViewManager -> MutableIO View -> ViewGroup_LayoutParams -> IO ()
 
-  native addView :: ViewManager -> MutableIO View -> ViewGroup_LayoutParams -> IO ()
+  native removeView :: MutableIO ViewManager -> MutableIO View -> IO ()
 
-  native removeView :: ViewManager -> MutableIO View -> IO ()
-
-  native updateViewLayout :: ViewManager -> MutableIO View -> ViewGroup_LayoutParams -> IO ()
+  native updateViewLayout :: MutableIO ViewManager -> MutableIO View -> ViewGroup_LayoutParams -> IO ()
+{-  -}
 
 
-
--}

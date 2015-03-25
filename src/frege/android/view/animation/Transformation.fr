@@ -2,70 +2,33 @@ package frege.android.view.animation.Transformation where
 
 import frege.android.graphics.Matrix
 
-data Transformation = pure native android.view.animation.Transformation where
-
-
-  pure native type_identity  android.view.animation.Transformation.TYPE_IDENTITY :: Int
-
-  pure native type_alpha  android.view.animation.Transformation.TYPE_ALPHA :: Int
-
-  pure native type_matrix  android.view.animation.Transformation.TYPE_MATRIX :: Int
-
-  pure native type_both  android.view.animation.Transformation.TYPE_BOTH :: Int
-
-  native new  :: ( ) -> ST s Transformation
-
-  native clear  :: Transformation -> ST s ( )
-
-  native compose  :: Transformation -> Transformation -> ST s ( )
-
-  pure native getAlpha  :: Transformation -> Float
-
-  native getMatrix  :: Transformation -> STMutable s Matrix
-
-  pure native getTransformationType  :: Transformation -> Int
-
-  native set  :: Transformation -> Transformation -> ST s ( )
-
-  native setAlpha  :: Transformation -> Float -> ST s ( )
-
-  native setTransformationType  :: Transformation -> Int -> ST s ( )
-
-  pure native toShortString  :: Transformation -> String
-
-  pure native toString  :: Transformation -> String
-
-
-{-
-data Transformation = pure native android.view.animation.Transformation where
+data Transformation =  native android.view.animation.Transformation where
 
   pure native type_identity android.view.animation.Transformation.TYPE_IDENTITY :: Int
   pure native type_alpha android.view.animation.Transformation.TYPE_ALPHA :: Int
   pure native type_matrix android.view.animation.Transformation.TYPE_MATRIX :: Int
   pure native type_both android.view.animation.Transformation.TYPE_BOTH :: Int
+  native new :: () -> STMutable s Transformation
 
-  native new :: () -> ST s Transformation
+  native clear :: Mutable s Transformation -> ST s ()
 
-  native clear :: Transformation -> ST s ()
+  native compose :: Mutable s Transformation -> Mutable s Transformation -> ST s ()
 
-  native compose :: Transformation -> Transformation -> ST s ()
+  native getAlpha :: Mutable s Transformation -> ST s Float
 
-  pure native getAlpha :: Transformation -> Float
+  native getMatrix :: Mutable s Transformation -> STMutable s Matrix
 
-  native getMatrix :: Transformation -> STMutable s Matrix
+  native getTransformationType :: Mutable s Transformation -> ST s Int
 
-  pure native getTransformationType :: Transformation -> Int
+  native set :: Mutable s Transformation -> Mutable s Transformation -> ST s ()
 
-  native set :: Transformation -> Transformation -> ST s ()
+  native setAlpha :: Mutable s Transformation -> Float -> ST s ()
 
-  native setAlpha :: Transformation -> Float -> ST s ()
+  native setTransformationType :: Mutable s Transformation -> Int -> ST s ()
 
-  native setTransformationType :: Transformation -> Int -> ST s ()
+  native toShortString :: Mutable s Transformation -> ST s String
 
-  pure native toShortString :: Transformation -> String
-
-  pure native toString :: Transformation -> String
-
+  native toString :: Mutable s Transformation -> ST s String
+{-  -}
 
 
--}

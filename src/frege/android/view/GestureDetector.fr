@@ -1,43 +1,73 @@
 package frege.android.view.GestureDetector where
 
+import frege.android.content.Context
 import frege.android.os.Handler
 import frege.android.view.MotionEvent
 
-data GestureDetector = pure native android.view.GestureDetector where
+data GestureDetector_OnDoubleTapListener = pure native android.view.GestureDetector.OnDoubleTapListener where
 
 
-{-   native new  :: -- ["GestureDetector_OnGestureListener"] -- GestureDetector_OnGestureListener -> Handler -> ST s GestureDetector
-        -- ["GestureDetector_OnGestureListener"] -- GestureDetector_OnGestureListener -> ST s GestureDetector
-        -- ["GestureDetector_OnGestureListener"] -- Context -> GestureDetector_OnGestureListener -> ST s GestureDetector
-        -- ["GestureDetector_OnGestureListener"] -- Context -> GestureDetector_OnGestureListener -> Handler -> ST s GestureDetector
-        -- ["GestureDetector_OnGestureListener"] -- Context -> GestureDetector_OnGestureListener -> Handler -> Bool -> ST s GestureDetector -}
+  native onDoubleTap :: GestureDetector_OnDoubleTapListener -> Mutable s MotionEvent -> ST s Bool
 
-  pure native isLongpressEnabled  :: GestureDetector -> Bool
+  native onDoubleTapEvent :: GestureDetector_OnDoubleTapListener -> Mutable s MotionEvent -> ST s Bool
 
-  pure native onTouchEvent  :: GestureDetector -> MotionEvent -> Bool
+  native onSingleTapConfirmed :: GestureDetector_OnDoubleTapListener -> Mutable s MotionEvent -> ST s Bool
+{-  -}
 
-  native setIsLongpressEnabled  :: GestureDetector -> Bool -> ST s ( )
-
-{-   native setOnDoubleTapListener  :: -- ["GestureDetector_OnDoubleTapListener"] -- GestureDetector -> GestureDetector_OnDoubleTapListener -> ST s ( ) -}
+data GestureDetector_OnGestureListener = pure native android.view.GestureDetector.OnGestureListener where
 
 
-{-
-data GestureDetector = pure native android.view.GestureDetector where
+  native onDown :: GestureDetector_OnGestureListener -> Mutable s MotionEvent -> ST s Bool
 
-  native new :: GestureDetector_OnGestureListener -> Handler -> ST s GestureDetector
-              | GestureDetector_OnGestureListener -> ST s GestureDetector
-              | Context -> GestureDetector_OnGestureListener -> ST s GestureDetector
-              | Context -> GestureDetector_OnGestureListener -> Handler -> ST s GestureDetector
-              | Context -> GestureDetector_OnGestureListener -> Handler -> Bool -> ST s GestureDetector
+  native onFling :: GestureDetector_OnGestureListener -> Mutable s MotionEvent -> Mutable s MotionEvent -> Float -> Float -> ST s Bool
 
-  pure native isLongpressEnabled :: GestureDetector -> Bool
+  native onLongPress :: GestureDetector_OnGestureListener -> Mutable s MotionEvent -> ST s ()
 
-  pure native onTouchEvent :: GestureDetector -> MotionEvent -> Bool
+  native onScroll :: GestureDetector_OnGestureListener -> Mutable s MotionEvent -> Mutable s MotionEvent -> Float -> Float -> ST s Bool
 
-  native setIsLongpressEnabled :: GestureDetector -> Bool -> ST s ()
+  native onShowPress :: GestureDetector_OnGestureListener -> Mutable s MotionEvent -> ST s ()
 
-  native setOnDoubleTapListener :: GestureDetector -> GestureDetector_OnDoubleTapListener -> ST s ()
+  native onSingleTapUp :: GestureDetector_OnGestureListener -> Mutable s MotionEvent -> ST s Bool
+{-  -}
+
+data GestureDetector_SimpleOnGestureListener = pure native android.view.GestureDetector.SimpleOnGestureListener where
+
+  native new :: () -> ST s GestureDetector_SimpleOnGestureListener
+
+  native onDoubleTap :: GestureDetector_SimpleOnGestureListener -> Mutable s MotionEvent -> ST s Bool
+
+  native onDoubleTapEvent :: GestureDetector_SimpleOnGestureListener -> Mutable s MotionEvent -> ST s Bool
+
+  native onDown :: GestureDetector_SimpleOnGestureListener -> Mutable s MotionEvent -> ST s Bool
+
+  native onFling :: GestureDetector_SimpleOnGestureListener -> Mutable s MotionEvent -> Mutable s MotionEvent -> Float -> Float -> ST s Bool
+
+  native onLongPress :: GestureDetector_SimpleOnGestureListener -> Mutable s MotionEvent -> ST s ()
+
+  native onScroll :: GestureDetector_SimpleOnGestureListener -> Mutable s MotionEvent -> Mutable s MotionEvent -> Float -> Float -> ST s Bool
+
+  native onShowPress :: GestureDetector_SimpleOnGestureListener -> Mutable s MotionEvent -> ST s ()
+
+  native onSingleTapConfirmed :: GestureDetector_SimpleOnGestureListener -> Mutable s MotionEvent -> ST s Bool
+
+  native onSingleTapUp :: GestureDetector_SimpleOnGestureListener -> Mutable s MotionEvent -> ST s Bool
+{-  -}
+
+data GestureDetector =  native android.view.GestureDetector where
+
+  native new :: GestureDetector_OnGestureListener -> Handler -> IOMutable GestureDetector
+              | GestureDetector_OnGestureListener -> IOMutable GestureDetector
+              | MutableIO Context -> GestureDetector_OnGestureListener -> IOMutable GestureDetector
+              | MutableIO Context -> GestureDetector_OnGestureListener -> Handler -> IOMutable GestureDetector
+              | MutableIO Context -> GestureDetector_OnGestureListener -> Handler -> Bool -> IOMutable GestureDetector
+
+  native isLongpressEnabled :: MutableIO GestureDetector -> IO Bool
+
+  native onTouchEvent :: MutableIO GestureDetector -> MutableIO MotionEvent -> IO Bool
+
+  native setIsLongpressEnabled :: MutableIO GestureDetector -> Bool -> IO ()
+
+  native setOnDoubleTapListener :: MutableIO GestureDetector -> GestureDetector_OnDoubleTapListener -> IO ()
+{-  -}
 
 
-
--}

@@ -1,80 +1,52 @@
 package frege.android.widget.FrameLayout where
 
 import frege.android.content.Context
-import frege.android.util.AttributeSet
+import frege.android.graphics.Canvas
+import frege.android.graphics.Region
 import frege.android.graphics.drawable.Drawable
+import frege.android.util.AttributeSet
+import frege.android.view.ViewGroup
 
-data FrameLayout = pure native android.widget.FrameLayout where
+data FrameLayout_LayoutParams = pure native android.widget.FrameLayout.LayoutParams where
 
+  pure native gravity ".gravity" :: FrameLayout_LayoutParams -> Int
+  native new :: FrameLayout_LayoutParams -> ST s FrameLayout_LayoutParams
+              | ViewGroup_MarginLayoutParams -> ST s FrameLayout_LayoutParams
+              | ViewGroup_LayoutParams -> ST s FrameLayout_LayoutParams
+              | Int -> Int -> Int -> ST s FrameLayout_LayoutParams
+              | Int -> Int -> ST s FrameLayout_LayoutParams
+              | MutableIO Context -> AttributeSet -> IO FrameLayout_LayoutParams
+{-  -}
 
-  native new  :: Context -> ST s FrameLayout
-        | Context -> AttributeSet -> ST s FrameLayout
-        | Context -> AttributeSet -> Int -> ST s FrameLayout
+data FrameLayout =  native android.widget.FrameLayout where
 
-{-   native draw  :: -- ["Canvas"] -- FrameLayout -> Canvas -> ST s ( ) -}
+  native new :: MutableIO Context -> IOMutable FrameLayout
+              | MutableIO Context -> AttributeSet -> Int -> IOMutable FrameLayout
+              | MutableIO Context -> AttributeSet -> IOMutable FrameLayout
 
-{-   pure native gatherTransparentRegion  :: -- ["Region"] -- FrameLayout -> Region -> Bool -}
+  native draw :: MutableIO FrameLayout -> MutableIO Canvas -> IO ()
 
-{-   pure native generateLayoutParams  :: -- ["FrameLayout_LayoutParams"] -- FrameLayout -> AttributeSet -> FrameLayout_LayoutParams -}
+  native gatherTransparentRegion :: MutableIO FrameLayout -> Region -> IO Bool
 
-  pure native getConsiderGoneChildrenWhenMeasuring  :: FrameLayout -> Bool
+  native generateLayoutParams :: MutableIO FrameLayout -> AttributeSet -> IO FrameLayout_LayoutParams
 
-  pure native getForeground  :: FrameLayout -> Drawable
+  native getConsiderGoneChildrenWhenMeasuring :: MutableIO FrameLayout -> IO Bool
 
-  pure native getForegroundGravity  :: FrameLayout -> Int
+  native getForeground :: MutableIO FrameLayout -> IO Drawable
 
-  pure native getMeasureAllChildren  :: FrameLayout -> Bool
+  native getForegroundGravity :: MutableIO FrameLayout -> IO Int
 
-  native jumpDrawablesToCurrentState  :: FrameLayout -> ST s ( )
+  native getMeasureAllChildren :: MutableIO FrameLayout -> IO Bool
 
-{-   native onInitializeAccessibilityEvent  :: -- ["AccessibilityEvent"] -- FrameLayout -> AccessibilityEvent -> ST s ( ) -}
+  native jumpDrawablesToCurrentState :: MutableIO FrameLayout -> IO ()
 
-{-   native onInitializeAccessibilityNodeInfo  :: -- ["AccessibilityNodeInfo"] -- FrameLayout -> AccessibilityNodeInfo -> ST s ( ) -}
+  native setForeground :: MutableIO FrameLayout -> Drawable -> IO ()
 
-  native setForeground  :: FrameLayout -> Drawable -> ST s ( )
+  native setForegroundGravity :: MutableIO FrameLayout -> Int -> IO ()
 
-  native setForegroundGravity  :: FrameLayout -> Int -> ST s ( )
+  native setMeasureAllChildren :: MutableIO FrameLayout -> Bool -> IO ()
 
-  native setMeasureAllChildren  :: FrameLayout -> Bool -> ST s ( )
-
-  pure native shouldDelayChildPressedState  :: FrameLayout -> Bool
-
-
-{-
-data FrameLayout = pure native android.widget.FrameLayout where
-
-  native new :: Context -> ST s FrameLayout
-              | Context -> AttributeSet -> ST s FrameLayout
-              | Context -> AttributeSet -> Int -> ST s FrameLayout
-
-  native draw :: FrameLayout -> Canvas -> ST s ()
-
-  pure native gatherTransparentRegion :: FrameLayout -> Region -> Bool
-
-  pure native generateLayoutParams :: FrameLayout -> AttributeSet -> FrameLayout_LayoutParams
-
-  pure native getConsiderGoneChildrenWhenMeasuring :: FrameLayout -> Bool
-
-  pure native getForeground :: FrameLayout -> Drawable
-
-  pure native getForegroundGravity :: FrameLayout -> Int
-
-  pure native getMeasureAllChildren :: FrameLayout -> Bool
-
-  native jumpDrawablesToCurrentState :: FrameLayout -> ST s ()
-
-  native onInitializeAccessibilityEvent :: FrameLayout -> AccessibilityEvent -> ST s ()
-
-  native onInitializeAccessibilityNodeInfo :: FrameLayout -> AccessibilityNodeInfo -> ST s ()
-
-  native setForeground :: FrameLayout -> Drawable -> ST s ()
-
-  native setForegroundGravity :: FrameLayout -> Int -> ST s ()
-
-  native setMeasureAllChildren :: FrameLayout -> Bool -> ST s ()
-
-  pure native shouldDelayChildPressedState :: FrameLayout -> Bool
+  native shouldDelayChildPressedState :: MutableIO FrameLayout -> IO Bool
+{-  -}
 
 
-
--}

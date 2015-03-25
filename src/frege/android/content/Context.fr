@@ -1,314 +1,23 @@
 package frege.android.content.Context where
 
+import frege.android.content.BroadcastReceiver
 import frege.android.content.Intent
-import frege.android.content.res.Configuration
-import frege.android.view.Display
-import frege.android.os.Looper
-import frege.android.content.pm.PackageManager
 import frege.android.content.SharedPreferences
+import frege.android.content.pm.PackageManager
+import frege.android.content.res.Configuration
+import frege.android.content.res.Resources
+import frege.android.graphics.Bitmap
 import frege.android.graphics.drawable.Drawable
-import frege.android.content.Intent
+import frege.android.net.Uri
+import frege.android.os.Bundle
 import frege.android.os.Handler
-
-data Context = pure native android.content.Context where
-
-
-  pure native mode_private  android.content.Context.MODE_PRIVATE :: Int
-
-  pure native mode_world_readable  android.content.Context.MODE_WORLD_READABLE :: Int
-
-  pure native mode_world_writeable  android.content.Context.MODE_WORLD_WRITEABLE :: Int
-
-  pure native mode_append  android.content.Context.MODE_APPEND :: Int
-
-  pure native mode_multi_process  android.content.Context.MODE_MULTI_PROCESS :: Int
-
-  pure native mode_enable_write_ahead_logging  android.content.Context.MODE_ENABLE_WRITE_AHEAD_LOGGING :: Int
-
-  pure native bind_auto_create  android.content.Context.BIND_AUTO_CREATE :: Int
-
-  pure native bind_debug_unbind  android.content.Context.BIND_DEBUG_UNBIND :: Int
-
-  pure native bind_not_foreground  android.content.Context.BIND_NOT_FOREGROUND :: Int
-
-  pure native bind_above_client  android.content.Context.BIND_ABOVE_CLIENT :: Int
-
-  pure native bind_allow_oom_management  android.content.Context.BIND_ALLOW_OOM_MANAGEMENT :: Int
-
-  pure native bind_waive_priority  android.content.Context.BIND_WAIVE_PRIORITY :: Int
-
-  pure native bind_important  android.content.Context.BIND_IMPORTANT :: Int
-
-  pure native bind_adjust_with_activity  android.content.Context.BIND_ADJUST_WITH_ACTIVITY :: Int
-
-  pure native power_service  android.content.Context.POWER_SERVICE :: String
-
-  pure native window_service  android.content.Context.WINDOW_SERVICE :: String
-
-  pure native layout_inflater_service  android.content.Context.LAYOUT_INFLATER_SERVICE :: String
-
-  pure native account_service  android.content.Context.ACCOUNT_SERVICE :: String
-
-  pure native activity_service  android.content.Context.ACTIVITY_SERVICE :: String
-
-  pure native alarm_service  android.content.Context.ALARM_SERVICE :: String
-
-  pure native notification_service  android.content.Context.NOTIFICATION_SERVICE :: String
-
-  pure native accessibility_service  android.content.Context.ACCESSIBILITY_SERVICE :: String
-
-  pure native captioning_service  android.content.Context.CAPTIONING_SERVICE :: String
-
-  pure native keyguard_service  android.content.Context.KEYGUARD_SERVICE :: String
-
-  pure native location_service  android.content.Context.LOCATION_SERVICE :: String
-
-  pure native search_service  android.content.Context.SEARCH_SERVICE :: String
-
-  pure native sensor_service  android.content.Context.SENSOR_SERVICE :: String
-
-  pure native storage_service  android.content.Context.STORAGE_SERVICE :: String
-
-  pure native wallpaper_service  android.content.Context.WALLPAPER_SERVICE :: String
-
-  pure native vibrator_service  android.content.Context.VIBRATOR_SERVICE :: String
-
-  pure native connectivity_service  android.content.Context.CONNECTIVITY_SERVICE :: String
-
-  pure native wifi_service  android.content.Context.WIFI_SERVICE :: String
-
-  pure native wifi_p2p_service  android.content.Context.WIFI_P2P_SERVICE :: String
-
-  pure native nsd_service  android.content.Context.NSD_SERVICE :: String
-
-  pure native audio_service  android.content.Context.AUDIO_SERVICE :: String
-
-  pure native media_router_service  android.content.Context.MEDIA_ROUTER_SERVICE :: String
-
-  pure native telephony_service  android.content.Context.TELEPHONY_SERVICE :: String
-
-  pure native clipboard_service  android.content.Context.CLIPBOARD_SERVICE :: String
-
-  pure native input_method_service  android.content.Context.INPUT_METHOD_SERVICE :: String
-
-  pure native text_services_manager_service  android.content.Context.TEXT_SERVICES_MANAGER_SERVICE :: String
-
-  pure native dropbox_service  android.content.Context.DROPBOX_SERVICE :: String
-
-  pure native device_policy_service  android.content.Context.DEVICE_POLICY_SERVICE :: String
-
-  pure native ui_mode_service  android.content.Context.UI_MODE_SERVICE :: String
-
-  pure native download_service  android.content.Context.DOWNLOAD_SERVICE :: String
-
-  pure native nfc_service  android.content.Context.NFC_SERVICE :: String
-
-  pure native bluetooth_service  android.content.Context.BLUETOOTH_SERVICE :: String
-
-  pure native usb_service  android.content.Context.USB_SERVICE :: String
-
-  pure native input_service  android.content.Context.INPUT_SERVICE :: String
-
-  pure native display_service  android.content.Context.DISPLAY_SERVICE :: String
-
-  pure native user_service  android.content.Context.USER_SERVICE :: String
-
-  pure native app_ops_service  android.content.Context.APP_OPS_SERVICE :: String
-
-  pure native print_service  android.content.Context.PRINT_SERVICE :: String
-
-  pure native consumer_ir_service  android.content.Context.CONSUMER_IR_SERVICE :: String
-
-  pure native context_include_code  android.content.Context.CONTEXT_INCLUDE_CODE :: Int
-
-  pure native context_ignore_security  android.content.Context.CONTEXT_IGNORE_SECURITY :: Int
-
-  pure native context_restricted  android.content.Context.CONTEXT_RESTRICTED :: Int
-
-{- this is abstract native new  :: ( ) -> ST s Context-}
-
-{-   pure native bindService  :: -- ["ServiceConnection"] -- Context -> Intent -> ServiceConnection -> Int -> Bool -}
-
-  pure native checkCallingOrSelfPermission  :: Context -> String -> Int
-
-{-   pure native checkCallingOrSelfUriPermission  :: -- ["Uri"] -- Context -> Uri -> Int -> Int -}
-
-  pure native checkCallingPermission  :: Context -> String -> Int
-
-{-   pure native checkCallingUriPermission  :: -- ["Uri"] -- Context -> Uri -> Int -> Int -}
-
-  pure native checkPermission  :: Context -> String -> Int -> Int -> Int
-
-{-   pure native checkUriPermission  :: -- ["Uri"] -- Context -> Uri -> String -> String -> Int -> Int -> Int -> Int
-        -- ["Uri"] -- Context -> Uri -> Int -> Int -> Int -> Int -}
-
-{-   native clearWallpaper  :: -- ["IOException"] -- Context -> ST s ( ) throws IOException -}
-
-  pure native createConfigurationContext  :: Context -> Configuration -> Context
-
-  native createDisplayContext  :: Context -> MutableIO Display -> IO Context
-
-{-   native createPackageContext  :: -- ["PackageManager_NameNotFoundException"] -- Context -> String -> Int -> ST s Context throws PackageManager_NameNotFoundException -}
-
-{-   native databaseList  :: -- ["JArray"] -- Context -> STMutable s ( JArray String ) -}
-
-  pure native deleteDatabase  :: Context -> String -> Bool
-
-  pure native deleteFile  :: Context -> String -> Bool
-
-  native enforceCallingOrSelfPermission  :: Context -> String -> String -> ST s ( )
-
-{-   native enforceCallingOrSelfUriPermission  :: -- ["Uri"] -- Context -> Uri -> Int -> String -> ST s ( ) -}
-
-  native enforceCallingPermission  :: Context -> String -> String -> ST s ( )
-
-{-   native enforceCallingUriPermission  :: -- ["Uri"] -- Context -> Uri -> Int -> String -> ST s ( ) -}
-
-  native enforcePermission  :: Context -> String -> Int -> Int -> String -> ST s ( )
-
-{-   native enforceUriPermission  :: -- ["Uri"] -- Context -> Uri -> String -> String -> Int -> Int -> Int -> String -> ST s ( )
-        -- ["Uri"] -- Context -> Uri -> Int -> Int -> Int -> String -> ST s ( ) -}
-
-{-   native fileList  :: -- ["JArray"] -- Context -> STMutable s ( JArray String ) -}
-
-  pure native getApplicationContext  :: Context -> Context
-
-{-   pure native getApplicationInfo  :: -- ["ApplicationInfo"] -- Context -> ApplicationInfo -}
-
-{-   pure native getAssets  :: -- ["AssetManager"] -- Context -> AssetManager -}
-
-{-   native getCacheDir  :: -- ["File"] -- Context -> IOMutable File -}
-
-{-   pure native getClassLoader  :: -- ["ClassLoader"] -- Context -> ClassLoader -}
-
-{-   pure native getContentResolver  :: -- ["ContentResolver"] -- Context -> ContentResolver -}
-
-{-   native getDatabasePath  :: -- ["File"] -- Context -> String -> IOMutable File -}
-
-{-   native getDir  :: -- ["File"] -- Context -> String -> Int -> IOMutable File -}
-
-{-   native getExternalCacheDir  :: -- ["File"] -- Context -> IOMutable File -}
-
-{-   native getExternalCacheDirs  :: -- ["File","JArray"] -- Context -> STMutable s ( JArray File ) -}
-
-{-   native getExternalFilesDir  :: -- ["File"] -- Context -> String -> IOMutable File -}
-
-{-   native getExternalFilesDirs  :: -- ["File","JArray"] -- Context -> String -> STMutable s ( JArray File ) -}
-
-{-   native getFileStreamPath  :: -- ["File"] -- Context -> String -> IOMutable File -}
-
-{-   native getFilesDir  :: -- ["File"] -- Context -> IOMutable File -}
-
-  pure native getMainLooper  :: Context -> Looper
-
-{-   native getObbDir  :: -- ["File"] -- Context -> IOMutable File -}
-
-{-   native getObbDirs  :: -- ["File","JArray"] -- Context -> STMutable s ( JArray File ) -}
-
-  pure native getPackageCodePath  :: Context -> String
-
-  pure native getPackageManager  :: Context -> PackageManager
-
-  pure native getPackageName  :: Context -> String
-
-  pure native getPackageResourcePath  :: Context -> String
-
-{-   pure native getResources  :: -- ["Resources"] -- Context -> Resources -}
-
-  pure native getSharedPreferences  :: Context -> String -> Int -> SharedPreferences
-
-  native getString  :: -- ["JArray"] -- Context -> Int -> Mutable s ( JArray Object ) -> ST s String
-        Context -> Int -> ST s String
-
-  pure native getSystemService  :: Context -> String -> Object
-
-  pure native getText  :: Context -> Int -> CharSequence
-
-{-   pure native getTheme  :: -- ["Resources_Theme"] -- Context -> Resources_Theme -}
-
-  pure native getWallpaper  :: Context -> Drawable
-
-  pure native getWallpaperDesiredMinimumHeight  :: Context -> Int
-
-  pure native getWallpaperDesiredMinimumWidth  :: Context -> Int
-
-{-   native grantUriPermission  :: -- ["Uri"] -- Context -> String -> Uri -> Int -> ST s ( ) -}
-
-  pure native isRestricted  :: Context -> Bool
-
-{-   native obtainStyledAttributes  :: -- ["JArray","TypedArray"] -- Context -> Mutable s ( JArray Int ) -> ST s TypedArray
-        -- ["JArray","TypedArray"] -- Context -> Int -> Mutable s ( JArray Int ) -> ST s TypedArray
-        -- ["JArray","TypedArray"] -- Context -> AttributeSet -> Mutable s ( JArray Int ) -> ST s TypedArray
-        -- ["JArray","TypedArray"] -- Context -> AttributeSet -> Mutable s ( JArray Int ) -> Int -> Int -> ST s TypedArray -}
-
-{-   native openFileInput  :: -- ["FileInputStream","FileNotFoundException"] -- Context -> String -> IOMutable FileInputStream throws FileNotFoundException -}
-
-{-   native openFileOutput  :: -- ["FileNotFoundException","FileOutputStream"] -- Context -> String -> Int -> ST s FileOutputStream throws FileNotFoundException -}
-
-{-   pure native openOrCreateDatabase  :: -- ["SQLiteDatabase","SQLiteDatabase_CursorFactory"] -- Context -> String -> Int -> SQLiteDatabase_CursorFactory -> SQLiteDatabase
-        -- ["DatabaseErrorHandler","SQLiteDatabase","SQLiteDatabase_CursorFactory"] -- Context -> String -> Int -> SQLiteDatabase_CursorFactory -> DatabaseErrorHandler -> SQLiteDatabase -}
-
-  pure native peekWallpaper  :: Context -> Drawable
-
-{-   native registerComponentCallbacks  :: -- ["ComponentCallbacks"] -- Context -> ComponentCallbacks -> ST s ( ) -}
-
-{-   pure native registerReceiver  :: -- ["BroadcastReceiver","IntentFilter"] -- Context -> BroadcastReceiver -> IntentFilter -> String -> Handler -> Intent
-        -- ["BroadcastReceiver","IntentFilter"] -- Context -> BroadcastReceiver -> IntentFilter -> Intent -}
-
-  native removeStickyBroadcast  :: Context -> Intent -> ST s ( )
-
-{-   native removeStickyBroadcastAsUser  :: -- ["UserHandle"] -- Context -> Intent -> UserHandle -> ST s ( ) -}
-
-{-   native revokeUriPermission  :: -- ["Uri"] -- Context -> Uri -> Int -> ST s ( ) -}
-
-  native sendBroadcast  :: Context -> Intent -> String -> ST s ( )
-        | Context -> Intent -> ST s ( )
-
-{-   native sendBroadcastAsUser  :: -- ["UserHandle"] -- Context -> Intent -> UserHandle -> ST s ( )
-        -- ["UserHandle"] -- Context -> Intent -> UserHandle -> String -> ST s ( ) -}
-
-  native sendOrderedBroadcast  :: -- ["BroadcastReceiver","Bundle"] -- Context -> Intent -> String -> BroadcastReceiver -> Handler -> Int -> String -> Bundle -> ST s ( )
-        Context -> Intent -> String -> ST s ( )
-
-{-   native sendOrderedBroadcastAsUser  :: -- ["BroadcastReceiver","Bundle","UserHandle"] -- Context -> Intent -> UserHandle -> String -> BroadcastReceiver -> Handler -> Int -> String -> Bundle -> ST s ( ) -}
-
-  native sendStickyBroadcast  :: Context -> Intent -> ST s ( )
-
-{-   native sendStickyBroadcastAsUser  :: -- ["UserHandle"] -- Context -> Intent -> UserHandle -> ST s ( ) -}
-
-{-   native sendStickyOrderedBroadcast  :: -- ["BroadcastReceiver","Bundle"] -- Context -> Intent -> BroadcastReceiver -> Handler -> Int -> String -> Bundle -> ST s ( ) -}
-
-{-   native sendStickyOrderedBroadcastAsUser  :: -- ["BroadcastReceiver","Bundle","UserHandle"] -- Context -> Intent -> UserHandle -> BroadcastReceiver -> Handler -> Int -> String -> Bundle -> ST s ( ) -}
-
-  native setTheme  :: Context -> Int -> ST s ( )
-
-{-   native setWallpaper  :: -- ["Bitmap","IOException"] -- Context -> Bitmap -> ST s ( ) throws IOException
-        -- ["IOException","InputStream"] -- Context -> MutableIO InputStream -> IO ( ) throws IOException -}
-
-{-   native startActivities  :: -- ["JArray"] -- Context -> Mutable s ( JArray Intent ) -> ST s ( )
-        -- ["Bundle","JArray"] -- Context -> Mutable s ( JArray Intent ) -> Bundle -> ST s ( ) -}
-
-  native startActivity  :: -- ["Bundle"] -- Context -> Intent -> Bundle -> ST s ( )
-        Context -> Intent -> ST s ( )
-
-{-   pure native startInstrumentation  :: -- ["Bundle","ComponentName"] -- Context -> ComponentName -> String -> Bundle -> Bool -}
-
-{-   native startIntentSender  :: -- ["IntentSender","IntentSender_SendIntentException"] -- Context -> IntentSender -> Intent -> Int -> Int -> Int -> ST s ( ) throws IntentSender_SendIntentException
-        -- ["Bundle","IntentSender","IntentSender_SendIntentException"] -- Context -> IntentSender -> Intent -> Int -> Int -> Int -> Bundle -> ST s ( ) throws IntentSender_SendIntentException -}
-
-{-   pure native startService  :: -- ["ComponentName"] -- Context -> Intent -> ComponentName -}
-
-  pure native stopService  :: Context -> Intent -> Bool
-
-{-   native unbindService  :: -- ["ServiceConnection"] -- Context -> ServiceConnection -> ST s ( ) -}
-
-{-   native unregisterComponentCallbacks  :: -- ["ComponentCallbacks"] -- Context -> ComponentCallbacks -> ST s ( ) -}
-
-{-   native unregisterReceiver  :: -- ["BroadcastReceiver"] -- Context -> BroadcastReceiver -> ST s ( ) -}
-
-
-{-
-data Context = pure native android.content.Context where
+import frege.android.os.Looper
+import frege.android.os.UserHandle
+import frege.android.view.Display
+import frege.java.io.File
+import frege.java.io.IOException
+
+data Context =  native android.content.Context where
 
   pure native mode_private android.content.Context.MODE_PRIVATE :: Int
   pure native mode_world_readable android.content.Context.MODE_WORLD_READABLE :: Int
@@ -367,187 +76,129 @@ data Context = pure native android.content.Context where
   pure native context_ignore_security android.content.Context.CONTEXT_IGNORE_SECURITY :: Int
   pure native context_restricted android.content.Context.CONTEXT_RESTRICTED :: Int
 
-  native new :: () -> ST s Context
+  native checkCallingOrSelfPermission :: MutableIO Context -> String -> IO Int
 
-  pure native bindService :: Context -> Intent -> ServiceConnection -> Int -> Bool
+  native checkCallingOrSelfUriPermission :: MutableIO Context -> Uri -> Int -> IO Int
 
-  pure native checkCallingOrSelfPermission :: Context -> String -> Int
+  native checkCallingPermission :: MutableIO Context -> String -> IO Int
 
-  pure native checkCallingOrSelfUriPermission :: Context -> Uri -> Int -> Int
+  native checkCallingUriPermission :: MutableIO Context -> Uri -> Int -> IO Int
 
-  pure native checkCallingPermission :: Context -> String -> Int
+  native checkPermission :: MutableIO Context -> String -> Int -> Int -> IO Int
 
-  pure native checkCallingUriPermission :: Context -> Uri -> Int -> Int
+  native checkUriPermission :: MutableIO Context -> Uri -> String -> String -> Int -> Int -> Int -> IO Int
+          | MutableIO Context -> Uri -> Int -> Int -> Int -> IO Int
 
-  pure native checkPermission :: Context -> String -> Int -> Int -> Int
+  native clearWallpaper :: MutableIO Context -> IO () throws IOException
 
-  pure native checkUriPermission :: Context -> Uri -> String -> String -> Int -> Int -> Int -> Int
-                                  | Context -> Uri -> Int -> Int -> Int -> Int
+  native createConfigurationContext :: MutableIO Context -> Configuration -> IOMutable Context
 
-  native clearWallpaper :: Context -> ST s () throws IOException
+  native createDisplayContext :: MutableIO Context -> MutableIO Display -> IOMutable Context
 
-  pure native createConfigurationContext :: Context -> Configuration -> Context
+  native deleteDatabase :: MutableIO Context -> String -> IO Bool
 
-  native createDisplayContext :: Context -> MutableIO Display -> IO Context
+  native deleteFile :: MutableIO Context -> String -> IO Bool
 
-  native createPackageContext :: Context -> String -> Int -> ST s Context throws PackageManager_NameNotFoundException
+  native enforceCallingOrSelfPermission :: MutableIO Context -> String -> String -> IO ()
 
-  native databaseList :: Context -> STMutable s (JArray String)
+  native enforceCallingOrSelfUriPermission :: MutableIO Context -> Uri -> Int -> String -> IO ()
 
-  pure native deleteDatabase :: Context -> String -> Bool
+  native enforceCallingPermission :: MutableIO Context -> String -> String -> IO ()
 
-  pure native deleteFile :: Context -> String -> Bool
+  native enforceCallingUriPermission :: MutableIO Context -> Uri -> Int -> String -> IO ()
 
-  native enforceCallingOrSelfPermission :: Context -> String -> String -> ST s ()
+  native enforcePermission :: MutableIO Context -> String -> Int -> Int -> String -> IO ()
 
-  native enforceCallingOrSelfUriPermission :: Context -> Uri -> Int -> String -> ST s ()
+  native enforceUriPermission :: MutableIO Context -> Uri -> String -> String -> Int -> Int -> Int -> String -> IO ()
+          | MutableIO Context -> Uri -> Int -> Int -> Int -> String -> IO ()
 
-  native enforceCallingPermission :: Context -> String -> String -> ST s ()
+  native getApplicationContext :: MutableIO Context -> IOMutable Context
 
-  native enforceCallingUriPermission :: Context -> Uri -> Int -> String -> ST s ()
+  native getCacheDir :: MutableIO Context -> IOMutable File
 
-  native enforcePermission :: Context -> String -> Int -> Int -> String -> ST s ()
+  native getDatabasePath :: MutableIO Context -> String -> IOMutable File
 
-  native enforceUriPermission :: Context -> Uri -> String -> String -> Int -> Int -> Int -> String -> ST s ()
-                               | Context -> Uri -> Int -> Int -> Int -> String -> ST s ()
+  native getDir :: MutableIO Context -> String -> Int -> IOMutable File
 
-  native fileList :: Context -> STMutable s (JArray String)
+  native getExternalCacheDir :: MutableIO Context -> IOMutable File
 
-  pure native getApplicationContext :: Context -> Context
+  native getExternalFilesDir :: MutableIO Context -> String -> IOMutable File
 
-  pure native getApplicationInfo :: Context -> ApplicationInfo
+  native getFileStreamPath :: MutableIO Context -> String -> IOMutable File
 
-  pure native getAssets :: Context -> AssetManager
+  native getFilesDir :: MutableIO Context -> IOMutable File
 
-  native getCacheDir :: Context -> IOMutable File
+  native getMainLooper :: MutableIO Context -> IO Looper
 
-  pure native getClassLoader :: Context -> ClassLoader
+  native getObbDir :: MutableIO Context -> IOMutable File
 
-  pure native getContentResolver :: Context -> ContentResolver
+  native getPackageCodePath :: MutableIO Context -> IO String
 
-  native getDatabasePath :: Context -> String -> IOMutable File
+  native getPackageManager :: MutableIO Context -> IOMutable PackageManager
 
-  native getDir :: Context -> String -> Int -> IOMutable File
+  native getPackageName :: MutableIO Context -> IO String
 
-  native getExternalCacheDir :: Context -> IOMutable File
+  native getPackageResourcePath :: MutableIO Context -> IO String
 
-  native getExternalCacheDirs :: Context -> STMutable s (JArray File)
+  native getResources :: MutableIO Context -> IO Resources
 
-  native getExternalFilesDir :: Context -> String -> IOMutable File
+  native getSharedPreferences :: MutableIO Context -> String -> Int -> IO SharedPreferences
 
-  native getExternalFilesDirs :: Context -> String -> STMutable s (JArray File)
+  native getString :: MutableIO Context -> Int -> IO String
 
-  native getFileStreamPath :: Context -> String -> IOMutable File
+  native getSystemService :: MutableIO Context -> String -> IO Object
 
-  native getFilesDir :: Context -> IOMutable File
+  native getText :: MutableIO Context -> Int -> IO CharSequence
 
-  pure native getMainLooper :: Context -> Looper
+  native getTheme :: MutableIO Context -> IO Resources_Theme
 
-  native getObbDir :: Context -> IOMutable File
+  native getWallpaper :: MutableIO Context -> IO Drawable
 
-  native getObbDirs :: Context -> STMutable s (JArray File)
+  native getWallpaperDesiredMinimumHeight :: MutableIO Context -> IO Int
 
-  pure native getPackageCodePath :: Context -> String
+  native getWallpaperDesiredMinimumWidth :: MutableIO Context -> IO Int
 
-  pure native getPackageManager :: Context -> PackageManager
+  native grantUriPermission :: MutableIO Context -> String -> Uri -> Int -> IO ()
 
-  pure native getPackageName :: Context -> String
+  native isRestricted :: MutableIO Context -> IO Bool
 
-  pure native getPackageResourcePath :: Context -> String
+  native peekWallpaper :: MutableIO Context -> IO Drawable
 
-  pure native getResources :: Context -> Resources
+  native removeStickyBroadcast :: MutableIO Context -> MutableIO Intent -> IO ()
 
-  pure native getSharedPreferences :: Context -> String -> Int -> SharedPreferences
+  native removeStickyBroadcastAsUser :: MutableIO Context -> MutableIO Intent -> UserHandle -> IO ()
 
-  native getString :: Context -> Int -> Mutable s (JArray Object) -> ST s String
-                    | Context -> Int -> ST s String
+  native revokeUriPermission :: MutableIO Context -> Uri -> Int -> IO ()
 
-  pure native getSystemService :: Context -> String -> Object
+  native sendBroadcast :: MutableIO Context -> MutableIO Intent -> String -> IO ()
+          | MutableIO Context -> MutableIO Intent -> IO ()
 
-  pure native getText :: Context -> Int -> CharSequence
+  native sendBroadcastAsUser :: MutableIO Context -> MutableIO Intent -> UserHandle -> IO ()
+          | MutableIO Context -> MutableIO Intent -> UserHandle -> String -> IO ()
 
-  pure native getTheme :: Context -> Resources_Theme
+  native sendOrderedBroadcast :: MutableIO Context -> MutableIO Intent -> String -> MutableIO BroadcastReceiver -> Handler -> Int -> String -> Bundle -> IO ()
+          | MutableIO Context -> MutableIO Intent -> String -> IO ()
 
-  pure native getWallpaper :: Context -> Drawable
+  native sendOrderedBroadcastAsUser :: MutableIO Context -> MutableIO Intent -> UserHandle -> String -> MutableIO BroadcastReceiver -> Handler -> Int -> String -> Bundle -> IO ()
 
-  pure native getWallpaperDesiredMinimumHeight :: Context -> Int
+  native sendStickyBroadcast :: MutableIO Context -> MutableIO Intent -> IO ()
 
-  pure native getWallpaperDesiredMinimumWidth :: Context -> Int
+  native sendStickyBroadcastAsUser :: MutableIO Context -> MutableIO Intent -> UserHandle -> IO ()
 
-  native grantUriPermission :: Context -> String -> Uri -> Int -> ST s ()
+  native sendStickyOrderedBroadcast :: MutableIO Context -> MutableIO Intent -> MutableIO BroadcastReceiver -> Handler -> Int -> String -> Bundle -> IO ()
 
-  pure native isRestricted :: Context -> Bool
+  native sendStickyOrderedBroadcastAsUser :: MutableIO Context -> MutableIO Intent -> UserHandle -> MutableIO BroadcastReceiver -> Handler -> Int -> String -> Bundle -> IO ()
 
-  native obtainStyledAttributes :: Context -> Mutable s (JArray Int) -> ST s TypedArray
-                                 | Context -> Int -> Mutable s (JArray Int) -> ST s TypedArray
-                                 | Context -> AttributeSet -> Mutable s (JArray Int) -> ST s TypedArray
-                                 | Context -> AttributeSet -> Mutable s (JArray Int) -> Int -> Int -> ST s TypedArray
+  native setTheme :: MutableIO Context -> Int -> IO ()
 
-  native openFileInput :: Context -> String -> IOMutable FileInputStream throws FileNotFoundException
+  native setWallpaper :: MutableIO Context -> Bitmap -> IO () throws IOException
 
-  native openFileOutput :: Context -> String -> Int -> ST s FileOutputStream throws FileNotFoundException
+  native startActivity :: MutableIO Context -> MutableIO Intent -> Bundle -> IO ()
+          | MutableIO Context -> MutableIO Intent -> IO ()
 
-  pure native openOrCreateDatabase :: Context -> String -> Int -> SQLiteDatabase_CursorFactory -> SQLiteDatabase
-                                    | Context -> String -> Int -> SQLiteDatabase_CursorFactory -> DatabaseErrorHandler -> SQLiteDatabase
+  native stopService :: MutableIO Context -> MutableIO Intent -> IO Bool
 
-  pure native peekWallpaper :: Context -> Drawable
+  native unregisterReceiver :: MutableIO Context -> MutableIO BroadcastReceiver -> IO ()
+{-  -}
 
-  native registerComponentCallbacks :: Context -> ComponentCallbacks -> ST s ()
 
-  pure native registerReceiver :: Context -> BroadcastReceiver -> IntentFilter -> String -> Handler -> Intent
-                                | Context -> BroadcastReceiver -> IntentFilter -> Intent
-
-  native removeStickyBroadcast :: Context -> Intent -> ST s ()
-
-  native removeStickyBroadcastAsUser :: Context -> Intent -> UserHandle -> ST s ()
-
-  native revokeUriPermission :: Context -> Uri -> Int -> ST s ()
-
-  native sendBroadcast :: Context -> Intent -> String -> ST s ()
-                        | Context -> Intent -> ST s ()
-
-  native sendBroadcastAsUser :: Context -> Intent -> UserHandle -> ST s ()
-                              | Context -> Intent -> UserHandle -> String -> ST s ()
-
-  native sendOrderedBroadcast :: Context -> Intent -> String -> BroadcastReceiver -> Handler -> Int -> String -> Bundle -> ST s ()
-                               | Context -> Intent -> String -> ST s ()
-
-  native sendOrderedBroadcastAsUser :: Context -> Intent -> UserHandle -> String -> BroadcastReceiver -> Handler -> Int -> String -> Bundle -> ST s ()
-
-  native sendStickyBroadcast :: Context -> Intent -> ST s ()
-
-  native sendStickyBroadcastAsUser :: Context -> Intent -> UserHandle -> ST s ()
-
-  native sendStickyOrderedBroadcast :: Context -> Intent -> BroadcastReceiver -> Handler -> Int -> String -> Bundle -> ST s ()
-
-  native sendStickyOrderedBroadcastAsUser :: Context -> Intent -> UserHandle -> BroadcastReceiver -> Handler -> Int -> String -> Bundle -> ST s ()
-
-  native setTheme :: Context -> Int -> ST s ()
-
-  native setWallpaper :: Context -> Bitmap -> ST s () throws IOException
-                       | Context -> MutableIO InputStream -> IO () throws IOException
-
-  native startActivities :: Context -> Mutable s (JArray Intent) -> ST s ()
-                          | Context -> Mutable s (JArray Intent) -> Bundle -> ST s ()
-
-  native startActivity :: Context -> Intent -> Bundle -> ST s ()
-                        | Context -> Intent -> ST s ()
-
-  pure native startInstrumentation :: Context -> ComponentName -> String -> Bundle -> Bool
-
-  native startIntentSender :: Context -> IntentSender -> Intent -> Int -> Int -> Int -> ST s () throws IntentSender_SendIntentException
-                            | Context -> IntentSender -> Intent -> Int -> Int -> Int -> Bundle -> ST s () throws IntentSender_SendIntentException
-
-  pure native startService :: Context -> Intent -> ComponentName
-
-  pure native stopService :: Context -> Intent -> Bool
-
-  native unbindService :: Context -> ServiceConnection -> ST s ()
-
-  native unregisterComponentCallbacks :: Context -> ComponentCallbacks -> ST s ()
-
-  native unregisterReceiver :: Context -> BroadcastReceiver -> ST s ()
-
-
-
--}

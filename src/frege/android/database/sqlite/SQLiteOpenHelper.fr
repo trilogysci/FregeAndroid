@@ -1,58 +1,29 @@
 package frege.android.database.sqlite.SQLiteOpenHelper where
 
+import frege.android.database.sqlite.SQLiteDatabase
+
 data SQLiteOpenHelper = pure native android.database.sqlite.SQLiteOpenHelper where
 
-
-{-   native new  :: -- ["SQLiteDatabase_CursorFactory"] -- Context -> String -> SQLiteDatabase_CursorFactory -> Int -> ST s SQLiteOpenHelper
-        -- ["DatabaseErrorHandler","SQLiteDatabase_CursorFactory"] -- Context -> String -> SQLiteDatabase_CursorFactory -> Int -> DatabaseErrorHandler -> ST s SQLiteOpenHelper -}
-
-  native close  :: SQLiteOpenHelper -> ST s ( )
-
-  pure native getDatabaseName  :: SQLiteOpenHelper -> String
-
-{-   pure native getReadableDatabase  :: -- ["SQLiteDatabase"] -- SQLiteOpenHelper -> SQLiteDatabase -}
-
-{-   pure native getWritableDatabase  :: -- ["SQLiteDatabase"] -- SQLiteOpenHelper -> SQLiteDatabase -}
-
-{-   native onConfigure  :: -- ["SQLiteDatabase"] -- SQLiteOpenHelper -> SQLiteDatabase -> ST s ( ) -}
-
-{-   native onCreate  :: -- ["SQLiteDatabase"] -- SQLiteOpenHelper -> SQLiteDatabase -> ST s ( ) -}
-
-{-   native onDowngrade  :: -- ["SQLiteDatabase"] -- SQLiteOpenHelper -> SQLiteDatabase -> Int -> Int -> ST s ( ) -}
-
-{-   native onOpen  :: -- ["SQLiteDatabase"] -- SQLiteOpenHelper -> SQLiteDatabase -> ST s ( ) -}
-
-{-   native onUpgrade  :: -- ["SQLiteDatabase"] -- SQLiteOpenHelper -> SQLiteDatabase -> Int -> Int -> ST s ( ) -}
-
-  native setWriteAheadLoggingEnabled  :: SQLiteOpenHelper -> Bool -> ST s ( )
-
-
-{-
-data SQLiteOpenHelper = pure native android.database.sqlite.SQLiteOpenHelper where
-
-  native new :: Context -> String -> SQLiteDatabase_CursorFactory -> Int -> ST s SQLiteOpenHelper
-              | Context -> String -> SQLiteDatabase_CursorFactory -> Int -> DatabaseErrorHandler -> ST s SQLiteOpenHelper
 
   native close :: SQLiteOpenHelper -> ST s ()
 
   pure native getDatabaseName :: SQLiteOpenHelper -> String
 
-  pure native getReadableDatabase :: SQLiteOpenHelper -> SQLiteDatabase
+  native getReadableDatabase :: SQLiteOpenHelper -> IOMutable SQLiteDatabase
 
-  pure native getWritableDatabase :: SQLiteOpenHelper -> SQLiteDatabase
+  native getWritableDatabase :: SQLiteOpenHelper -> IOMutable SQLiteDatabase
 
-  native onConfigure :: SQLiteOpenHelper -> SQLiteDatabase -> ST s ()
+  native onConfigure :: SQLiteOpenHelper -> MutableIO SQLiteDatabase -> IO ()
 
-  native onCreate :: SQLiteOpenHelper -> SQLiteDatabase -> ST s ()
+  native onCreate :: SQLiteOpenHelper -> MutableIO SQLiteDatabase -> IO ()
 
-  native onDowngrade :: SQLiteOpenHelper -> SQLiteDatabase -> Int -> Int -> ST s ()
+  native onDowngrade :: SQLiteOpenHelper -> MutableIO SQLiteDatabase -> Int -> Int -> IO ()
 
-  native onOpen :: SQLiteOpenHelper -> SQLiteDatabase -> ST s ()
+  native onOpen :: SQLiteOpenHelper -> MutableIO SQLiteDatabase -> IO ()
 
-  native onUpgrade :: SQLiteOpenHelper -> SQLiteDatabase -> Int -> Int -> ST s ()
+  native onUpgrade :: SQLiteOpenHelper -> MutableIO SQLiteDatabase -> Int -> Int -> IO ()
 
   native setWriteAheadLoggingEnabled :: SQLiteOpenHelper -> Bool -> ST s ()
+{-  -}
 
 
-
--}

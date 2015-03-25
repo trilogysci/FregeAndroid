@@ -1,353 +1,36 @@
 package frege.android.app.Activity where
 
-import frege.android.view.KeyEvent
-import frege.android.view.MotionEvent
-import frege.android.view.View
-import frege.android.view.WindowManager
+import frege.android.app.ActionBar
+import frege.android.app.Application
+import frege.android.app.Fragment
+import frege.android.app.FragmentManager
+import frege.android.app.LoaderManager
+import frege.android.app.PendingIntent
+import frege.android.app.TaskStackBuilder
+import frege.android.content.Context
 import frege.android.content.Intent
 import frege.android.content.SharedPreferences
-import frege.android.view.Window
 import frege.android.content.res.Configuration
-import frege.android.content.Context
-import frege.android.util.AttributeSet
+import frege.android.database.Cursor
+import frege.android.graphics.Bitmap
+import frege.android.graphics.Canvas
 import frege.android.graphics.drawable.Drawable
-
-data Activity = native android.app.Activity where
-
-
-  pure native result_canceled  android.app.Activity.RESULT_CANCELED :: Int
-
-  pure native result_ok  android.app.Activity.RESULT_OK :: Int
-
-  pure native result_first_user  android.app.Activity.RESULT_FIRST_USER :: Int
-
-  pure native default_keys_disable  android.app.Activity.DEFAULT_KEYS_DISABLE :: Int
-
-  pure native default_keys_dialer  android.app.Activity.DEFAULT_KEYS_DIALER :: Int
-
-  pure native default_keys_shortcut  android.app.Activity.DEFAULT_KEYS_SHORTCUT :: Int
-
-  pure native default_keys_search_local  android.app.Activity.DEFAULT_KEYS_SEARCH_LOCAL :: Int
-
-  pure native default_keys_search_global  android.app.Activity.DEFAULT_KEYS_SEARCH_GLOBAL :: Int
-
-  native new  :: ( ) -> IOMutable Activity
-
-{-   native addContentView  :: -- ["ViewGroup_LayoutParams"] -- MutableIO Activity -> MutableIO View -> ViewGroup_LayoutParams -> IO ( ) -}
-
-  native closeContextMenu  :: MutableIO Activity -> IO ( )
-
-  native closeOptionsMenu  :: MutableIO Activity -> IO ( )
-
-{-   native createPendingResult  :: -- ["PendingIntent"] -- MutableIO Activity -> Int -> Intent -> Int -> IO PendingIntent -}
-
-  native dismissDialog  :: MutableIO Activity -> Int -> IO ( )
-
-  native dispatchGenericMotionEvent  :: MutableIO Activity -> MotionEvent -> IO Bool
-
-  native dispatchKeyEvent  :: MutableIO Activity -> KeyEvent -> IO Bool
-
-  native dispatchKeyShortcutEvent  :: MutableIO Activity -> KeyEvent -> IO Bool
-
-{-   native dispatchPopulateAccessibilityEvent  :: -- ["AccessibilityEvent"] -- MutableIO Activity -> AccessibilityEvent -> IO Bool -}
-
-  native dispatchTouchEvent  :: MutableIO Activity -> MotionEvent -> IO Bool
-
-  native dispatchTrackballEvent  :: MutableIO Activity -> MotionEvent -> IO Bool
-
-{-   native dump  :: -- ["FileDescriptor","JArray","PrintWriter"] -- MutableIO Activity -> String -> FileDescriptor -> MutableIO PrintWriter -> MutableIO ( JArray String ) -> IO ( ) -}
-
-  native findViewById  :: MutableIO Activity -> Int -> IOMutable View
-
-  native finish  :: MutableIO Activity -> IO ( )
-
-  native finishActivity  :: MutableIO Activity -> Int -> IO ( )
-
-  native finishActivityFromChild  :: MutableIO Activity -> MutableIO Activity -> Int -> IO ( )
-
-  native finishAffinity  :: MutableIO Activity -> IO ( )
-
-  native finishFromChild  :: MutableIO Activity -> MutableIO Activity -> IO ( )
-
-{-   native getActionBar  :: -- ["ActionBar"] -- MutableIO Activity -> IO ActionBar -}
-
-{-   native getApplication  :: -- ["Application"] -- MutableIO Activity -> IO Application -}
-
-{-   native getCallingActivity  :: -- ["ComponentName"] -- MutableIO Activity -> IO ComponentName -}
-
-  native getCallingPackage  :: MutableIO Activity -> IO String
-
-  native getChangingConfigurations  :: MutableIO Activity -> IO Int
-
-{-   native getComponentName  :: -- ["ComponentName"] -- MutableIO Activity -> IO ComponentName -}
-
-  native getCurrentFocus  :: MutableIO Activity -> IOMutable View
-
-{-   native getFragmentManager  :: -- ["FragmentManager"] -- MutableIO Activity -> IO FragmentManager -}
-
-  native getIntent  :: MutableIO Activity -> IO Intent
-
-  native getLastNonConfigurationInstance  :: MutableIO Activity -> IO Object
-
-{-   native getLayoutInflater  :: -- ["LayoutInflater"] -- MutableIO Activity -> IO LayoutInflater -}
-
-{-   native getLoaderManager  :: -- ["LoaderManager"] -- MutableIO Activity -> IO LoaderManager -}
-
-  native getLocalClassName  :: MutableIO Activity -> IO String
-
-{-   native getMenuInflater  :: -- ["MenuInflater"] -- MutableIO Activity -> IO MenuInflater -}
-
-  native getParent  :: MutableIO Activity -> IOMutable Activity
-
-  native getParentActivityIntent  :: MutableIO Activity -> IO Intent
-
-  native getPreferences  :: MutableIO Activity -> Int -> IO SharedPreferences
-
-  native getRequestedOrientation  :: MutableIO Activity -> IO Int
-
-  native getSystemService  :: MutableIO Activity -> String -> IO Object
-
-  native getTaskId  :: MutableIO Activity -> IO Int
-
-  native getTitle  :: MutableIO Activity -> IO CharSequence
-
-  native getTitleColor  :: MutableIO Activity -> IO Int
-
-  native getVolumeControlStream  :: MutableIO Activity -> IO Int
-
-  native getWindow  :: MutableIO Activity -> IO Window
-
-  native getWindowManager  :: MutableIO Activity -> IO WindowManager
-
-  native hasWindowFocus  :: MutableIO Activity -> IO Bool
-
-  native invalidateOptionsMenu  :: MutableIO Activity -> IO ( )
-
-  native isChangingConfigurations  :: MutableIO Activity -> IO Bool
-
-  native isChild  :: MutableIO Activity -> IO Bool
-
-  native isDestroyed  :: MutableIO Activity -> IO Bool
-
-  native isFinishing  :: MutableIO Activity -> IO Bool
-
-  native isImmersive  :: MutableIO Activity -> IO Bool
-
-  native isTaskRoot  :: MutableIO Activity -> IO Bool
-
-{-   native managedQuery  :: -- ["Cursor","JArray","Uri"] -- MutableIO Activity -> Uri -> MutableIO ( JArray String ) -> String -> MutableIO ( JArray String ) -> String -> IO Cursor -}
-
-  native moveTaskToBack  :: MutableIO Activity -> Bool -> IO Bool
-
-  native navigateUpTo  :: MutableIO Activity -> Intent -> IO Bool
-
-  native navigateUpToFromChild  :: MutableIO Activity -> MutableIO Activity -> Intent -> IO Bool
-
-{-   native onActionModeFinished  :: -- ["ActionMode"] -- MutableIO Activity -> ActionMode -> IO ( ) -}
-
-{-   native onActionModeStarted  :: -- ["ActionMode"] -- MutableIO Activity -> ActionMode -> IO ( ) -}
-
-{-   native onAttachFragment  :: -- ["Fragment"] -- MutableIO Activity -> Fragment -> IO ( ) -}
-
-  native onAttachedToWindow  :: MutableIO Activity -> IO ( )
-
-  native onBackPressed  :: MutableIO Activity -> IO ( )
-
-  native onConfigurationChanged  :: MutableIO Activity -> Configuration -> IO ( )
-
-  native onContentChanged  :: MutableIO Activity -> IO ( )
-
-{-   native onContextItemSelected  :: -- ["MenuItem"] -- MutableIO Activity -> MenuItem -> IO Bool -}
-
-{-   native onContextMenuClosed  :: -- ["Menu"] -- MutableIO Activity -> Menu -> IO ( ) -}
-
-{-   native onCreateContextMenu  :: -- ["ContextMenu","ContextMenu_ContextMenuInfo"] -- MutableIO Activity -> ContextMenu -> MutableIO View -> ContextMenu_ContextMenuInfo -> IO ( ) -}
-
-  native onCreateDescription  :: MutableIO Activity -> IO CharSequence
-
-{-   native onCreateNavigateUpTaskStack  :: -- ["TaskStackBuilder"] -- MutableIO Activity -> TaskStackBuilder -> IO ( ) -}
-
-{-   native onCreateOptionsMenu  :: -- ["Menu"] -- MutableIO Activity -> Menu -> IO Bool -}
-
-{-   native onCreatePanelMenu  :: -- ["Menu"] -- MutableIO Activity -> Int -> Menu -> IO Bool -}
-
-  native onCreatePanelView  :: MutableIO Activity -> Int -> IOMutable View
-
-{-   native onCreateThumbnail  :: -- ["Bitmap","Canvas"] -- MutableIO Activity -> Bitmap -> Canvas -> IO Bool -}
-
-  native onCreateView  :: MutableIO Activity -> MutableIO View -> String -> Context -> AttributeSet -> IOMutable View
-        | MutableIO Activity -> String -> Context -> AttributeSet -> IOMutable View
-
-  native onDetachedFromWindow  :: MutableIO Activity -> IO ( )
-
-  native onGenericMotionEvent  :: MutableIO Activity -> MotionEvent -> IO Bool
-
-  native onKeyDown  :: MutableIO Activity -> Int -> KeyEvent -> IO Bool
-
-  native onKeyLongPress  :: MutableIO Activity -> Int -> KeyEvent -> IO Bool
-
-  native onKeyMultiple  :: MutableIO Activity -> Int -> Int -> KeyEvent -> IO Bool
-
-  native onKeyShortcut  :: MutableIO Activity -> Int -> KeyEvent -> IO Bool
-
-  native onKeyUp  :: MutableIO Activity -> Int -> KeyEvent -> IO Bool
-
-  native onLowMemory  :: MutableIO Activity -> IO ( )
-
-{-   native onMenuItemSelected  :: -- ["MenuItem"] -- MutableIO Activity -> Int -> MenuItem -> IO Bool -}
-
-{-   native onMenuOpened  :: -- ["Menu"] -- MutableIO Activity -> Int -> Menu -> IO Bool -}
-
-  native onNavigateUp  :: MutableIO Activity -> IO Bool
-
-  native onNavigateUpFromChild  :: MutableIO Activity -> MutableIO Activity -> IO Bool
-
-{-   native onOptionsItemSelected  :: -- ["MenuItem"] -- MutableIO Activity -> MenuItem -> IO Bool -}
-
-{-   native onOptionsMenuClosed  :: -- ["Menu"] -- MutableIO Activity -> Menu -> IO ( ) -}
-
-{-   native onPanelClosed  :: -- ["Menu"] -- MutableIO Activity -> Int -> Menu -> IO ( ) -}
-
-{-   native onPrepareNavigateUpTaskStack  :: -- ["TaskStackBuilder"] -- MutableIO Activity -> TaskStackBuilder -> IO ( ) -}
-
-{-   native onPrepareOptionsMenu  :: -- ["Menu"] -- MutableIO Activity -> Menu -> IO Bool -}
-
-{-   native onPreparePanel  :: -- ["Menu"] -- MutableIO Activity -> Int -> MutableIO View -> Menu -> IO Bool -}
-
-{-   native onProvideAssistData  :: -- ["Bundle"] -- MutableIO Activity -> Bundle -> IO ( ) -}
-
-  native onRetainNonConfigurationInstance  :: MutableIO Activity -> IO Object
-
-  native onSearchRequested  :: MutableIO Activity -> IO Bool
-
-  native onTouchEvent  :: MutableIO Activity -> MotionEvent -> IO Bool
-
-  native onTrackballEvent  :: MutableIO Activity -> MotionEvent -> IO Bool
-
-  native onTrimMemory  :: MutableIO Activity -> Int -> IO ( )
-
-  native onUserInteraction  :: MutableIO Activity -> IO ( )
-
-{-   native onWindowAttributesChanged  :: -- ["WindowManager_LayoutParams"] -- MutableIO Activity -> WindowManager_LayoutParams -> IO ( ) -}
-
-  native onWindowFocusChanged  :: MutableIO Activity -> Bool -> IO ( )
-
-{-   native onWindowStartingActionMode  :: -- ["ActionMode","ActionMode_Callback"] -- MutableIO Activity -> ActionMode_Callback -> IO ActionMode -}
-
-  native openContextMenu  :: MutableIO Activity -> MutableIO View -> IO ( )
-
-  native openOptionsMenu  :: MutableIO Activity -> IO ( )
-
-  native overridePendingTransition  :: MutableIO Activity -> Int -> Int -> IO ( )
-
-  native recreate  :: MutableIO Activity -> IO ( )
-
-  native registerForContextMenu  :: MutableIO Activity -> MutableIO View -> IO ( )
-
-  native removeDialog  :: MutableIO Activity -> Int -> IO ( )
-
-  native reportFullyDrawn  :: MutableIO Activity -> IO ( )
-
-  native requestWindowFeature  :: MutableIO Activity -> Int -> IO Bool
-
-{-   native runOnUiThread  :: -- ["Runnable"] -- MutableIO Activity -> Runnable -> IO ( ) -}
-
-  native setContentView  :: -- ["ViewGroup_LayoutParams"] -- MutableIO Activity -> MutableIO View -> ViewGroup_LayoutParams -> IO ( )
-        MutableIO Activity -> Int -> IO ( )
-        | MutableIO Activity -> MutableIO View -> IO ( )
-
-  native setDefaultKeyMode  :: MutableIO Activity -> Int -> IO ( )
-
-  native setFeatureDrawable  :: MutableIO Activity -> Int -> Drawable -> IO ( )
-
-  native setFeatureDrawableAlpha  :: MutableIO Activity -> Int -> Int -> IO ( )
-
-  native setFeatureDrawableResource  :: MutableIO Activity -> Int -> Int -> IO ( )
-
-{-   native setFeatureDrawableUri  :: -- ["Uri"] -- MutableIO Activity -> Int -> Uri -> IO ( ) -}
-
-  native setFinishOnTouchOutside  :: MutableIO Activity -> Bool -> IO ( )
-
-  native setImmersive  :: MutableIO Activity -> Bool -> IO ( )
-
-  native setIntent  :: MutableIO Activity -> Intent -> IO ( )
-
-  native setProgress  :: MutableIO Activity -> Int -> IO ( )
-
-  native setProgressBarIndeterminate  :: MutableIO Activity -> Bool -> IO ( )
-
-  native setProgressBarIndeterminateVisibility  :: MutableIO Activity -> Bool -> IO ( )
-
-  native setProgressBarVisibility  :: MutableIO Activity -> Bool -> IO ( )
-
-  native setRequestedOrientation  :: MutableIO Activity -> Int -> IO ( )
-
-  native setResult  :: MutableIO Activity -> Int -> Intent -> IO ( )
-        | MutableIO Activity -> Int -> IO ( )
-
-  native setSecondaryProgress  :: MutableIO Activity -> Int -> IO ( )
-
-  native setTitle  :: MutableIO Activity -> CharSequence -> IO ( )
-        | MutableIO Activity -> Int -> IO ( )
-
-  native setTitleColor  :: MutableIO Activity -> Int -> IO ( )
-
-  native setVisible  :: MutableIO Activity -> Bool -> IO ( )
-
-  native setVolumeControlStream  :: MutableIO Activity -> Int -> IO ( )
-
-  native shouldUpRecreateTask  :: MutableIO Activity -> Intent -> IO Bool
-
-  native showDialog  :: -- ["Bundle"] -- MutableIO Activity -> Int -> Bundle -> IO Bool
-        MutableIO Activity -> Int -> IO ( )
-
-{-   native startActionMode  :: -- ["ActionMode","ActionMode_Callback"] -- MutableIO Activity -> ActionMode_Callback -> IO ActionMode -}
-
-{-   native startActivities  :: -- ["Bundle","JArray"] -- MutableIO Activity -> MutableIO ( JArray Intent ) -> Bundle -> IO ( )
-        -- ["JArray"] -- MutableIO Activity -> MutableIO ( JArray Intent ) -> IO ( ) -}
-
-  native startActivity  :: -- ["Bundle"] -- MutableIO Activity -> Intent -> Bundle -> IO ( )
-        MutableIO Activity -> Intent -> IO ( )
-
-  native startActivityForResult  :: MutableIO Activity -> Intent -> Int -> IO ( )
-        -- ["Bundle"] -- | MutableIO Activity -> Intent -> Int -> Bundle -> IO ( )
-
-  native startActivityFromChild  :: MutableIO Activity -> MutableIO Activity -> Intent -> Int -> IO ( )
-        -- ["Bundle"] -- | MutableIO Activity -> MutableIO Activity -> Intent -> Int -> Bundle -> IO ( )
-
-{-   native startActivityFromFragment  :: -- ["Bundle","Fragment"] -- MutableIO Activity -> Fragment -> Intent -> Int -> Bundle -> IO ( )
-        -- ["Fragment"] -- MutableIO Activity -> Fragment -> Intent -> Int -> IO ( ) -}
-
-  native startActivityIfNeeded  :: MutableIO Activity -> Intent -> Int -> IO Bool
-        -- ["Bundle"] -- | MutableIO Activity -> Intent -> Int -> Bundle -> IO Bool
-
-{-   native startIntentSender  :: -- ["Bundle","IntentSender","IntentSender_SendIntentException"] -- MutableIO Activity -> IntentSender -> Intent -> Int -> Int -> Int -> Bundle -> IO ( ) throws IntentSender_SendIntentException
-        -- ["IntentSender","IntentSender_SendIntentException"] -- MutableIO Activity -> IntentSender -> Intent -> Int -> Int -> Int -> IO ( ) throws IntentSender_SendIntentException -}
-
-{-   native startIntentSenderForResult  :: -- ["IntentSender","IntentSender_SendIntentException"] -- MutableIO Activity -> IntentSender -> Int -> Intent -> Int -> Int -> Int -> IO ( ) throws IntentSender_SendIntentException
-        -- ["Bundle","IntentSender","IntentSender_SendIntentException"] -- MutableIO Activity -> IntentSender -> Int -> Intent -> Int -> Int -> Int -> Bundle -> IO ( ) throws IntentSender_SendIntentException -}
-
-{-   native startIntentSenderFromChild  :: -- ["IntentSender","IntentSender_SendIntentException"] -- MutableIO Activity -> MutableIO Activity -> IntentSender -> Int -> Intent -> Int -> Int -> Int -> IO ( ) throws IntentSender_SendIntentException
-        -- ["Bundle","IntentSender","IntentSender_SendIntentException"] -- MutableIO Activity -> MutableIO Activity -> IntentSender -> Int -> Intent -> Int -> Int -> Int -> Bundle -> IO ( ) throws IntentSender_SendIntentException -}
-
-{-   native startManagingCursor  :: -- ["Cursor"] -- MutableIO Activity -> Cursor -> IO ( ) -}
-
-  native startNextMatchingActivity  :: MutableIO Activity -> Intent -> IO Bool
-        -- ["Bundle"] -- | MutableIO Activity -> Intent -> Bundle -> IO Bool
-
-{-   native startSearch  :: -- ["Bundle"] -- MutableIO Activity -> String -> Bool -> Bundle -> Bool -> IO ( ) -}
-
-{-   native stopManagingCursor  :: -- ["Cursor"] -- MutableIO Activity -> Cursor -> IO ( ) -}
-
-  native takeKeyEvents  :: MutableIO Activity -> Bool -> IO ( )
-
-{-   native triggerSearch  :: -- ["Bundle"] -- MutableIO Activity -> String -> Bundle -> IO ( ) -}
-
-  native unregisterForContextMenu  :: MutableIO Activity -> MutableIO View -> IO ( )
-
-
-{-
-data Activity = native android.app.Activity where
+import frege.android.net.Uri
+import frege.android.os.Bundle
+import frege.android.util.AttributeSet
+import frege.android.view.ActionMode
+import frege.android.view.KeyEvent
+import frege.android.view.LayoutInflater
+import frege.android.view.Menu
+import frege.android.view.MenuItem
+import frege.android.view.MotionEvent
+import frege.android.view.View
+import frege.android.view.ViewGroup
+import frege.android.view.Window
+import frege.android.view.WindowManager
+import frege.java.lang.Runnable
+
+data Activity =  native android.app.Activity where
 
   pure native result_canceled android.app.Activity.RESULT_CANCELED :: Int
   pure native result_ok android.app.Activity.RESULT_OK :: Int
@@ -357,7 +40,6 @@ data Activity = native android.app.Activity where
   pure native default_keys_shortcut android.app.Activity.DEFAULT_KEYS_SHORTCUT :: Int
   pure native default_keys_search_local android.app.Activity.DEFAULT_KEYS_SEARCH_LOCAL :: Int
   pure native default_keys_search_global android.app.Activity.DEFAULT_KEYS_SEARCH_GLOBAL :: Int
-
   native new :: () -> IOMutable Activity
 
   native addContentView :: MutableIO Activity -> MutableIO View -> ViewGroup_LayoutParams -> IO ()
@@ -366,23 +48,19 @@ data Activity = native android.app.Activity where
 
   native closeOptionsMenu :: MutableIO Activity -> IO ()
 
-  native createPendingResult :: MutableIO Activity -> Int -> Intent -> Int -> IO PendingIntent
+  native createPendingResult :: MutableIO Activity -> Int -> MutableIO Intent -> Int -> IOMutable PendingIntent
 
   native dismissDialog :: MutableIO Activity -> Int -> IO ()
 
-  native dispatchGenericMotionEvent :: MutableIO Activity -> MotionEvent -> IO Bool
+  native dispatchGenericMotionEvent :: MutableIO Activity -> MutableIO MotionEvent -> IO Bool
 
   native dispatchKeyEvent :: MutableIO Activity -> KeyEvent -> IO Bool
 
   native dispatchKeyShortcutEvent :: MutableIO Activity -> KeyEvent -> IO Bool
 
-  native dispatchPopulateAccessibilityEvent :: MutableIO Activity -> AccessibilityEvent -> IO Bool
+  native dispatchTouchEvent :: MutableIO Activity -> MutableIO MotionEvent -> IO Bool
 
-  native dispatchTouchEvent :: MutableIO Activity -> MotionEvent -> IO Bool
-
-  native dispatchTrackballEvent :: MutableIO Activity -> MotionEvent -> IO Bool
-
-  native dump :: MutableIO Activity -> String -> FileDescriptor -> MutableIO PrintWriter -> MutableIO (JArray String) -> IO ()
+  native dispatchTrackballEvent :: MutableIO Activity -> MutableIO MotionEvent -> IO Bool
 
   native findViewById :: MutableIO Activity -> Int -> IOMutable View
 
@@ -398,35 +76,29 @@ data Activity = native android.app.Activity where
 
   native getActionBar :: MutableIO Activity -> IO ActionBar
 
-  native getApplication :: MutableIO Activity -> IO Application
-
-  native getCallingActivity :: MutableIO Activity -> IO ComponentName
+  native getApplication :: MutableIO Activity -> IOMutable Application
 
   native getCallingPackage :: MutableIO Activity -> IO String
 
   native getChangingConfigurations :: MutableIO Activity -> IO Int
 
-  native getComponentName :: MutableIO Activity -> IO ComponentName
-
   native getCurrentFocus :: MutableIO Activity -> IOMutable View
 
-  native getFragmentManager :: MutableIO Activity -> IO FragmentManager
+  native getFragmentManager :: MutableIO Activity -> IOMutable FragmentManager
 
-  native getIntent :: MutableIO Activity -> IO Intent
+  native getIntent :: MutableIO Activity -> IOMutable Intent
 
   native getLastNonConfigurationInstance :: MutableIO Activity -> IO Object
 
   native getLayoutInflater :: MutableIO Activity -> IO LayoutInflater
 
-  native getLoaderManager :: MutableIO Activity -> IO LoaderManager
+  native getLoaderManager :: MutableIO Activity -> IOMutable LoaderManager
 
   native getLocalClassName :: MutableIO Activity -> IO String
 
-  native getMenuInflater :: MutableIO Activity -> IO MenuInflater
-
   native getParent :: MutableIO Activity -> IOMutable Activity
 
-  native getParentActivityIntent :: MutableIO Activity -> IO Intent
+  native getParentActivityIntent :: MutableIO Activity -> IOMutable Intent
 
   native getPreferences :: MutableIO Activity -> Int -> IO SharedPreferences
 
@@ -442,9 +114,9 @@ data Activity = native android.app.Activity where
 
   native getVolumeControlStream :: MutableIO Activity -> IO Int
 
-  native getWindow :: MutableIO Activity -> IO Window
+  native getWindow :: MutableIO Activity -> IOMutable Window
 
-  native getWindowManager :: MutableIO Activity -> IO WindowManager
+  native getWindowManager :: MutableIO Activity -> IOMutable WindowManager
 
   native hasWindowFocus :: MutableIO Activity -> IO Bool
 
@@ -462,19 +134,17 @@ data Activity = native android.app.Activity where
 
   native isTaskRoot :: MutableIO Activity -> IO Bool
 
-  native managedQuery :: MutableIO Activity -> Uri -> MutableIO (JArray String) -> String -> MutableIO (JArray String) -> String -> IO Cursor
-
   native moveTaskToBack :: MutableIO Activity -> Bool -> IO Bool
 
-  native navigateUpTo :: MutableIO Activity -> Intent -> IO Bool
+  native navigateUpTo :: MutableIO Activity -> MutableIO Intent -> IO Bool
 
-  native navigateUpToFromChild :: MutableIO Activity -> MutableIO Activity -> Intent -> IO Bool
+  native navigateUpToFromChild :: MutableIO Activity -> MutableIO Activity -> MutableIO Intent -> IO Bool
 
-  native onActionModeFinished :: MutableIO Activity -> ActionMode -> IO ()
+  native onActionModeFinished :: MutableIO Activity -> MutableIO ActionMode -> IO ()
 
-  native onActionModeStarted :: MutableIO Activity -> ActionMode -> IO ()
+  native onActionModeStarted :: MutableIO Activity -> MutableIO ActionMode -> IO ()
 
-  native onAttachFragment :: MutableIO Activity -> Fragment -> IO ()
+  native onAttachFragment :: MutableIO Activity -> MutableIO Fragment -> IO ()
 
   native onAttachedToWindow :: MutableIO Activity -> IO ()
 
@@ -488,11 +158,9 @@ data Activity = native android.app.Activity where
 
   native onContextMenuClosed :: MutableIO Activity -> Menu -> IO ()
 
-  native onCreateContextMenu :: MutableIO Activity -> ContextMenu -> MutableIO View -> ContextMenu_ContextMenuInfo -> IO ()
-
   native onCreateDescription :: MutableIO Activity -> IO CharSequence
 
-  native onCreateNavigateUpTaskStack :: MutableIO Activity -> TaskStackBuilder -> IO ()
+  native onCreateNavigateUpTaskStack :: MutableIO Activity -> MutableIO TaskStackBuilder -> IO ()
 
   native onCreateOptionsMenu :: MutableIO Activity -> Menu -> IO Bool
 
@@ -500,14 +168,14 @@ data Activity = native android.app.Activity where
 
   native onCreatePanelView :: MutableIO Activity -> Int -> IOMutable View
 
-  native onCreateThumbnail :: MutableIO Activity -> Bitmap -> Canvas -> IO Bool
+  native onCreateThumbnail :: MutableIO Activity -> Bitmap -> MutableIO Canvas -> IO Bool
 
-  native onCreateView :: MutableIO Activity -> MutableIO View -> String -> Context -> AttributeSet -> IOMutable View
-                       | MutableIO Activity -> String -> Context -> AttributeSet -> IOMutable View
+  native onCreateView :: MutableIO Activity -> String -> MutableIO Context -> AttributeSet -> IOMutable View
+          | MutableIO Activity -> MutableIO View -> String -> MutableIO Context -> AttributeSet -> IOMutable View
 
   native onDetachedFromWindow :: MutableIO Activity -> IO ()
 
-  native onGenericMotionEvent :: MutableIO Activity -> MotionEvent -> IO Bool
+  native onGenericMotionEvent :: MutableIO Activity -> MutableIO MotionEvent -> IO Bool
 
   native onKeyDown :: MutableIO Activity -> Int -> KeyEvent -> IO Bool
 
@@ -535,7 +203,7 @@ data Activity = native android.app.Activity where
 
   native onPanelClosed :: MutableIO Activity -> Int -> Menu -> IO ()
 
-  native onPrepareNavigateUpTaskStack :: MutableIO Activity -> TaskStackBuilder -> IO ()
+  native onPrepareNavigateUpTaskStack :: MutableIO Activity -> MutableIO TaskStackBuilder -> IO ()
 
   native onPrepareOptionsMenu :: MutableIO Activity -> Menu -> IO Bool
 
@@ -547,9 +215,9 @@ data Activity = native android.app.Activity where
 
   native onSearchRequested :: MutableIO Activity -> IO Bool
 
-  native onTouchEvent :: MutableIO Activity -> MotionEvent -> IO Bool
+  native onTouchEvent :: MutableIO Activity -> MutableIO MotionEvent -> IO Bool
 
-  native onTrackballEvent :: MutableIO Activity -> MotionEvent -> IO Bool
+  native onTrackballEvent :: MutableIO Activity -> MutableIO MotionEvent -> IO Bool
 
   native onTrimMemory :: MutableIO Activity -> Int -> IO ()
 
@@ -559,7 +227,7 @@ data Activity = native android.app.Activity where
 
   native onWindowFocusChanged :: MutableIO Activity -> Bool -> IO ()
 
-  native onWindowStartingActionMode :: MutableIO Activity -> ActionMode_Callback -> IO ActionMode
+  native onWindowStartingActionMode :: MutableIO Activity -> ActionMode_Callback -> IOMutable ActionMode
 
   native openContextMenu :: MutableIO Activity -> MutableIO View -> IO ()
 
@@ -579,9 +247,9 @@ data Activity = native android.app.Activity where
 
   native runOnUiThread :: MutableIO Activity -> Runnable -> IO ()
 
-  native setContentView :: MutableIO Activity -> MutableIO View -> ViewGroup_LayoutParams -> IO ()
-                         | MutableIO Activity -> Int -> IO ()
-                         | MutableIO Activity -> MutableIO View -> IO ()
+  native setContentView :: MutableIO Activity -> Int -> IO ()
+          | MutableIO Activity -> MutableIO View -> ViewGroup_LayoutParams -> IO ()
+          | MutableIO Activity -> MutableIO View -> IO ()
 
   native setDefaultKeyMode :: MutableIO Activity -> Int -> IO ()
 
@@ -597,7 +265,7 @@ data Activity = native android.app.Activity where
 
   native setImmersive :: MutableIO Activity -> Bool -> IO ()
 
-  native setIntent :: MutableIO Activity -> Intent -> IO ()
+  native setIntent :: MutableIO Activity -> MutableIO Intent -> IO ()
 
   native setProgress :: MutableIO Activity -> Int -> IO ()
 
@@ -609,13 +277,13 @@ data Activity = native android.app.Activity where
 
   native setRequestedOrientation :: MutableIO Activity -> Int -> IO ()
 
-  native setResult :: MutableIO Activity -> Int -> Intent -> IO ()
-                    | MutableIO Activity -> Int -> IO ()
+  native setResult :: MutableIO Activity -> Int -> IO ()
+          | MutableIO Activity -> Int -> MutableIO Intent -> IO ()
 
   native setSecondaryProgress :: MutableIO Activity -> Int -> IO ()
 
   native setTitle :: MutableIO Activity -> CharSequence -> IO ()
-                   | MutableIO Activity -> Int -> IO ()
+          | MutableIO Activity -> Int -> IO ()
 
   native setTitleColor :: MutableIO Activity -> Int -> IO ()
 
@@ -623,44 +291,32 @@ data Activity = native android.app.Activity where
 
   native setVolumeControlStream :: MutableIO Activity -> Int -> IO ()
 
-  native shouldUpRecreateTask :: MutableIO Activity -> Intent -> IO Bool
+  native shouldUpRecreateTask :: MutableIO Activity -> MutableIO Intent -> IO Bool
 
   native showDialog :: MutableIO Activity -> Int -> Bundle -> IO Bool
-                     | MutableIO Activity -> Int -> IO ()
+          | MutableIO Activity -> Int -> IO ()
 
-  native startActionMode :: MutableIO Activity -> ActionMode_Callback -> IO ActionMode
+  native startActionMode :: MutableIO Activity -> ActionMode_Callback -> IOMutable ActionMode
 
-  native startActivities :: MutableIO Activity -> MutableIO (JArray Intent) -> Bundle -> IO ()
-                          | MutableIO Activity -> MutableIO (JArray Intent) -> IO ()
+  native startActivity :: MutableIO Activity -> MutableIO Intent -> Bundle -> IO ()
+          | MutableIO Activity -> MutableIO Intent -> IO ()
 
-  native startActivity :: MutableIO Activity -> Intent -> Bundle -> IO ()
-                        | MutableIO Activity -> Intent -> IO ()
+  native startActivityForResult :: MutableIO Activity -> MutableIO Intent -> Int -> IO ()
+          | MutableIO Activity -> MutableIO Intent -> Int -> Bundle -> IO ()
 
-  native startActivityForResult :: MutableIO Activity -> Intent -> Int -> IO ()
-                                 | MutableIO Activity -> Intent -> Int -> Bundle -> IO ()
+  native startActivityFromChild :: MutableIO Activity -> MutableIO Activity -> MutableIO Intent -> Int -> Bundle -> IO ()
+          | MutableIO Activity -> MutableIO Activity -> MutableIO Intent -> Int -> IO ()
 
-  native startActivityFromChild :: MutableIO Activity -> MutableIO Activity -> Intent -> Int -> IO ()
-                                 | MutableIO Activity -> MutableIO Activity -> Intent -> Int -> Bundle -> IO ()
+  native startActivityFromFragment :: MutableIO Activity -> MutableIO Fragment -> MutableIO Intent -> Int -> IO ()
+          | MutableIO Activity -> MutableIO Fragment -> MutableIO Intent -> Int -> Bundle -> IO ()
 
-  native startActivityFromFragment :: MutableIO Activity -> Fragment -> Intent -> Int -> Bundle -> IO ()
-                                    | MutableIO Activity -> Fragment -> Intent -> Int -> IO ()
-
-  native startActivityIfNeeded :: MutableIO Activity -> Intent -> Int -> IO Bool
-                                | MutableIO Activity -> Intent -> Int -> Bundle -> IO Bool
-
-  native startIntentSender :: MutableIO Activity -> IntentSender -> Intent -> Int -> Int -> Int -> Bundle -> IO () throws IntentSender_SendIntentException
-                            | MutableIO Activity -> IntentSender -> Intent -> Int -> Int -> Int -> IO () throws IntentSender_SendIntentException
-
-  native startIntentSenderForResult :: MutableIO Activity -> IntentSender -> Int -> Intent -> Int -> Int -> Int -> IO () throws IntentSender_SendIntentException
-                                     | MutableIO Activity -> IntentSender -> Int -> Intent -> Int -> Int -> Int -> Bundle -> IO () throws IntentSender_SendIntentException
-
-  native startIntentSenderFromChild :: MutableIO Activity -> MutableIO Activity -> IntentSender -> Int -> Intent -> Int -> Int -> Int -> IO () throws IntentSender_SendIntentException
-                                     | MutableIO Activity -> MutableIO Activity -> IntentSender -> Int -> Intent -> Int -> Int -> Int -> Bundle -> IO () throws IntentSender_SendIntentException
+  native startActivityIfNeeded :: MutableIO Activity -> MutableIO Intent -> Int -> Bundle -> IO Bool
+          | MutableIO Activity -> MutableIO Intent -> Int -> IO Bool
 
   native startManagingCursor :: MutableIO Activity -> Cursor -> IO ()
 
-  native startNextMatchingActivity :: MutableIO Activity -> Intent -> IO Bool
-                                    | MutableIO Activity -> Intent -> Bundle -> IO Bool
+  native startNextMatchingActivity :: MutableIO Activity -> MutableIO Intent -> IO Bool
+          | MutableIO Activity -> MutableIO Intent -> Bundle -> IO Bool
 
   native startSearch :: MutableIO Activity -> String -> Bool -> Bundle -> Bool -> IO ()
 
@@ -671,7 +327,6 @@ data Activity = native android.app.Activity where
   native triggerSearch :: MutableIO Activity -> String -> Bundle -> IO ()
 
   native unregisterForContextMenu :: MutableIO Activity -> MutableIO View -> IO ()
+{-  -}
 
 
-
--}

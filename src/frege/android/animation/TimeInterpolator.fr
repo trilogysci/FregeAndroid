@@ -1,16 +1,10 @@
 package frege.android.animation.TimeInterpolator where
 
+
 data TimeInterpolator = pure native android.animation.TimeInterpolator where
 
-
-  pure native getInterpolation  :: TimeInterpolator -> Float -> Float
-
-
-{-
-data TimeInterpolator = pure native android.animation.TimeInterpolator where
 
   pure native getInterpolation :: TimeInterpolator -> Float -> Float
+{-  -}
 
 
-
--}

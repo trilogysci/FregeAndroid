@@ -1,32 +1,12 @@
 package frege.android.graphics.drawable.shapes.Shape where
 
+import frege.android.graphics.Canvas
+import frege.android.graphics.Paint
 
 data Shape = pure native android.graphics.drawable.shapes.Shape where
 
 
-{-this is abstract  native new  :: ( ) -> ST s Shape-}
-
-{-   native clone  :: -- ["CloneNotSupportedException"] -- Shape -> ST s Shape throws CloneNotSupportedException -}
-
-{-   native draw  :: -- ["Canvas","Paint"] -- Shape -> Canvas -> Paint -> ST s ( ) -}
-
-  pure native getHeight  :: Shape -> Float
-
-  pure native getWidth  :: Shape -> Float
-
-  pure native hasAlpha  :: Shape -> Bool
-
-  native resize  :: Shape -> Float -> Float -> ST s ( )
-
-
-{-
-data Shape = pure native android.graphics.drawable.shapes.Shape where
-
-  native new :: () -> ST s Shape
-
-  native clone :: Shape -> ST s Shape throws CloneNotSupportedException
-
-  native draw :: Shape -> Canvas -> Paint -> ST s ()
+  native draw :: Shape -> MutableIO Canvas -> Paint -> IO ()
 
   pure native getHeight :: Shape -> Float
 
@@ -35,8 +15,6 @@ data Shape = pure native android.graphics.drawable.shapes.Shape where
   pure native hasAlpha :: Shape -> Bool
 
   native resize :: Shape -> Float -> Float -> ST s ()
+{- derive Cloneable Shape -}
 
-derive Cloneable Shape
 
-
--}

@@ -1,596 +1,10 @@
 package frege.android.content.Intent where
 
 import frege.android.graphics.Rect
+import frege.android.net.Uri
+import frege.android.os.Bundle
 
-data Intent = pure native android.content.Intent where
-
-
-  pure native action_main  android.content.Intent.ACTION_MAIN :: String
-
-  pure native action_view  android.content.Intent.ACTION_VIEW :: String
-
-  pure native action_default  android.content.Intent.ACTION_DEFAULT :: String
-
-  pure native action_attach_data  android.content.Intent.ACTION_ATTACH_DATA :: String
-
-  pure native action_edit  android.content.Intent.ACTION_EDIT :: String
-
-  pure native action_insert_or_edit  android.content.Intent.ACTION_INSERT_OR_EDIT :: String
-
-  pure native action_pick  android.content.Intent.ACTION_PICK :: String
-
-  pure native action_create_shortcut  android.content.Intent.ACTION_CREATE_SHORTCUT :: String
-
-  pure native extra_shortcut_intent  android.content.Intent.EXTRA_SHORTCUT_INTENT :: String
-
-  pure native extra_shortcut_name  android.content.Intent.EXTRA_SHORTCUT_NAME :: String
-
-  pure native extra_shortcut_icon  android.content.Intent.EXTRA_SHORTCUT_ICON :: String
-
-  pure native extra_shortcut_icon_resource  android.content.Intent.EXTRA_SHORTCUT_ICON_RESOURCE :: String
-
-  pure native action_chooser  android.content.Intent.ACTION_CHOOSER :: String
-
-  pure native action_get_content  android.content.Intent.ACTION_GET_CONTENT :: String
-
-  pure native action_dial  android.content.Intent.ACTION_DIAL :: String
-
-  pure native action_call  android.content.Intent.ACTION_CALL :: String
-
-  pure native action_sendto  android.content.Intent.ACTION_SENDTO :: String
-
-  pure native action_send  android.content.Intent.ACTION_SEND :: String
-
-  pure native action_send_multiple  android.content.Intent.ACTION_SEND_MULTIPLE :: String
-
-  pure native action_answer  android.content.Intent.ACTION_ANSWER :: String
-
-  pure native action_insert  android.content.Intent.ACTION_INSERT :: String
-
-  pure native action_paste  android.content.Intent.ACTION_PASTE :: String
-
-  pure native action_delete  android.content.Intent.ACTION_DELETE :: String
-
-  pure native action_run  android.content.Intent.ACTION_RUN :: String
-
-  pure native action_sync  android.content.Intent.ACTION_SYNC :: String
-
-  pure native action_pick_activity  android.content.Intent.ACTION_PICK_ACTIVITY :: String
-
-  pure native action_search  android.content.Intent.ACTION_SEARCH :: String
-
-  pure native action_system_tutorial  android.content.Intent.ACTION_SYSTEM_TUTORIAL :: String
-
-  pure native action_web_search  android.content.Intent.ACTION_WEB_SEARCH :: String
-
-  pure native action_assist  android.content.Intent.ACTION_ASSIST :: String
-
-  pure native extra_assist_package  android.content.Intent.EXTRA_ASSIST_PACKAGE :: String
-
-  pure native extra_assist_context  android.content.Intent.EXTRA_ASSIST_CONTEXT :: String
-
-  pure native action_all_apps  android.content.Intent.ACTION_ALL_APPS :: String
-
-  pure native action_set_wallpaper  android.content.Intent.ACTION_SET_WALLPAPER :: String
-
-  pure native action_bug_report  android.content.Intent.ACTION_BUG_REPORT :: String
-
-  pure native action_factory_test  android.content.Intent.ACTION_FACTORY_TEST :: String
-
-  pure native action_call_button  android.content.Intent.ACTION_CALL_BUTTON :: String
-
-  pure native action_voice_command  android.content.Intent.ACTION_VOICE_COMMAND :: String
-
-  pure native action_search_long_press  android.content.Intent.ACTION_SEARCH_LONG_PRESS :: String
-
-  pure native action_app_error  android.content.Intent.ACTION_APP_ERROR :: String
-
-  pure native action_power_usage_summary  android.content.Intent.ACTION_POWER_USAGE_SUMMARY :: String
-
-  pure native action_manage_network_usage  android.content.Intent.ACTION_MANAGE_NETWORK_USAGE :: String
-
-  pure native action_install_package  android.content.Intent.ACTION_INSTALL_PACKAGE :: String
-
-  pure native extra_installer_package_name  android.content.Intent.EXTRA_INSTALLER_PACKAGE_NAME :: String
-
-  pure native extra_not_unknown_source  android.content.Intent.EXTRA_NOT_UNKNOWN_SOURCE :: String
-
-  pure native extra_originating_uri  android.content.Intent.EXTRA_ORIGINATING_URI :: String
-
-  pure native extra_referrer  android.content.Intent.EXTRA_REFERRER :: String
-
-  pure native extra_allow_replace  android.content.Intent.EXTRA_ALLOW_REPLACE :: String
-
-  pure native extra_return_result  android.content.Intent.EXTRA_RETURN_RESULT :: String
-
-  pure native action_uninstall_package  android.content.Intent.ACTION_UNINSTALL_PACKAGE :: String
-
-  pure native action_screen_off  android.content.Intent.ACTION_SCREEN_OFF :: String
-
-  pure native action_screen_on  android.content.Intent.ACTION_SCREEN_ON :: String
-
-  pure native action_dreaming_stopped  android.content.Intent.ACTION_DREAMING_STOPPED :: String
-
-  pure native action_dreaming_started  android.content.Intent.ACTION_DREAMING_STARTED :: String
-
-  pure native action_user_present  android.content.Intent.ACTION_USER_PRESENT :: String
-
-  pure native action_time_tick  android.content.Intent.ACTION_TIME_TICK :: String
-
-  pure native action_time_changed  android.content.Intent.ACTION_TIME_CHANGED :: String
-
-  pure native action_date_changed  android.content.Intent.ACTION_DATE_CHANGED :: String
-
-  pure native action_timezone_changed  android.content.Intent.ACTION_TIMEZONE_CHANGED :: String
-
-  pure native action_boot_completed  android.content.Intent.ACTION_BOOT_COMPLETED :: String
-
-  pure native action_close_system_dialogs  android.content.Intent.ACTION_CLOSE_SYSTEM_DIALOGS :: String
-
-  pure native action_package_install  android.content.Intent.ACTION_PACKAGE_INSTALL :: String
-
-  pure native action_package_added  android.content.Intent.ACTION_PACKAGE_ADDED :: String
-
-  pure native action_package_replaced  android.content.Intent.ACTION_PACKAGE_REPLACED :: String
-
-  pure native action_my_package_replaced  android.content.Intent.ACTION_MY_PACKAGE_REPLACED :: String
-
-  pure native action_package_removed  android.content.Intent.ACTION_PACKAGE_REMOVED :: String
-
-  pure native action_package_fully_removed  android.content.Intent.ACTION_PACKAGE_FULLY_REMOVED :: String
-
-  pure native action_package_changed  android.content.Intent.ACTION_PACKAGE_CHANGED :: String
-
-  pure native action_package_restarted  android.content.Intent.ACTION_PACKAGE_RESTARTED :: String
-
-  pure native action_package_data_cleared  android.content.Intent.ACTION_PACKAGE_DATA_CLEARED :: String
-
-  pure native action_uid_removed  android.content.Intent.ACTION_UID_REMOVED :: String
-
-  pure native action_package_first_launch  android.content.Intent.ACTION_PACKAGE_FIRST_LAUNCH :: String
-
-  pure native action_package_needs_verification  android.content.Intent.ACTION_PACKAGE_NEEDS_VERIFICATION :: String
-
-  pure native action_package_verified  android.content.Intent.ACTION_PACKAGE_VERIFIED :: String
-
-  pure native action_external_applications_available  android.content.Intent.ACTION_EXTERNAL_APPLICATIONS_AVAILABLE :: String
-
-  pure native action_external_applications_unavailable  android.content.Intent.ACTION_EXTERNAL_APPLICATIONS_UNAVAILABLE :: String
-
-  pure native action_wallpaper_changed  android.content.Intent.ACTION_WALLPAPER_CHANGED :: String
-
-  pure native action_configuration_changed  android.content.Intent.ACTION_CONFIGURATION_CHANGED :: String
-
-  pure native action_locale_changed  android.content.Intent.ACTION_LOCALE_CHANGED :: String
-
-  pure native action_battery_changed  android.content.Intent.ACTION_BATTERY_CHANGED :: String
-
-  pure native action_battery_low  android.content.Intent.ACTION_BATTERY_LOW :: String
-
-  pure native action_battery_okay  android.content.Intent.ACTION_BATTERY_OKAY :: String
-
-  pure native action_power_connected  android.content.Intent.ACTION_POWER_CONNECTED :: String
-
-  pure native action_power_disconnected  android.content.Intent.ACTION_POWER_DISCONNECTED :: String
-
-  pure native action_shutdown  android.content.Intent.ACTION_SHUTDOWN :: String
-
-  pure native action_device_storage_low  android.content.Intent.ACTION_DEVICE_STORAGE_LOW :: String
-
-  pure native action_device_storage_ok  android.content.Intent.ACTION_DEVICE_STORAGE_OK :: String
-
-  pure native action_manage_package_storage  android.content.Intent.ACTION_MANAGE_PACKAGE_STORAGE :: String
-
-  pure native action_ums_connected  android.content.Intent.ACTION_UMS_CONNECTED :: String
-
-  pure native action_ums_disconnected  android.content.Intent.ACTION_UMS_DISCONNECTED :: String
-
-  pure native action_media_removed  android.content.Intent.ACTION_MEDIA_REMOVED :: String
-
-  pure native action_media_unmounted  android.content.Intent.ACTION_MEDIA_UNMOUNTED :: String
-
-  pure native action_media_checking  android.content.Intent.ACTION_MEDIA_CHECKING :: String
-
-  pure native action_media_nofs  android.content.Intent.ACTION_MEDIA_NOFS :: String
-
-  pure native action_media_mounted  android.content.Intent.ACTION_MEDIA_MOUNTED :: String
-
-  pure native action_media_shared  android.content.Intent.ACTION_MEDIA_SHARED :: String
-
-  pure native action_media_bad_removal  android.content.Intent.ACTION_MEDIA_BAD_REMOVAL :: String
-
-  pure native action_media_unmountable  android.content.Intent.ACTION_MEDIA_UNMOUNTABLE :: String
-
-  pure native action_media_eject  android.content.Intent.ACTION_MEDIA_EJECT :: String
-
-  pure native action_media_scanner_started  android.content.Intent.ACTION_MEDIA_SCANNER_STARTED :: String
-
-  pure native action_media_scanner_finished  android.content.Intent.ACTION_MEDIA_SCANNER_FINISHED :: String
-
-  pure native action_media_scanner_scan_file  android.content.Intent.ACTION_MEDIA_SCANNER_SCAN_FILE :: String
-
-  pure native action_media_button  android.content.Intent.ACTION_MEDIA_BUTTON :: String
-
-  pure native action_camera_button  android.content.Intent.ACTION_CAMERA_BUTTON :: String
-
-  pure native action_gtalk_service_connected  android.content.Intent.ACTION_GTALK_SERVICE_CONNECTED :: String
-
-  pure native action_gtalk_service_disconnected  android.content.Intent.ACTION_GTALK_SERVICE_DISCONNECTED :: String
-
-  pure native action_input_method_changed  android.content.Intent.ACTION_INPUT_METHOD_CHANGED :: String
-
-  pure native action_airplane_mode_changed  android.content.Intent.ACTION_AIRPLANE_MODE_CHANGED :: String
-
-  pure native action_provider_changed  android.content.Intent.ACTION_PROVIDER_CHANGED :: String
-
-  pure native action_headset_plug  android.content.Intent.ACTION_HEADSET_PLUG :: String
-
-  pure native action_new_outgoing_call  android.content.Intent.ACTION_NEW_OUTGOING_CALL :: String
-
-  pure native action_reboot  android.content.Intent.ACTION_REBOOT :: String
-
-  pure native action_dock_event  android.content.Intent.ACTION_DOCK_EVENT :: String
-
-  pure native action_get_restriction_entries  android.content.Intent.ACTION_GET_RESTRICTION_ENTRIES :: String
-
-  pure native action_user_initialize  android.content.Intent.ACTION_USER_INITIALIZE :: String
-
-  pure native action_user_foreground  android.content.Intent.ACTION_USER_FOREGROUND :: String
-
-  pure native action_user_background  android.content.Intent.ACTION_USER_BACKGROUND :: String
-
-  pure native action_quick_clock  android.content.Intent.ACTION_QUICK_CLOCK :: String
-
-  pure native action_open_document  android.content.Intent.ACTION_OPEN_DOCUMENT :: String
-
-  pure native action_create_document  android.content.Intent.ACTION_CREATE_DOCUMENT :: String
-
-  pure native category_default  android.content.Intent.CATEGORY_DEFAULT :: String
-
-  pure native category_browsable  android.content.Intent.CATEGORY_BROWSABLE :: String
-
-  pure native category_alternative  android.content.Intent.CATEGORY_ALTERNATIVE :: String
-
-  pure native category_selected_alternative  android.content.Intent.CATEGORY_SELECTED_ALTERNATIVE :: String
-
-  pure native category_tab  android.content.Intent.CATEGORY_TAB :: String
-
-  pure native category_launcher  android.content.Intent.CATEGORY_LAUNCHER :: String
-
-  pure native category_info  android.content.Intent.CATEGORY_INFO :: String
-
-  pure native category_home  android.content.Intent.CATEGORY_HOME :: String
-
-  pure native category_preference  android.content.Intent.CATEGORY_PREFERENCE :: String
-
-  pure native category_development_preference  android.content.Intent.CATEGORY_DEVELOPMENT_PREFERENCE :: String
-
-  pure native category_embed  android.content.Intent.CATEGORY_EMBED :: String
-
-  pure native category_app_market  android.content.Intent.CATEGORY_APP_MARKET :: String
-
-  pure native category_monkey  android.content.Intent.CATEGORY_MONKEY :: String
-
-  pure native category_test  android.content.Intent.CATEGORY_TEST :: String
-
-  pure native category_unit_test  android.content.Intent.CATEGORY_UNIT_TEST :: String
-
-  pure native category_sample_code  android.content.Intent.CATEGORY_SAMPLE_CODE :: String
-
-  pure native category_openable  android.content.Intent.CATEGORY_OPENABLE :: String
-
-  pure native category_framework_instrumentation_test  android.content.Intent.CATEGORY_FRAMEWORK_INSTRUMENTATION_TEST :: String
-
-  pure native category_car_dock  android.content.Intent.CATEGORY_CAR_DOCK :: String
-
-  pure native category_desk_dock  android.content.Intent.CATEGORY_DESK_DOCK :: String
-
-  pure native category_le_desk_dock  android.content.Intent.CATEGORY_LE_DESK_DOCK :: String
-
-  pure native category_he_desk_dock  android.content.Intent.CATEGORY_HE_DESK_DOCK :: String
-
-  pure native category_car_mode  android.content.Intent.CATEGORY_CAR_MODE :: String
-
-  pure native category_app_browser  android.content.Intent.CATEGORY_APP_BROWSER :: String
-
-  pure native category_app_calculator  android.content.Intent.CATEGORY_APP_CALCULATOR :: String
-
-  pure native category_app_calendar  android.content.Intent.CATEGORY_APP_CALENDAR :: String
-
-  pure native category_app_contacts  android.content.Intent.CATEGORY_APP_CONTACTS :: String
-
-  pure native category_app_email  android.content.Intent.CATEGORY_APP_EMAIL :: String
-
-  pure native category_app_gallery  android.content.Intent.CATEGORY_APP_GALLERY :: String
-
-  pure native category_app_maps  android.content.Intent.CATEGORY_APP_MAPS :: String
-
-  pure native category_app_messaging  android.content.Intent.CATEGORY_APP_MESSAGING :: String
-
-  pure native category_app_music  android.content.Intent.CATEGORY_APP_MUSIC :: String
-
-  pure native extra_template  android.content.Intent.EXTRA_TEMPLATE :: String
-
-  pure native extra_text  android.content.Intent.EXTRA_TEXT :: String
-
-  pure native extra_html_text  android.content.Intent.EXTRA_HTML_TEXT :: String
-
-  pure native extra_stream  android.content.Intent.EXTRA_STREAM :: String
-
-  pure native extra_email  android.content.Intent.EXTRA_EMAIL :: String
-
-  pure native extra_cc  android.content.Intent.EXTRA_CC :: String
-
-  pure native extra_bcc  android.content.Intent.EXTRA_BCC :: String
-
-  pure native extra_subject  android.content.Intent.EXTRA_SUBJECT :: String
-
-  pure native extra_intent  android.content.Intent.EXTRA_INTENT :: String
-
-  pure native extra_title  android.content.Intent.EXTRA_TITLE :: String
-
-  pure native extra_initial_intents  android.content.Intent.EXTRA_INITIAL_INTENTS :: String
-
-  pure native extra_key_event  android.content.Intent.EXTRA_KEY_EVENT :: String
-
-  pure native extra_dont_kill_app  android.content.Intent.EXTRA_DONT_KILL_APP :: String
-
-  pure native extra_phone_number  android.content.Intent.EXTRA_PHONE_NUMBER :: String
-
-  pure native extra_uid  android.content.Intent.EXTRA_UID :: String
-
-  pure native extra_data_removed  android.content.Intent.EXTRA_DATA_REMOVED :: String
-
-  pure native extra_replacing  android.content.Intent.EXTRA_REPLACING :: String
-
-  pure native extra_alarm_count  android.content.Intent.EXTRA_ALARM_COUNT :: String
-
-  pure native extra_dock_state  android.content.Intent.EXTRA_DOCK_STATE :: String
-
-  pure native extra_dock_state_undocked  android.content.Intent.EXTRA_DOCK_STATE_UNDOCKED :: Int
-
-  pure native extra_dock_state_desk  android.content.Intent.EXTRA_DOCK_STATE_DESK :: Int
-
-  pure native extra_dock_state_car  android.content.Intent.EXTRA_DOCK_STATE_CAR :: Int
-
-  pure native extra_dock_state_le_desk  android.content.Intent.EXTRA_DOCK_STATE_LE_DESK :: Int
-
-  pure native extra_dock_state_he_desk  android.content.Intent.EXTRA_DOCK_STATE_HE_DESK :: Int
-
-  pure native metadata_dock_home  android.content.Intent.METADATA_DOCK_HOME :: String
-
-  pure native extra_bug_report  android.content.Intent.EXTRA_BUG_REPORT :: String
-
-  pure native extra_remote_intent_token  android.content.Intent.EXTRA_REMOTE_INTENT_TOKEN :: String
-
-  pure native extra_changed_component_name  android.content.Intent.EXTRA_CHANGED_COMPONENT_NAME :: String
-
-  pure native extra_changed_component_name_list  android.content.Intent.EXTRA_CHANGED_COMPONENT_NAME_LIST :: String
-
-  pure native extra_changed_package_list  android.content.Intent.EXTRA_CHANGED_PACKAGE_LIST :: String
-
-  pure native extra_changed_uid_list  android.content.Intent.EXTRA_CHANGED_UID_LIST :: String
-
-  pure native extra_local_only  android.content.Intent.EXTRA_LOCAL_ONLY :: String
-
-  pure native extra_allow_multiple  android.content.Intent.EXTRA_ALLOW_MULTIPLE :: String
-
-  pure native extra_restrictions_list  android.content.Intent.EXTRA_RESTRICTIONS_LIST :: String
-
-  pure native extra_restrictions_bundle  android.content.Intent.EXTRA_RESTRICTIONS_BUNDLE :: String
-
-  pure native extra_restrictions_intent  android.content.Intent.EXTRA_RESTRICTIONS_INTENT :: String
-
-  pure native extra_mime_types  android.content.Intent.EXTRA_MIME_TYPES :: String
-
-  pure native extra_shutdown_userspace_only  android.content.Intent.EXTRA_SHUTDOWN_USERSPACE_ONLY :: String
-
-  pure native flag_grant_read_uri_permission  android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION :: Int
-
-  pure native flag_grant_write_uri_permission  android.content.Intent.FLAG_GRANT_WRITE_URI_PERMISSION :: Int
-
-  pure native flag_from_background  android.content.Intent.FLAG_FROM_BACKGROUND :: Int
-
-  pure native flag_debug_log_resolution  android.content.Intent.FLAG_DEBUG_LOG_RESOLUTION :: Int
-
-  pure native flag_exclude_stopped_packages  android.content.Intent.FLAG_EXCLUDE_STOPPED_PACKAGES :: Int
-
-  pure native flag_include_stopped_packages  android.content.Intent.FLAG_INCLUDE_STOPPED_PACKAGES :: Int
-
-  pure native flag_grant_persistable_uri_permission  android.content.Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION :: Int
-
-  pure native flag_activity_no_history  android.content.Intent.FLAG_ACTIVITY_NO_HISTORY :: Int
-
-  pure native flag_activity_single_top  android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP :: Int
-
-  pure native flag_activity_new_task  android.content.Intent.FLAG_ACTIVITY_NEW_TASK :: Int
-
-  pure native flag_activity_multiple_task  android.content.Intent.FLAG_ACTIVITY_MULTIPLE_TASK :: Int
-
-  pure native flag_activity_clear_top  android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP :: Int
-
-  pure native flag_activity_forward_result  android.content.Intent.FLAG_ACTIVITY_FORWARD_RESULT :: Int
-
-  pure native flag_activity_previous_is_top  android.content.Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP :: Int
-
-  pure native flag_activity_exclude_from_recents  android.content.Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS :: Int
-
-  pure native flag_activity_brought_to_front  android.content.Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT :: Int
-
-  pure native flag_activity_reset_task_if_needed  android.content.Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED :: Int
-
-  pure native flag_activity_launched_from_history  android.content.Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY :: Int
-
-  pure native flag_activity_clear_when_task_reset  android.content.Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET :: Int
-
-  pure native flag_activity_no_user_action  android.content.Intent.FLAG_ACTIVITY_NO_USER_ACTION :: Int
-
-  pure native flag_activity_reorder_to_front  android.content.Intent.FLAG_ACTIVITY_REORDER_TO_FRONT :: Int
-
-  pure native flag_activity_no_animation  android.content.Intent.FLAG_ACTIVITY_NO_ANIMATION :: Int
-
-  pure native flag_activity_clear_task  android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK :: Int
-
-  pure native flag_activity_task_on_home  android.content.Intent.FLAG_ACTIVITY_TASK_ON_HOME :: Int
-
-  pure native flag_receiver_registered_only  android.content.Intent.FLAG_RECEIVER_REGISTERED_ONLY :: Int
-
-  pure native flag_receiver_replace_pending  android.content.Intent.FLAG_RECEIVER_REPLACE_PENDING :: Int
-
-  pure native flag_receiver_foreground  android.content.Intent.FLAG_RECEIVER_FOREGROUND :: Int
-
-  pure native flag_receiver_no_abort  android.content.Intent.FLAG_RECEIVER_NO_ABORT :: Int
-
-  pure native uri_intent_scheme  android.content.Intent.URI_INTENT_SCHEME :: Int
-
-  pure native fill_in_action  android.content.Intent.FILL_IN_ACTION :: Int
-
-  pure native fill_in_data  android.content.Intent.FILL_IN_DATA :: Int
-
-  pure native fill_in_categories  android.content.Intent.FILL_IN_CATEGORIES :: Int
-
-  pure native fill_in_component  android.content.Intent.FILL_IN_COMPONENT :: Int
-
-  pure native fill_in_package  android.content.Intent.FILL_IN_PACKAGE :: Int
-
-  pure native fill_in_source_bounds  android.content.Intent.FILL_IN_SOURCE_BOUNDS :: Int
-
-  pure native fill_in_selector  android.content.Intent.FILL_IN_SELECTOR :: Int
-
-  pure native fill_in_clip_data  android.content.Intent.FILL_IN_CLIP_DATA :: Int
-
-{-   pure native creator  android.content.Intent.CREATOR :: -- ["Parcelable_Creator"] -- Parcelable_Creator Intent -}
-
-  native new  :: -- ["Class","Uri"] -- String -> Uri -> Context -> Class Object -> ST s Intent
-        -- ["Class"] -- Context -> Class Object -> ST s Intent
-        -- ["Uri"] -- String -> Uri -> ST s Intent
-        ( ) -> ST s Intent
-        | Intent -> ST s Intent
-        | String -> ST s Intent
-
-  pure native addCategory  :: Intent -> String -> Intent
-
-  pure native addFlags  :: Intent -> Int -> Intent
-
-  pure native clone  :: Intent -> Object
-
-  pure native cloneFilter  :: Intent -> Intent
-
-  pure native createChooser  android.content.Intent.createChooser :: Intent -> CharSequence -> Intent
-
-  pure native describeContents  :: Intent -> Int
-
-  pure native fillIn  :: Intent -> Intent -> Int -> Int
-
-  pure native filterEquals  :: Intent -> Intent -> Bool
-
-  pure native filterHashCode  :: Intent -> Int
-
-  pure native getAction  :: Intent -> String
-
-{-   native getBooleanArrayExtra  :: -- ["JArray"] -- Intent -> String -> STMutable s ( JArray Bool ) -}
-
-  pure native getBooleanExtra  :: Intent -> String -> Bool -> Bool
-
-{-   pure native getBundleExtra  :: -- ["Bundle"] -- Intent -> String -> Bundle -}
-
-{-   native getByteArrayExtra  :: -- ["Byte","JArray"] -- Intent -> String -> STMutable s ( JArray Byte ) -}
-
-{-   pure native getByteExtra  :: -- ["Byte"] -- Intent -> String -> Byte -> Byte -}
-
-{-   native getCategories  :: -- ["Set"] -- Intent -> STMutable s ( Set String ) -}
-
-{-   native getCharArrayExtra  :: -- ["Char","JArray"] -- Intent -> String -> STMutable s ( JArray Char ) -}
-
-{-   pure native getCharExtra  :: -- ["Char"] -- Intent -> String -> Char -> Char -}
-
-{-   native getCharSequenceArrayExtra  :: -- ["JArray"] -- Intent -> String -> STMutable s ( JArray CharSequence ) -}
-
-{-   native getCharSequenceArrayListExtra  :: -- ["ArrayList"] -- Intent -> String -> STMutable s ( ArrayList CharSequence ) -}
-
-  pure native getCharSequenceExtra  :: Intent -> String -> CharSequence
-
-{-   pure native getClipData  :: -- ["ClipData"] -- Intent -> ClipData -}
-
-{-   pure native getComponent  :: -- ["ComponentName"] -- Intent -> ComponentName -}
-
-{-   pure native getData  :: -- ["Uri"] -- Intent -> Uri -}
-
-  pure native getDataString  :: Intent -> String
-
-{-   native getDoubleArrayExtra  :: -- ["JArray"] -- Intent -> String -> STMutable s ( JArray Double ) -}
-
-  pure native getDoubleExtra  :: Intent -> String -> Double -> Double
-
-{-   pure native getExtras  :: -- ["Bundle"] -- Intent -> Bundle -}
-
-  pure native getFlags  :: Intent -> Int
-
-{-   native getFloatArrayExtra  :: -- ["JArray"] -- Intent -> String -> STMutable s ( JArray Float ) -}
-
-  pure native getFloatExtra  :: Intent -> String -> Float -> Float
-
-{-   native getIntArrayExtra  :: -- ["JArray"] -- Intent -> String -> STMutable s ( JArray Int ) -}
-
-  pure native getIntExtra  :: Intent -> String -> Int -> Int
-
-{-   native getIntegerArrayListExtra  :: -- ["ArrayList","Integer"] -- Intent -> String -> STMutable s ( ArrayList Integer ) -}
-
-{-   native getIntent  android.content.Intent.getIntent :: -- ["URISyntaxException"] -- String -> ST s Intent throws URISyntaxException -}
-
-{-   native getIntentOld  android.content.Intent.getIntentOld :: -- ["URISyntaxException"] -- String -> ST s Intent throws URISyntaxException -}
-
-{-   native getLongArrayExtra  :: -- ["JArray"] -- Intent -> String -> STMutable s ( JArray Long ) -}
-
-  pure native getLongExtra  :: Intent -> String -> Long -> Long
-
-  pure native getPackage  :: Intent -> String
-
-{-   native getParcelableArrayExtra  :: -- ["JArray","Parcelable"] -- Intent -> String -> STMutable s ( JArray Parcelable ) -}
-
-{-   native getParcelableArrayListExtra  :: -- ["ArrayList"] -- Intent -> String -> STMutable s ( ArrayList t ) -}
-
-  pure native getParcelableExtra  :: Intent -> String -> t
-
-  pure native getScheme  :: Intent -> String
-
-  pure native getSelector  :: Intent -> Intent
-
-{-   pure native getSerializableExtra  :: -- ["Serializable"] -- Intent -> String -> Serializable -}
-
-{-   native getShortArrayExtra  :: -- ["JArray","Short"] -- Intent -> String -> STMutable s ( JArray Short ) -}
-
-{-   pure native getShortExtra  :: -- ["Short"] -- Intent -> String -> Short -> Short -}
-
-  native getSourceBounds  :: Intent -> STMutable s Rect
-
-{-   native getStringArrayExtra  :: -- ["JArray"] -- Intent -> String -> STMutable s ( JArray String ) -}
-
-{-   native getStringArrayListExtra  :: -- ["ArrayList"] -- Intent -> String -> STMutable s ( ArrayList String ) -}
-
-  pure native getStringExtra  :: Intent -> String -> String
-
-  pure native getType  :: Intent -> String
-
-  pure native hasCategory  :: Intent -> String -> Bool
-
-  pure native hasExtra  :: Intent -> String -> Bool
-
-  pure native hasFileDescriptors  :: Intent -> Bool
-
-{-   pure native makeMainActivity  android.content.Intent.makeMainActivity :: -- ["ComponentName"] -- ComponentName -> Intent -}
-
-  pure native makeMainSelectorActivity  android.content.Intent.makeMainSelectorActivity :: String -> String -> Intent
-
-{-   pure native makeRestartActivityTask  android.content.Intent.makeRestartActivityTask :: -- ["ComponentName"] -- ComponentName -> Intent -}
-
-  pure native normalizeMimeType  android.content.Intent.normalizeMimeType :: String -> String
-
-{-   native parseIntent  android.content.Intent.parseIntent :: -- ["Resources","XmlPullParser","XmlPullParserException"] -- Resources -> XmlPullParser -> AttributeSet -> ST s Intent throws XmlPullParserException -}
-
-
-{-
-data Intent = pure native android.content.Intent where
+data Intent =  native android.content.Intent where
 
   pure native action_main android.content.Intent.ACTION_MAIN :: String
   pure native action_view android.content.Intent.ACTION_VIEW :: String
@@ -819,233 +233,128 @@ data Intent = pure native android.content.Intent where
   pure native fill_in_source_bounds android.content.Intent.FILL_IN_SOURCE_BOUNDS :: Int
   pure native fill_in_selector android.content.Intent.FILL_IN_SELECTOR :: Int
   pure native fill_in_clip_data android.content.Intent.FILL_IN_CLIP_DATA :: Int
-  pure native creator android.content.Intent.CREATOR :: Parcelable_Creator Intent
+  native new :: String -> Uri -> IOMutable Intent
+              | () -> IOMutable Intent
+              | MutableIO Intent -> IOMutable Intent
+              | String -> IOMutable Intent
 
-  native new :: String -> Uri -> Context -> Class Object -> ST s Intent
-              | Context -> Class Object -> ST s Intent
-              | String -> Uri -> ST s Intent
-              | () -> ST s Intent
-              | Intent -> ST s Intent
-              | String -> ST s Intent
+  native addCategory :: MutableIO Intent -> String -> IOMutable Intent
 
-  pure native addCategory :: Intent -> String -> Intent
+  native addFlags :: MutableIO Intent -> Int -> IOMutable Intent
 
-  pure native addFlags :: Intent -> Int -> Intent
+  native clone :: MutableIO Intent -> IO Object
 
-  pure native clone :: Intent -> Object
+  native cloneFilter :: MutableIO Intent -> IOMutable Intent
 
-  pure native cloneFilter :: Intent -> Intent
+  native createChooser android.content.Intent.createChooser :: MutableIO Intent -> CharSequence -> IOMutable Intent
 
-  pure native createChooser android.content.Intent.createChooser :: Intent -> CharSequence -> Intent
+  native describeContents :: MutableIO Intent -> IO Int
 
-  pure native describeContents :: Intent -> Int
+  native fillIn :: MutableIO Intent -> MutableIO Intent -> Int -> IO Int
 
-  pure native fillIn :: Intent -> Intent -> Int -> Int
+  native filterEquals :: MutableIO Intent -> MutableIO Intent -> IO Bool
 
-  pure native filterEquals :: Intent -> Intent -> Bool
+  native filterHashCode :: MutableIO Intent -> IO Int
 
-  pure native filterHashCode :: Intent -> Int
+  native getAction :: MutableIO Intent -> IO String
 
-  pure native getAction :: Intent -> String
+  native getBooleanExtra :: MutableIO Intent -> String -> Bool -> IO Bool
 
-  native getBooleanArrayExtra :: Intent -> String -> STMutable s (JArray Bool)
+  native getBundleExtra :: MutableIO Intent -> String -> IO Bundle
 
-  pure native getBooleanExtra :: Intent -> String -> Bool -> Bool
+  native getCharExtra :: MutableIO Intent -> String -> Char -> IO Char
 
-  pure native getBundleExtra :: Intent -> String -> Bundle
+  native getCharSequenceExtra :: MutableIO Intent -> String -> IO CharSequence
 
-  native getByteArrayExtra :: Intent -> String -> STMutable s (JArray Byte)
+  native getData :: MutableIO Intent -> IO Uri
 
-  pure native getByteExtra :: Intent -> String -> Byte -> Byte
+  native getDataString :: MutableIO Intent -> IO String
 
-  native getCategories :: Intent -> STMutable s (Set String)
+  native getDoubleExtra :: MutableIO Intent -> String -> Double -> IO Double
 
-  native getCharArrayExtra :: Intent -> String -> STMutable s (JArray Char)
+  native getExtras :: MutableIO Intent -> IO Bundle
 
-  pure native getCharExtra :: Intent -> String -> Char -> Char
+  native getFlags :: MutableIO Intent -> IO Int
 
-  native getCharSequenceArrayExtra :: Intent -> String -> STMutable s (JArray CharSequence)
+  native getFloatExtra :: MutableIO Intent -> String -> Float -> IO Float
 
-  native getCharSequenceArrayListExtra :: Intent -> String -> STMutable s (ArrayList CharSequence)
+  native getIntExtra :: MutableIO Intent -> String -> Int -> IO Int
 
-  pure native getCharSequenceExtra :: Intent -> String -> CharSequence
+  native getLongExtra :: MutableIO Intent -> String -> Long -> IO Long
 
-  pure native getClipData :: Intent -> ClipData
+  native getPackage :: MutableIO Intent -> IO String
 
-  pure native getComponent :: Intent -> ComponentName
+  native getParcelableExtra :: MutableIO Intent -> String -> IO t
 
-  pure native getData :: Intent -> Uri
+  native getScheme :: MutableIO Intent -> IO String
 
-  pure native getDataString :: Intent -> String
+  native getSelector :: MutableIO Intent -> IOMutable Intent
 
-  native getDoubleArrayExtra :: Intent -> String -> STMutable s (JArray Double)
+  native getSourceBounds :: MutableIO Intent -> IOMutable Rect
 
-  pure native getDoubleExtra :: Intent -> String -> Double -> Double
+  native getStringExtra :: MutableIO Intent -> String -> IO String
 
-  pure native getExtras :: Intent -> Bundle
+  native getType :: MutableIO Intent -> IO String
 
-  pure native getFlags :: Intent -> Int
+  native hasCategory :: MutableIO Intent -> String -> IO Bool
 
-  native getFloatArrayExtra :: Intent -> String -> STMutable s (JArray Float)
+  native hasExtra :: MutableIO Intent -> String -> IO Bool
 
-  pure native getFloatExtra :: Intent -> String -> Float -> Float
+  native hasFileDescriptors :: MutableIO Intent -> IO Bool
 
-  native getIntArrayExtra :: Intent -> String -> STMutable s (JArray Int)
-
-  pure native getIntExtra :: Intent -> String -> Int -> Int
-
-  native getIntegerArrayListExtra :: Intent -> String -> STMutable s (ArrayList Integer)
-
-  native getIntent android.content.Intent.getIntent :: String -> ST s Intent throws URISyntaxException
-
-  native getIntentOld android.content.Intent.getIntentOld :: String -> ST s Intent throws URISyntaxException
-
-  native getLongArrayExtra :: Intent -> String -> STMutable s (JArray Long)
-
-  pure native getLongExtra :: Intent -> String -> Long -> Long
-
-  pure native getPackage :: Intent -> String
-
-  native getParcelableArrayExtra :: Intent -> String -> STMutable s (JArray Parcelable)
-
-  native getParcelableArrayListExtra :: Intent -> String -> STMutable s (ArrayList t)
-
-  pure native getParcelableExtra :: Intent -> String -> t
-
-  pure native getScheme :: Intent -> String
-
-  pure native getSelector :: Intent -> Intent
-
-  pure native getSerializableExtra :: Intent -> String -> Serializable
-
-  native getShortArrayExtra :: Intent -> String -> STMutable s (JArray Short)
-
-  pure native getShortExtra :: Intent -> String -> Short -> Short
-
-  native getSourceBounds :: Intent -> STMutable s Rect
-
-  native getStringArrayExtra :: Intent -> String -> STMutable s (JArray String)
-
-  native getStringArrayListExtra :: Intent -> String -> STMutable s (ArrayList String)
-
-  pure native getStringExtra :: Intent -> String -> String
-
-  pure native getType :: Intent -> String
-
-  pure native hasCategory :: Intent -> String -> Bool
-
-  pure native hasExtra :: Intent -> String -> Bool
-
-  pure native hasFileDescriptors :: Intent -> Bool
-
-  pure native makeMainActivity android.content.Intent.makeMainActivity :: ComponentName -> Intent
-
-  pure native makeMainSelectorActivity android.content.Intent.makeMainSelectorActivity :: String -> String -> Intent
-
-  pure native makeRestartActivityTask android.content.Intent.makeRestartActivityTask :: ComponentName -> Intent
+  native makeMainSelectorActivity android.content.Intent.makeMainSelectorActivity :: String -> String -> IOMutable Intent
 
   pure native normalizeMimeType android.content.Intent.normalizeMimeType :: String -> String
 
-  native parseIntent android.content.Intent.parseIntent :: Resources -> XmlPullParser -> AttributeSet -> ST s Intent throws XmlPullParserException, IOException
+  native putExtra :: MutableIO Intent -> String -> CharSequence -> IOMutable Intent
+          | MutableIO Intent -> String -> String -> IOMutable Intent
+          | MutableIO Intent -> String -> Bundle -> IOMutable Intent
+          | MutableIO Intent -> String -> Int -> IOMutable Intent
+          | MutableIO Intent -> String -> Char -> IOMutable Intent
+          | MutableIO Intent -> String -> Bool -> IOMutable Intent
+          | MutableIO Intent -> String -> Float -> IOMutable Intent
+          | MutableIO Intent -> String -> Double -> IOMutable Intent
+          | MutableIO Intent -> String -> Long -> IOMutable Intent
 
-  native parseUri android.content.Intent.parseUri :: String -> Int -> ST s Intent throws URISyntaxException
+  native putExtras :: MutableIO Intent -> MutableIO Intent -> IOMutable Intent
+          | MutableIO Intent -> Bundle -> IOMutable Intent
 
-  native putCharSequenceArrayListExtra :: Intent -> String -> Mutable s (ArrayList CharSequence) -> ST s Intent
+  native removeCategory :: MutableIO Intent -> String -> IO ()
 
-  native putExtra :: Intent -> String -> Mutable s (JArray Byte) -> ST s Intent
-                   | Intent -> String -> Mutable s (JArray Char) -> ST s Intent
-                   | Intent -> String -> Mutable s (JArray Short) -> ST s Intent
-                   | Intent -> String -> Mutable s (JArray Bool) -> ST s Intent
-                   | Intent -> String -> Serializable -> ST s Intent
-                   | Intent -> String -> Parcelable -> ST s Intent
-                   | Intent -> String -> CharSequence -> ST s Intent
-                   | Intent -> String -> String -> ST s Intent
-                   | Intent -> String -> Mutable s (JArray Float) -> ST s Intent
-                   | Intent -> String -> Mutable s (JArray Double) -> ST s Intent
-                   | Intent -> String -> Mutable s (JArray String) -> ST s Intent
-                   | Intent -> String -> Mutable s (JArray CharSequence) -> ST s Intent
-                   | Intent -> String -> Mutable s (JArray Long) -> ST s Intent
-                   | Intent -> String -> Bundle -> ST s Intent
-                   | Intent -> String -> Mutable s (JArray Int) -> ST s Intent
-                   | Intent -> String -> Char -> ST s Intent
-                   | Intent -> String -> Short -> ST s Intent
-                   | Intent -> String -> Int -> ST s Intent
-                   | Intent -> String -> Long -> ST s Intent
-                   | Intent -> String -> Byte -> ST s Intent
-                   | Intent -> String -> Bool -> ST s Intent
-                   | Intent -> String -> Mutable s (JArray Parcelable) -> ST s Intent
-                   | Intent -> String -> Double -> ST s Intent
-                   | Intent -> String -> Float -> ST s Intent
+  native removeExtra :: MutableIO Intent -> String -> IO ()
 
-  pure native putExtras :: Intent -> Intent -> Intent
-                         | Intent -> Bundle -> Intent
+  native replaceExtras :: MutableIO Intent -> MutableIO Intent -> IOMutable Intent
+          | MutableIO Intent -> Bundle -> IOMutable Intent
 
-  native putIntegerArrayListExtra :: Intent -> String -> Mutable s (ArrayList Integer) -> ST s Intent
+  native setAction :: MutableIO Intent -> String -> IOMutable Intent
 
-  native putParcelableArrayListExtra :: Intent -> String -> Mutable s (ArrayList Parcelable) -> ST s Intent
+  native setClassName :: MutableIO Intent -> String -> String -> IOMutable Intent
 
-  native putStringArrayListExtra :: Intent -> String -> Mutable s (ArrayList String) -> ST s Intent
+  native setData :: MutableIO Intent -> Uri -> IOMutable Intent
 
-  native readFromParcel :: Intent -> Parcel -> ST s ()
+  native setDataAndNormalize :: MutableIO Intent -> Uri -> IOMutable Intent
 
-  native removeCategory :: Intent -> String -> ST s ()
+  native setDataAndType :: MutableIO Intent -> Uri -> String -> IOMutable Intent
 
-  native removeExtra :: Intent -> String -> ST s ()
+  native setDataAndTypeAndNormalize :: MutableIO Intent -> Uri -> String -> IOMutable Intent
 
-  pure native replaceExtras :: Intent -> Intent -> Intent
-                             | Intent -> Bundle -> Intent
+  native setFlags :: MutableIO Intent -> Int -> IOMutable Intent
 
-  pure native resolveActivity :: Intent -> PackageManager -> ComponentName
+  native setPackage :: MutableIO Intent -> String -> IOMutable Intent
 
-  pure native resolveActivityInfo :: Intent -> PackageManager -> Int -> ActivityInfo
+  native setSelector :: MutableIO Intent -> MutableIO Intent -> IO ()
 
-  pure native resolveType :: Intent -> ContentResolver -> String
-                           | Intent -> Context -> String
+  native setSourceBounds :: MutableIO Intent -> MutableIO Rect -> IO ()
 
-  pure native resolveTypeIfNeeded :: Intent -> ContentResolver -> String
+  native setType :: MutableIO Intent -> String -> IOMutable Intent
 
-  pure native setAction :: Intent -> String -> Intent
+  native setTypeAndNormalize :: MutableIO Intent -> String -> IOMutable Intent
 
-  pure native setClass :: Intent -> Context -> Class Object -> Intent
+  native toString :: MutableIO Intent -> IO String
 
-  pure native setClassName :: Intent -> Context -> String -> Intent
-                            | Intent -> String -> String -> Intent
+  native toURI :: MutableIO Intent -> IO String
 
-  native setClipData :: Intent -> ClipData -> ST s ()
-
-  pure native setComponent :: Intent -> ComponentName -> Intent
-
-  pure native setData :: Intent -> Uri -> Intent
-
-  pure native setDataAndNormalize :: Intent -> Uri -> Intent
-
-  pure native setDataAndType :: Intent -> Uri -> String -> Intent
-
-  pure native setDataAndTypeAndNormalize :: Intent -> Uri -> String -> Intent
-
-  native setExtrasClassLoader :: Intent -> ClassLoader -> ST s ()
-
-  pure native setFlags :: Intent -> Int -> Intent
-
-  pure native setPackage :: Intent -> String -> Intent
-
-  native setSelector :: Intent -> Intent -> ST s ()
-
-  native setSourceBounds :: Intent -> Mutable s Rect -> ST s ()
-
-  pure native setType :: Intent -> String -> Intent
-
-  pure native setTypeAndNormalize :: Intent -> String -> Intent
-
-  pure native toString :: Intent -> String
-
-  pure native toURI :: Intent -> String
-
-  pure native toUri :: Intent -> Int -> String
-
-  native writeToParcel :: Intent -> Parcel -> Int -> ST s ()
-
-derive Cloneable Intent
+  native toUri :: MutableIO Intent -> Int -> IO String
+{- derive Cloneable Intent -}
 
 
--}
